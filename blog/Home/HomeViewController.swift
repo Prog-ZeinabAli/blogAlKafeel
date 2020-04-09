@@ -10,8 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    let x = ["hi","jd","ho"]
-     let x1 = ["hi","jd","ho"]
+    let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
     @IBOutlet weak var BlogTv: UITableView!
     @IBOutlet weak var CatgTv: UITableView!
     let transition = SlideInTransition()
@@ -91,8 +90,8 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (tableView.tag == 1)
         {
-           //return DataService.instance.categories.count
-             return x1.count
+           return DataService.instance.categories.count
+             //return x1.count
         }
         else if( tableView.tag == 2)
         {
@@ -108,8 +107,8 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         if(tableView.tag == 1)
         {
-           // cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
-            cell.textLabel?.text = x1[indexPath.row]
+           cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
+            //cell.textLabel?.text = x1[indexPath.row]
         }
         else if (tableView.tag == 2)
         {

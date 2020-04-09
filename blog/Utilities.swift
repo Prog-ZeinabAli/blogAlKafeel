@@ -35,8 +35,8 @@ class Utilities {
   //styling hollow buttons
     static func styleHollowButton(_ button: UIButton){
         //holow rounded corners
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 5
+        button.layer.borderColor = UIColor.green.cgColor
         button.layer.cornerRadius = 25.0
         button.tintColor = UIColor.black
     }
@@ -44,7 +44,7 @@ class Utilities {
     //styling view
     static func styleView(_ view: UIView){
            //holow rounded corners
-        view.layer.backgroundColor = (UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1) as! CGColor)
+        view.layer.backgroundColor = (UIColor.init(red: 82/255.0, green: 123/255.0, blue: 79/255.0, alpha: 1.0) as! CGColor)
        }
        
     
@@ -52,7 +52,7 @@ class Utilities {
     //styling filled buttons
     static func styleFilledButton(_ button: UIButton){
         //filling rounded corners
-        button.backgroundColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
+        button.backgroundColor = UIColor.init(red: 82/255.0, green: 123/255.0, blue: 79/255.0, alpha: 1.0)
         button.layer.cornerRadius = 25.0
         button.tintColor = UIColor.white
     }
@@ -73,7 +73,13 @@ class Utilities {
             gradLayer.frame = hi.bounds
             hi.layer.insertSublayer(gradLayer, at:0)
         }
-    
+    static func RoundedCorners(_ hi: UIView) {
+        let gradLayer = CAGradientLayer()
+        gradLayer.cornerRadius = 25.0
+           gradLayer.borderWidth = 2
+                 gradLayer.borderColor = UIColor.black.cgColor
+                 gradLayer.cornerRadius = 25.0
+        }
     
 }
 

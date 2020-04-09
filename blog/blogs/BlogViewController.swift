@@ -59,10 +59,23 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
         
-            cell.title.text = posts[indexPath.row].title
-          Utilities.fadedColor(cell.TitleUiView)
+        cell.title.text = posts[indexPath.row].title
+        
+        Utilities.fadedColor(cell.TitleUiView)
+        
         cell.content.text = posts[indexPath.row].contnet
-            //cell.imageView?.image = UIImage(contentsOfFile: posts[indexPath.row].image)
+        
+        cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image)
+        
+        cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
+        
+        cell.UserName.text = posts[indexPath.row].name
+        
+        cell.NumView.text = String( posts[indexPath.row].view)
+        
+      //  cell.TagButton.titleLabel = String( posts[indexPath.row].tags)
+        
+        
            return cell
        }
 

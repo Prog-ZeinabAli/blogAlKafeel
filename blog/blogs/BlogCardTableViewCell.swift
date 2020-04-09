@@ -13,6 +13,10 @@ class BlogCardTableViewCell: UITableViewCell {
     @IBOutlet var content: UITextView!
     @IBOutlet var UserName: UILabel!
     @IBOutlet var title: UILabel!
+    @IBOutlet weak var PersonalImg: UIImageView!
+    @IBOutlet weak var PostImage: UIImageView!
+    @IBOutlet weak var NumView: UILabel!
+    @IBOutlet weak var TagButton: UIButton!
     
     @IBOutlet weak var TitleUiView: UIView!
     

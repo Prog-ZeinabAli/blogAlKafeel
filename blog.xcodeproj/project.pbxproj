@@ -29,6 +29,10 @@
 		E35749DD243C982200708AB9 /* DataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35749DC243C982200708AB9 /* DataServer.swift */; };
 		E35749DF243C987E00708AB9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35749DE243C987E00708AB9 /* Category.swift */; };
 		E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35749E3243C99F800708AB9 /* MenuViewController.swift */; };
+		E38C141B243D47A70054134E /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C141A243D47A70054134E /* CategoryViewController.swift */; };
+		E38C141E243D49220054134E /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C141D243D49220054134E /* CategoryTableViewCell.swift */; };
+		E38C1465243FB4750054134E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C1464243FB4750054134E /* LogInViewController.swift */; };
+		E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C1467243FC4310054134E /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,10 @@
 		E35749DC243C982200708AB9 /* DataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServer.swift; sourceTree = "<group>"; };
 		E35749DE243C987E00708AB9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E35749E3243C99F800708AB9 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		E38C141A243D47A70054134E /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		E38C141D243D49220054134E /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		E38C1464243FB4750054134E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		E38C1467243FC4310054134E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +169,9 @@
 		E3574998243B7B9B00708AB9 /* blog */ = {
 			isa = PBXGroup;
 			children = (
+				E38C1469243FC4380054134E /* SignUp */,
+				E38C1466243FC4140054134E /* LogIn */,
+				E38C141C243D48F40054134E /* Category */,
 				E35749E0243C995D00708AB9 /* menu */,
 				E35749DB243C96B000708AB9 /* Home */,
 				E35749D4243BB86700708AB9 /* blogs */,
@@ -210,8 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				E357499D243B7B9B00708AB9 /* HomeViewController.swift */,
-				E35749DC243C982200708AB9 /* DataServer.swift */,
-				E35749DE243C987E00708AB9 /* Category.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -223,6 +232,33 @@
 				E35749D9243C0AB000708AB9 /* SlideInTransition.swift */,
 			);
 			path = menu;
+			sourceTree = "<group>";
+		};
+		E38C141C243D48F40054134E /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				E38C141A243D47A70054134E /* CategoryViewController.swift */,
+				E38C141D243D49220054134E /* CategoryTableViewCell.swift */,
+				E35749DC243C982200708AB9 /* DataServer.swift */,
+				E35749DE243C987E00708AB9 /* Category.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		E38C1466243FC4140054134E /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				E38C1464243FB4750054134E /* LogInViewController.swift */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		E38C1469243FC4380054134E /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				E38C1467243FC4310054134E /* SignUpViewController.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,12 +504,16 @@
 				E357499E243B7B9B00708AB9 /* HomeViewController.swift in Sources */,
 				E35749CF243BB7E500708AB9 /* BlogCardTableViewCell.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
+				E38C1465243FB4750054134E /* LogInViewController.swift in Sources */,
 				E35749CD243B7E3900708AB9 /* BlogViewController.swift in Sources */,
+				E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
 				E357499A243B7B9B00708AB9 /* AppDelegate.swift in Sources */,
+				E38C141E243D49220054134E /* CategoryTableViewCell.swift in Sources */,
 				E35749D8243BC30F00708AB9 /* CardShadow.swift in Sources */,
 				E35749D1243BB84900708AB9 /* Post.swift in Sources */,
 				E35749D6243BBEA600708AB9 /* Utilities.swift in Sources */,
+				E38C141B243D47A70054134E /* CategoryViewController.swift in Sources */,
 				E35749DF243C987E00708AB9 /* Category.swift in Sources */,
 				E35749DA243C0AB000708AB9 /* SlideInTransition.swift in Sources */,
 				E35749D3243BB85F00708AB9 /* PostDataServer.swift in Sources */,
