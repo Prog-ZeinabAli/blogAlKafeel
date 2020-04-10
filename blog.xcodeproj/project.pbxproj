@@ -33,6 +33,8 @@
 		E38C141E243D49220054134E /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C141D243D49220054134E /* CategoryTableViewCell.swift */; };
 		E38C1465243FB4750054134E /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C1464243FB4750054134E /* LogInViewController.swift */; };
 		E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C1467243FC4310054134E /* SignUpViewController.swift */; };
+		E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C146A243FE7330054134E /* BloggersViewController.swift */; };
+		E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		E38C141D243D49220054134E /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		E38C1464243FB4750054134E /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		E38C1467243FC4310054134E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		E38C146A243FE7330054134E /* BloggersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersViewController.swift; sourceTree = "<group>"; };
+		E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 		E3574998243B7B9B00708AB9 /* blog */ = {
 			isa = PBXGroup;
 			children = (
+				E38C146C243FE73C0054134E /* Bloggers */,
 				E38C1469243FC4380054134E /* SignUp */,
 				E38C1466243FC4140054134E /* LogIn */,
 				E38C141C243D48F40054134E /* Category */,
@@ -259,6 +264,15 @@
 				E38C1467243FC4310054134E /* SignUpViewController.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		E38C146C243FE73C0054134E /* Bloggers */ = {
+			isa = PBXGroup;
+			children = (
+				E38C146A243FE7330054134E /* BloggersViewController.swift */,
+				E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */,
+			);
+			path = Bloggers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,7 +522,9 @@
 				E35749CD243B7E3900708AB9 /* BlogViewController.swift in Sources */,
 				E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
+				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
 				E357499A243B7B9B00708AB9 /* AppDelegate.swift in Sources */,
+				E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */,
 				E38C141E243D49220054134E /* CategoryTableViewCell.swift in Sources */,
 				E35749D8243BC30F00708AB9 /* CardShadow.swift in Sources */,
 				E35749D1243BB84900708AB9 /* Post.swift in Sources */,

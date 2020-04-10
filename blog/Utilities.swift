@@ -36,7 +36,7 @@ class Utilities {
     static func styleHollowButton(_ button: UIButton){
         //holow rounded corners
         button.layer.borderWidth = 5
-        button.layer.borderColor = UIColor.green.cgColor
+        button.layer.borderColor = (UIColor.init(red: 82/255.0, green: 123/255.0, blue: 79/255.0, alpha: 1.0) as! CGColor)
         button.layer.cornerRadius = 25.0
         button.tintColor = UIColor.black
     }

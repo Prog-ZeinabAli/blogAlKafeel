@@ -26,11 +26,12 @@ class BlogViewController: UIViewController {
           
           override func viewWillAppear(_ animated: Bool) {
               super.viewWillAppear(true)
-
+            
+        
               PostDataServer.instance.fetchAllPosts { [weak self] (response) in
                   if self == nil {return}
                   if response.success {
-                      self!.posts = response.data!
+                    self!.posts = (response.data!.data)!
                       self!.tv.reloadData()
                   }else {
                       let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
@@ -39,6 +40,7 @@ class BlogViewController: UIViewController {
                   }
               }
           }
+
 
    
 
@@ -60,21 +62,27 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
         
         cell.title.text = posts[indexPath.row].title
+                
+        cell.content.text = posts[indexPath.row].content
+        
+        cell.Date.text = posts[indexPath.row].createdAt
+        
+     //   cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image)
+        
+        cell.NumView.text = " \(posts[indexPath.row].views)"
+        
+        cell.TagButton.setTitle(posts[indexPath.row].tags ,for: .normal)
         
         Utilities.fadedColor(cell.TitleUiView)
+
         
-        cell.content.text = posts[indexPath.row].contnet
+       // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
         
-        cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image)
+        cell.UserName.text = posts[indexPath.row].user?.name
         
-        cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
-        
-        cell.UserName.text = posts[indexPath.row].name
-        
-        cell.NumView.text = String( posts[indexPath.row].view)
-        
-      //  cell.TagButton.titleLabel = String( posts[indexPath.row].tags)
-        
+     
+       
+    
         
            return cell
        }

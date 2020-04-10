@@ -10,6 +10,7 @@ import UIKit
 
 class BlogCardTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var Date: UILabel!
     @IBOutlet var content: UITextView!
     @IBOutlet var UserName: UILabel!
     @IBOutlet var title: UILabel!

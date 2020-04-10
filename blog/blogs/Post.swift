@@ -6,36 +6,67 @@
 //  Copyright © 2020 test1. All rights reserved.
 //
 
+
 import Foundation
-class Post {
+
+struct Post : Codable {
+    let id: Int?
+    let userId: String?
+    let title: String?
+    let content: String?
+    let createdAt: String?
+    let image: String?
+    let rate: Int?
+    let views: Int?
+    let tags: String?
+    let status: Int?
+    let categoryId: String?
+    let cmdCount: Int?
+    let user : User?
+    let category : Category2?
     
-    var id: Int!
-    var userId: String!
-    var title: String
-    var contnet: String!
-    var image: String!
-    var categoryId: String!
-    var tags: String!
-    var name: String!
-    var picture: String!
-    var rate: Int!
-    var view: Int!
-    var status: Int!
-
-
-    init(userId: String, id: Int, title: String, content: String, image: String, categoryId: String, tags: String, name: String, picture: String, rate: Int, view: Int, status: Int) {
-        self.userId = userId
-        self.id = id
-        self.title = title
-        self.contnet = content
-        self.image = image
-        self.categoryId = categoryId
-        self.tags = tags
-        self.name = name
-        self.picture = picture
-        self.rate = rate
-        self.view = view
-        self.status = status
-
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case userId = "user_id"
+        case title = "title"
+        case content = "content"
+        case createdAt =  "created_at"
+        case image = "image"
+        case rate = "rate"
+        case views = "view"
+        case tags = "tags"
+        case status = "status"
+        case categoryId = "category_id"
+        case cmdCount = "cmd_count"
+        case user = "user"
+        case category = "cat"
     }
+
+    
+}
+
+struct User : Codable {
+    let id: Int?
+    let name: String?
+    let picture: String?
+}
+
+struct Category2: Codable {
+    let id: Int?
+    let name: String?
+}
+
+
+struct Posts: Codable {
+    let current_page: Int
+    let data: [Post]?
+    let from: Int
+    let last_page: Int
+    let next_page_url: String
+    let path: String
+    let per_page: Int
+    let prev_page_url: String?
+    let to: Int
+    let total: Int
+    
 }
