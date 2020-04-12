@@ -220,6 +220,9 @@
                                                             </constraints>
                                                             <color key="tintColor" red="0.26150232550000002" green="0.44020611050000003" blue="0.2287876606" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" title="Button" image="text.bubble.fill" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="CommentBtn:" destination="57t-Po-YzM" eventType="touchUpInside" id="DTm-yk-xBi"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jke-xK-d2v">
                                                             <rect key="frame" x="223" y="452" width="131" height="22"/>
@@ -335,6 +338,7 @@
                         <viewLayoutGuide key="safeArea" id="1or-aD-w2v"/>
                     </view>
                     <connections>
+                        <outlet property="CommentPopUp" destination="wbO-Gq-Eze" id="iNb-ao-l3w"/>
                         <outlet property="tv" destination="u7d-ru-bAq" id="A5W-ue-RAT"/>
                     </connections>
                 </viewController>
@@ -399,6 +403,20 @@
                         <constraint firstAttribute="trailing" secondItem="q35-i5-pd3" secondAttribute="trailing" symbolic="YES" id="ydA-IG-Bau"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="tyI-n1-19p"/>
+                </view>
+                <view contentMode="scaleToFill" id="Xqz-ap-xAt">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="421"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O88-mz-fO4">
+                            <rect key="frame" x="0.0" y="36" width="240" height="365"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <viewLayoutGuide key="contentLayoutGuide" id="QWp-4M-xyy"/>
+                            <viewLayoutGuide key="frameLayoutGuide" id="PE9-fC-TTy"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <viewLayoutGuide key="safeArea" id="5M2-oN-Que"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="1844.9275362318842" y="138.28125"/>

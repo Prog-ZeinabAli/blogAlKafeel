@@ -22,7 +22,7 @@ class CardShadow: UIView {
            
     }
 
-        @IBInspectable var cornrerRadius : CGFloat = 2
+    @IBInspectable var cornrerRadius : CGFloat = 25.0
         @IBInspectable var shadowOffSetWidth :CGFloat = 0
         @IBInspectable var shadowOffSetHeight : CGFloat = 5
         @IBInspectable  var shadowColor : UIColor = UIColor.black

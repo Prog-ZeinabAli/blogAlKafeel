@@ -10,11 +10,13 @@ import UIKit
 
 class BlogViewController: UIViewController {
     var posts: [Post] = []
+    @IBOutlet var CommentPopUp: UIView!
     @IBOutlet var tv: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
+         CommentPopUp.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width * 0.8, height: self.view.bounds.height * 0.8)
         
         // Do any additional setup after loading the view.
     }
@@ -41,7 +43,30 @@ class BlogViewController: UIViewController {
               }
           }
 
-
+    
+    //comment Section
+    @IBAction func CommentBtn(_ sender: Any) {
+            animateIn(desiredView: CommentPopUp)
+    }
+            
+         func animateIn(desiredView : UIView){
+             
+             let backgrounView = self.view!
+             
+             backgrounView.addSubview(desiredView)
+             
+             desiredView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+             desiredView.alpha = 0
+             desiredView.center = backgrounView.center
+             
+             UIView.animate(withDuration: 0.3) {
+                   desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                       desiredView.alpha = 1
+             }
+             
+             
+         }
+    
    
 
 }
@@ -79,11 +104,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
         
         cell.UserName.text = posts[indexPath.row].user?.name
-        
-     
-       
-    
-        
+
            return cell
        }
 

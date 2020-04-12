@@ -36,7 +36,7 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BloggersTableViewCell
         cell.UserName.text = x[indexPath.row]
-        Utilities.fadedColor(cell.MainView)
+        Utilities.TitlefadedColor(cell.MainView)
           return cell
       }
       

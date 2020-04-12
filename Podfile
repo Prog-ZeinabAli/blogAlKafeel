@@ -7,6 +7,15 @@ target 'blog' do
 
   # Pods for blog
 
+#pods for Facebook log in
+    pod 'FBSDKLoginKit'
+    
+    pod 'FacebookCore'
+    
+    pod 'FacebookLogin'
+
+
+
 #pods for json service connection
     pod 'Alamofire', '~> 4.8.0'
     pod 'SwiftyJSON'
