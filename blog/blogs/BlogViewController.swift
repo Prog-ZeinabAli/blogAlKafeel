@@ -87,23 +87,26 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
         
         cell.title.text = posts[indexPath.row].title
+        
+        cell.UserName.text = posts[indexPath.row].user?.name
                 
         cell.content.text = posts[indexPath.row].content
         
         cell.Date.text = posts[indexPath.row].createdAt
         
-     //   cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image)
+        cell.PostImage.image = UIImage(contentsOfFile: "https://graph.facebook.com/v2.10/2106613122919176/picture?type=normal")
+       
+      //  cell.NumView.text =  cell.content.text = posts[indexPath.row].views
         
-        cell.NumView.text = " \(posts[indexPath.row].views)"
-        
-        cell.TagButton.setTitle(posts[indexPath.row].tags ,for: .normal)
+        cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
         
         Utilities.fadedColor(cell.TitleUiView)
 
+    
         
        // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
         
-        cell.UserName.text = posts[indexPath.row].user?.name
+     
 
            return cell
        }
@@ -120,3 +123,19 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
    }
 
+/*
+ struct BlogPost: Decodable {
+     let title: String
+     let date: Date
+ }
+
+ let decoder = JSONDecoder()
+ let dateFormatter = DateFormatter()
+ dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+ dateFormatter.locale = Locale(identifier: "en_US")
+ dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+ decoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+ let blogPost: BlogPost = try! decoder.decode(BlogPost.self, from: jsonData)
+ print(blogPost.date) // Prints: 2019-10-21 09:15:00 +0000
+ */
