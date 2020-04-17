@@ -12,7 +12,7 @@ import SwiftyJSON
 
 //categry dataSever
 typealias CompletionHandler2 = (_ Success: Bool) -> ()
-let API_URL = "http://blog-api.turathalanbiaa.com/api/cat"
+let API_URL = "https://blog-api.turathalanbiaa.com/api/cat"
 
 
 class DataService {

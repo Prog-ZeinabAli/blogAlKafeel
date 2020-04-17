@@ -94,12 +94,16 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.Date.text = posts[indexPath.row].createdAt
         
-        cell.PostImage.image = UIImage(contentsOfFile: "https://graph.facebook.com/v2.10/2106613122919176/picture?type=normal")
-       
-      //  cell.NumView.text =  cell.content.text = posts[indexPath.row].views
+        cell.PostImage.image = UIImage(named: "https://alkafeelblog.edu.turathalanbiaa.com/image/header-new.jpg")  
+    
+        let views1 = posts[indexPath.row].views ?? 0
+        cell.NumView.text = "\(views1)"
         
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
         
+        
+        
+        Utilities.styleHollowButton(cell.TagButton)
         Utilities.fadedColor(cell.TitleUiView)
 
     

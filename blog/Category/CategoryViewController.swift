@@ -9,7 +9,6 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
-let x = ["selam","olsun","benim","arkadashalar"]
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +27,11 @@ let x = ["selam","olsun","benim","arkadashalar"]
              if success {
                  self.tv.reloadData()
              }
+            else {
+                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
          }
      }
 
@@ -44,14 +48,14 @@ extension CategoryViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print(DataService.instance.categories.count)
         //return DataService.instance.categories.count
-        return x.count
+        DataService.instance.categories.count
     }
     
     
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CategoryTableViewCell
       //  cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
-        cell.btn.setTitle(x[indexPath.row],for: .normal)
+        cell.btn.setTitle( DataService.instance.categories[indexPath.row].categoryName,for: .normal)
         Utilities.styleHollowButton(cell.btn)
           print(cell)
         

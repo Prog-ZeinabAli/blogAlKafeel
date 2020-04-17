@@ -33,7 +33,7 @@ struct Post : Codable {
         case createdAt =  "created_at"
         case image = "image"
         case rate = "rate"
-        case views = "view"
+        case views = "views"
         case tags = "tags"
         case status = "status"
         case categoryId = "category_id"

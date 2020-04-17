@@ -10,6 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var NewBlogBtn: UIButton!
     let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
     @IBOutlet weak var BlogTv: UITableView!
     @IBOutlet weak var CatgTv: UITableView!
@@ -21,6 +22,8 @@ class HomeViewController: UIViewController {
         CatgTv.dataSource = self
         BlogTv.delegate =  self
         BlogTv.dataSource = self
+        
+        Utilities.CircledButton(NewBlogBtn)
     }
 
     @IBAction func menu(_ sender: Any) {

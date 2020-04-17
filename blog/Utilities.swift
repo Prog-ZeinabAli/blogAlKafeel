@@ -57,6 +57,12 @@ class Utilities {
         button.tintColor = UIColor.white
     }
     
+    
+    static func CircledButton(_ button: UIButton){
+        button.layer.cornerRadius = 0.5 * button.bounds.size.width
+        button.clipsToBounds = true
+    }
+    
 
    static func isPasswordValid(_ password : String) -> Bool {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@","^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
