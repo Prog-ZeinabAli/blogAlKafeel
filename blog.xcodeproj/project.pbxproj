@@ -35,6 +35,8 @@
 		E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C1467243FC4310054134E /* SignUpViewController.swift */; };
 		E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C146A243FE7330054134E /* BloggersViewController.swift */; };
 		E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */; };
+		E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */; };
+		E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B2244A4CEF00714A5E /* Blogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		E38C1467243FC4310054134E /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E38C146A243FE7330054134E /* BloggersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersViewController.swift; sourceTree = "<group>"; };
 		E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersTableViewCell.swift; sourceTree = "<group>"; };
+		E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersDataServer.swift; sourceTree = "<group>"; };
+		E3A830B2244A4CEF00714A5E /* Blogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +275,8 @@
 			children = (
 				E38C146A243FE7330054134E /* BloggersViewController.swift */,
 				E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */,
+				E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */,
+				E3A830B2244A4CEF00714A5E /* Blogger.swift */,
 			);
 			path = Bloggers;
 			sourceTree = "<group>";
@@ -518,6 +524,7 @@
 				E357499E243B7B9B00708AB9 /* HomeViewController.swift in Sources */,
 				E35749CF243BB7E500708AB9 /* BlogCardTableViewCell.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
+				E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */,
 				E38C1465243FB4750054134E /* LogInViewController.swift in Sources */,
 				E35749CD243B7E3900708AB9 /* BlogViewController.swift in Sources */,
 				E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */,
@@ -530,6 +537,7 @@
 				E35749D1243BB84900708AB9 /* Post.swift in Sources */,
 				E35749D6243BBEA600708AB9 /* Utilities.swift in Sources */,
 				E38C141B243D47A70054134E /* CategoryViewController.swift in Sources */,
+				E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */,
 				E35749DF243C987E00708AB9 /* Category.swift in Sources */,
 				E35749DA243C0AB000708AB9 /* SlideInTransition.swift in Sources */,
 				E35749D3243BB85F00708AB9 /* PostDataServer.swift in Sources */,

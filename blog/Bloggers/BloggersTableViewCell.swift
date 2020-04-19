@@ -11,10 +11,10 @@ import UIKit
 class BloggersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var Score: UILabel!
-    @IBOutlet weak var subView: UIView!
     @IBOutlet weak var UserName: UILabel!
     @IBOutlet weak var PrsImg: UIImageView!
     @IBOutlet weak var MainView: UIView!
+      @IBOutlet weak var subView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

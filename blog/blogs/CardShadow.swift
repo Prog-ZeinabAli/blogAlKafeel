@@ -9,7 +9,7 @@
 import UIKit
 
 
-//this class will add shadow to the view card to look as if it is a card LOL
+//this class will add shadow to the view card to look as if it is a card
 class CardShadow: UIView {
 
        override func layoutSubviews() {

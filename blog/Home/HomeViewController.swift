@@ -18,6 +18,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+            
         CatgTv.delegate = self
         CatgTv.dataSource = self
         BlogTv.delegate =  self
@@ -134,5 +136,4 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
     
     
 }
-
 

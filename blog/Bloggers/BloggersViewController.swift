@@ -9,7 +9,7 @@
 import UIKit
 
 class BloggersViewController: UIViewController {
-    let x = ["bloger1","bloger2","bloger3"]
+     var Blogger: [Blog] = []
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +17,27 @@ class BloggersViewController: UIViewController {
         tv.dataSource = self
     }
     
+       override func didReceiveMemoryWarning() {
+                    super.didReceiveMemoryWarning()
+                }
+             
+             override func viewWillAppear(_ animated: Bool) {
+                 super.viewWillAppear(true)
+               
+           
+                BloggersDataServer.instance.fetchAllBloggers { [weak self] (response) in
+                     if self == nil {return}
+                     if response.success {
+                        self!.Blogger = (response.data!.data)!
+                         self!.tv.reloadData()
+                     }else {
+                         let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                         alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                         self!.present(alert, animated: true)
+                     }
+                 }
+             }
+
 
   
 
@@ -25,17 +46,21 @@ class BloggersViewController: UIViewController {
 
 
 
-// Extention for catgeories slideDown menu
+// Extention for Bloggers tableview
 extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return x.count
+        return  Blogger.count
     }
     
     
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BloggersTableViewCell
-        cell.UserName.text = x[indexPath.row]
+        cell.UserName.text = Blogger[indexPath.row].name
+        let score1 = Blogger[indexPath.row].points ?? 0
+        cell.Score.text = "النقاط:\(score1)"
+   //     let Purl = URL(fileURLWithPath: Blogger[indexPath.row].picture!)
+          //  cell.PrsImg = UIImage(purl)
         Utilities.TitlefadedColor(cell.MainView)
           return cell
       }
