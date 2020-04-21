@@ -99,6 +99,10 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
         
+        
+        let commentCount = posts[indexPath.row].cmdCount ?? 0
+        cell.CommentCount.text = "\(commentCount)"
+        
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
         
         
@@ -125,6 +129,13 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        }
 
 
+    
+    
+    
+    
+    
+    
+    
    }
 
 /*

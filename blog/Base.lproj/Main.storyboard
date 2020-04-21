@@ -328,6 +328,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="CommentCount" destination="zXo-p5-TIF" id="OhO-CP-34n"/>
                                             <outlet property="Date" destination="Okx-ks-BbZ" id="55N-sE-xdx"/>
                                             <outlet property="NumView" destination="5LA-ph-klQ" id="aFL-N9-RV9"/>
                                             <outlet property="PersonalImg" destination="YQj-Og-qGq" id="NtP-dH-KYL"/>
@@ -362,15 +363,15 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="        اضف تعليق" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3ro-z9-fiI">
-                            <rect key="frame" x="0.0" y="389" width="240" height="30"/>
+                            <rect key="frame" x="0.0" y="369" width="240" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="30" id="Lze-T1-zbw"/>
+                                <constraint firstAttribute="height" constant="50" id="Lze-T1-zbw"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tFs-8J-Yzy">
-                            <rect key="frame" x="0.0" y="40" width="240" height="341"/>
+                            <rect key="frame" x="0.0" y="40" width="240" height="321"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <prototypes>
                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="sFv-Cx-osZ">
@@ -384,10 +385,10 @@
                             </prototypes>
                         </tableView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZCg-ws-hsx">
-                            <rect key="frame" x="210" y="389" width="30" height="30"/>
+                            <rect key="frame" x="190" y="369" width="50" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="0kc-fY-7wF"/>
-                                <constraint firstAttribute="height" constant="30" id="s1W-c5-3P8"/>
+                                <constraint firstAttribute="width" constant="50" id="0kc-fY-7wF"/>
+                                <constraint firstAttribute="height" constant="50" id="s1W-c5-3P8"/>
                             </constraints>
                             <state key="normal" image="paperplane.fill" catalog="system"/>
                         </button>
@@ -397,7 +398,15 @@
                                 <constraint firstAttribute="height" constant="40" id="NkE-f2-r3K"/>
                             </constraints>
                             <items>
-                                <navigationItem title="التعليقات" id="ie5-j2-VU3"/>
+                                <navigationItem title="التعليقات" id="ie5-j2-VU3">
+                                    <barButtonItem key="leftBarButtonItem" style="plain" id="f0S-2o-bxX">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QHI-dg-1i4">
+                                            <rect key="frame" x="16" y="7" width="53" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                        </button>
+                                    </barButtonItem>
+                                </navigationItem>
                             </items>
                         </navigationBar>
                     </subviews>

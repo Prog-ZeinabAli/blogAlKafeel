@@ -18,7 +18,7 @@ class BlogCardTableViewCell: UITableViewCell {
     @IBOutlet weak var PostImage: UIImageView!
     @IBOutlet weak var NumView: UILabel!
     @IBOutlet weak var TagButton: UIButton!
-    
+    @IBOutlet weak var CommentCount: UILabel!
     @IBOutlet weak var TitleUiView: UIView!
     
     
