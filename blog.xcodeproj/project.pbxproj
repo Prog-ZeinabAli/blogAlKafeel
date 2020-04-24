@@ -37,6 +37,8 @@
 		E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */; };
 		E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */; };
 		E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B2244A4CEF00714A5E /* Blogger.swift */; };
+		EBE7470124523DC800F0F59E /* LogInVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470024523DC800F0F59E /* LogInVars.swift */; };
+		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersTableViewCell.swift; sourceTree = "<group>"; };
 		E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersDataServer.swift; sourceTree = "<group>"; };
 		E3A830B2244A4CEF00714A5E /* Blogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blogger.swift; sourceTree = "<group>"; };
+		EBE7470024523DC800F0F59E /* LogInVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVars.swift; sourceTree = "<group>"; };
+		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +262,8 @@
 			isa = PBXGroup;
 			children = (
 				E38C1464243FB4750054134E /* LogInViewController.swift */,
+				EBE7470224523DD900F0F59E /* LogInServer.swift */,
+				EBE7470024523DC800F0F59E /* LogInVars.swift */,
 			);
 			path = LogIn;
 			sourceTree = "<group>";
@@ -520,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBE7470124523DC800F0F59E /* LogInVars.swift in Sources */,
 				E35749DD243C982200708AB9 /* DataServer.swift in Sources */,
 				E357499E243B7B9B00708AB9 /* HomeViewController.swift in Sources */,
 				E35749CF243BB7E500708AB9 /* BlogCardTableViewCell.swift in Sources */,
@@ -531,6 +538,7 @@
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
 				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
 				E357499A243B7B9B00708AB9 /* AppDelegate.swift in Sources */,
+				EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */,
 				E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */,
 				E38C141E243D49220054134E /* CategoryTableViewCell.swift in Sources */,
 				E35749D8243BC30F00708AB9 /* CardShadow.swift in Sources */,

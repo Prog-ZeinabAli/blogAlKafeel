@@ -13,7 +13,7 @@ import Alamofire
 import SwiftyJSON
 
 class LogInViewController: UIViewController {
-
+    var loginCheck: [logInVars] = []
     @IBOutlet weak var signInWinstution: UISwitch!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var usernameTxt: UITextField!
@@ -32,7 +32,28 @@ class LogInViewController: UIViewController {
     }
     @IBAction func LogInBtnPressed(_ sender: Any) {
         let json: [String: Any] = ["password": passwordTxt.text,"email": usernameTxt.text , "db":0]
-        let x = Alamofire.request("https://blog-api.turathalanbiaa.com/api/loginuser", method: .post, parameters: json, encoding: JSONEncoding.default)
+        
+        LogInServer.instance.LogInCheck(json: json) { [weak self] (response) in
+            if self == nil {return}
+            if response.success {
+                self!.loginCheck = (response.data!.data)!
+                print(response.data!.data)
+                
+           /*     if (self!.loginCheck[0].id) != 0{
+                    print("\(self!.loginCheck[1].name)")
+                    print("yeah")
+            }//you were thnking about a way to hget th id out and print it */
+            
+        }else {
+                        let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                        self!.present(alert, animated: true)
+                    }
+                }
+}
+        
+        
+ /*       let x = Alamofire.request("https://blog-api.turathalanbiaa.com/api/loginuser", method: .post, parameters: json, encoding: JSONEncoding.default)
             .responseJSON { (response) in
                 if response.result.isSuccess{
                     print(response)
@@ -42,54 +63,7 @@ class LogInViewController: UIViewController {
                 }
         }
         
-        
-        
-/*
-print("button was pressed")
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-
-        // create post request
-        let url = URL(string: "https://blog-api.turathalanbiaa.com/api/loginuser")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-print("finnished link")
-        // insert json data to the request
-        request.httpBody = jsonData
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            print("suppose to print datta")
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print(responseJSON)
-            }
-        }
-print("button was pressed")
-        task.resume() */
-    }
-    /*
-    @IBAction func LogInByFB(_ sender: Any) {
-        let manager = LoginManager()
-                manager.logIn(permissions: [.publicProfile, .email], viewController: self)
-                {
-                    (Result) in switch Result
-                    {
-                    case.cancelled:
-                        print("user cancelled process")
-                        break
-                    case.failed(let error):
-                        print("failed \(error)")
-                        break
-                    case.success(granted: let grant, declined: let dec, token: let token):
-                        print("access token \(token)")
-                        
-                        
-                        
-                }
-    }
-    
-} */
+       */
+  
 }
+
