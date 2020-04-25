@@ -670,6 +670,9 @@
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YgC-xa-RQ3">
                                 <rect key="frame" x="86" y="508" width="51" height="31"/>
+                                <connections>
+                                    <action selector="InstitutionTabbed:" destination="3gU-hm-ka4" eventType="valueChanged" id="cIT-Za-Pv8"/>
+                                </connections>
                             </switch>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K2U-Bo-qoA">
                                 <rect key="frame" x="30" y="408" width="354" height="50"/>
@@ -755,14 +758,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="الاسم الظاهر" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJq-6I-iIU">
-                                <rect key="frame" x="40" y="254" width="334" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="pH0-gJ-FVD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="الرمز السري" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pef-ta-S7M">
                                 <rect key="frame" x="40" y="334" width="334" height="50"/>
                                 <constraints>
@@ -809,6 +804,9 @@
                                 <state key="normal" title="انشاء حساب">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="SignUpPressed:" destination="63s-eJ-J7g" eventType="touchUpInside" id="2jk-VX-t5x"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="تسجيل حساب جديد" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doX-IO-vlg">
                                 <rect key="frame" x="69" y="52" width="276" height="80"/>
@@ -826,6 +824,14 @@
                                     <navigationItem title="تسجيل حساب" id="S5A-md-jiJ"/>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="الاسم الظاهر" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJq-6I-iIU">
+                                <rect key="frame" x="40" y="254" width="334" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="pH0-gJ-FVD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -861,6 +867,10 @@
                     <connections>
                         <outlet property="MainView" destination="eN6-cb-4P4" id="Ks1-3b-r20"/>
                         <outlet property="SignUpBtn" destination="gNk-84-1BN" id="FyY-o6-N7R"/>
+                        <outlet property="nameTxt" destination="eJq-6I-iIU" id="jXD-G5-ToG"/>
+                        <outlet property="passwordRepeatTxt" destination="nAg-jM-IJR" id="BxJ-Z2-TN8"/>
+                        <outlet property="passwordTxt" destination="pef-ta-S7M" id="IVY-2H-iCO"/>
+                        <outlet property="usernameTxt" destination="FZo-7Z-tTH" id="dRp-JN-mnd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUd-fB-b5R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

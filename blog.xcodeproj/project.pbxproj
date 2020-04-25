@@ -37,6 +37,8 @@
 		E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */; };
 		E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */; };
 		E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B2244A4CEF00714A5E /* Blogger.swift */; };
+		EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */; };
+		EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C4212454AF65008E86D3 /* UserRegister.swift */; };
 		EBE7470124523DC800F0F59E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470024523DC800F0F59E /* User.swift */; };
 		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
 /* End PBXBuildFile section */
@@ -101,6 +103,8 @@
 		E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersTableViewCell.swift; sourceTree = "<group>"; };
 		E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersDataServer.swift; sourceTree = "<group>"; };
 		E3A830B2244A4CEF00714A5E /* Blogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blogger.swift; sourceTree = "<group>"; };
+		EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServer.swift; sourceTree = "<group>"; };
+		EB14C4212454AF65008E86D3 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		EBE7470024523DC800F0F59E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -272,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				E38C1467243FC4310054134E /* SignUpViewController.swift */,
+				EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */,
+				EB14C4212454AF65008E86D3 /* UserRegister.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -533,10 +539,12 @@
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
 				E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */,
 				E38C1465243FB4750054134E /* LogInViewController.swift in Sources */,
+				EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */,
 				E35749CD243B7E3900708AB9 /* BlogViewController.swift in Sources */,
 				E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
 				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
+				EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */,
 				E357499A243B7B9B00708AB9 /* AppDelegate.swift in Sources */,
 				EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */,
 				E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */,

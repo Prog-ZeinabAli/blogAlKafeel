@@ -13,7 +13,8 @@ import Alamofire
 import SwiftyJSON
 
 class LogInViewController: UIViewController {
-//    var loginCheck: [logInVars] = []
+
+    var institutionFlag = 0
     @IBOutlet weak var signInWinstution: UISwitch!
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var usernameTxt: UITextField!
@@ -30,6 +31,17 @@ class LogInViewController: UIViewController {
         print("yes")
       
     }
+    @IBAction func InstitutionTabbed(_ sender: Any) {
+        if signInWinstution.isOn == true
+        {
+            usernameTxt.backgroundColor = UIColor.red
+            institutionFlag = 1
+        } else if signInWinstution.isOn == false
+        {
+            usernameTxt.backgroundColor = UIColor.white
+            institutionFlag = 0
+        }
+    }
     @IBAction func LogInBtnPressed(_ sender: Any) {
         if (passwordTxt.text == "") || (usernameTxt.text == "")
         {
@@ -37,7 +49,8 @@ class LogInViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }else{
-            let json: [String: Any] = ["password": passwordTxt.text as Any,"email": usernameTxt.text as Any , "db":0]
+            let json: [String: Any] = ["password": passwordTxt.text as Any,"email": usernameTxt.text as Any , "db":institutionFlag]
+            print(institutionFlag)
             LogInServer.instance.LogInCheck(json:json) { [weak self] (response) in
                       guard let self = self else { return }
                       if response.success {
@@ -50,9 +63,6 @@ class LogInViewController: UIViewController {
                               }else{
                                     print(user.name!)
                               }
-                      
-                            
-                              
                           }
                       } else {
                            let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
