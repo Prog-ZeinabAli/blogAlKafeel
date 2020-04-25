@@ -7,22 +7,19 @@
 //
 
 import Foundation
-struct logInVars : Codable {
-let description: String?
-let email: String?
-let facebook: String?
+struct User : Codable {
 let id: Int?
-let instagram: String?
 let name: String?
-let phone: String?
-let picture: String?
-let points: Int?
+let email: String?
 let status: Int?
-let token: String?
+let points: Int?
+let picture: String?
+let description: String?
+let facebook: String?
+let instagram: String?
 let twitter: String?
+let phone: String?
+let token: String?
+let message: String?
 
-}
-
-struct LogInVars: Codable {
-let data: [logInVars]?
 }

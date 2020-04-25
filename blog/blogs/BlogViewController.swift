@@ -94,7 +94,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.Date.text = posts[indexPath.row].createdAt
         
-        cell.PostImage.image = UIImage(named: "https://alkafeelblog.edu.turathalanbiaa.com/image/header-new.jpg")  
+        cell.PostImage.image = UIImage(named: "https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/1585684885.jpg")
     
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"

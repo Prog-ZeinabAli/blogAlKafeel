@@ -10,6 +10,13 @@
 import Foundation
 
 struct Post : Codable {
+    
+    struct User : Codable {
+        let id: Int?
+        let name: String?
+        let picture: String?
+    }
+    
     let id: Int?
     let userId: String?
     let title: String?
@@ -45,11 +52,7 @@ struct Post : Codable {
     
 }
 
-struct User : Codable {
-    let id: Int?
-    let name: String?
-    let picture: String?
-}
+
 
 struct Category2: Codable {
     let id: Int?
