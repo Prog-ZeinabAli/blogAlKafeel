@@ -11,7 +11,7 @@ import UIKit
 
 class Utilities {
     
-    
+    // dismiss(animated : true ,completion: nil)
     //styling textFields
     static func styleTextField(_ textfield:UITextField){
         

@@ -49,7 +49,7 @@ class LogInViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }else{
-            let json: [String: Any] = ["password": passwordTxt.text as Any,"email": usernameTxt.text as Any , "db":institutionFlag]
+            let json: [String: Any] = ["email": passwordTxt.text as Any,"password": usernameTxt.text as Any ]//, "db":institutionFlag]
             print(institutionFlag)
             LogInServer.instance.LogInCheck(json:json) { [weak self] (response) in
                       guard let self = self else { return }
@@ -62,6 +62,8 @@ class LogInViewController: UIViewController {
                                   self.present(alert, animated: true)
                               }else{
                                     print(user.name!)
+                                Share.shared.userName = user.name!
+                                self.dismiss(animated: true, completion: nil)
                               }
                           }
                       } else {

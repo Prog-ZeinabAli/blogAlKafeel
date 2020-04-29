@@ -9,6 +9,7 @@
 import UIKit
 
 class BlogViewController: UIViewController {
+    var cm = 0
     var posts: [Post] = []
     @IBOutlet var CommentPopUp: UIView!
     @IBOutlet var tv: UITableView!
@@ -16,7 +17,6 @@ class BlogViewController: UIViewController {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
-         CommentPopUp.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width * 0.8, height: self.view.bounds.height * 0.8)
         
         // Do any additional setup after loading the view.
     }
@@ -46,27 +46,9 @@ class BlogViewController: UIViewController {
     
     //comment Section
     @IBAction func CommentBtn(_ sender: Any) {
-            animateIn(desiredView: CommentPopUp)
+        print("post id num is \(cm)")
     }
             
-         func animateIn(desiredView : UIView){
-             
-             let backgrounView = self.view!
-             
-             backgrounView.addSubview(desiredView)
-             
-             desiredView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-             desiredView.alpha = 0
-             desiredView.center = backgrounView.center
-             
-             UIView.animate(withDuration: 0.3) {
-                   desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                       desiredView.alpha = 1
-             }
-             
-             
-         }
-    
    
 
 }
@@ -85,6 +67,9 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
+        
+        cm = posts[indexPath.row].id ?? 0
+        Share.shared.PostId = cm
         
         cell.title.text = posts[indexPath.row].title
         

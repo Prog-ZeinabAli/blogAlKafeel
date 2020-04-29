@@ -41,6 +41,18 @@
 		EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C4212454AF65008E86D3 /* UserRegister.swift */; };
 		EBE7470124523DC800F0F59E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470024523DC800F0F59E /* User.swift */; };
 		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
+		EBF215F424563AD400DC3651 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F324563AD400DC3651 /* Share.swift */; };
+		EBF215F62456707800DC3651 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F52456707800DC3651 /* CommentViewController.swift */; };
+		EBF215F9245670A800DC3651 /* CommentDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F8245670A800DC3651 /* CommentDataServer.swift */; };
+		EBF215FB245670BF00DC3651 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215FA245670BF00DC3651 /* Comments.swift */; };
+		EBF215FD245678CB00DC3651 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215FC245678CB00DC3651 /* CommentTableViewCell.swift */; };
+		EBF215FF2457C51C00DC3651 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215FE2457C51C00DC3651 /* ProfileViewController.swift */; };
+		EBF216022457C54E00DC3651 /* ProfileDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF216012457C54E00DC3651 /* ProfileDataServer.swift */; };
+		EBF216042457C55F00DC3651 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF216032457C55F00DC3651 /* Profile.swift */; };
+		EBF216072458A3B600DC3651 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF216062458A3B600DC3651 /* EditProfileViewController.swift */; };
+		EBF216092458AA2000DC3651 /* UpdtProfileDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF216082458AA2000DC3651 /* UpdtProfileDataServer.swift */; };
+		EBF2160B2458AA3800DC3651 /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF2160A2458AA3800DC3651 /* UpdateProfile.swift */; };
+		EBF2160E2459BE8E00DC3651 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF2160D2459BE8E00DC3651 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +119,18 @@
 		EB14C4212454AF65008E86D3 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		EBE7470024523DC800F0F59E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
+		EBF215F324563AD400DC3651 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
+		EBF215F52456707800DC3651 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		EBF215F8245670A800DC3651 /* CommentDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataServer.swift; sourceTree = "<group>"; };
+		EBF215FA245670BF00DC3651 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		EBF215FC245678CB00DC3651 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		EBF215FE2457C51C00DC3651 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		EBF216012457C54E00DC3651 /* ProfileDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataServer.swift; sourceTree = "<group>"; };
+		EBF216032457C55F00DC3651 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		EBF216062458A3B600DC3651 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		EBF216082458AA2000DC3651 /* UpdtProfileDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdtProfileDataServer.swift; sourceTree = "<group>"; };
+		EBF2160A2458AA3800DC3651 /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
+		EBF2160D2459BE8E00DC3651 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +209,8 @@
 		E3574998243B7B9B00708AB9 /* blog */ = {
 			isa = PBXGroup;
 			children = (
+				EBF216002457C52500DC3651 /* Profile */,
+				EBF215F72456708600DC3651 /* Comment */,
 				E38C146C243FE73C0054134E /* Bloggers */,
 				E38C1469243FC4380054134E /* SignUp */,
 				E38C1466243FC4140054134E /* LogIn */,
@@ -199,6 +225,7 @@
 				E35749A7243B7BA600708AB9 /* LaunchScreen.storyboard */,
 				E35749AA243B7BA600708AB9 /* Info.plist */,
 				E35749A2243B7B9B00708AB9 /* blog.xcdatamodeld */,
+				EBF215F324563AD400DC3651 /* Share.swift */,
 				E35749D5243BBEA600708AB9 /* Utilities.swift */,
 			);
 			path = blog;
@@ -230,6 +257,7 @@
 				E35749D2243BB85F00708AB9 /* PostDataServer.swift */,
 				E35749D0243BB84900708AB9 /* Post.swift */,
 				E35749D7243BC30F00708AB9 /* CardShadow.swift */,
+				EBF2160C2459BE7900DC3651 /* Settings */,
 			);
 			path = blogs;
 			sourceTree = "<group>";
@@ -291,6 +319,46 @@
 				E3A830B2244A4CEF00714A5E /* Blogger.swift */,
 			);
 			path = Bloggers;
+			sourceTree = "<group>";
+		};
+		EBF215F72456708600DC3651 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				EBF215F52456707800DC3651 /* CommentViewController.swift */,
+				EBF215F8245670A800DC3651 /* CommentDataServer.swift */,
+				EBF215FA245670BF00DC3651 /* Comments.swift */,
+				EBF215FC245678CB00DC3651 /* CommentTableViewCell.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		EBF216002457C52500DC3651 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				EBF215FE2457C51C00DC3651 /* ProfileViewController.swift */,
+				EBF216012457C54E00DC3651 /* ProfileDataServer.swift */,
+				EBF216032457C55F00DC3651 /* Profile.swift */,
+				EBF216052458A39500DC3651 /* editProfile */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		EBF216052458A39500DC3651 /* editProfile */ = {
+			isa = PBXGroup;
+			children = (
+				EBF216062458A3B600DC3651 /* EditProfileViewController.swift */,
+				EBF216082458AA2000DC3651 /* UpdtProfileDataServer.swift */,
+				EBF2160A2458AA3800DC3651 /* UpdateProfile.swift */,
+			);
+			path = editProfile;
+			sourceTree = "<group>";
+		};
+		EBF2160C2459BE7900DC3651 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EBF2160D2459BE8E00DC3651 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,26 +600,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBF215F62456707800DC3651 /* CommentViewController.swift in Sources */,
 				EBE7470124523DC800F0F59E /* User.swift in Sources */,
 				E35749DD243C982200708AB9 /* DataServer.swift in Sources */,
 				E357499E243B7B9B00708AB9 /* HomeViewController.swift in Sources */,
 				E35749CF243BB7E500708AB9 /* BlogCardTableViewCell.swift in Sources */,
+				EBF2160E2459BE8E00DC3651 /* SettingsViewController.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
+				EBF215FF2457C51C00DC3651 /* ProfileViewController.swift in Sources */,
 				E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */,
 				E38C1465243FB4750054134E /* LogInViewController.swift in Sources */,
 				EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */,
+				EBF216022457C54E00DC3651 /* ProfileDataServer.swift in Sources */,
 				E35749CD243B7E3900708AB9 /* BlogViewController.swift in Sources */,
 				E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */,
+				EBF216072458A3B600DC3651 /* EditProfileViewController.swift in Sources */,
+				EBF215FB245670BF00DC3651 /* Comments.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
 				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
 				EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */,
+				EBF216042457C55F00DC3651 /* Profile.swift in Sources */,
+				EBF215F424563AD400DC3651 /* Share.swift in Sources */,
 				E357499A243B7B9B00708AB9 /* AppDelegate.swift in Sources */,
 				EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */,
+				EBF215F9245670A800DC3651 /* CommentDataServer.swift in Sources */,
 				E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */,
 				E38C141E243D49220054134E /* CategoryTableViewCell.swift in Sources */,
+				EBF2160B2458AA3800DC3651 /* UpdateProfile.swift in Sources */,
+				EBF215FD245678CB00DC3651 /* CommentTableViewCell.swift in Sources */,
 				E35749D8243BC30F00708AB9 /* CardShadow.swift in Sources */,
 				E35749D1243BB84900708AB9 /* Post.swift in Sources */,
 				E35749D6243BBEA600708AB9 /* Utilities.swift in Sources */,
+				EBF216092458AA2000DC3651 /* UpdtProfileDataServer.swift in Sources */,
 				E38C141B243D47A70054134E /* CategoryViewController.swift in Sources */,
 				E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */,
 				E35749DF243C987E00708AB9 /* Category.swift in Sources */,

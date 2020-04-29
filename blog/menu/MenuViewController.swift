@@ -10,13 +10,15 @@ import UIKit
 
 class MenuViewController: UIViewController {
       
-
+    @IBOutlet weak var UserNameLabel: UILabel!
+    
 
     let transition = SlideInTransition()
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            // Do any additional setup after loading the view.
+            let name :String = Share.shared.userName ?? "ضيف"
+            UserNameLabel.text = name
         }
         
     @IBAction func HomeIsTapped(_ sender: Any) {
