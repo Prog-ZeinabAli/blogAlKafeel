@@ -10,6 +10,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var CategoryButton: UIButton!
+    @IBOutlet weak var latestBlogsButton: UIButton!
     @IBOutlet weak var NewBlogBtn: UIButton!
     let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
     @IBOutlet weak var BlogTv: UITableView!
@@ -24,8 +26,10 @@ class HomeViewController: UIViewController {
         CatgTv.dataSource = self
         BlogTv.delegate =  self
         BlogTv.dataSource = self
-        
         Utilities.CircledButton(NewBlogBtn)
+        CategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        latestBlogsButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        
     }
 
     @IBAction func menu(_ sender: Any) {
@@ -96,7 +100,6 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
         if (tableView.tag == 1)
         {
            return DataService.instance.categories.count
-             //return x1.count
         }
         else if( tableView.tag == 2)
         {
@@ -124,7 +127,26 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
           return cell
       }
       
-
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+       {
+        
+        
+        if (tableView.tag == 1)
+           {
+            let alert = UIAlertController(title: "خطأ", message: "\(DataService.instance.categories[indexPath.row].id)", preferredStyle: .alert)
+                                 alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                 self.present(alert, animated: true)
+           }
+           else if( tableView.tag == 2)
+           {
+           
+            let alert = UIAlertController(title: "خطأ", message: "\(indexPath.row)", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            }
+           
+       
+       }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()

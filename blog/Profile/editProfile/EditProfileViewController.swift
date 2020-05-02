@@ -12,19 +12,23 @@ class EditProfileViewController: UIViewController {
 
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var userName: UITextField!
+    public var imagePickerController: UIImagePickerController?
+    public var defaultImageUrl: URL?
+    
+    
+    override func viewDidLoad() {
+             super.viewDidLoad()
+             self.selectedImageView.contentMode = .scaleAspectFill
+             self.selectImageButton.isEnabled = self.selectedImage == nil
+             self.selectImageButton.alpha = 1
+         }
     
     
     
-    @IBAction func Cancel(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
+      @IBAction func Cancel(_ sender: Any) {
+          dismiss(animated: true, completion: nil)
+      }
 
-       public var imagePickerController: UIImagePickerController?
-       
-       public var defaultImageUrl: URL?
-       
        internal var selectedImage: UIImage? {
            get {
                return self.selectedImageView.image
@@ -49,6 +53,7 @@ class EditProfileViewController: UIViewController {
                }
            }
        }
+    
        @IBOutlet weak var selectedImageView: UIImageView!
        
        @IBOutlet weak var selectImageButton: UIButton! {
@@ -65,12 +70,6 @@ class EditProfileViewController: UIViewController {
                button.isEnabled = false
                button.alpha = 0.5
            }
-       }
-       override func viewDidLoad() {
-           super.viewDidLoad()
-           self.selectedImageView.contentMode = .scaleAspectFill
-           self.selectImageButton.isEnabled = self.selectedImage == nil
-           self.selectImageButton.alpha = 1
        }
 
        @IBAction func selectImageButtonAction(_ sender: UIButton) {

@@ -39,6 +39,8 @@
 		E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B2244A4CEF00714A5E /* Blogger.swift */; };
 		EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */; };
 		EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C4212454AF65008E86D3 /* UserRegister.swift */; };
+		EBDD1109245A3E2900090AC4 /* ViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD1108245A3E2900090AC4 /* ViewsViewController.swift */; };
+		EBDD110B245A6B6100090AC4 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */; };
 		EBE7470124523DC800F0F59E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470024523DC800F0F59E /* User.swift */; };
 		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
 		EBF215F424563AD400DC3651 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F324563AD400DC3651 /* Share.swift */; };
@@ -117,6 +119,8 @@
 		E3A830B2244A4CEF00714A5E /* Blogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blogger.swift; sourceTree = "<group>"; };
 		EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServer.swift; sourceTree = "<group>"; };
 		EB14C4212454AF65008E86D3 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
+		EBDD1108245A3E2900090AC4 /* ViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsViewController.swift; sourceTree = "<group>"; };
+		EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		EBE7470024523DC800F0F59E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
 		EBF215F324563AD400DC3651 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
@@ -210,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				EBF216002457C52500DC3651 /* Profile */,
-				EBF215F72456708600DC3651 /* Comment */,
 				E38C146C243FE73C0054134E /* Bloggers */,
 				E38C1469243FC4380054134E /* SignUp */,
 				E38C1466243FC4140054134E /* LogIn */,
@@ -257,7 +260,10 @@
 				E35749D2243BB85F00708AB9 /* PostDataServer.swift */,
 				E35749D0243BB84900708AB9 /* Post.swift */,
 				E35749D7243BC30F00708AB9 /* CardShadow.swift */,
+				EBF215F72456708600DC3651 /* Comment */,
+				EBDD110C245AF3EE00090AC4 /* AddPost */,
 				EBF2160C2459BE7900DC3651 /* Settings */,
+				EBDD1108245A3E2900090AC4 /* ViewsViewController.swift */,
 			);
 			path = blogs;
 			sourceTree = "<group>";
@@ -321,6 +327,13 @@
 			path = Bloggers;
 			sourceTree = "<group>";
 		};
+		EBDD110C245AF3EE00090AC4 /* AddPost */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddPost;
+			sourceTree = "<group>";
+		};
 		EBF215F72456708600DC3651 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +351,7 @@
 				EBF215FE2457C51C00DC3651 /* ProfileViewController.swift */,
 				EBF216012457C54E00DC3651 /* ProfileDataServer.swift */,
 				EBF216032457C55F00DC3651 /* Profile.swift */,
+				EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */,
 				EBF216052458A39500DC3651 /* editProfile */,
 			);
 			path = Profile;
@@ -616,6 +630,7 @@
 				E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */,
 				EBF216072458A3B600DC3651 /* EditProfileViewController.swift in Sources */,
 				EBF215FB245670BF00DC3651 /* Comments.swift in Sources */,
+				EBDD1109245A3E2900090AC4 /* ViewsViewController.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
 				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
 				EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */,
@@ -632,6 +647,7 @@
 				E35749D1243BB84900708AB9 /* Post.swift in Sources */,
 				E35749D6243BBEA600708AB9 /* Utilities.swift in Sources */,
 				EBF216092458AA2000DC3651 /* UpdtProfileDataServer.swift in Sources */,
+				EBDD110B245A6B6100090AC4 /* ProfileTableViewCell.swift in Sources */,
 				E38C141B243D47A70054134E /* CategoryViewController.swift in Sources */,
 				E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */,
 				E35749DF243C987E00708AB9 /* Category.swift in Sources */,
@@ -742,7 +758,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -797,7 +813,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

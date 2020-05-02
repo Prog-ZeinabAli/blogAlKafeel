@@ -63,6 +63,7 @@ class LogInViewController: UIViewController {
                               }else{
                                     print(user.name!)
                                 Share.shared.userName = user.name!
+                                Share.shared.PostId = user.id!
                                 self.dismiss(animated: true, completion: nil)
                               }
                           }

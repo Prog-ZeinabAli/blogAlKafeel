@@ -10,12 +10,6 @@ import Foundation
 
 struct Profile : Codable {
     
-    struct User : Codable {
-        let id: Int?
-        let name: String?
-        let picture: String?
-    }
-    
     let id: Int?
     let userId: String?
     let title: String?
@@ -29,9 +23,22 @@ struct Profile : Codable {
     let categoryId: String?
     let cmdCount: Int?
     let user : User?
+    let category: Cat?
+    
+    struct Cat : Codable {
+          let id: Int?
+          let name: String?
+      }
+      
+      struct User : Codable {
+             let id: Int?
+             let name: String?
+          let picture: String?
+         }
+      
 
     
-    enum CodingKeys5: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id = "id"
         case userId = "user_id"
         case title = "title"
@@ -53,15 +60,15 @@ struct Profile : Codable {
 
 
 struct Profiles: Codable {
-    let current_page: Int
-    let data: [Profile]?
-    let from: Int
-    let last_page: Int
-    let next_page_url: String
-    let path: String
-    let per_page: Int
-    let prev_page_url: String?
-    let to: Int
-    let total: Int
-    
+    let current_page: Int?
+    let data : [Profile]?
+    let from: Int?
+     let last_page: Int?
+     let next_page_url: String?
+     let path: String?
+     let per_page: Int?
+     let prev_page_url: String?
+     let to: Int?
+     let total: Int?
 }
+

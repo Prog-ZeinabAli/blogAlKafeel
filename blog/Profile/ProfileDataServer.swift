@@ -19,10 +19,10 @@ class ProfiletDataServer {
     static let instance = ProfiletDataServer()
     
     func fetchAllProfile(json: [String : Any] ,completion: @escaping CompletionHandler7<Profile>) {
-        Alamofire.request(API_URL7,method: .post).responseString(completionHandler:{ r in
+        Alamofire.request(API_URL7,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
         })
-        Alamofire.request(API_URL7,method: .post).responseJSON { response in
+        Alamofire.request(API_URL7,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
                 print(response.error as Any)
                 completion(ApiResponse7<Profile>.fail(cause: response.error))

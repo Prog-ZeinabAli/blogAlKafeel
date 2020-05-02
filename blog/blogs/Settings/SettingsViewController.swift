@@ -20,9 +20,9 @@ class SettingsViewController: UIViewController {
     
     @IBAction func FontSizeStepper(_ sender: UIStepper) {
         let x = CGFloat(sender.value)
+        Share.shared.fontSize = Int(x)
        FontSizeLabel.font = UIFont.italicSystemFont(ofSize: x)
-    //   FontSizeLabel.text = String(sender.value)
-    
+
     }
     
 

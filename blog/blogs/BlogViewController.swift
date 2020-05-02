@@ -46,7 +46,10 @@ class BlogViewController: UIViewController {
     
     //comment Section
     @IBAction func CommentBtn(_ sender: Any) {
-        print("post id num is \(cm)")
+       // Share.shared.PostId = cm
+        let alert = UIAlertController(title: "خطأ", message: "\(cm)", preferredStyle: .alert)
+                             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                             self.present(alert, animated: true)
     }
             
    
@@ -57,6 +60,7 @@ class BlogViewController: UIViewController {
 extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
        public func numberOfSections(in tableView: UITableView) -> Int {
+    
            return 1
        }
 
@@ -68,8 +72,10 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
         
-        cm = posts[indexPath.row].id ?? 0
-        Share.shared.PostId = cm
+       // cm = posts[indexPath.row].id ?? 0
+        //Share.shared.PostId = cm
+        let FZ = CGFloat(Share.shared.fontSize ?? 17)
+        cell.content.font = UIFont.italicSystemFont(ofSize: FZ)
         
         cell.title.text = posts[indexPath.row].title
         
@@ -104,7 +110,11 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
            return cell
        }
 
-
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        cm = indexPath.row// posts[indexPath.row].id ?? 0
+    
+    }
        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
            return UIView()
        }

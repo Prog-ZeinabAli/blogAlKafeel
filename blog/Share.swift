@@ -12,4 +12,6 @@ final class Share{
     var userName : String!
     var CmntUserName : String!
     var PostId : Int!
+    var fontSize : Int!  //setting font size changing
+    var categoryId : Int? //category table view selection
 }

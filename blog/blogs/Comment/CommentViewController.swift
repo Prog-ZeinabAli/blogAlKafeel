@@ -10,6 +10,7 @@ import UIKit
 
 class CommentViewController: UIViewController {
  var comments: [Comment] = []
+    var postId = 0
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +25,11 @@ class CommentViewController: UIViewController {
              override func viewWillAppear(_ animated: Bool) {
                  super.viewWillAppear(true)
                
-                let json: [String: Any] = ["post_id":Share.shared.PostId]
+                let json: [String: Any] = ["post_id": Share.shared.PostId]
                 CommentDataServer.instance.fetchAllComments(json:json ) { [weak self] (response) in
                      if self == nil {return}
                      if response.success {
-                       self!.comments = (response.data!.data)!
+                        self!.comments = (response.data!.data)!
                          self!.tv.reloadData()
                      }else {
                          let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
