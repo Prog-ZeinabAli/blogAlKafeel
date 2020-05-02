@@ -43,15 +43,6 @@ class BlogViewController: UIViewController {
               }
           }
 
-    
-    //comment Section
-    @IBAction func CommentBtn(_ sender: Any) {
-       // Share.shared.PostId = cm
-        let alert = UIAlertController(title: "خطأ", message: "\(cm)", preferredStyle: .alert)
-                             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                             self.present(alert, animated: true)
-    }
-            
    
 
 }
@@ -96,7 +87,8 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
         
-        
+        cell.index = indexPath
+        cell.cellDelegate = self as! CommentIsClicked
         
         Utilities.styleHollowButton(cell.TagButton)
         Utilities.fadedColor(cell.TitleUiView)
@@ -123,15 +115,19 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
            return 500
        }
 
-
-    
-    
-    
-    
-    
-    
-    
    }
+
+
+
+extension BlogViewController: CommentIsClicked{
+    func onClickCell(index: Int) {
+        let x = posts[index].id ?? 0
+        Share.shared.PostId = x
+    }
+    
+}
+
+
 
 /*
  struct BlogPost: Decodable {

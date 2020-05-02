@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol CommentIsClicked {
+    func onClickCell(index : Int)
+}
+
+
 class BlogCardTableViewCell: UITableViewCell {
 
     @IBOutlet weak var Date: UILabel!
@@ -21,32 +26,18 @@ class BlogCardTableViewCell: UITableViewCell {
     @IBOutlet weak var CommentCount: UILabel!
     @IBOutlet weak var TitleUiView: UIView!
     
+    var cellDelegate :CommentIsClicked?
+    var index : IndexPath?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    @IBDesignable class CardView: UIView {
-          
-          @IBInspectable var cornrerRadius : CGFloat = 2
-          @IBInspectable var shadowOffSetWidth :CGFloat = 0
-          @IBInspectable var shadowOffSetHeight : CGFloat = 5
-          @IBInspectable  var shadowColor : UIColor = UIColor.black
-          @IBInspectable var shadowOpacity : CGFloat = 0.5
-          
-
-          override func layoutSubviews() {
-              //add shadow
-              layer.cornerRadius = cornrerRadius
-              layer.shadowColor = shadowColor.cgColor
-              layer.shadowOffset = CGSize(width: shadowOffSetWidth, height: shadowOffSetHeight)
-              let shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: cornrerRadius)
-              layer.shadowPath = shadowPath.cgPath
-              layer.shadowOpacity = Float(shadowOpacity)
-              
-          
-      }
-
+    @IBAction func CommentBtnClicked(_ sender: Any) {
+        cellDelegate?.onClickCell(index: (index?.row)!)
+    }
+    
 }
-}
+

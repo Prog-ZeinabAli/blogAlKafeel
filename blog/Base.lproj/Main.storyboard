@@ -249,7 +249,7 @@
                                                             <color key="tintColor" red="0.26150232550000002" green="0.44020611050000003" blue="0.2287876606" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" title="Button" image="text.bubble.fill" catalog="system"/>
                                                             <connections>
-                                                                <action selector="CommentBtn:" destination="57t-Po-YzM" eventType="touchUpInside" id="DTm-yk-xBi"/>
+                                                                <action selector="CommentBtnClicked:" destination="40V-Kk-BEv" eventType="touchUpInside" id="d4q-fW-DhD"/>
                                                                 <segue destination="nEc-Wi-Sdh" kind="presentation" id="po6-s7-tZm"/>
                                                             </connections>
                                                         </button>
