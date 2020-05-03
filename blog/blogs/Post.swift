@@ -63,13 +63,13 @@ struct Category2: Codable {
 struct Posts: Codable {
     let current_page: Int
     let data: [Post]?
-    let from: Int
-    let last_page: Int
-    let next_page_url: String
-    let path: String
-    let per_page: Int
+    let from: Int?
+    let last_page: Int?
+    let next_page_url: String?
+    let path: String?
+    let per_page: Int?
     let prev_page_url: String?
-    let to: Int
-    let total: Int
+    let to: Int?
+    let total: Int?
     
 }

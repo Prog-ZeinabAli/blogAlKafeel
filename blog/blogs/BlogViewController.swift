@@ -17,6 +17,9 @@ class BlogViewController: UIViewController {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
+        if Share.shared.FontChnaged == 1{
+            tv.reloadData()
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -29,8 +32,9 @@ class BlogViewController: UIViewController {
           override func viewWillAppear(_ animated: Bool) {
               super.viewWillAppear(true)
             
-        
-              PostDataServer.instance.fetchAllPosts { [weak self] (response) in
+            let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0  ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 1]
+            PostDataServer.instance.fetchAllPosts (json: json)
+                { [weak self] (response) in
                   if self == nil {return}
                   if response.success {
                     self!.posts = (response.data!.data)!
@@ -76,19 +80,19 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.Date.text = posts[indexPath.row].createdAt
         
-        cell.PostImage.image = UIImage(named: "https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/1585684885.jpg")
+        cell.PostImage.image = UIImage(named:"home") //(posts[indexPath.row].image ?? UIImage(named:"home"))!)
     
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
         
-        
+    
         let commentCount = posts[indexPath.row].cmdCount ?? 0
         cell.CommentCount.text = "\(commentCount)"
         
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
         
         cell.index = indexPath
-        cell.cellDelegate = self as! CommentIsClicked
+        cell.cellDelegate = self // as! CommentIsClicked
         
         Utilities.styleHollowButton(cell.TagButton)
         Utilities.fadedColor(cell.TitleUiView)

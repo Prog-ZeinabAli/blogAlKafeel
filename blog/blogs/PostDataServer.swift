@@ -18,11 +18,12 @@ class PostDataServer {
     
     static let instance = PostDataServer()
     
-    func fetchAllPosts(completion: @escaping CompletionHandler1<Posts>) {
-        Alamofire.request(API_URL2,method: .post).responseString(completionHandler:{ r in
+    func fetchAllPosts(json: [String : Any],completion: @escaping CompletionHandler1<Posts>) {
+        
+        Alamofire.request(API_URL2,method: .post, parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
         })
-        Alamofire.request(API_URL2,method: .post).responseJSON { response in
+        Alamofire.request(API_URL2,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
                 print(response.error as Any)
                 completion(ApiResponse<Posts>.fail(cause: response.error))

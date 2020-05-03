@@ -13,5 +13,12 @@ final class Share{
     var CmntUserName : String!
     var PostId : Int!
     var fontSize : Int!  //setting font size changing
+    
+    
+    // hom etabl views detection
     var categoryId : Int? //category table view selection
+    var sortby : Int? //category table view selection
+    
+    
+    var FontChnaged : Int? //indicate if the font size has cahnged
 }

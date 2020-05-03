@@ -39,7 +39,9 @@
 		E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B2244A4CEF00714A5E /* Blogger.swift */; };
 		EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */; };
 		EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C4212454AF65008E86D3 /* UserRegister.swift */; };
-		EBDD1109245A3E2900090AC4 /* ViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD1108245A3E2900090AC4 /* ViewsViewController.swift */; };
+		EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */; };
+		EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BA245E22FD000C1409 /* AddPostServer.swift */; };
+		EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BC245E230A000C1409 /* AddPost.swift */; };
 		EBDD110B245A6B6100090AC4 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */; };
 		EBE7470124523DC800F0F59E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470024523DC800F0F59E /* User.swift */; };
 		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
@@ -119,7 +121,9 @@
 		E3A830B2244A4CEF00714A5E /* Blogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blogger.swift; sourceTree = "<group>"; };
 		EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServer.swift; sourceTree = "<group>"; };
 		EB14C4212454AF65008E86D3 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
-		EBDD1108245A3E2900090AC4 /* ViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsViewController.swift; sourceTree = "<group>"; };
+		EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
+		EB3E79BA245E22FD000C1409 /* AddPostServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostServer.swift; sourceTree = "<group>"; };
+		EB3E79BC245E230A000C1409 /* AddPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPost.swift; sourceTree = "<group>"; };
 		EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		EBE7470024523DC800F0F59E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
@@ -213,14 +217,15 @@
 		E3574998243B7B9B00708AB9 /* blog */ = {
 			isa = PBXGroup;
 			children = (
-				EBF216002457C52500DC3651 /* Profile */,
-				E38C146C243FE73C0054134E /* Bloggers */,
-				E38C1469243FC4380054134E /* SignUp */,
-				E38C1466243FC4140054134E /* LogIn */,
+				E35749D4243BB86700708AB9 /* blogs */,
 				E38C141C243D48F40054134E /* Category */,
+				E38C146C243FE73C0054134E /* Bloggers */,
+				E38C1466243FC4140054134E /* LogIn */,
+				E38C1469243FC4380054134E /* SignUp */,
+				EBF216002457C52500DC3651 /* Profile */,
+				EBDD110C245AF3EE00090AC4 /* AddPost */,
 				E35749E0243C995D00708AB9 /* menu */,
 				E35749DB243C96B000708AB9 /* Home */,
-				E35749D4243BB86700708AB9 /* blogs */,
 				E3574999243B7B9B00708AB9 /* AppDelegate.swift */,
 				E357499B243B7B9B00708AB9 /* SceneDelegate.swift */,
 				E357499F243B7B9B00708AB9 /* Main.storyboard */,
@@ -261,9 +266,7 @@
 				E35749D0243BB84900708AB9 /* Post.swift */,
 				E35749D7243BC30F00708AB9 /* CardShadow.swift */,
 				EBF215F72456708600DC3651 /* Comment */,
-				EBDD110C245AF3EE00090AC4 /* AddPost */,
 				EBF2160C2459BE7900DC3651 /* Settings */,
-				EBDD1108245A3E2900090AC4 /* ViewsViewController.swift */,
 			);
 			path = blogs;
 			sourceTree = "<group>";
@@ -327,9 +330,19 @@
 			path = Bloggers;
 			sourceTree = "<group>";
 		};
+		EB3E79B7245E228B000C1409 /* addComment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = addComment;
+			sourceTree = "<group>";
+		};
 		EBDD110C245AF3EE00090AC4 /* AddPost */ = {
 			isa = PBXGroup;
 			children = (
+				EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */,
+				EB3E79BA245E22FD000C1409 /* AddPostServer.swift */,
+				EB3E79BC245E230A000C1409 /* AddPost.swift */,
 			);
 			path = AddPost;
 			sourceTree = "<group>";
@@ -341,6 +354,7 @@
 				EBF215F8245670A800DC3651 /* CommentDataServer.swift */,
 				EBF215FA245670BF00DC3651 /* Comments.swift */,
 				EBF215FC245678CB00DC3651 /* CommentTableViewCell.swift */,
+				EB3E79B7245E228B000C1409 /* addComment */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -620,6 +634,7 @@
 				E357499E243B7B9B00708AB9 /* HomeViewController.swift in Sources */,
 				E35749CF243BB7E500708AB9 /* BlogCardTableViewCell.swift in Sources */,
 				EBF2160E2459BE8E00DC3651 /* SettingsViewController.swift in Sources */,
+				EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
 				EBF215FF2457C51C00DC3651 /* ProfileViewController.swift in Sources */,
 				E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */,
@@ -630,12 +645,12 @@
 				E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */,
 				EBF216072458A3B600DC3651 /* EditProfileViewController.swift in Sources */,
 				EBF215FB245670BF00DC3651 /* Comments.swift in Sources */,
-				EBDD1109245A3E2900090AC4 /* ViewsViewController.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
 				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
 				EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */,
 				EBF216042457C55F00DC3651 /* Profile.swift in Sources */,
 				EBF215F424563AD400DC3651 /* Share.swift in Sources */,
+				EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */,
 				E357499A243B7B9B00708AB9 /* AppDelegate.swift in Sources */,
 				EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */,
 				EBF215F9245670A800DC3651 /* CommentDataServer.swift in Sources */,
@@ -643,6 +658,7 @@
 				E38C141E243D49220054134E /* CategoryTableViewCell.swift in Sources */,
 				EBF2160B2458AA3800DC3651 /* UpdateProfile.swift in Sources */,
 				EBF215FD245678CB00DC3651 /* CommentTableViewCell.swift in Sources */,
+				EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */,
 				E35749D8243BC30F00708AB9 /* CardShadow.swift in Sources */,
 				E35749D1243BB84900708AB9 /* Post.swift in Sources */,
 				E35749D6243BBEA600708AB9 /* Utilities.swift in Sources */,

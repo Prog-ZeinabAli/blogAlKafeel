@@ -22,7 +22,7 @@ class SettingsViewController: UIViewController {
         let x = CGFloat(sender.value)
         Share.shared.fontSize = Int(x)
        FontSizeLabel.font = UIFont.italicSystemFont(ofSize: x)
-
+        Share.shared.FontChnaged = 1
     }
     
 

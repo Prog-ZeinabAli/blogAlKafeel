@@ -16,12 +16,11 @@ let API_URL4 = "https://blog-api.turathalanbiaa.com/api/loginuser"
 
 class LogInServer {
     
-    private init() {}
     
     static let instance = LogInServer()
     
     func LogInCheck(json: [String: Any] , completion: @escaping CompletionHandler4<User>) {
-        Alamofire.request(API_URL4,method: .post).responseString(completionHandler:{ r in
+        Alamofire.request(API_URL4,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
         })
         Alamofire.request(API_URL4,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in

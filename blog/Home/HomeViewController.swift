@@ -133,16 +133,14 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
         
         if (tableView.tag == 1)
            {
-            let alert = UIAlertController(title: "خطأ", message: "\(DataService.instance.categories[indexPath.row].id)", preferredStyle: .alert)
-                                 alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                                 self.present(alert, animated: true)
+            let x = DataService.instance.categories[indexPath.row].id ?? 0
+            Share.shared.categoryId = x
+            tableView.isHidden = true
            }
            else if( tableView.tag == 2)
            {
-           
-            let alert = UIAlertController(title: "خطأ", message: "\(indexPath.row)", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
+            Share.shared.sortby = indexPath.row
+            tableView.isHidden = true
             }
            
        

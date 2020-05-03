@@ -61,7 +61,7 @@ class LogInViewController: UIViewController {
                                                  alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                   self.present(alert, animated: true)
                               }else{
-                                    print(user.name!)
+                                print(user.id!)
                                 Share.shared.userName = user.name!
                                 Share.shared.PostId = user.id!
                                 self.dismiss(animated: true, completion: nil)
