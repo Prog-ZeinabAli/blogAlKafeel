@@ -32,7 +32,7 @@ class BlogViewController: UIViewController {
         print (Share.shared.categoryId)
         refreshConroler.endRefreshing()
     }
-    
+    // MARK: - Core Data Saving support
     
     override func didReceiveMemoryWarning() {
                  super.didReceiveMemoryWarning()

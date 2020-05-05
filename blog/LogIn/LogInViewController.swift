@@ -11,6 +11,7 @@ import FacebookCore
 import FacebookLogin
 import Alamofire
 import SwiftyJSON
+import FBSDKLoginKit
 
 class LogInViewController: UIViewController {
 
@@ -22,16 +23,57 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var LogInBtn: UIButton!
     @IBOutlet var MainView: UIView!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Utilities.fadedColor(MainView)
          Utilities.styleHollowButton(LogInBtn)
         Loading.isHidden = true
+        
+        
+      //  let loginButton = FBLoginButton()
+       // loginButton.center = view.center
+        
+        view.addSubview(LogInWithFb)
+        
+        if let token = AccessToken.current,
+            !token.isExpired {
+            // User is logged in, do work such as go to next view controller.
+        }
     }
+    
+    //MARK:- FACEBOOK LOGIN
     @IBAction func FaceBookLogInBtn(_ sender: Any) {
         print("yes")
-      
+        getFacebookUserInfo()
     }
+    
+    func getFacebookUserInfo(){
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: [.publicProfile, .email ], viewController: self) { (result) in
+            switch result{
+            case .cancelled:
+                print("Cancel button click")
+            case .success:
+                let params = ["fields" : "id, name, first_name, last_name, picture.type(large), email "]
+                let graphRequest = GraphRequest.init(graphPath: "/me", parameters: params)
+                let Connection = GraphRequestConnection()
+                Connection.add(graphRequest) { (Connection, result, error) in
+                    let info = result as! [String : AnyObject]
+                    print(info["name"] as! String)
+                }
+                Connection.start()
+            default:
+                print("??")
+            }
+        }
+    }
+    
+    
+    
+    //MARK:- CHECK IF USER SIGNED IN AS AN INSTITUTION
     @IBAction func InstitutionTabbed(_ sender: Any) {
 
         if signInWinstution.isOn == true
@@ -44,6 +86,9 @@ class LogInViewController: UIViewController {
             institutionFlag = 0
         }
     }
+    
+    
+    //MARK:- LOGIN
     @IBAction func LogInBtnPressed(_ sender: Any) {
         
         self.Loading.isHidden = false
