@@ -13,45 +13,53 @@ class BlogViewController: UIViewController {
     var posts: [Post] = []
     @IBOutlet var CommentPopUp: UIView!
     @IBOutlet var tv: UITableView!
+    @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
-        if Share.shared.FontChnaged == 1{
-            tv.reloadData()
-        }
+        tv.addSubview(refreshConroler)
+        refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
         
-        // Do any additional setup after loading the view.
+    }
+    
+    @objc func refreshData(){
+        tv.reloadData()
+        print (Share.shared.sortby)
+        print (Share.shared.categoryId)
+        refreshConroler.endRefreshing()
     }
     
     
     override func didReceiveMemoryWarning() {
                  super.didReceiveMemoryWarning()
              }
-          
-          override func viewWillAppear(_ animated: Bool) {
-              super.viewWillAppear(true)
-            
-            let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0  ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 1]
-            PostDataServer.instance.fetchAllPosts (json: json)
-                { [weak self] (response) in
-                  if self == nil {return}
-                  if response.success {
-                    self!.posts = (response.data!.data)!
-                      self!.tv.reloadData()
-                  }else {
-                      let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
-                      alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                      self!.present(alert, animated: true)
-                  }
-              }
-          }
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(true)
+        
+        let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0  ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 1]
+        PostDataServer.instance.fetchAllPosts (json: json)
+            { [weak self] (response) in
+                if self == nil {return}
+                if response.success {
+                self!.posts = (response.data!.data)!
+                    self!.tv.reloadData()
+                }else {
+                    let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                    self!.present(alert, animated: true)
+                }
+            }
+        }
 
    
 
 }
 
-
+//table view
 extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
        public func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,10 +75,10 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
         
-       // cm = posts[indexPath.row].id ?? 0
-        //Share.shared.PostId = cm
+        //Send propperties through share
         let FZ = CGFloat(Share.shared.fontSize ?? 17)
         cell.content.font = UIFont.italicSystemFont(ofSize: FZ)
+       
         
         cell.title.text = posts[indexPath.row].title
         
@@ -80,7 +88,8 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.Date.text = posts[indexPath.row].createdAt
         
-        cell.PostImage.image = UIImage(named:"home") //(posts[indexPath.row].image ?? UIImage(named:"home"))!)
+        cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image! ) ?? UIImage(named:"home")
+        cell.PersonalImg.image = UIImage(contentsOfFile: (posts[indexPath.row].user?.picture)! ) ?? UIImage(named:"PersonalImg")
     
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
@@ -97,6 +106,8 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         Utilities.styleHollowButton(cell.TagButton)
         Utilities.fadedColor(cell.TitleUiView)
 
+        
+        
     
         
        // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
@@ -121,12 +132,17 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
    }
 
-
-
+//to send data to the comment viewController
 extension BlogViewController: CommentIsClicked{
     func onClickCell(index: Int) {
+        //sedning index to the comment section
         let x = posts[index].id ?? 0
         Share.shared.PostId = x
+        
+       // sending data to the view section
+        Share.shared.Blogscontent = posts[index].content
+        Share.shared.Blogsusername = posts[index].user?.name
+        
     }
     
 }

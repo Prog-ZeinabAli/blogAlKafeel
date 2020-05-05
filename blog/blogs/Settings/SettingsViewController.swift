@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var FontSizeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // search for interface style
         // Do any additional setup after loading the view.
     }
     

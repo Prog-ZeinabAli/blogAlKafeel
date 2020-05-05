@@ -61,9 +61,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTableViewCell
     nob = profiles[indexPath.row].createdAt ?? "data"
-    //cell.Title.text = profiles[indexPath.row].title
+    cell.Title.text = profiles[indexPath.row].title
     
-    //cell.Content.text = profiles[indexPath.row].content
+    cell.Content.text = profiles[indexPath.row].content
             
        return cell
    }

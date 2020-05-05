@@ -23,8 +23,15 @@ struct AddPost : Codable {
     
     struct CreatedAt : Codable {
           let date: String?
-          let timezone_type: Int?
+          let timezoneType: Int?
          let timezone: String?
+        
+        enum CodingKeys: String, CodingKey {
+              case timezoneType = "timezone_type"
+               case date = "date"
+               case timezone = "timezone" 
+
+           }
       }
       
 
@@ -40,8 +47,13 @@ struct AddPost : Codable {
         case status = "status"
         case categoryId = "category_id"
         case id = "id"
+       /* case timezoneType = "timezone_type"
+        case date = "date"
+        case timezone = "timezone" */
 
     }
+    
+   
 
     
 }

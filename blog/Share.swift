@@ -18,7 +18,12 @@ final class Share{
     // hom etabl views detection
     var categoryId : Int? //category table view selection
     var sortby : Int? //category table view selection
+    var changed_happend : Int?
     
-    
+    //setting
     var FontChnaged : Int? //indicate if the font size has cahnged
+    
+    //views
+    var Blogsusername : String!
+    var Blogscontent : String!
 }

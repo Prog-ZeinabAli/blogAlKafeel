@@ -45,6 +45,7 @@
 		EBDD110B245A6B6100090AC4 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */; };
 		EBE7470124523DC800F0F59E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470024523DC800F0F59E /* User.swift */; };
 		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
+		EBE89F05245FAECE005E292C /* ViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE89F04245FAECE005E292C /* ViewsViewController.swift */; };
 		EBF215F424563AD400DC3651 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F324563AD400DC3651 /* Share.swift */; };
 		EBF215F62456707800DC3651 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F52456707800DC3651 /* CommentViewController.swift */; };
 		EBF215F9245670A800DC3651 /* CommentDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F8245670A800DC3651 /* CommentDataServer.swift */; };
@@ -127,6 +128,7 @@
 		EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		EBE7470024523DC800F0F59E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
+		EBE89F04245FAECE005E292C /* ViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsViewController.swift; sourceTree = "<group>"; };
 		EBF215F324563AD400DC3651 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		EBF215F52456707800DC3651 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		EBF215F8245670A800DC3651 /* CommentDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataServer.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				E35749D2243BB85F00708AB9 /* PostDataServer.swift */,
 				E35749D0243BB84900708AB9 /* Post.swift */,
 				E35749D7243BC30F00708AB9 /* CardShadow.swift */,
+				EBE89F03245FAEB3005E292C /* view */,
 				EBF215F72456708600DC3651 /* Comment */,
 				EBF2160C2459BE7900DC3651 /* Settings */,
 			);
@@ -345,6 +348,14 @@
 				EB3E79BC245E230A000C1409 /* AddPost.swift */,
 			);
 			path = AddPost;
+			sourceTree = "<group>";
+		};
+		EBE89F03245FAEB3005E292C /* view */ = {
+			isa = PBXGroup;
+			children = (
+				EBE89F04245FAECE005E292C /* ViewsViewController.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		EBF215F72456708600DC3651 /* Comment */ = {
@@ -656,6 +667,7 @@
 				EBF215F9245670A800DC3651 /* CommentDataServer.swift in Sources */,
 				E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */,
 				E38C141E243D49220054134E /* CategoryTableViewCell.swift in Sources */,
+				EBE89F05245FAECE005E292C /* ViewsViewController.swift in Sources */,
 				EBF2160B2458AA3800DC3651 /* UpdateProfile.swift in Sources */,
 				EBF215FD245678CB00DC3651 /* CommentTableViewCell.swift in Sources */,
 				EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */,

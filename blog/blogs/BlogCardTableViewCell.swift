@@ -38,6 +38,9 @@ class BlogCardTableViewCell: UITableViewCell {
     @IBAction func CommentBtnClicked(_ sender: Any) {
         cellDelegate?.onClickCell(index: (index?.row)!)
     }
+    @IBAction func ViewsBtnClicked(_ sender: Any) {
+         cellDelegate?.onClickCell(index: (index?.row)!)
+    }
     
 }
 

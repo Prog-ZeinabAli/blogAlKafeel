@@ -13,7 +13,6 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var userName: UITextField!
     public var imagePickerController: UIImagePickerController?
-    public var defaultImageUrl: URL?
     
     
     override func viewDidLoad() {
@@ -28,6 +27,11 @@ class EditProfileViewController: UIViewController {
       @IBAction func Cancel(_ sender: Any) {
           dismiss(animated: true, completion: nil)
       }
+    
+    
+    
+    
+    //adding image
 
        internal var selectedImage: UIImage? {
            get {
