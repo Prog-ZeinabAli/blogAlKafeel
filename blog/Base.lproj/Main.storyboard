@@ -499,8 +499,9 @@
                                     <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvD-bv-XUM">
                                         <rect key="frame" x="0.0" y="0.0" width="304" height="44"/>
                                         <items>
-                                            <navigationItem title="Title" id="U5U-T0-BTy">
-                                                <barButtonItem key="leftBarButtonItem" title="cancel" id="n67-Ut-22i">
+                                            <navigationItem title="التعليقات" id="U5U-T0-BTy">
+                                                <barButtonItem key="leftBarButtonItem" title="اغلاق" id="n67-Ut-22i">
+                                                    <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <connections>
                                                         <action selector="CancelButton:" destination="nEc-Wi-Sdh" id="3v9-mK-lnF"/>
                                                     </connections>
@@ -522,6 +523,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="fut-PR-vJw"/>
                                         </constraints>
+                                        <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" image="paperplane.fill" catalog="system"/>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNX-6f-iyK">

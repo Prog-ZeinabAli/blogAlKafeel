@@ -61,7 +61,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTableViewCell
-    noOfBlogs.text = String(profiles.count)
+    noOfBlogs.text = "عدد التدوينات: \(String(profiles.count)) "
     userName.text = profiles[indexPath.row].user?.name
    cell.Title.text = profiles[indexPath.row].title
    cell.Content.text = profiles[indexPath.row].content
