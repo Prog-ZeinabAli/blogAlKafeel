@@ -10,12 +10,20 @@ import UIKit
 
 class EditProfileViewController: UIViewController {
 
+    @IBOutlet weak var uiView: CardShadow!
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var OkBtn: UIButton!
+    @IBOutlet weak var CnclBtn: UIButton!
+    @IBOutlet weak var ChooseBtn: UIButton!
     public var imagePickerController: UIImagePickerController?
     
     
     override func viewDidLoad() {
+        Utilities.TitlefadedColor(uiView)
+        Utilities.styleHollowButton(CnclBtn)
+        Utilities.styleHollowButton(OkBtn)
+         Utilities.styleHollowButton(ChooseBtn)
              super.viewDidLoad()
              self.selectedImageView.contentMode = .scaleAspectFill
              self.selectImageButton.isEnabled = self.selectedImage == nil

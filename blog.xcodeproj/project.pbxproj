@@ -46,6 +46,8 @@
 		EBE7470124523DC800F0F59E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470024523DC800F0F59E /* User.swift */; };
 		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
 		EBE89F05245FAECE005E292C /* ViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE89F04245FAECE005E292C /* ViewsViewController.swift */; };
+		EBF147C4246106BB00FA68C9 /* LoginByFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF147C3246106BB00FA68C9 /* LoginByFacebook.swift */; };
+		EBF147C6246106E700FA68C9 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF147C5246106E700FA68C9 /* FBUser.swift */; };
 		EBF215F424563AD400DC3651 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F324563AD400DC3651 /* Share.swift */; };
 		EBF215F62456707800DC3651 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F52456707800DC3651 /* CommentViewController.swift */; };
 		EBF215F9245670A800DC3651 /* CommentDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F8245670A800DC3651 /* CommentDataServer.swift */; };
@@ -129,6 +131,8 @@
 		EBE7470024523DC800F0F59E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
 		EBE89F04245FAECE005E292C /* ViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsViewController.swift; sourceTree = "<group>"; };
+		EBF147C3246106BB00FA68C9 /* LoginByFacebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginByFacebook.swift; sourceTree = "<group>"; };
+		EBF147C5246106E700FA68C9 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		EBF215F324563AD400DC3651 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
 		EBF215F52456707800DC3651 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		EBF215F8245670A800DC3651 /* CommentDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataServer.swift; sourceTree = "<group>"; };
@@ -308,6 +312,8 @@
 				E38C1464243FB4750054134E /* LogInViewController.swift */,
 				EBE7470224523DD900F0F59E /* LogInServer.swift */,
 				EBE7470024523DC800F0F59E /* User.swift */,
+				EBF147C3246106BB00FA68C9 /* LoginByFacebook.swift */,
+				EBF147C5246106E700FA68C9 /* FBUser.swift */,
 			);
 			path = LogIn;
 			sourceTree = "<group>";
@@ -645,6 +651,7 @@
 				E357499E243B7B9B00708AB9 /* HomeViewController.swift in Sources */,
 				E35749CF243BB7E500708AB9 /* BlogCardTableViewCell.swift in Sources */,
 				EBF2160E2459BE8E00DC3651 /* SettingsViewController.swift in Sources */,
+				EBF147C6246106E700FA68C9 /* FBUser.swift in Sources */,
 				EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
 				EBF215FF2457C51C00DC3651 /* ProfileViewController.swift in Sources */,
@@ -681,6 +688,7 @@
 				E35749DF243C987E00708AB9 /* Category.swift in Sources */,
 				E35749DA243C0AB000708AB9 /* SlideInTransition.swift in Sources */,
 				E35749D3243BB85F00708AB9 /* PostDataServer.swift in Sources */,
+				EBF147C4246106BB00FA68C9 /* LoginByFacebook.swift in Sources */,
 				E357499C243B7B9B00708AB9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

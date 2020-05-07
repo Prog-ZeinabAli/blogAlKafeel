@@ -10,7 +10,9 @@ import UIKit
 
 class MenuViewController: UIViewController {
       
+ 
     @IBOutlet weak var UserNameLabel: UILabel!
+    @IBOutlet weak var PersonalImg: UIButton!
     
 
     let transition = SlideInTransition()
@@ -18,7 +20,9 @@ class MenuViewController: UIViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
             let name :String = Share.shared.userName ?? "ضيف"
+          //  let pic = Share.shared.picture ??  "PersonalImg"
             UserNameLabel.text = name
+         //   PersonalImg.imageView = UIImage(UIImage(named:"PersonalImg"))
         }
         
     @IBAction func HomeIsTapped(_ sender: Any) {

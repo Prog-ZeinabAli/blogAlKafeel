@@ -18,25 +18,25 @@ class ProfiletDataServer {
     
     static let instance = ProfiletDataServer()
     
-    func fetchAllProfile(json: [String : Any] ,completion: @escaping CompletionHandler7<Profile>) {
+    func fetchAllProfile(json: [String : Any] ,completion: @escaping CompletionHandler7<Profiles>) {
         Alamofire.request(API_URL7,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
         })
         Alamofire.request(API_URL7,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
                 print(response.error as Any)
-                completion(ApiResponse7<Profile>.fail(cause: response.error))
+                completion(ApiResponse7<Profiles>.fail(cause: response.error))
                 return
             }
             
             guard let data = response.data else {
                 print("response data is null")
-                completion(ApiResponse7<Profile>.fail(cause: nil))
+                completion(ApiResponse7<Profiles>.fail(cause: nil))
                 return
             }
             
             let jsonDecoder = JSONDecoder()
-            guard let tloaded =  try? jsonDecoder.decode(Profile.self, from: data) else {
+            guard let tloaded =  try? jsonDecoder.decode(Profiles.self, from: data) else {
                 fatalError("Failed to decode from bundle.")
             }
             completion(ApiResponse7.success(data: tloaded))

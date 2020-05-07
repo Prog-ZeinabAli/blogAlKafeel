@@ -13,6 +13,10 @@ class ProfileTableViewCell: UITableViewCell {
     
     @IBOutlet weak var Content: UITextView!
     @IBOutlet weak var Title: UILabel!
+    @IBOutlet weak var Date: UIButton!
+    @IBOutlet weak var View: UIButton!
+    @IBOutlet weak var noOfCmnt: UIButton!
+    @IBOutlet weak var catBtn: UIButton!
     
 
     override func awakeFromNib() {

@@ -9,16 +9,17 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    @IBOutlet weak var noOfBlogs: UILabel!
-    var nob = ""
+   @IBOutlet weak var noOfBlogs: UILabel!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var BackGroudView: UIView!
+    var nob = 0
     var profiles: [Profile] = []
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
-        // Do any additional setup after loading the view.
-        noOfBlogs.text = nob
+       Utilities.fadedColor(BackGroudView)
     }
     
 
@@ -30,11 +31,11 @@ class ProfileViewController: UIViewController {
          override func viewWillAppear(_ animated: Bool) {
              super.viewWillAppear(true)
            
-            let json: [String: Any] = ["user_id":691311583402731]//Share.shared.PostId as Any]
+            let json: [String: Any] = ["user_id":Share.shared.userId as Any]//691311583402731]
                       ProfiletDataServer.instance.fetchAllProfile(json:json ) { [weak self] (response) in
                            if self == nil {return}
                            if response.success {
-                            self!.profiles = [response.data!]
+                            self!.profiles = (response.data!.data)!
                                self!.tv.reloadData()
                            }else {
                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
@@ -60,10 +61,17 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTableViewCell
-    nob = profiles[indexPath.row].createdAt ?? "data"
-    cell.Title.text = profiles[indexPath.row].title
+    noOfBlogs.text = String(profiles.count)
+    userName.text = profiles[indexPath.row].user?.name
+   cell.Title.text = profiles[indexPath.row].title
+   cell.Content.text = profiles[indexPath.row].content
+    cell.Date.titleLabel?.text = profiles[indexPath.row].createdAt
+    cell.catBtn.titleLabel?.text = profiles[indexPath.row].tags
     
-    cell.Content.text = profiles[indexPath.row].content
+    let views = profiles[indexPath.row].views ?? 0
+    cell.View.titleLabel?.text = "\(views)"
+    let  cmd = profiles[indexPath.row].cmdCount ?? 0
+    cell.noOfCmnt.titleLabel?.text = "\(cmd)"
             
        return cell
    }

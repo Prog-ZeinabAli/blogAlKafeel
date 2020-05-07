@@ -9,10 +9,20 @@
 import Foundation
 final class Share{
     static let shared = Share()
+    
+    //MARK:- LOGIN VARIABLES
     var userName : String!
-    var CmntUserName : String!
+    var userId : Int?
     var PostId : Int!
+    var email : String!
+    var picture : String!
+   
+    
+    
+    
+    
     var fontSize : Int!  //setting font size changing
+    var CmntUserName : String!
     
     
     // hom etabl views detection

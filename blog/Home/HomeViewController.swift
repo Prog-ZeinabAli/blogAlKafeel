@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController  {
 
     @IBOutlet weak var CategoryButton: UIButton!
     @IBOutlet weak var latestBlogsButton: UIButton!
@@ -134,12 +134,14 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
            {
             let x = DataService.instance.categories[indexPath.row].id ?? 0
             Share.shared.categoryId = x
+            Share.shared.changed_happend = 1
             tableView.isHidden = true
            }
            else if( tableView.tag == 2)
            {
             Share.shared.sortby = indexPath.row
             tableView.isHidden = true
+             Share.shared.changed_happend = 1
             }
            
        

@@ -31,23 +31,20 @@ class LogInViewController: UIViewController {
         Utilities.fadedColor(MainView)
          Utilities.styleHollowButton(LogInBtn)
         Loading.isHidden = true
-        
-        
-      //  let loginButton = FBLoginButton()
-       // loginButton.center = view.center
-        
-        view.addSubview(LogInWithFb)
-        
-        if let token = AccessToken.current,
-            !token.isExpired {
-            // User is logged in, do work such as go to next view controller.
-        }
     }
     
     //MARK:- FACEBOOK LOGIN
     @IBAction func FaceBookLogInBtn(_ sender: Any) {
-        print("yes")
         getFacebookUserInfo()
+        
+        let json: [String: Any] = ["id": Share.shared.PostId as Any , "name": Share.shared.userName as Any , "picture": "ji", "email": Share.shared.email as Any]
+                   print(institutionFlag)
+        LoginByFacebook.instance.FaceBookLogin(json: json){ [weak self] (response) in
+            guard let self = self else { return }
+                                if response.success {
+                                    print(Share.shared.PostId as Any)
+        }
+    }
     }
     
     func getFacebookUserInfo(){
@@ -63,6 +60,11 @@ class LogInViewController: UIViewController {
                 Connection.add(graphRequest) { (Connection, result, error) in
                     let info = result as! [String : AnyObject]
                     print(info["name"] as! String)
+                   // print(info["id"] as! String)
+                    Share.shared.userName = (info["name"] as! String)
+                    Share.shared.email = (info["email"] as! String)
+                   // Share.shared.picture = (info["picture.type(large)"] as! String)
+                   Share.shared.PostId = (info["id"] as! Int)
                 }
                 Connection.start()
             default:

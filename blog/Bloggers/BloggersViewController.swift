@@ -75,6 +75,12 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
         return 125
     }
     
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        Share.shared.userName = Blogger[indexPath.row].name
+        Share.shared.userId =  Blogger[indexPath.row].id
+    }
+    
     
 }
 

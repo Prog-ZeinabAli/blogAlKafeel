@@ -4,13 +4,14 @@
 //
 //  Created by test1 on 4/6/20.
 //  Copyright © 2020 test1. All rights reserved.
-//
 
 import UIKit
 
 class BlogViewController: UIViewController {
     var cm = 0
+    var xx : Int = 0
     var posts: [Post] = []
+    
     @IBOutlet var CommentPopUp: UIView!
     @IBOutlet var tv: UITableView!
     @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
@@ -19,10 +20,17 @@ class BlogViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let aColor = UIColor(named: "customControlColor")
         tv.delegate = self
         tv.dataSource = self
         tv.addSubview(refreshConroler)
         refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
+        if Share.shared.changed_happend == 1
+        {
+            let alert = UIAlertController(title: "خطأ", message: "in the view did load ي التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
         
     }
     
@@ -39,6 +47,13 @@ class BlogViewController: UIViewController {
              }
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(true)
+        if Share.shared.changed_happend == 1
+               {
+                   let alert = UIAlertController(title: "خطأ", message: "in the view will apppppeeeaaat ي التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                      alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+               }
+        
         
         let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0  ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 1]
         PostDataServer.instance.fetchAllPosts (json: json)
@@ -46,6 +61,8 @@ class BlogViewController: UIViewController {
                 if self == nil {return}
                 if response.success {
                 self!.posts = (response.data!.data)!
+                    self?.xx = response.data?.current_page ?? 0
+                    print(self?.xx)
                     self!.tv.reloadData()
                 }else {
                     let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
@@ -95,7 +112,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.NumView.text = "\(views1)"
         
     
-        let commentCount = posts[indexPath.row].cmdCount ?? 0
+        let commentCount = xx  // posts[indexPath.row].cmdCount ?? 0
         cell.CommentCount.text = "\(commentCount)"
         
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
@@ -111,17 +128,29 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
     
         
        // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
-        
-     
-
            return cell
        }
 
-    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-        cm = indexPath.row// posts[indexPath.row].id ?? 0
-    
+   /* func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        
+        let lastItem = posts.count - 1
+        if indexPath.row == lastItem {
+            var index = posts.count
+            posts.append(index)
+            index = index + 1
+            }
+        }
     }
+
+    func loadMoreData(){
+        for i in 1 ..< 10 {
+            var lastItem = posts.last!
+            var num = (lastItem)
+            posts.append(num)
+        }
+        tv.reloadData()
+    } */
        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
            return UIView()
        }
