@@ -98,5 +98,14 @@ class Utilities {
                  gradLayer.cornerRadius = 25.0
         }
     
+   /* static func RoundedCornerImage(_ hi: UIImageView) {
+        let img = UIImageView()
+         = hi.frame.size.width / 2
+          img.clipsToBounds = true
+        }
+    */
+    
+    
+    
 }
 

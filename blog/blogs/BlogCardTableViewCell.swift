@@ -15,11 +15,11 @@ protocol CommentIsClicked {
 
 class BlogCardTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var PersonalImg: UIButton!
     @IBOutlet weak var Date: UILabel!
     @IBOutlet var content: UITextView!
     @IBOutlet var UserName: UILabel!
     @IBOutlet var title: UILabel!
-    @IBOutlet weak var PersonalImg: UIImageView!
     @IBOutlet weak var PostImage: UIImageView!
     @IBOutlet weak var NumView: UILabel!
     @IBOutlet weak var TagButton: UIButton!
@@ -39,6 +39,10 @@ class BlogCardTableViewCell: UITableViewCell {
         cellDelegate?.onClickCell(index: (index?.row)!)
     }
     @IBAction func ViewsBtnClicked(_ sender: Any) {
+         cellDelegate?.onClickCell(index: (index?.row)!)
+    }
+    
+    @IBAction func ProfileBtnClicked(_ sender: Any) {
          cellDelegate?.onClickCell(index: (index?.row)!)
     }
     

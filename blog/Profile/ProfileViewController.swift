@@ -9,6 +9,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
    @IBOutlet weak var noOfBlogs: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var BackGroudView: UIView!
@@ -30,8 +31,8 @@ class ProfileViewController: UIViewController {
          
          override func viewWillAppear(_ animated: Bool) {
              super.viewWillAppear(true)
-           
-            let json: [String: Any] = ["user_id":Share.shared.userId as Any]//691311583402731]
+          
+            let json: [String: Any] = ["user_id":691311583402731]//Share.shared.userId as Any]//
                       ProfiletDataServer.instance.fetchAllProfile(json:json ) { [weak self] (response) in
                            if self == nil {return}
                            if response.success {
@@ -46,6 +47,7 @@ class ProfileViewController: UIViewController {
                    }
 
 
+    
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
@@ -73,6 +75,9 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     let  cmd = profiles[indexPath.row].cmdCount ?? 0
     cell.noOfCmnt.titleLabel?.text = "\(cmd)"
             
+    cell.Date.titleLabel?.adjustsFontSizeToFitWidth = true
+    cell.View.titleLabel?.adjustsFontSizeToFitWidth = true
+    cell.catBtn.titleLabel?.adjustsFontSizeToFitWidth = true
        return cell
    }
 

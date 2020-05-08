@@ -36,4 +36,6 @@ final class Share{
     //views
     var Blogsusername : String!
     var Blogscontent : String!
+    
+    
 }

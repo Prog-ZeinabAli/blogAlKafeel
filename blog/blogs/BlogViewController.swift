@@ -8,6 +8,7 @@
 import UIKit
 
 class BlogViewController: UIViewController {
+    @IBOutlet weak var Loading: UIActivityIndicatorView!
     var cm = 0
     var xx : Int = 0
     var posts: [Post] = []
@@ -19,7 +20,12 @@ class BlogViewController: UIViewController {
     
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
+        
+       
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
         let aColor = UIColor(named: "customControlColor")
         tv.delegate = self
         tv.dataSource = self
@@ -60,6 +66,10 @@ class BlogViewController: UIViewController {
             { [weak self] (response) in
                 if self == nil {return}
                 if response.success {
+                    self!.Loading.isHidden = true
+                     self!.Loading.stopAnimating()
+                    
+                    
                 self!.posts = (response.data!.data)!
                     self?.xx = response.data?.current_page ?? 0
                     print(self?.xx)
@@ -68,6 +78,7 @@ class BlogViewController: UIViewController {
                     let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                     self!.present(alert, animated: true)
+                    self!.tv.reloadData()
                 }
             }
         }
@@ -106,8 +117,9 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.Date.text = posts[indexPath.row].createdAt
         
         cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image! ) ?? UIImage(named:"home")
-        cell.PersonalImg.image = UIImage(contentsOfFile: (posts[indexPath.row].user?.picture)! ) ?? UIImage(named:"PersonalImg")
-    
+        
+        cell.PersonalImg.setImage(UIImage(named: "PersonalImg"), for: UIControl.State.normal)
+        Utilities.CircledButton( cell.PersonalImg)
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
         
@@ -122,7 +134,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
         Utilities.styleHollowButton(cell.TagButton)
         Utilities.fadedColor(cell.TitleUiView)
-
+        Utilities.CircledButton(cell.PersonalImg)
         
         
     
@@ -167,10 +179,11 @@ extension BlogViewController: CommentIsClicked{
         //sedning index to the comment section
         let x = posts[index].id ?? 0
         Share.shared.PostId = x
-        
        // sending data to the view section
         Share.shared.Blogscontent = posts[index].content
         Share.shared.Blogsusername = posts[index].user?.name
+        //sending data to profile Section
+        Share.shared.userId = posts[index].user?.id //691311583402731//posts[index].id
         
     }
     

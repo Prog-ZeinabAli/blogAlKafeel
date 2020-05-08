@@ -61,7 +61,13 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
         cell.Score.text = "النقاط:\(score1)"
    //     let Purl = URL(fileURLWithPath: Blogger[indexPath.row].picture!)
           //  cell.PrsImg = UIImage(purl)
-        Utilities.TitlefadedColor(cell.MainView)
+        
+        cell.PrsImg.image = UIImage(named: "PersonalImg")
+        cell.PrsImg.layer.cornerRadius = cell.PrsImg.frame.size.width / 2
+        cell.PrsImg.clipsToBounds = true
+        
+        
+         Utilities.TitlefadedColor(cell.MainView)
           return cell
       }
       
