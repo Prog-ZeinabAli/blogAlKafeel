@@ -18,7 +18,7 @@ class DeletePostDataServer {
     
     static let instance = DeletePostDataServer()
     
-    func fetchAllProfile(json: [String : Any] ,completion: @escaping CompletionHandler11<DeletePost>) {
+    func Delete(json: [String : Any] ,completion: @escaping CompletionHandler11<DeletePost>) {
         Alamofire.request(API_URL11,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
         })

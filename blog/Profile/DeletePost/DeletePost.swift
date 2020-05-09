@@ -7,10 +7,10 @@
 //
 
 import Foundation
-struct deletePost : Codable {
+struct DeletePost : Codable {
     let message : String!
 }
-struct DeletePost : Codable {
+/*struct DeletePost : Codable {
     let data : deletePost!
 }
-
+*/

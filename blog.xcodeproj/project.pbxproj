@@ -399,6 +399,9 @@
 		EBF216002457C52500DC3651 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EBF215FE2457C51C00DC3651 /* ProfileViewController.swift */,
+				EBF216012457C54E00DC3651 /* ProfileDataServer.swift */,
+				EBF216032457C55F00DC3651 /* Profile.swift */,
 				EBF3DB6F246513CE00AFDF40 /* DeletePost */,
 				EBF3DB6E246513B800AFDF40 /* UpdatePost */,
 				EBF216052458A39500DC3651 /* editProfile */,
@@ -427,10 +430,7 @@
 		EBF3DB6E246513B800AFDF40 /* UpdatePost */ = {
 			isa = PBXGroup;
 			children = (
-				EBF215FE2457C51C00DC3651 /* ProfileViewController.swift */,
 				EBF3DB6C246510D300AFDF40 /* UpdatePostDataServer.swift */,
-				EBF216012457C54E00DC3651 /* ProfileDataServer.swift */,
-				EBF216032457C55F00DC3651 /* Profile.swift */,
 				EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */,
 			);
 			path = UpdatePost;

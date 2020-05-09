@@ -777,6 +777,7 @@
                                                             </state>
                                                             <connections>
                                                                 <action selector="DeletetBtnClicked:" destination="6zl-0g-c9W" eventType="touchUpInside" id="FjF-iY-5mj"/>
+                                                                <action selector="deletePostTapped:" destination="7VF-FT-aVl" eventType="touchUpInside" id="ZVh-3u-frx"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bor-Dy-WtA">
