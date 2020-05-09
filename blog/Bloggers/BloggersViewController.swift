@@ -10,9 +10,13 @@ import UIKit
 
 class BloggersViewController: UIViewController {
      var Blogger: [Blog] = []
+
     @IBOutlet weak var tv: UITableView!
+    @IBOutlet weak var Loading: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
         tv.delegate = self
         tv.dataSource = self
     }
@@ -30,6 +34,8 @@ class BloggersViewController: UIViewController {
                      if response.success {
                         self!.Blogger = (response.data!.data)!
                          self!.tv.reloadData()
+                        self!.Loading.isHidden = true
+                        self!.Loading.stopAnimating()
                      }else {
                          let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                          alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))

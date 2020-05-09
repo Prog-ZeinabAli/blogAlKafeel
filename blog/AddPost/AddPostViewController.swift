@@ -13,23 +13,51 @@ class AddPostViewController: UIViewController {
     @IBOutlet weak var BlogContent: UITextView!
     @IBOutlet weak var BlogTitle: UITextField!
     @IBOutlet weak var BlogTags: UITextField!
-    
+    @IBOutlet weak var BlogImage: UIImageView!
+    @IBOutlet weak var tv: UITableView!
+    var catType = 0
      public var imagePickerController: UIImagePickerController?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tv.delegate = self
+        tv.dataSource = self
 
         
     }
+    
+    @IBAction func CategoryBtnTapped(_ sender: Any) {
+        tv.isHidden = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(true)
+            DataService.instance.fetchAllCategories { (success) in
+                if success {
+                    self.tv.reloadData()
+                }
+            }
+        }
+    
+    
     @IBAction func sendPost(_ sender: Any) {
-        
-        let json: [String: Any] = ["user_id": 691311583402731,"title": "pleae work","content":"pleae workpleae work pleae work pleae work thats content","tags": "pleae work","category_id": 3 ,"input_img": "image.png" ]
+        let title = BlogTitle.text ?? " "
+        let content = BlogContent.text ?? "h"
+        let tag = BlogTags.text ?? ""
+        let json: [String: Any] = ["user_id": 691311583402731,"title": title,"content":content,"tags": tag,"category_id": catType ,"input_img": "image.png" ]
         AddPostDateServer.instance.sendPost(json:json) { [weak self] (response) in
                         guard self != nil else { return }
                                if response.success {
                         print(response)
-           }
+                                let alert = UIAlertController(title: "خطأ", message: "your post hve been sent  في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                              alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                              self!.present(alert, animated: true)
+           }else {
+                               let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                               self!.present(alert, animated: true)
+                           }
                         
     }
     }
@@ -155,6 +183,37 @@ class AddPostViewController: UIViewController {
         
     }
 
+
+extension AddPostViewController:UITableViewDataSource,UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+           return DataService.instance.categories.count
+    }
+    
+    
+      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+          let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+           cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
+          return cell
+      }
+      
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+       {
+         let x = DataService.instance.categories[indexPath.row].id ?? 0
+        catType = x
+            tableView.isHidden = true
+       }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
+    
+    
+}
 
 
     

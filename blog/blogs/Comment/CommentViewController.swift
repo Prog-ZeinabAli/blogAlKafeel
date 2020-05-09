@@ -9,13 +9,16 @@
 import UIKit
 
 class CommentViewController: UIViewController {
- var comments: [Comment] = []
+    @IBOutlet weak var Loading: UIActivityIndicatorView!
+    var comments: [Comment] = []
     var postId = 0
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
              
     }
     override func didReceiveMemoryWarning() {
@@ -31,6 +34,8 @@ class CommentViewController: UIViewController {
                      if response.success {
                         self!.comments = (response.data!.data)!
                          self!.tv.reloadData()
+                        self!.Loading.isHidden = true
+                        self!.Loading.stopAnimating()
                      }else {
                          let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                          alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))

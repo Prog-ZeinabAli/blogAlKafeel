@@ -10,7 +10,9 @@ import UIKit
 
 class HomeViewController: UIViewController  {
 
-
+    
+    let tv : BlogViewController! = nil
+    @IBOutlet weak var UIViewBlog: UIView!
     @IBOutlet weak var CategoryButton: UIButton!
     @IBOutlet weak var latestBlogsButton: UIButton!
     @IBOutlet weak var NewBlogBtn: UIButton!
@@ -21,8 +23,6 @@ class HomeViewController: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-     
         CatgTv.delegate = self
         CatgTv.dataSource = self
         BlogTv.delegate =  self
@@ -134,6 +134,8 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
         
         if (tableView.tag == 1)
            {
+            tv.reloadInputViews()
+            super.viewWillAppear(true)
             let x = DataService.instance.categories[indexPath.row].id ?? 0
             Share.shared.categoryId = x
             Share.shared.changed_happend = 1
@@ -141,6 +143,7 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
            }
            else if( tableView.tag == 2)
            {
+            tv.refreshData()
             Share.shared.sortby = indexPath.row
             tableView.isHidden = true
              Share.shared.changed_happend = 1

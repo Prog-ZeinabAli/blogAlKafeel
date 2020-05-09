@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol EditPost {
+    func onClickCell(index : Int)
+}
+
 class ProfileTableViewCell: UITableViewCell {
     
     
@@ -18,10 +22,17 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var noOfCmnt: UIButton!
     @IBOutlet weak var catBtn: UIButton!
     
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
+    var cellDelegate :EditPost?
+    var index : IndexPath?
+       
+       
+       override func awakeFromNib() {
+           super.awakeFromNib()
+           // Initialization code
+       }
+       
+       @IBAction func DeletetBtnClicked(_ sender: Any) {
+           cellDelegate?.onClickCell(index: (index?.row)!)
+       }
+   
 }

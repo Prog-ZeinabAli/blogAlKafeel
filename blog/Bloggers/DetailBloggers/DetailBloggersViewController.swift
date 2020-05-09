@@ -10,6 +10,8 @@ import UIKit
 
 class DetailBloggersViewController: UIViewController {
 
+    @IBOutlet weak var Loading: UIActivityIndicatorView!
+    @IBOutlet weak var BackgorundView: UIView!
     @IBOutlet weak var PersonalImg: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var noOfBlogs: UILabel!
@@ -17,7 +19,9 @@ class DetailBloggersViewController: UIViewController {
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  Utilities.RoundedCornerImage(PersonalImg)
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
+        Utilities.fadedColor(BackgorundView)
         tv.delegate = self
         tv.dataSource = self
     }
@@ -36,6 +40,8 @@ class DetailBloggersViewController: UIViewController {
                              if response.success {
                               self!.profiles = (response.data!.data)!
                                  self!.tv.reloadData()
+                                self!.Loading.isHidden = true
+                                self!.Loading.stopAnimating()
                              }else {
                                  let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                  alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
@@ -74,7 +80,7 @@ class DetailBloggersViewController: UIViewController {
      cell.Content.text = profiles[indexPath.row].content
         
         
-           cell.date.setTitle(profiles[indexPath.row].createdAt, for: .normal)
+         //  cell.date.setTitle(profiles[indexPath.row].createdAt, for: .normal)
            cell.tags.setTitle(profiles[indexPath.row].tags, for: .normal)
 
         

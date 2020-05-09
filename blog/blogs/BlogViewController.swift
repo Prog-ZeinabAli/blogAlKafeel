@@ -8,6 +8,7 @@
 import UIKit
 
 class BlogViewController: UIViewController {
+    let Refresh = HomeViewController()
     @IBOutlet weak var Loading: UIActivityIndicatorView!
     var cm = 0
     var xx : Int = 0
@@ -18,12 +19,8 @@ class BlogViewController: UIViewController {
     @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
 
     
-    
-    override func viewDidLoad() {
-
+        override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
         self.Loading.isHidden = false
         self.Loading.startAnimating()
         let aColor = UIColor(named: "customControlColor")
@@ -31,19 +28,26 @@ class BlogViewController: UIViewController {
         tv.dataSource = self
         tv.addSubview(refreshConroler)
         refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
-        if Share.shared.changed_happend == 1
-        {
-            let alert = UIAlertController(title: "خطأ", message: "in the view did load ي التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
-                               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-        }
         
+        
+        
+        
+    }
+    func date() {
+        let isoDate = "2016-04-14T10:44:00+0000"
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        let date = dateFormatter.date(from:isoDate)!
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+        let finalDate = calendar.date(from:components)
     }
     
     @objc func refreshData(){
-        tv.reloadData()
-        print (Share.shared.sortby)
-        print (Share.shared.categoryId)
+        self.viewWillAppear(true)
+        print (Share.shared.sortby ?? 0)
+        print (Share.shared.categoryId ?? 0)
         refreshConroler.endRefreshing()
     }
     // MARK: - Core Data Saving support
@@ -78,7 +82,7 @@ class BlogViewController: UIViewController {
                     let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                     self!.present(alert, animated: true)
-                    self!.tv.reloadData()
+                    self!.viewDidLoad()
                 }
             }
         }
@@ -139,6 +143,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
     
         
+    
        // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
            return cell
        }

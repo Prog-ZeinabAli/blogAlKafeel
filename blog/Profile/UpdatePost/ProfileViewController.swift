@@ -10,7 +10,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-   @IBOutlet weak var noOfBlogs: UILabel!
+    @IBOutlet weak var Loading: UIActivityIndicatorView!
+    @IBOutlet weak var noOfBlogs: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var BackGroudView: UIView!
     var nob = 0
@@ -20,6 +21,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
        Utilities.fadedColor(BackGroudView)
     }
     
@@ -38,6 +41,8 @@ class ProfileViewController: UIViewController {
                            if response.success {
                             self!.profiles = (response.data!.data)!
                                self!.tv.reloadData()
+                            self!.Loading.isHidden = true
+                            self!.Loading.stopAnimating()
                            }else {
                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
@@ -78,6 +83,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     cell.Date.titleLabel?.adjustsFontSizeToFitWidth = true
     cell.View.titleLabel?.adjustsFontSizeToFitWidth = true
     cell.catBtn.titleLabel?.adjustsFontSizeToFitWidth = true
+    
+    
+    cell.index = indexPath
+    cell.cellDelegate = self //as! EditPost
+    
        return cell
    }
 
@@ -89,5 +99,15 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        return 500
    }
+
+        
+        
 }
 
+
+extension ProfileViewController : EditPost{
+   func onClickCell(index: Int) {
+   // Share.shared.postId
+ 
+       }
+   }

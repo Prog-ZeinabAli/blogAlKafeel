@@ -18,7 +18,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sR9-aa-QLu">
                                 <rect key="frame" x="0.0" y="145" width="414" height="751"/>
                                 <connections>
-                                    <segue destination="57t-Po-YzM" kind="embed" id="8fr-8Y-Pnl"/>
+                                    <segue destination="57t-Po-YzM" kind="embed" destinationCreationSelector="seg:" id="8fr-8Y-Pnl"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PGb-V7-gSl">
@@ -79,7 +79,7 @@
                                 <color key="tintColor" red="0.91117310520000006" green="0.91130417590000001" blue="0.91114443540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" backgroundImage="pencil.circle" catalog="system"/>
                                 <connections>
-                                    <segue destination="Ul6-cg-tGC" kind="presentation" modalPresentationStyle="overCurrentContext" id="eOL-0Y-jdK"/>
+                                    <segue destination="Ul6-cg-tGC" kind="show" id="eOL-0Y-jdK"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -130,6 +130,7 @@
                         <outlet property="CategoryButton" destination="PGb-V7-gSl" id="6My-X6-7i5"/>
                         <outlet property="CatgTv" destination="3Vu-3H-YIf" id="rQc-I2-Bfy"/>
                         <outlet property="NewBlogBtn" destination="GdT-xa-JLO" id="hl7-QD-sFe"/>
+                        <outlet property="UIViewBlog" destination="sR9-aa-QLu" id="nSO-YY-jdy"/>
                         <outlet property="latestBlogsButton" destination="Sud-Md-4r5" id="qcU-8e-738"/>
                     </connections>
                 </viewController>
@@ -217,7 +218,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="y2B-n0-EY1">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="y2B-n0-EY1">
                                                             <rect key="frame" x="20" y="135" width="334" height="173"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -380,6 +381,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1or-aD-w2v"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Zav-FP-FWS"/>
                     <connections>
                         <outlet property="Loading" destination="aIe-sp-QKu" id="3CQ-1v-28e"/>
                         <outlet property="tv" destination="u7d-ru-bAq" id="A5W-ue-RAT"/>
@@ -541,6 +543,11 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNX-6f-iyK">
                                         <rect key="frame" x="0.0" y="44" width="304" height="348"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="Moz-TR-BKj">
+                                            <rect key="frame" x="0.0" y="170" width="304" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="tintColor" red="0.1431645138" green="0.34733899109999999" blue="0.054747188039999999" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </activityIndicatorView>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="114" id="UpV-UP-l3h" customClass="CommentTableViewCell" customModule="blog" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="304" height="114"/>
@@ -552,7 +559,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sm-R2-rrC" customClass="CardShadow" customModule="blog" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="11" width="272" height="92"/>
                                                             <subviews>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="KR3-ry-iOc">
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="KR3-ry-iOc">
                                                                     <rect key="frame" x="5" y="20" width="259" height="64"/>
                                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -634,6 +641,7 @@
                         <viewLayoutGuide key="safeArea" id="Nah-hV-g5w"/>
                     </view>
                     <connections>
+                        <outlet property="Loading" destination="Moz-TR-BKj" id="fUQ-JD-qMe"/>
                         <outlet property="tv" destination="SNX-6f-iyK" id="LnC-nL-mXY"/>
                     </connections>
                 </viewController>
@@ -694,6 +702,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k0J-10-ArO">
                                 <rect key="frame" x="0.0" y="191" width="414" height="631"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="0uf-zX-hw0">
+                                    <rect key="frame" x="0.0" y="545" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="489" id="6zl-0g-c9W" customClass="ProfileTableViewCell" customModule="blog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="489"/>
@@ -740,7 +753,7 @@
                                                             <color key="textColor" red="0.091577232223273811" green="0.22218036167512689" blue="0.035019823141909379" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="fTY-WA-2x5">
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="fTY-WA-2x5">
                                                             <rect key="frame" x="20" y="118" width="334" height="196"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                             <constraints>
@@ -762,6 +775,9 @@
                                                             <state key="normal" title="حذف" image="bin.xmark" catalog="system">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="DeletetBtnClicked:" destination="6zl-0g-c9W" eventType="touchUpInside" id="FjF-iY-5mj"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bor-Dy-WtA">
                                                             <rect key="frame" x="120" y="439" width="90" height="24"/>
@@ -904,6 +920,7 @@
                     <navigationItem key="navigationItem" id="pve-zv-Mg6"/>
                     <connections>
                         <outlet property="BackGroudView" destination="2GQ-zO-Fyo" id="s9R-3C-0C6"/>
+                        <outlet property="Loading" destination="0uf-zX-hw0" id="sPq-zm-7hT"/>
                         <outlet property="noOfBlogs" destination="U94-TV-gkx" id="fzj-BI-Uj1"/>
                         <outlet property="tv" destination="k0J-10-ArO" id="SCp-6i-blp"/>
                         <outlet property="userName" destination="kzP-3p-gm3" id="w0o-ed-aDh"/>
@@ -1052,7 +1069,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5og-cS-6Uh">
-                                <rect key="frame" x="252" y="59" width="162" height="54"/>
+                                <rect key="frame" x="252" y="103" width="162" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="162" id="0j9-jv-jzR"/>
                                 </constraints>
@@ -1065,7 +1082,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عنوان المدون" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DlO-Ys-ham">
-                                <rect key="frame" x="20" y="131" width="374" height="50"/>
+                                <rect key="frame" x="20" y="175" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="p3Z-Qr-Bok"/>
                                 </constraints>
@@ -1073,16 +1090,16 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vYy-g3-LHN">
-                                <rect key="frame" x="20" y="496" width="374" height="50"/>
+                                <rect key="frame" x="20" y="540" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6Jm-xv-FGS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" textAlignment="right" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Abe-Ab-gon">
-                                <rect key="frame" x="20" y="192" width="374" height="282"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" textAlignment="right" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Abe-Ab-gon">
+                                <rect key="frame" x="20" y="236" width="374" height="282"/>
+                                <color key="backgroundColor" red="0.91117310520000006" green="0.91130417590000001" blue="0.91114443540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="282" id="5qI-hZ-1cz"/>
                                 </constraints>
@@ -1091,7 +1108,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" spellCheckingType="yes"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPg-Qs-TGe">
-                                <rect key="frame" x="20" y="575.5" width="30" height="29"/>
+                                <rect key="frame" x="20" y="619.5" width="30" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="5Gv-73-c78"/>
                                     <constraint firstAttribute="height" constant="30" id="owM-UY-281"/>
@@ -1103,11 +1120,11 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HTF-Lj-KiB">
-                                <rect key="frame" x="20" y="613" width="374" height="232"/>
+                                <rect key="frame" x="20" y="657" width="374" height="188"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </imageView>
                             <button autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Maz-Qp-DS5">
-                                <rect key="frame" x="126" y="554" width="162" height="30"/>
+                                <rect key="frame" x="126" y="598" width="162" height="30"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="اختيار صورة       " image="photo" catalog="system">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1117,7 +1134,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvG-Rb-t3i">
-                                <rect key="frame" x="0.0" y="59" width="162" height="54"/>
+                                <rect key="frame" x="0.0" y="103" width="162" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="162" id="5EM-8Y-f38"/>
                                 </constraints>
@@ -1125,14 +1142,36 @@
                                 <state key="normal" title="الاصناف" image="chevron.down" catalog="system">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="CategoryBtnTapped:" destination="Ul6-cg-tGC" eventType="touchUpInside" id="79e-5u-9Em"/>
+                                </connections>
                             </button>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qHA-Ih-0Qy">
+                                <rect key="frame" x="20" y="165" width="158" height="350"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="k3A-hI-VcJ"/>
+                                    <constraint firstAttribute="width" constant="158" id="yt1-Fh-yv7"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="IZF-Cw-Vi6">
+                                        <rect key="frame" x="0.0" y="28" width="158" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IZF-Cw-Vi6" id="ceN-Qt-1P7">
+                                            <rect key="frame" x="0.0" y="0.0" width="158" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="oN3-qX-PvQ" firstAttribute="trailing" secondItem="Maz-Qp-DS5" secondAttribute="trailing" constant="126" id="06O-DE-EbA"/>
                             <constraint firstItem="5og-cS-6Uh" firstAttribute="trailing" secondItem="oN3-qX-PvQ" secondAttribute="trailing" id="13s-S1-iJV"/>
                             <constraint firstItem="GPg-Qs-TGe" firstAttribute="top" secondItem="vYy-g3-LHN" secondAttribute="bottom" constant="29" id="2Go-HT-wow"/>
                             <constraint firstItem="Maz-Qp-DS5" firstAttribute="leading" secondItem="GPg-Qs-TGe" secondAttribute="trailing" constant="76" id="8Mq-nV-k3V"/>
+                            <constraint firstItem="qHA-Ih-0Qy" firstAttribute="top" secondItem="MvG-Rb-t3i" secondAttribute="bottom" constant="8" symbolic="YES" id="9vY-9k-RFr"/>
                             <constraint firstItem="oN3-qX-PvQ" firstAttribute="trailing" secondItem="HTF-Lj-KiB" secondAttribute="trailing" constant="20" id="C71-MP-fAT"/>
                             <constraint firstItem="DlO-Ys-ham" firstAttribute="top" secondItem="5og-cS-6Uh" secondAttribute="bottom" constant="18" id="HWF-ro-5Lg"/>
                             <constraint firstItem="HTF-Lj-KiB" firstAttribute="top" secondItem="GPg-Qs-TGe" secondAttribute="bottom" constant="8" id="IXJ-S9-vtW"/>
@@ -1148,6 +1187,7 @@
                             <constraint firstItem="vYy-g3-LHN" firstAttribute="top" secondItem="Abe-Ab-gon" secondAttribute="bottom" constant="22" id="YIN-PH-1VL"/>
                             <constraint firstItem="MvG-Rb-t3i" firstAttribute="top" secondItem="oN3-qX-PvQ" secondAttribute="top" constant="15" id="Yo1-cR-Kee"/>
                             <constraint firstItem="HTF-Lj-KiB" firstAttribute="top" secondItem="GPg-Qs-TGe" secondAttribute="bottom" constant="8" id="ZXx-GW-5CY"/>
+                            <constraint firstItem="qHA-Ih-0Qy" firstAttribute="leading" secondItem="oN3-qX-PvQ" secondAttribute="leading" constant="20" id="b1d-8b-57z"/>
                             <constraint firstItem="Maz-Qp-DS5" firstAttribute="leading" secondItem="GPg-Qs-TGe" secondAttribute="trailing" constant="76" id="bhS-uC-tCm"/>
                             <constraint firstItem="oN3-qX-PvQ" firstAttribute="trailing" secondItem="vYy-g3-LHN" secondAttribute="trailing" constant="20" id="cj2-5F-nde"/>
                             <constraint firstItem="oN3-qX-PvQ" firstAttribute="bottom" secondItem="HTF-Lj-KiB" secondAttribute="bottom" constant="17" id="hvY-Mz-rd2"/>
@@ -1161,13 +1201,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oN3-qX-PvQ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="euh-7d-sGB"/>
                     <connections>
                         <outlet property="BlogContent" destination="Abe-Ab-gon" id="N1B-GI-AVs"/>
+                        <outlet property="BlogImage" destination="HTF-Lj-KiB" id="8r9-1V-y4N"/>
                         <outlet property="BlogTags" destination="vYy-g3-LHN" id="Gb5-b9-7Z7"/>
                         <outlet property="BlogTitle" destination="DlO-Ys-ham" id="A4c-vl-FVj"/>
                         <outlet property="removeImageButton" destination="GPg-Qs-TGe" id="FIO-zQ-fmz"/>
                         <outlet property="selectImageButton" destination="Maz-Qp-DS5" id="yci-6M-0Ft"/>
                         <outlet property="selectedImageView" destination="HTF-Lj-KiB" id="Nq8-ms-MiF"/>
+                        <outlet property="tv" destination="qHA-Ih-0Qy" id="Fe0-XS-7fn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vrz-pi-8ff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1798,6 +1841,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sQu-2R-TVL">
                                 <rect key="frame" x="0.0" y="44" width="414" height="764"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="pkM-5z-ib2">
+                                    <rect key="frame" x="0.0" y="181" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="125" id="0bl-uK-4Gq" customClass="BloggersTableViewCell" customModule="blog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="125"/>
@@ -1889,6 +1937,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="RrO-Xd-iv9"/>
                     <connections>
+                        <outlet property="Loading" destination="pkM-5z-ib2" id="ec7-jg-VwQ"/>
                         <outlet property="tv" destination="sQu-2R-TVL" id="RpM-4e-I5N"/>
                     </connections>
                 </viewController>
@@ -1949,6 +1998,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B2h-wk-nWz">
                                 <rect key="frame" x="0.0" y="256" width="414" height="421"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="m4s-Hj-4JX">
+                                    <rect key="frame" x="0.0" y="357" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
+                                </activityIndicatorView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="301" id="Uep-gz-W00" customClass="DetaledBlogersTableViewCell" customModule="blog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="301"/>
@@ -2082,6 +2136,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="tYR-ZS-9sN"/>
                     <connections>
+                        <outlet property="BackgorundView" destination="TNi-rk-nlW" id="qUP-Kg-qnq"/>
+                        <outlet property="Loading" destination="m4s-Hj-4JX" id="s08-Tc-ho3"/>
                         <outlet property="PersonalImg" destination="hhL-pJ-GJG" id="ild-n8-1ff"/>
                         <outlet property="noOfBlogs" destination="Tfo-RI-Fx4" id="dgi-Z0-2T1"/>
                         <outlet property="tv" destination="B2h-wk-nWz" id="ho8-al-e8V"/>

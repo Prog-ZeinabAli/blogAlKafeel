@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AddPost : Codable {
+struct addPost : Codable {
     
     let userId: String?
     let title: String?
@@ -27,8 +27,8 @@ struct AddPost : Codable {
          let timezone: String?
         
         enum CodingKeys: String, CodingKey {
-              case timezoneType = "timezone_type"
                case date = "date"
+               case timezoneType = "timezone_type"
                case timezone = "timezone" 
 
            }
@@ -52,9 +52,13 @@ struct AddPost : Codable {
         case timezone = "timezone" */
 
     }
-    
-   
 
     
 }
 
+
+struct AddPost : Codable {
+
+let data: addPost?
+
+}
