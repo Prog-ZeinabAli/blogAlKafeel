@@ -4,7 +4,7 @@
 //
 //  Created by turath alanbiaa on 4/28/20.
 //  Copyright © 2020 test1. All rights reserved.
-//
+
 
 import UIKit
 
@@ -51,8 +51,11 @@ class ProfileViewController: UIViewController {
                        }
                    }
 
-
+  
+    
     @IBAction func deletePostTapped(_ sender: Any) {
+        self.Loading.isHidden = false
+              self.Loading.startAnimating()
          let json: [String: Any] = ["id":Share.shared.PostId as Any ]//Share.shared.userId as Any]//
         DeletePostDataServer.instance.Delete(json:json ) { [weak self] (response) in
                                   if self == nil {return}
@@ -60,10 +63,12 @@ class ProfileViewController: UIViewController {
                                      if let user = response.data {
                                         if(user.message == "DONE")
                                       {
+                                        self!.Loading.isHidden = true
+                                                                   self!.Loading.stopAnimating()
                                         let alert = UIAlertController(title: "خطأ", message: "DELTED", preferredStyle: .alert)
                                                                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                                                           self!.present(alert, animated: true)
-                                        self!.viewDidLoad()
+                                        self!.tv.reloadData()
                                     }
                                   }else {
                                       let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
@@ -128,6 +133,15 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ProfileViewController : EditPost{
    func onClickCell(index: Int) {
+    //delete post
     Share.shared.PostId = profiles[index].id
+    // edit post
+    Share.shared.title = profiles[index].title
+    Share.shared.content = profiles[index].content
+    Share.shared.PostId = profiles[index].id
+    Share.shared.cat = profiles[index].category?.name
+    Share.shared.image = profiles[index].image
+    Share.shared.tag = profiles[index].tags
+    Share.shared.updatePost = 1
        }
    }

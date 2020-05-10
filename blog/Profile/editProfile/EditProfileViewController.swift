@@ -16,10 +16,15 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var OkBtn: UIButton!
     @IBOutlet weak var CnclBtn: UIButton!
     @IBOutlet weak var ChooseBtn: UIButton!
+    @IBOutlet weak var Loading: UIActivityIndicatorView!
     public var imagePickerController: UIImagePickerController?
     
     
     override func viewDidLoad() {
+        self.Loading.isHidden = true
+        self.Loading.stopAnimating()
+        
+        
         Utilities.TitlefadedColor(uiView)
         Utilities.styleHollowButton(CnclBtn)
         Utilities.styleHollowButton(OkBtn)
@@ -36,6 +41,42 @@ class EditProfileViewController: UIViewController {
           dismiss(animated: true, completion: nil)
       }
     
+    @IBAction func Save(_ sender: Any) {
+        
+        self.Loading.isHidden = false
+                    self.Loading.startAnimating()
+        if userName.text?.isEmpty == true{
+            let alert = UIAlertController(title: "خطأ", message:" تأكد من ملئ جميع الحقول ", preferredStyle: .alert)
+             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+             self.present(alert, animated: true)
+        }else {
+        let json: [String: Any] = ["id": 691311583402731 ,"name":userName.text,"picture":"image.png" ]//Share.shared.userId as Any]//
+        UpdtProfileDataServer.instance.Updating(json:json ) { [weak self] (response) in
+                                        if self == nil {return}
+                                         if response.success {
+                                            self!.dismiss(animated: true, completion: nil)
+                                            self!.Loading.isHidden = true
+                                            self!.Loading.stopAnimating()
+                                            let alert = UIAlertController(title: "خطأ", message: "updated", preferredStyle: .alert)
+                                                                                                                          alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                                                                          self!.present(alert, animated: true)
+                                            
+                                           if let user = response.data {
+                                              if(user.message == "update DONE")
+                                            {
+                                                print("yes")
+                                              
+                                            
+                                          }
+                                        }else {
+                                            let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                            self!.present(alert, animated: true)
+                                        }
+                                    }
+          }
+        }
+    }
     
     
     

@@ -10,6 +10,7 @@ import UIKit
 
 class CommentViewController: UIViewController {
     @IBOutlet weak var Loading: UIActivityIndicatorView!
+    @IBOutlet weak var comment: UITextField!
     var comments: [Comment] = []
     var postId = 0
     @IBOutlet weak var tv: UITableView!
@@ -45,6 +46,27 @@ class CommentViewController: UIViewController {
              }
     
     
+    @IBAction func SendComment(_ sender: Any) {
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
+        
+        let json: [String: Any] = ["user_id": 691311583402731 , "post_id": Share.shared.PostId, "content": comment.text]
+        AddcomentDataServer.instance.addComment(json:json ) { [weak self] (response) in
+                           if self == nil {return}
+                           if response.success {
+                            print("succeded")
+                            //  self!.comments = (response.data!.data)!
+                               self!.tv.reloadData()
+                            self!.Loading.isHidden = true
+                              self!.Loading.stopAnimating()
+                           }else {
+                               let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                               self!.present(alert, animated: true)
+                           }
+                       }
+        
+    }
     
     @IBAction func CancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)

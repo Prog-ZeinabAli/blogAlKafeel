@@ -17,6 +17,13 @@ final class Share{
     var email : String!
     var picture : String!
    
+    //MARK:- update post
+    var updatePost = 0
+    var content : String!
+    var title : String!
+    var cat : String!
+    var image : String!
+    var tag : String!
     
     
     

@@ -10,6 +10,8 @@ import UIKit
 
 class AddPostViewController: UIViewController {
 
+    @IBOutlet weak var sendBtn: UIButton!
+    @IBOutlet weak var catBtn: UIButton!
     @IBOutlet weak var BlogContent: UITextView!
     @IBOutlet weak var BlogTitle: UITextField!
     @IBOutlet weak var BlogTags: UITextField!
@@ -17,15 +19,26 @@ class AddPostViewController: UIViewController {
     @IBOutlet weak var tv: UITableView!
     var catType = 0
      public var imagePickerController: UIImagePickerController?
+    @IBOutlet weak var Loading: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
+        
+        if Share.shared.updatePost == 1{
+            BlogContent.text = Share.shared.content
+            BlogTags.text = Share.shared.tag
+            BlogTitle.text = Share.shared.title
+            sendBtn.setTitle("تعديل" ,for: .normal)
+            catBtn.setTitle("الاصناف : \(Share.shared.cat ?? "اخرى" )",for: .normal)
+            
+        }
 
         
     }
+   
     
     @IBAction func CategoryBtnTapped(_ sender: Any) {
         tv.isHidden = false
@@ -42,9 +55,44 @@ class AddPostViewController: UIViewController {
     
     
     @IBAction func sendPost(_ sender: Any) {
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
+        if Share.shared.updatePost == 1{
+            Share.shared.updatePost == 0
+            let title = BlogTitle.text ?? " "
+                   let content = BlogContent.text ?? " "
+                   let tag = BlogTags.text ?? " "
+            
+            //update Post
+            let json: [String: Any] = ["id": Share.shared.PostId ,"title": title,"content":content,"category_id": catType ,"image": "image.png","tags": tag, ]
+            UpdatePostDataServer.instance.updatePost(json:json ) { [weak self] (response) in
+                                                     if self == nil {return}
+                                                      if response.success {
+                                                        if let user = response.data {
+                                                           if(user.message == "update DONE")
+                                                         {
+                                                            self!.Loading.isHidden = true
+                                                            self!.Loading.stopAnimating()
+                                                           let alert = UIAlertController(title: "خطأ", message: "updated", preferredStyle: .alert)
+                                                                                             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                                             self!.present(alert, animated: true)
+                                                            self!.dismiss(animated: true, completion: nil)
+                                                       }
+                                                     }else {
+                                                         let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                         alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                         self!.present(alert, animated: true)
+                                                     }
+                                                 }
+            }
+            //Create new post
+        } else {
+        
+        
+        
         let title = BlogTitle.text ?? " "
-        let content = BlogContent.text ?? "h"
-        let tag = BlogTags.text ?? ""
+        let content = BlogContent.text ?? " "
+        let tag = BlogTags.text ?? " "
         let json: [String: Any] = ["user_id": 691311583402731,"title": title,"content":content,"tags": tag,"category_id": catType ,"input_img": "image.png" ]
         AddPostDateServer.instance.sendPost(json:json) { [weak self] (response) in
                         guard self != nil else { return }
@@ -60,6 +108,7 @@ class AddPostViewController: UIViewController {
                            }
                         
     }
+        }
     }
     
     
@@ -199,9 +248,11 @@ extension AddPostViewController:UITableViewDataSource,UITableViewDelegate{
       
     func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
        {
+        catBtn.setTitle("الاصناف : \(DataService.instance.categories[indexPath.row].categoryName ?? "اخرى" )",for: .normal)
          let x = DataService.instance.categories[indexPath.row].id ?? 0
         catType = x
             tableView.isHidden = true
+        
        }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

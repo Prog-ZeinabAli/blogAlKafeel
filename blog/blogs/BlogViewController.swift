@@ -124,6 +124,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.PersonalImg.setImage(UIImage(named: "PersonalImg"), for: UIControl.State.normal)
         Utilities.CircledButton( cell.PersonalImg)
+        
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
         
@@ -140,34 +141,10 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         Utilities.fadedColor(cell.TitleUiView)
         Utilities.CircledButton(cell.PersonalImg)
         
-        
-    
-        
-    
        // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
            return cell
        }
 
-   /* func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        
-        let lastItem = posts.count - 1
-        if indexPath.row == lastItem {
-            var index = posts.count
-            posts.append(index)
-            index = index + 1
-            }
-        }
-    }
-
-    func loadMoreData(){
-        for i in 1 ..< 10 {
-            var lastItem = posts.last!
-            var num = (lastItem)
-            posts.append(num)
-        }
-        tv.reloadData()
-    } */
        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
            return UIView()
        }

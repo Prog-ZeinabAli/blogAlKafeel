@@ -47,10 +47,6 @@ struct addPost : Codable {
         case status = "status"
         case categoryId = "category_id"
         case id = "id"
-       /* case timezoneType = "timezone_type"
-        case date = "date"
-        case timezone = "timezone" */
-
     }
 
     

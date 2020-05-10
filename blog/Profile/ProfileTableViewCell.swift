@@ -31,7 +31,10 @@ class ProfileTableViewCell: UITableViewCell {
            // Initialization code
        }
        
-       @IBAction func DeletetBtnClicked(_ sender: Any) {
+    @IBAction func EditPostClicke(_ sender: Any) {
+         cellDelegate?.onClickCell(index: (index?.row)!)
+    }
+    @IBAction func DeletetBtnClicked(_ sender: Any) {
            cellDelegate?.onClickCell(index: (index?.row)!)
        }
    

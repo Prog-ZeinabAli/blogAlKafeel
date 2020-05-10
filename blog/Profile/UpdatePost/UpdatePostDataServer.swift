@@ -18,25 +18,25 @@ class UpdatePostDataServer {
     
     static let instance = UpdatePostDataServer()
     
-    func fetchAllProfile(json: [String : Any] ,completion: @escaping CompletionHandler10<Profiles>) {
+    func updatePost(json: [String : Any] ,completion: @escaping CompletionHandler10<UpdatePost>) {
         Alamofire.request(API_URL10,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
         })
         Alamofire.request(API_URL10,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
                 print(response.error as Any)
-                completion(ApiResponse10<Profiles>.fail(cause: response.error))
+                completion(ApiResponse10<UpdatePost>.fail(cause: response.error))
                 return
             }
             
             guard let data = response.data else {
                 print("response data is null")
-                completion(ApiResponse10<Profiles>.fail(cause: nil))
+                completion(ApiResponse10<UpdatePost>.fail(cause: nil))
                 return
             }
             
             let jsonDecoder = JSONDecoder()
-            guard let tloaded =  try? jsonDecoder.decode(Profiles.self, from: data) else {
+            guard let tloaded =  try? jsonDecoder.decode(UpdatePost.self, from: data) else {
                 fatalError("Failed to decode from bundle.")
             }
             completion(ApiResponse10.success(data: tloaded))
