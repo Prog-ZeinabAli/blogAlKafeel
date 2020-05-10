@@ -37,14 +37,7 @@ class LogInViewController: UIViewController {
     @IBAction func FaceBookLogInBtn(_ sender: Any) {
         getFacebookUserInfo()
         
-        let json: [String: Any] = ["id": Share.shared.PostId as Any , "name": Share.shared.userName as Any , "picture": "ji", "email": Share.shared.email as Any]
-                   print(institutionFlag)
-        LoginByFacebook.instance.FaceBookLogin(json: json){ [weak self] (response) in
-            guard let self = self else { return }
-                                if response.success {
-                                    print(Share.shared.PostId as Any)
-        }
-    }
+  
     }
     
     func getFacebookUserInfo(){
@@ -59,12 +52,19 @@ class LogInViewController: UIViewController {
                 let Connection = GraphRequestConnection()
                 Connection.add(graphRequest) { (Connection, result, error) in
                     let info = result as! [String : AnyObject]
-                    print(info["name"] as! String)
                    // print(info["id"] as! String)
                     Share.shared.userName = (info["name"] as! String)
                     Share.shared.email = (info["email"] as! String)
                    // Share.shared.picture = (info["picture.type(large)"] as! String)
-                   Share.shared.PostId = (info["id"] as! Int)
+                    Share.shared.FBuserId = (info["id"] as! String)
+                    
+                      let json: [String: Any] = ["id": Share.shared.FBuserId as Any , "name": Share.shared.userName as Any , "picture": "ji", "email": Share.shared.email as Any]
+                        LoginByFacebook.instance.FaceBookLogin(json: json){ [weak self] (response) in
+                            guard let self = self else { return }
+                                                if response.success {
+                                                    print("yes")
+                        }
+                    }
                 }
                 Connection.start()
             default:

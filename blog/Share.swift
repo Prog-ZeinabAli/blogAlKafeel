@@ -12,6 +12,7 @@ final class Share{
     
     //MARK:- LOGIN VARIABLES
     var userName : String!
+    var  FBuserId : String!
     var userId : Int?
     var PostId : Int!
     var email : String!

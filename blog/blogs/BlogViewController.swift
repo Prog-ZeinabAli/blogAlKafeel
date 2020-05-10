@@ -182,6 +182,7 @@ extension BlogViewController: CommentIsClicked{
        // sending data to the view section
         Share.shared.Blogscontent = posts[index].content
         Share.shared.Blogsusername = posts[index].user?.name
+        Share.shared.title = posts[index].title
         //sending data to profile Section
         Share.shared.userId = posts[index].user?.id //691311583402731//posts[index].id
         
