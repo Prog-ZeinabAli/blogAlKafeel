@@ -11,12 +11,14 @@ import UIKit
 class ViewsViewController: UIViewController {
 
     @IBOutlet weak var UserName: UILabel!
-    @IBOutlet weak var contetn: UILabel!
+    @IBOutlet weak var Posttitle: UILabel!
+    @IBOutlet weak var content: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         UserName.text = Share.shared.Blogsusername
-        contetn.text = Share.shared.Blogscontent
+        content.text = Share.shared.Blogscontent
+        Posttitle.text = Share.shared.title
         // Do any additional setup after loading the view.
     }
     

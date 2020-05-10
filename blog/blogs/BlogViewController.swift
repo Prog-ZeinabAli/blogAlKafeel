@@ -50,7 +50,7 @@ class BlogViewController: UIViewController {
         print (Share.shared.categoryId ?? 0)
         refreshConroler.endRefreshing()
     }
-    // MARK: - Core Data Saving support
+    // MARK: - Loading blogs
     
     override func didReceiveMemoryWarning() {
                  super.didReceiveMemoryWarning()
@@ -65,7 +65,7 @@ class BlogViewController: UIViewController {
                }
         
         
-        let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0  ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 1]
+        let json: [String: Any] = ["id": Share.shared.sortby ?? 0  ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 1]
         PostDataServer.instance.fetchAllPosts (json: json)
             { [weak self] (response) in
                 if self == nil {return}
@@ -87,7 +87,25 @@ class BlogViewController: UIViewController {
             }
         }
 
-   
+    
+    // MARK: - updating views
+    @IBAction func ViewsTapped(_ sender: Any) {
+        let json: [String: Any] = ["id": Share.shared.PostId as Any]
+        updateViewDataServer.instance.Updating(json: json)
+                   { [weak self] (response) in
+                       if self == nil {return}
+                       if response.success {
+                        print("views are updated")
+        
+                       }else {
+                           let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                           self!.present(alert, animated: true)
+                           self!.viewDidLoad()
+                       }
+                   }
+    }
+    
 
 }
 

@@ -250,6 +250,7 @@
                                                             <state key="normal" title="Button" image="eye.fill" catalog="system"/>
                                                             <connections>
                                                                 <action selector="ViewsBtnClicked:" destination="40V-Kk-BEv" eventType="touchUpInside" id="oec-fx-Msl"/>
+                                                                <action selector="ViewsTapped:" destination="57t-Po-YzM" eventType="touchUpInside" id="bdg-lD-J7D"/>
                                                                 <segue destination="bMd-Lg-hlH" kind="push" id="5Y7-k1-PUR"/>
                                                             </connections>
                                                         </button>
@@ -494,6 +495,11 @@
                         <viewLayoutGuide key="safeArea" id="U2J-kk-RXi"/>
                     </view>
                     <navigationItem key="navigationItem" id="2bC-ax-6Ve"/>
+                    <connections>
+                        <outlet property="Posttitle" destination="VyM-YG-k2Y" id="QKl-Hk-yd7"/>
+                        <outlet property="UserName" destination="TRS-IC-WHV" id="Krj-KQ-RFH"/>
+                        <outlet property="content" destination="dvN-wl-xKZ" id="wg6-aj-eEm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSN-uu-BCh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -45,6 +45,8 @@
 		EBD9397724675C6600095758 /* UpdatePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397624675C6600095758 /* UpdatePost.swift */; };
 		EBD9397924676BEB00095758 /* AddcomentDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397824676BEB00095758 /* AddcomentDataServer.swift */; };
 		EBD9397B24676BFA00095758 /* AddComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397A24676BFA00095758 /* AddComment.swift */; };
+		EBD9397E2467A10900095758 /* updateViewDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397D2467A10900095758 /* updateViewDataServer.swift */; };
+		EBD939802467A11900095758 /* UpdateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397F2467A11900095758 /* UpdateViews.swift */; };
 		EBDB5FA02464BAAA0027C67E /* DetaledBlogersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDB5F9F2464BAAA0027C67E /* DetaledBlogersTableViewCell.swift */; };
 		EBDB5FA22464BAC60027C67E /* DetailBloggersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDB5FA12464BAC60027C67E /* DetailBloggersViewController.swift */; };
 		EBDD110B245A6B6100090AC4 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */; };
@@ -138,6 +140,8 @@
 		EBD9397624675C6600095758 /* UpdatePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePost.swift; sourceTree = "<group>"; };
 		EBD9397824676BEB00095758 /* AddcomentDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddcomentDataServer.swift; sourceTree = "<group>"; };
 		EBD9397A24676BFA00095758 /* AddComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddComment.swift; sourceTree = "<group>"; };
+		EBD9397D2467A10900095758 /* updateViewDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateViewDataServer.swift; sourceTree = "<group>"; };
+		EBD9397F2467A11900095758 /* UpdateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViews.swift; sourceTree = "<group>"; };
 		EBDB5F9F2464BAAA0027C67E /* DetaledBlogersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledBlogersTableViewCell.swift; sourceTree = "<group>"; };
 		EBDB5FA12464BAC60027C67E /* DetailBloggersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBloggersViewController.swift; sourceTree = "<group>"; };
 		EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -365,6 +369,15 @@
 			path = addComment;
 			sourceTree = "<group>";
 		};
+		EBD9397C2467A0DE00095758 /* UpdaintingViews */ = {
+			isa = PBXGroup;
+			children = (
+				EBD9397D2467A10900095758 /* updateViewDataServer.swift */,
+				EBD9397F2467A11900095758 /* UpdateViews.swift */,
+			);
+			path = UpdaintingViews;
+			sourceTree = "<group>";
+		};
 		EBDB5F9E2464BA8C0027C67E /* DetailBloggers */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				EBE89F04245FAECE005E292C /* ViewsViewController.swift */,
+				EBD9397C2467A0DE00095758 /* UpdaintingViews */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -712,6 +726,7 @@
 				EBF216072458A3B600DC3651 /* EditProfileViewController.swift in Sources */,
 				EBF215FB245670BF00DC3651 /* Comments.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
+				EBD939802467A11900095758 /* UpdateViews.swift in Sources */,
 				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
 				EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */,
 				EBD9397724675C6600095758 /* UpdatePost.swift in Sources */,
@@ -739,6 +754,7 @@
 				EBDB5FA02464BAAA0027C67E /* DetaledBlogersTableViewCell.swift in Sources */,
 				E38C141B243D47A70054134E /* CategoryViewController.swift in Sources */,
 				E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */,
+				EBD9397E2467A10900095758 /* updateViewDataServer.swift in Sources */,
 				E35749DF243C987E00708AB9 /* Category.swift in Sources */,
 				E35749DA243C0AB000708AB9 /* SlideInTransition.swift in Sources */,
 				E35749D3243BB85F00708AB9 /* PostDataServer.swift in Sources */,
