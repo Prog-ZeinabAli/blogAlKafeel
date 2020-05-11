@@ -49,6 +49,9 @@ class SignUpViewController: UIViewController {
                                         let alert = UIAlertController(title: " \(user.name)تم التسجيل ", message: "لقد تم تسجيلك في مدونة الكفيل", preferredStyle: .alert)
                                                           alert.addAction(UIAlertAction(title: " شكرآ", style: .cancel, handler: nil))
                                            self.present(alert, animated: true)
+                                        UserDefaults.standard.set("yes", forKey: "LoginFlag")
+                                        UserDefaults.standard.set(user.name, forKey: "loggesUserName")
+                                        UserDefaults.standard.set(user.id ,  forKey: "loggesUserID")
                                      }
                                  }
                              } else {

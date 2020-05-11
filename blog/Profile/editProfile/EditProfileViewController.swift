@@ -9,7 +9,7 @@
 import UIKit
 
 class EditProfileViewController: UIViewController {
-
+    var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
     @IBOutlet weak var uiView: CardShadow!
     @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var userName: UITextField!

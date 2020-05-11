@@ -9,6 +9,7 @@
 import UIKit
 
 class CommentViewController: UIViewController {
+    var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
     @IBOutlet weak var Loading: UIActivityIndicatorView!
     @IBOutlet weak var comment: UITextField!
     var comments: [Comment] = []
@@ -20,6 +21,8 @@ class CommentViewController: UIViewController {
         tv.dataSource = self
         self.Loading.isHidden = false
         self.Loading.startAnimating()
+        
+      
              
     }
     override func didReceiveMemoryWarning() {
@@ -44,13 +47,12 @@ class CommentViewController: UIViewController {
                      }
                  }
              }
-    
+  
     
     @IBAction func SendComment(_ sender: Any) {
         self.Loading.isHidden = false
         self.Loading.startAnimating()
-        
-        let json: [String: Any] = ["user_id": 691311583402731 , "post_id": Share.shared.PostId, "content": comment.text]
+        let json: [String: Any] = ["user_id": User_id , "post_id": Share.shared.PostId, "content": comment.text]
         AddcomentDataServer.instance.addComment(json:json ) { [weak self] (response) in
                            if self == nil {return}
                            if response.success {

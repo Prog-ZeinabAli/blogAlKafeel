@@ -15,10 +15,18 @@ target 'blog' do
     pod 'FacebookLogin'
 
 
+#pods for notifications 
+
+      pod 'Firebase/Analytics'
+
+      pod 'Firebase/Messaging'
+
 
 #pods for json service connection
     pod 'Alamofire', '~> 4.8.0'
     pod 'SwiftyJSON'
+
+
 
   target 'blogTests' do
     inherit! :search_paths

@@ -19,8 +19,8 @@ class MenuViewController: UIViewController {
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            let name :String = Share.shared.userName ?? "ضيف"
-          //  let pic = Share.shared.picture ??  "PersonalImg"
+           let name :String = UserDefaults.standard.object(forKey: "loggesUserName") as? String ?? "ضيف"
+          // let pic = Share.shared.picture ??  "PersonalImg"
             UserNameLabel.text = name
          //   PersonalImg.imageView = UIImage(UIImage(named:"PersonalImg"))
         }

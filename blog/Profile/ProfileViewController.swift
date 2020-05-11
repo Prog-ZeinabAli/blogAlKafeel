@@ -10,6 +10,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+  var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
+  var loginFlag = UserDefaults.standard.set("yes", forKey: "LoginFlag")
+    
+    
     @IBOutlet weak var Loading: UIActivityIndicatorView!
     @IBOutlet weak var noOfBlogs: UILabel!
     @IBOutlet weak var userName: UILabel!
@@ -35,7 +39,7 @@ class ProfileViewController: UIViewController {
          override func viewWillAppear(_ animated: Bool) {
              super.viewWillAppear(true)
           
-            let json: [String: Any] = ["user_id":691311583402731]//Share.shared.userId as Any]//
+            let json: [String: Any] = ["user_id":User_id]
                       ProfiletDataServer.instance.fetchAllProfile(json:json ) { [weak self] (response) in
                            if self == nil {return}
                            if response.success {
@@ -56,7 +60,7 @@ class ProfileViewController: UIViewController {
     @IBAction func deletePostTapped(_ sender: Any) {
         self.Loading.isHidden = false
               self.Loading.startAnimating()
-         let json: [String: Any] = ["id":Share.shared.PostId as Any ]//Share.shared.userId as Any]//
+         let json: [String: Any] = ["id":Share.shared.PostId as Any ]
         DeletePostDataServer.instance.Delete(json:json ) { [weak self] (response) in
                                   if self == nil {return}
                                    if response.success {
@@ -95,7 +99,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileTableViewCell
     noOfBlogs.text = "عدد التدوينات: \(String(profiles.count)) "
-    userName.text = profiles[indexPath.row].user?.name
+    if profiles.count == 0 {
+          userName.text = "لا توجد لديك اي مدونات في حسابك"
+    }else{
+              userName.text = profiles[indexPath.row].user?.name
+        }
+    
+  
    cell.Title.text = profiles[indexPath.row].title
    cell.Content.text = profiles[indexPath.row].content
     cell.Date.titleLabel?.text = profiles[indexPath.row].createdAt

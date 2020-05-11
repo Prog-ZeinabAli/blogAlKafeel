@@ -52,13 +52,14 @@ class LogInViewController: UIViewController {
                 let Connection = GraphRequestConnection()
                 Connection.add(graphRequest) { (Connection, result, error) in
                     let info = result as! [String : AnyObject]
-                   // print(info["id"] as! String)
-                    Share.shared.userName = (info["name"] as! String)
-                    Share.shared.email = (info["email"] as! String)
-                   // Share.shared.picture = (info["picture.type(large)"] as! String)
-                    Share.shared.FBuserId = (info["id"] as! String)
-                    
-                      let json: [String: Any] = ["id": Share.shared.FBuserId as Any , "name": Share.shared.userName as Any , "picture": "ji", "email": Share.shared.email as Any]
+                    let UserName = (info["name"] as! String)
+                    let email = (info["email"] as! String)
+                  //  let picture = (info["picture.type(large)"] as! String)
+                    let UserId = (info["id"] as! String)
+                    UserDefaults.standard.set("yes", forKey: "LoginFlag")
+                    UserDefaults.standard.set(UserName, forKey: "loggesUserName")
+                    UserDefaults.standard.set(UserId ,  forKey: "loggesUserID")
+                      let json: [String: Any] = ["id": UserId, "name": UserName, "picture": "image.png" , "email": email]
                         LoginByFacebook.instance.FaceBookLogin(json: json){ [weak self] (response) in
                             guard let self = self else { return }
                                                 if response.success {
@@ -119,8 +120,9 @@ class LogInViewController: UIViewController {
                                           self.Loading.stopAnimating()
                               }else{
                                 print(user.id!)
-                                Share.shared.userName = user.name!
-                                Share.shared.PostId = user.id!
+                                UserDefaults.standard.set("yes", forKey: "LoginFlag")
+                                UserDefaults.standard.set(user.name!, forKey: "loggesUserName")
+                                UserDefaults.standard.set(user.id!, forKey: "loggesUserID")
                                 self.dismiss(animated: true, completion: nil)
                               }
                           }

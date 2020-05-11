@@ -17,6 +17,7 @@ final class Share{
     var PostId : Int!
     var email : String!
     var picture : String!
+    var loggedIn : String!
    
     //MARK:- update post
     var updatePost = 0
@@ -47,3 +48,9 @@ final class Share{
     
     
 }
+/* variables saved in the user defaults
+ 1)LogersUserName
+ 2)loogedInFlag
+ 3)UserId
+ 
+*/
