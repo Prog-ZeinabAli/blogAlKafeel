@@ -28,21 +28,72 @@ class BlogViewController: UIViewController {
         tv.dataSource = self
         tv.addSubview(refreshConroler)
         refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
-        
-        
-        
-        
     }
-    func date() {
-        let isoDate = "2016-04-14T10:44:00+0000"
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        let date = dateFormatter.date(from:isoDate)!
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-        let finalDate = calendar.date(from:components)
+ 
+    func timeAgoSinceDate(_ date:Date, numericDates:Bool = false) -> String? {
+        let calendar = NSCalendar.current
+        let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
+        let now = Date()
+        let earliest = now < date ? now : date
+        let latest = (earliest == now) ? date : now
+        let components = calendar.dateComponents(unitFlags, from: earliest,  to: latest)
+
+        if (components.year! >= 2) {
+            return "\(components.year!)yr"
+        } else if (components.year! >= 1){
+            if (numericDates){
+                return "1yr"
+            } else {
+                return "Last year"
+            }
+        } else if (components.month! >= 2) {
+            return "\(components.month!)mo"
+        } else if (components.month! >= 1){
+            if (numericDates){
+                return "1 mo"
+            } else {
+                return "Last mo"
+            }
+        } else if (components.weekOfYear! >= 2) {
+            return "\(components.weekOfYear!) weeks"
+        } else if (components.weekOfYear! >= 1){
+            if (numericDates){
+                return "1 week"
+            } else {
+                return "Last week"
+            }
+        } else if (components.day! >= 2) {
+            return "\(components.day!) d"
+        } else if (components.day! >= 1){
+            if (numericDates){
+                return "1 d"
+            } else {
+                return "1 d"
+            }
+        } else if (components.hour! >= 2) {
+            return "\(components.hour!) hrs"
+        } else if (components.hour! >= 1){
+            if (numericDates){
+                return "1 hr"
+            } else {
+                return "1 hr"
+            }
+        } else if (components.minute! >= 2) {
+            return "\(components.minute!) m"
+        } else if (components.minute! >= 1){
+            if (numericDates){
+                return "1 m"
+            } else {
+                return "2 m"
+            }
+        } else if (components.second! >= 3) {
+            return "\(components.second!)s"
+        } else {
+            return "now"
+        }
+
     }
+    
     
     @objc func refreshData(){
         self.viewWillAppear(true)
@@ -57,13 +108,15 @@ class BlogViewController: UIViewController {
              }
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(true)
-        if Share.shared.changed_happend == 1
+     /*   if Share.shared.changed_happend == 1
                {
                    let alert = UIAlertController(title: "خطأ", message: "in the view will apppppeeeaaat ي التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                       alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
+                self.viewWillAppear(true)
                }
-        
+        */
+      
         
         let json: [String: Any] = ["id": Share.shared.sortby ?? 0  ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 1]
         PostDataServer.instance.fetchAllPosts (json: json)
@@ -85,6 +138,7 @@ class BlogViewController: UIViewController {
                     self!.viewDidLoad()
                 }
             }
+          tv.reloadData()
         }
 
     
@@ -134,9 +188,24 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.UserName.text = posts[indexPath.row].user?.name
                 
+        
+      let dateFormatterGet = DateFormatter()  //
+        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM"// dd,yyyy"
+
+        
+        
+        if let date = dateFormatterGet.date(from: String(posts[indexPath.row].createdAt ?? "00-00-0000 00 00"))  {
+            
+            cell.Date.text = dateFormatterPrint.string(from: Date() - date.distance(to: Date()))//(from: date)
+        }
+
+            
         cell.content.text = posts[indexPath.row].content
         
-        cell.Date.text = posts[indexPath.row].createdAt
+       
         
         cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image! ) ?? UIImage(named:"home")
         

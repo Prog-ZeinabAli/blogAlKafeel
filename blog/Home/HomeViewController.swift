@@ -32,7 +32,7 @@ class HomeViewController: UIViewController  {
         latestBlogsButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
     }
-
+    
     @IBAction func menu(_ sender: Any) {
         guard let menuViewController = storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
               menuViewController.modalPresentationStyle = .overCurrentContext
@@ -40,6 +40,20 @@ class HomeViewController: UIViewController  {
               present(menuViewController,animated: true)
     }
     
+    @IBAction func AddPostTapped(_ sender: Any) {
+        let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+                             if flag != "yes"
+                             {
+                               let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لكتابة مدونة", preferredStyle: .alert)
+                               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                               self.present(alert, animated: true)
+                                
+                           //help
+                                let secondViewController:AddPostViewController = AddPostViewController()
+                                self.present(secondViewController, animated: true, completion: nil)
+
+        }
+    }
     
     @IBAction func CategoryButtonPressed(_ sender: Any) {
         if self.CatgTv.isHidden == true {
@@ -134,8 +148,8 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
         
         if (tableView.tag == 1)
            {
-            tv.reloadInputViews()
-            super.viewWillAppear(true)
+         //   tv.reloadInputViews()
+         //   super.viewWillAppear(true)
             let x = DataService.instance.categories[indexPath.row].id ?? 0
             Share.shared.categoryId = x
             Share.shared.changed_happend = 1
@@ -143,7 +157,7 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
            }
            else if( tableView.tag == 2)
            {
-            tv.refreshData()
+           // tv.refreshData()
             Share.shared.sortby = indexPath.row
             tableView.isHidden = true
              Share.shared.changed_happend = 1

@@ -48,6 +48,7 @@
 		EBD9397E2467A10900095758 /* updateViewDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397D2467A10900095758 /* updateViewDataServer.swift */; };
 		EBD939802467A11900095758 /* UpdateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397F2467A11900095758 /* UpdateViews.swift */; };
 		EBDA64AD246891350029229F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBDA64AC246891350029229F /* GoogleService-Info.plist */; };
+		EBDA64AF2469CB8B0029229F /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDA64AE2469CB8B0029229F /* DateFormatters.swift */; };
 		EBDB5FA02464BAAA0027C67E /* DetaledBlogersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDB5F9F2464BAAA0027C67E /* DetaledBlogersTableViewCell.swift */; };
 		EBDB5FA22464BAC60027C67E /* DetailBloggersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDB5FA12464BAC60027C67E /* DetailBloggersViewController.swift */; };
 		EBDD110B245A6B6100090AC4 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */; };
@@ -144,6 +145,7 @@
 		EBD9397D2467A10900095758 /* updateViewDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateViewDataServer.swift; sourceTree = "<group>"; };
 		EBD9397F2467A11900095758 /* UpdateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViews.swift; sourceTree = "<group>"; };
 		EBDA64AC246891350029229F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EBDA64AE2469CB8B0029229F /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		EBDB5F9F2464BAAA0027C67E /* DetaledBlogersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledBlogersTableViewCell.swift; sourceTree = "<group>"; };
 		EBDB5FA12464BAC60027C67E /* DetailBloggersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBloggersViewController.swift; sourceTree = "<group>"; };
 		EBDD110A245A6B6100090AC4 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				E35749D2243BB85F00708AB9 /* PostDataServer.swift */,
 				E35749D0243BB84900708AB9 /* Post.swift */,
 				E35749D7243BC30F00708AB9 /* CardShadow.swift */,
+				EBDA64AE2469CB8B0029229F /* DateFormatters.swift */,
 				EBE89F03245FAEB3005E292C /* view */,
 				EBF215F72456708600DC3651 /* Comment */,
 				EBF2160C2459BE7900DC3651 /* Settings */,
@@ -735,6 +738,7 @@
 				EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */,
 				EBD9397724675C6600095758 /* UpdatePost.swift in Sources */,
 				EBD9397B24676BFA00095758 /* AddComment.swift in Sources */,
+				EBDA64AF2469CB8B0029229F /* DateFormatters.swift in Sources */,
 				EBF216042457C55F00DC3651 /* Profile.swift in Sources */,
 				EBF215F424563AD400DC3651 /* Share.swift in Sources */,
 				EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */,

@@ -153,5 +153,11 @@ extension ProfileViewController : EditPost{
     Share.shared.image = profiles[index].image
     Share.shared.tag = profiles[index].tags
     Share.shared.updatePost = 1
+    //comment section
+    let x = profiles[index].id ?? 0
+           Share.shared.PostId = x
+          // sending data to the view section
+           Share.shared.Blogscontent = profiles[index].content
+           Share.shared.Blogsusername = profiles[index].user?.name
        }
    }

@@ -31,8 +31,8 @@
                                     <action selector="CategoryButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3q0-L0-iI3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sud-Md-4r5">
-                                <rect key="frame" x="258" y="87" width="148" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sud-Md-4r5">
+                                <rect key="frame" x="258" y="88" width="164" height="39"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="احدث التدوينات" image="chevron.down" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,14 +56,14 @@
                                 </prototypes>
                             </tableView>
                             <tableView hidden="YES" clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ci7-2w-fJc">
-                                <rect key="frame" x="248" y="118" width="166" height="159"/>
+                                <rect key="frame" x="216" y="127" width="198" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="M12-jh-sX5">
-                                        <rect key="frame" x="0.0" y="28" width="166" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="198" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M12-jh-sX5" id="ygI-Dj-JV5">
-                                            <rect key="frame" x="0.0" y="0.0" width="166" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="198" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -79,13 +79,13 @@
                                 <color key="tintColor" red="0.91117310520000006" green="0.91130417590000001" blue="0.91114443540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" backgroundImage="pencil.circle" catalog="system"/>
                                 <connections>
-                                    <segue destination="Ul6-cg-tGC" kind="show" id="eOL-0Y-jdK"/>
+                                    <action selector="AddPostTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B9F-D6-KJr"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="sR9-aa-QLu" firstAttribute="top" secondItem="Sud-Md-4r5" secondAttribute="bottom" constant="26" id="3l7-z5-kjK"/>
+                            <constraint firstItem="sR9-aa-QLu" firstAttribute="top" secondItem="Sud-Md-4r5" secondAttribute="bottom" constant="18" id="3l7-z5-kjK"/>
                             <constraint firstItem="sR9-aa-QLu" firstAttribute="top" secondItem="PGb-V7-gSl" secondAttribute="bottom" constant="31" id="4kN-aG-6ou"/>
                             <constraint firstItem="3Vu-3H-YIf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5jR-BP-mAy"/>
                             <constraint firstItem="sR9-aa-QLu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5lq-ar-7LK"/>
@@ -96,13 +96,13 @@
                             <constraint firstItem="sR9-aa-QLu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="RYS-YW-dLY"/>
                             <constraint firstItem="sR9-aa-QLu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UwW-PO-f5t"/>
                             <constraint firstItem="Sud-Md-4r5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="258" id="X1v-4H-lHq"/>
-                            <constraint firstItem="Ci7-2w-fJc" firstAttribute="top" secondItem="Sud-Md-4r5" secondAttribute="bottom" constant="-1" id="bg1-8w-iLJ"/>
+                            <constraint firstItem="Ci7-2w-fJc" firstAttribute="top" secondItem="Sud-Md-4r5" secondAttribute="bottom" id="bg1-8w-iLJ"/>
                             <constraint firstItem="Ci7-2w-fJc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gnr-qU-xxc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GdT-xa-JLO" secondAttribute="trailing" constant="20" id="iGm-zf-Jau"/>
                             <constraint firstItem="3Vu-3H-YIf" firstAttribute="top" secondItem="PGb-V7-gSl" secondAttribute="bottom" constant="4" id="mOK-ry-oel"/>
-                            <constraint firstItem="Sud-Md-4r5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-1" id="rdP-Oo-Que"/>
-                            <constraint firstItem="Sud-Md-4r5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-8" id="rtn-qg-mRQ"/>
-                            <constraint firstItem="Ci7-2w-fJc" firstAttribute="width" secondItem="Sud-Md-4r5" secondAttribute="width" constant="18" id="tI5-0d-CDp"/>
+                            <constraint firstItem="Sud-Md-4r5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rdP-Oo-Que"/>
+                            <constraint firstItem="Sud-Md-4r5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="8" id="rtn-qg-mRQ"/>
+                            <constraint firstItem="Ci7-2w-fJc" firstAttribute="width" secondItem="Sud-Md-4r5" secondAttribute="width" constant="34" id="tI5-0d-CDp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GdT-xa-JLO" secondAttribute="bottom" constant="16.5" id="uv5-dE-cCF"/>
                             <constraint firstItem="PGb-V7-gSl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="4" id="v0l-4g-k8f"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ci7-2w-fJc" secondAttribute="bottom" constant="585" id="vU2-2D-cdI"/>
@@ -171,7 +171,9 @@
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r07-Ur-7kx">
                                                                     <rect key="frame" x="308" y="7.5" width="46" height="39"/>
                                                                     <constraints>
+                                                                        <constraint firstAttribute="width" constant="46" id="2sH-Q6-A9w"/>
                                                                         <constraint firstAttribute="height" constant="40" id="izn-Uc-zNg"/>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="tqo-6W-RgY"/>
                                                                     </constraints>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <state key="normal" backgroundImage="person.circle" catalog="system"/>
@@ -649,6 +651,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nah-hV-g5w"/>
                     </view>
+                    <navigationItem key="navigationItem" id="iye-vw-Tuj"/>
                     <connections>
                         <outlet property="Loading" destination="Moz-TR-BKj" id="fUQ-JD-qMe"/>
                         <outlet property="comment" destination="2qO-zV-taj" id="Q9S-pV-bjb"/>
@@ -834,6 +837,9 @@
                                                             <state key="normal" title="views" image="eye.fill" catalog="system">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <segue destination="bMd-Lg-hlH" kind="show" id="igi-iQ-bBH"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bI-Rr-Kfd">
                                                             <rect key="frame" x="255" y="8" width="85" height="25"/>
@@ -845,6 +851,9 @@
                                                             <state key="normal" title="comnt" image="text.bubble.fill" catalog="system">
                                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
+                                                            <connections>
+                                                                <segue destination="nEc-Wi-Sdh" kind="show" id="wcl-av-HRg"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1089,7 +1098,7 @@
         <!--Add Post View Controller-->
         <scene sceneID="bzb-zk-Mop">
             <objects>
-                <viewController modalTransitionStyle="flipHorizontal" id="Ul6-cg-tGC" customClass="AddPostViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPost" modalTransitionStyle="flipHorizontal" id="Ul6-cg-tGC" customClass="AddPostViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="imQ-rU-0uj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2250,6 +2259,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="W45-bI-XnL"/>
-        <segue reference="bDo-TJ-PeK"/>
+        <segue reference="po6-s7-tZm"/>
+        <segue reference="5Y7-k1-PUR"/>
     </inferredMetricsTieBreakers>
 </document>
