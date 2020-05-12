@@ -89,6 +89,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.4.0):
     - GoogleUtilities/Logger
+  - IQKeyboardManagerSwift (6.3.0)
   - nanopb (0.3.9011):
     - nanopb/decode (= 0.3.9011)
     - nanopb/encode (= 0.3.9011)
@@ -104,6 +105,7 @@ DEPENDENCIES:
   - FBSDKLoginKit
   - Firebase/Analytics
   - Firebase/Messaging
+  - IQKeyboardManagerSwift (= 6.3.0)
   - SwiftyJSON
 
 SPEC REPOS:
@@ -125,6 +127,7 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
+    - IQKeyboardManagerSwift
     - nanopb
     - Protobuf
     - SwiftyJSON
@@ -147,10 +150,11 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 8e9b210c97d55fbff306cc5468ff91b9cb32dcf5
   GoogleDataTransportCCTSupport: 202d7cdf9c4a7d81a2bb7f7e7e1ba6faa421b1f2
   GoogleUtilities: 29bd0d8f850efbd28cff6d99e8b7da1f8d236bcf
+  IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: 176220c526ad8bd09ab1fb40a978eac3fef665f7
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 6eabfbb278c89c362761c4e0556c41337ac3b09f
+PODFILE CHECKSUM: 9b0a1a787c6460b70a6547f7ddf4682101b5dc84
 
 COCOAPODS: 1.9.1

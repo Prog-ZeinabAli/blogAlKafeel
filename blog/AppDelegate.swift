@@ -11,6 +11,7 @@ import UIKit
 import FBSDKCoreKit
 import Messages
 import Firebase
+import IQKeyboardManagerSwift
 
 
 
@@ -21,9 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(
         //facebook login
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+        _ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        
+        IQKeyboardManager.shared.enable = true
           
         ApplicationDelegate.shared.application(
             application,
