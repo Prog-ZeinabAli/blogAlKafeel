@@ -17,16 +17,17 @@ class AddPostViewController: UIViewController {
     @IBOutlet weak var BlogTags: UITextField!
     @IBOutlet weak var BlogImage: UIImageView!
     @IBOutlet weak var tv: UITableView!
-    var catType = 0
-     public var imagePickerController: UIImagePickerController?
     @IBOutlet weak var Loading: UIActivityIndicatorView!
+    public var imagePickerController: UIImagePickerController?
+    var catType = 0
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
-       
+        Loading.isHidden = true
                         
         
         if Share.shared.updatePost == 1{  //incase the user wants to edit post rathr tan making a new one
@@ -57,13 +58,24 @@ class AddPostViewController: UIViewController {
     
     
     @IBAction func sendPost(_ sender: Any) {
+        sendBtn.isEnabled = false
         self.Loading.isHidden = false
         self.Loading.startAnimating()
+        if BlogTags.text == "" && BlogContent.text == "" && BlogTitle.text == ""
+        {
+            let alert = UIAlertController(title: "خطأ", message: "تاكد من ملئ جميع الحقول اولا قبل الارسال", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            self.Loading.isHidden = true
+            self.Loading.stopAnimating()
+        }
+        else
+        {
         if Share.shared.updatePost == 1{
-            Share.shared.updatePost == 0
-            let title = BlogTitle.text ?? " "
-                   let content = BlogContent.text ?? " "
-                   let tag = BlogTags.text ?? " "
+            Share.shared.updatePost == 0  // so next time when user want to pot it wont look like edit
+            let title = BlogTitle.text
+                   let content = BlogContent.text
+                   let tag = BlogTags.text
             
             //update Post
             let json: [String: Any] = ["id": Share.shared.PostId ,"title": title,"content":content,"category_id": catType ,"image": "image.png","tags": tag, ]
@@ -75,21 +87,22 @@ class AddPostViewController: UIViewController {
                                                          {
                                                             self!.Loading.isHidden = true
                                                             self!.Loading.stopAnimating()
-                                                           let alert = UIAlertController(title: "خطأ", message: "updated", preferredStyle: .alert)
+                                                           let alert = UIAlertController(title: "تم التحديث", message: " لقد تم تحديت التدوينة بنجاح", preferredStyle: .alert)
                                                                                              alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                                                                              self!.present(alert, animated: true)
+                                                            self!.sendBtn.isEnabled = true
                                                             self!.dismiss(animated: true, completion: nil)
                                                        }
                                                      }else {
                                                          let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                                          alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                                                         self!.present(alert, animated: true)
+                                                         self!.Loading.isHidden = true
+                                                         self!.Loading.stopAnimating()
                                                      }
                                                  }
             }
             //Create new post
         } else {
-        
         
         
         let title = BlogTitle.text ?? " "
@@ -99,18 +112,25 @@ class AddPostViewController: UIViewController {
         AddPostDateServer.instance.sendPost(json:json) { [weak self] (response) in
                         guard self != nil else { return }
                                if response.success {
+                                self!.sendBtn.isEnabled = true
                         print(response)
-                                let alert = UIAlertController(title: "خطأ", message: "your post hve been sent  في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                let alert = UIAlertController(title: " تمت عملية الارسال", message:" لقد تم رفع التدوينة ، سيتم نشرها بعد الموافق", preferredStyle: .alert)
                                                               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                                               self!.present(alert, animated: true)
+                              //  self!.dismiss(animated: true, completion: nil)
+                                self!.sendBtn.isEnabled = true
+                                self!.Loading.isHidden = true
            }else {
                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                               self!.present(alert, animated: true)
+                               self!.Loading.isHidden = true
+                               self!.Loading.stopAnimating()
                            }
                         
     }
         }
+        }
+        
     }
     
     

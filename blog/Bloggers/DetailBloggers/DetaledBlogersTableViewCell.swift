@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ButtonIsClicked {
+    func onClickCell(index : Int)
+}
+
 class DetaledBlogersTableViewCell: UITableViewCell {
 
     @IBOutlet weak var title: UILabel!
@@ -16,9 +20,25 @@ class DetaledBlogersTableViewCell: UITableViewCell {
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var Views: UIButton!
     @IBOutlet weak var Content: UITextView!
+    
+    var cellDelegate :ButtonIsClicked?
+    var index : IndexPath?
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    
+    
+    @IBAction func CommentIsClicked(_ sender: Any) {
+         cellDelegate?.onClickCell(index: (index?.row)!)
+     }
+     @IBAction func ViewIsCicked(_ sender: Any) {
+         cellDelegate?.onClickCell(index: (index?.row)!)
+     }
+     
 
 }

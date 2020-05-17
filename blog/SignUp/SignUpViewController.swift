@@ -45,7 +45,13 @@ class SignUpViewController: UIViewController {
                                          let alert = UIAlertController(title: "خطأ", message: "خطأ في الرمز السري او المعرف", preferredStyle: .alert)
                                                         alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                          self.present(alert, animated: true)
-                                     }else{
+                                        
+                                     }else if (user.message == "email exists")
+                                     {
+                                        let alert = UIAlertController(title: "خطأ", message:"المعرف موجود مسبقا يرجى اختيار اسم معرف اخر", preferredStyle: .alert)
+                                                                                               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                                self.present(alert, animated: true)
+                                    }else{
                                         let alert = UIAlertController(title: " \(user.name)تم التسجيل ", message: "لقد تم تسجيلك في مدونة الكفيل", preferredStyle: .alert)
                                                           alert.addAction(UIAlertAction(title: " شكرآ", style: .cancel, handler: nil))
                                            self.present(alert, animated: true)

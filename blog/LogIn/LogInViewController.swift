@@ -124,6 +124,8 @@ class LogInViewController: UIViewController {
                                 UserDefaults.standard.set(user.name!, forKey: "loggesUserName")
                                 UserDefaults.standard.set(user.id!, forKey: "loggesUserID")
                                 self.dismiss(animated: true, completion: nil)
+                                guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
+                                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                               }
                           }
                         self.Loading.isHidden = true

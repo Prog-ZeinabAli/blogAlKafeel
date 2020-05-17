@@ -19,7 +19,7 @@ struct Profile : Codable {
     let rate: Int?
     let views: Int?
     let tags: String?
-    let status: Int?
+    let status: Int?  // approved or not
     let categoryId: String?
     let cmdCount: Int?
     let user : User?

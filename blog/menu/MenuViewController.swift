@@ -11,10 +11,10 @@ import UIKit
 class MenuViewController: UIViewController {
       
  
+    @IBOutlet weak var SignUpButton: UIButton!
+    @IBOutlet weak var SignInButton: UIButton!
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var PersonalImg: UIButton!
-    
-
     let transition = SlideInTransition()
         
         override func viewDidLoad() {
@@ -23,13 +23,50 @@ class MenuViewController: UIViewController {
           // let pic = Share.shared.picture ??  "PersonalImg"
             UserNameLabel.text = name
          //   PersonalImg.imageView = UIImage(UIImage(named:"PersonalImg"))
+            
+            
+        //MARK:- LOG_IN & LOG_OUT ACTIONS
+            let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+            if flag == "yes"
+            {
+                SignUpButton.isHidden = true
+                SignInButton.setTitle(" تسجيل خروج"  ,for: .normal)
+
+             //   viewDidLoad()
+                
+            }else{
+                SignInButton.setTitle("تسجيل دخول" ,for: .normal)
+                SignUpButton.isHidden = false
+
+            }
         }
+    
+    
+    func reNew(){
+        //reload application data (renew root view )
+        UIApplication.shared.keyWindow?.rootViewController = storyboard!.instantiateViewController(withIdentifier: "MenuViewControlller")
+    }
+    
+    
         
     @IBAction func HomeIsTapped(_ sender: Any) {
             dismiss(animated: true)
     }
  
-
+    @IBAction func LogInButton(_ sender: Any) {
+        //reNew()
+         let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+         if flag == "yes"
+        {
+                                    UserDefaults.standard.set("no", forKey: "LoginFlag")
+                                    UserDefaults.standard.set("", forKey: "loggesUserName")
+                                    UserDefaults.standard.set("", forKey: "loggesUserID")
+         }else{
+     guard let menuViewController = storyboard?.instantiateViewController(identifier: "LogInView") else {return}
+                  present(menuViewController,animated: true)
+    }
+    }
+    
     }
 
 

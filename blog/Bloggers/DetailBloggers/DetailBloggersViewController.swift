@@ -97,6 +97,8 @@ class DetailBloggersViewController: UIViewController {
         cell.tags.titleLabel?.adjustsFontSizeToFitWidth = true
         
         
+        cell.index = indexPath
+        cell.cellDelegate = self as! ButtonIsClicked // as! CommentIsClicked
         
          return cell
      }
@@ -110,3 +112,17 @@ class DetailBloggersViewController: UIViewController {
          return 300
      }
   }
+
+
+
+extension DetailBloggersViewController: ButtonIsClicked{
+func onClickCell(index: Int) {
+    //sedning index to the comment section
+    let x = profiles[index].id ?? 0
+    Share.shared.PostId = x
+   // sending data to the view section
+    Share.shared.Blogscontent = profiles[index].content
+    Share.shared.Blogsusername = profiles[index].user?.name
+    Share.shared.title = profiles[index].title
+}
+}

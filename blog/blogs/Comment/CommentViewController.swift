@@ -10,12 +10,16 @@ import UIKit
 
 class CommentViewController: UIViewController {
     var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
+    @IBOutlet weak var sendCmntBtn: UIButton!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
+    @IBOutlet weak var NoCommentsLabel: UILabel!
     @IBOutlet weak var comment: UITextField!
     var comments: [Comment] = []
     var postId = 0
+    
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
+        NoCommentsLabel.isHidden = true
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
@@ -37,6 +41,11 @@ class CommentViewController: UIViewController {
                      if self == nil {return}
                      if response.success {
                         self!.comments = (response.data!.data)!
+                       let noOfCmnts = response.data?.total
+                        if noOfCmnts == 0
+                        {
+                            self!.NoCommentsLabel.isHidden = false
+                        }
                          self!.tv.reloadData()
                         self!.Loading.isHidden = true
                         self!.Loading.stopAnimating()
@@ -48,25 +57,48 @@ class CommentViewController: UIViewController {
                  }
              }
   
+  
     
     @IBAction func SendComment(_ sender: Any) {
+        sendCmntBtn.isEnabled = false
         self.Loading.isHidden = false
         self.Loading.startAnimating()
+        
+        if comment.text == ""
+        {
+            
+            let alert = UIAlertController(title: "خطأ", message: "لم يتم كتابة اي تعليق ، يرجى كتابة تعليق قبل الارسال", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            sendCmntBtn.isEnabled = true
+            self.Loading.isHidden = true
+            self.Loading.stopAnimating()
+        }else{
+            
+        
         let json: [String: Any] = ["user_id": User_id , "post_id": Share.shared.PostId, "content": comment.text]
         AddcomentDataServer.instance.addComment(json:json ) { [weak self] (response) in
                            if self == nil {return}
                            if response.success {
                             print("succeded")
-                            //  self!.comments = (response.data!.data)!
+                            self!.sendCmntBtn.isEnabled = true
+                            self!.comment.text = ""
                                self!.tv.reloadData()
                             self!.Loading.isHidden = true
                               self!.Loading.stopAnimating()
+                            let alert = UIAlertController(title: "تمت عملية الارسال", message: "تمت عملية ارسال التعليق بنجاح  ", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                            self!.present(alert, animated: true)
+                            
+                            self!.dismiss(animated: true, completion: nil)
                            }else {
                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                self!.present(alert, animated: true)
+                               self!.sendCmntBtn.isEnabled = true
                            }
                        }
+        }
         
     }
     
@@ -93,6 +125,12 @@ extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
 
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CommentTableViewCell
+        
+        
+        if comments.count == 0
+                           {
+                               NoCommentsLabel.isHidden = false
+                           }
         
         cell.Username.text = comments[indexPath.row].user?.name
         cell.Date.text = comments[indexPath.row].createdAt

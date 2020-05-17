@@ -42,7 +42,6 @@ class EditProfileViewController: UIViewController {
       }
     
     @IBAction func Save(_ sender: Any) {
-        
         self.Loading.isHidden = false
                     self.Loading.startAnimating()
         if userName.text?.isEmpty == true{

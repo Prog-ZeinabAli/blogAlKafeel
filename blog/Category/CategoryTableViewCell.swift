@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var btn: UIButton!
@@ -16,7 +18,5 @@ class CategoryTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-  
-
+ 
 }

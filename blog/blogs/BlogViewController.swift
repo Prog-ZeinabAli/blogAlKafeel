@@ -95,11 +95,12 @@ class BlogViewController: UIViewController {
     }
     
     
-    @objc func refreshData(){
+       @objc func refreshData(){
         self.viewWillAppear(true)
         print (Share.shared.sortby ?? 0)
         print (Share.shared.categoryId ?? 0)
-        refreshConroler.endRefreshing()
+        super.viewDidLoad()
+        
     }
     // MARK: - Loading blogs
     
@@ -107,34 +108,25 @@ class BlogViewController: UIViewController {
                  super.didReceiveMemoryWarning()
              }
     override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(true)
-     /*   if Share.shared.changed_happend == 1
-               {
-                   let alert = UIAlertController(title: "خطأ", message: "in the view will apppppeeeaaat ي التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
-                                      alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
-                self.viewWillAppear(true)
-               }
-        */
-      
-        
-        let json: [String: Any] = ["id": Share.shared.sortby ?? 0  ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 1]
+          //  super.viewWillAppear(true)
+        let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
         PostDataServer.instance.fetchAllPosts (json: json)
             { [weak self] (response) in
                 if self == nil {return}
                 if response.success {
                     self!.Loading.isHidden = true
                      self!.Loading.stopAnimating()
-                    
-                    
+
                 self!.posts = (response.data!.data)!
                     self?.xx = response.data?.current_page ?? 0
-                    print(self?.xx)
+                //    print(self?.xx)
                     self!.tv.reloadData()
+                    self!.refreshConroler.endRefreshing()
                 }else {
                     let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                     self!.present(alert, animated: true)
+                     self!.refreshConroler.endRefreshing()
                     self!.viewDidLoad()
                 }
             }
@@ -231,11 +223,21 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
            return cell
        }
+    
+   /* func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row < posts.count - 1
+        {
+            self.posts.append(????)
+        }
+        self.tv.reloadData()
+        
+    }*/
 
        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
            return UIView()
        }
 
+    
        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
            return 500
        }

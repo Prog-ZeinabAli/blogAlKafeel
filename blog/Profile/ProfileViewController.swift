@@ -11,7 +11,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     
   var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
-  var loginFlag = UserDefaults.standard.set("yes", forKey: "LoginFlag")
+ // var loginFlag = UserDefaults.standard.set("yes", forKey: "LoginFlag")
     
     
     @IBOutlet weak var Loading: UIActivityIndicatorView!
