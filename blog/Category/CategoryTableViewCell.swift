@@ -8,15 +8,25 @@
 
 import UIKit
 
-
+protocol CategoryTypeIsClicked {
+     func onClickCell(index : Int)
+}
 
 class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var btn: UIButton!
     
+    var cellDelegate :CategoryTypeIsClicked?
+    var index : IndexPath?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
- 
+    
+    
+    @IBAction func CatogryTapped(_ sender: Any) {
+          cellDelegate?.onClickCell(index: (index?.row)!)
+    }
+    
 }

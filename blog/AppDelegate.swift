@@ -11,12 +11,16 @@ import UIKit
 import FBSDKCoreKit
 import Messages
 import Firebase
+import CoreData
 import IQKeyboardManagerSwift
 
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
+
     
     let gcmMessageIDKey = " gcm.message_id"
 
@@ -146,6 +150,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 
     completionHandler()
   }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        PressitentServer.saveContext()
+    }
+    
 }
 
 

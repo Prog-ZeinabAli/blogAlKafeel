@@ -34,8 +34,9 @@ final class Share{
     var CmntUserName : String!
     
     
-    // hom etabl views detection
+    // home ttabl views detection
     var categoryId : Int? //category table view selection
+    var FromCtegoryVC : String = "No"
     var sortby : Int? //category table view selection
     var changed_happend : Int?
     

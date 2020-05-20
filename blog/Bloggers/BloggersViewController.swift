@@ -11,8 +11,14 @@ import UIKit
 class BloggersViewController: UIViewController {
      var Blogger: [Blog] = []
 
+    @IBOutlet weak var SearchBar: UISearchBar!
+    var searchBlogger = [Blog]()
+    
     @IBOutlet weak var tv: UITableView!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.Loading.isHidden = false
@@ -95,4 +101,26 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
     
 }
 
+extension BloggersViewController : UISearchBarDelegate
+{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("chnanged")
+         let json: [String: Any] = ["data": searchText]
+        SearchDataServer.instance.Search(json: json) { [weak self] (response) in
+                            if self == nil {return}
+                            if response.success {
+                               self!.Blogger = (response.data!.data)!
+                              self!.tv.reloadData()
+                               self!.Loading.isHidden = true
+                               self!.Loading.stopAnimating()
+                                print("loading heioghdghd")
+                            }else {
+                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                self!.present(alert, animated: true)
+                            }
+                        }
+        
+    }
+}
 

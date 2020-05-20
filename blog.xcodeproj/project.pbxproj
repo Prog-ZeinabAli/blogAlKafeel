@@ -37,11 +37,19 @@
 		E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */; };
 		E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */; };
 		E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B2244A4CEF00714A5E /* Blogger.swift */; };
+		EB13ED2624747EF300F3650E /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED2524747EF300F3650E /* BookMarkViewController.swift */; };
+		EB13ED292474818A00F3650E /* BookMarksCore+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED282474818A00F3650E /* BookMarksCore+CoreDataClass.swift */; };
+		EB13ED2A2474818A00F3650E /* BookMarksCore+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED272474818A00F3650E /* BookMarksCore+CoreDataProperties.swift */; };
+		EB13ED2C2474843300F3650E /* BMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED2B2474843300F3650E /* BMTableViewCell.swift */; };
 		EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */; };
 		EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C4212454AF65008E86D3 /* UserRegister.swift */; };
 		EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */; };
 		EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BA245E22FD000C1409 /* AddPostServer.swift */; };
 		EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BC245E230A000C1409 /* AddPost.swift */; };
+		EB682A84247214C900CC9EE7 /* SearchDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB682A83247214C900CC9EE7 /* SearchDataServer.swift */; };
+		EB682A86247214D500CC9EE7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB682A85247214D500CC9EE7 /* Search.swift */; };
+		EB682A8A2472306500CC9EE7 /* DeleteCmntDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB682A892472306500CC9EE7 /* DeleteCmntDataServer.swift */; };
+		EB682ACE24731BD600CC9EE7 /* PresistentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB682ACD24731BD600CC9EE7 /* PresistentServer.swift */; };
 		EBD9397724675C6600095758 /* UpdatePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397624675C6600095758 /* UpdatePost.swift */; };
 		EBD9397924676BEB00095758 /* AddcomentDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397824676BEB00095758 /* AddcomentDataServer.swift */; };
 		EBD9397B24676BFA00095758 /* AddComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397A24676BFA00095758 /* AddComment.swift */; };
@@ -137,11 +145,19 @@
 		E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersTableViewCell.swift; sourceTree = "<group>"; };
 		E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersDataServer.swift; sourceTree = "<group>"; };
 		E3A830B2244A4CEF00714A5E /* Blogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blogger.swift; sourceTree = "<group>"; };
+		EB13ED2524747EF300F3650E /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
+		EB13ED272474818A00F3650E /* BookMarksCore+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BookMarksCore+CoreDataProperties.swift"; path = "../../../BookMarksCore+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		EB13ED282474818A00F3650E /* BookMarksCore+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "BookMarksCore+CoreDataClass.swift"; path = "../../../BookMarksCore+CoreDataClass.swift"; sourceTree = "<group>"; };
+		EB13ED2B2474843300F3650E /* BMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMTableViewCell.swift; sourceTree = "<group>"; };
 		EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServer.swift; sourceTree = "<group>"; };
 		EB14C4212454AF65008E86D3 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		EB3E79BA245E22FD000C1409 /* AddPostServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostServer.swift; sourceTree = "<group>"; };
 		EB3E79BC245E230A000C1409 /* AddPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPost.swift; sourceTree = "<group>"; };
+		EB682A83247214C900CC9EE7 /* SearchDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataServer.swift; sourceTree = "<group>"; };
+		EB682A85247214D500CC9EE7 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		EB682A892472306500CC9EE7 /* DeleteCmntDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCmntDataServer.swift; sourceTree = "<group>"; };
+		EB682ACD24731BD600CC9EE7 /* PresistentServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresistentServer.swift; sourceTree = "<group>"; };
 		EBD9397624675C6600095758 /* UpdatePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePost.swift; sourceTree = "<group>"; };
 		EBD9397824676BEB00095758 /* AddcomentDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddcomentDataServer.swift; sourceTree = "<group>"; };
 		EBD9397A24676BFA00095758 /* AddComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddComment.swift; sourceTree = "<group>"; };
@@ -253,6 +269,7 @@
 		E3574998243B7B9B00708AB9 /* blog */ = {
 			isa = PBXGroup;
 			children = (
+				EB13ED2424747ED700F3650E /* BookMarks */,
 				E35749D4243BB86700708AB9 /* blogs */,
 				E38C141C243D48F40054134E /* Category */,
 				E38C146C243FE73C0054134E /* Bloggers */,
@@ -363,6 +380,7 @@
 		E38C146C243FE73C0054134E /* Bloggers */ = {
 			isa = PBXGroup;
 			children = (
+				EB682A82247214B200CC9EE7 /* Search for Bloggers */,
 				EBDB5F9E2464BA8C0027C67E /* DetailBloggers */,
 				E38C146A243FE7330054134E /* BloggersViewController.swift */,
 				E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */,
@@ -372,6 +390,16 @@
 			path = Bloggers;
 			sourceTree = "<group>";
 		};
+		EB13ED2424747ED700F3650E /* BookMarks */ = {
+			isa = PBXGroup;
+			children = (
+				EB13ED2524747EF300F3650E /* BookMarkViewController.swift */,
+				EB13ED2B2474843300F3650E /* BMTableViewCell.swift */,
+				EB682ACC24731BBB00CC9EE7 /* CoreDataSaving */,
+			);
+			path = BookMarks;
+			sourceTree = "<group>";
+		};
 		EB3E79B7245E228B000C1409 /* addComment */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +407,33 @@
 				EBD9397A24676BFA00095758 /* AddComment.swift */,
 			);
 			path = addComment;
+			sourceTree = "<group>";
+		};
+		EB682A82247214B200CC9EE7 /* Search for Bloggers */ = {
+			isa = PBXGroup;
+			children = (
+				EB682A83247214C900CC9EE7 /* SearchDataServer.swift */,
+				EB682A85247214D500CC9EE7 /* Search.swift */,
+			);
+			path = "Search for Bloggers";
+			sourceTree = "<group>";
+		};
+		EB682A872472303B00CC9EE7 /* DeleteComment */ = {
+			isa = PBXGroup;
+			children = (
+				EB682A892472306500CC9EE7 /* DeleteCmntDataServer.swift */,
+			);
+			path = DeleteComment;
+			sourceTree = "<group>";
+		};
+		EB682ACC24731BBB00CC9EE7 /* CoreDataSaving */ = {
+			isa = PBXGroup;
+			children = (
+				EB13ED282474818A00F3650E /* BookMarksCore+CoreDataClass.swift */,
+				EB13ED272474818A00F3650E /* BookMarksCore+CoreDataProperties.swift */,
+				EB682ACD24731BD600CC9EE7 /* PresistentServer.swift */,
+			);
+			path = CoreDataSaving;
 			sourceTree = "<group>";
 		};
 		EBD9397C2467A0DE00095758 /* UpdaintingViews */ = {
@@ -432,9 +487,10 @@
 			isa = PBXGroup;
 			children = (
 				EBF215F52456707800DC3651 /* CommentViewController.swift */,
+				EBF215FC245678CB00DC3651 /* CommentTableViewCell.swift */,
 				EBF215F8245670A800DC3651 /* CommentDataServer.swift */,
 				EBF215FA245670BF00DC3651 /* Comments.swift */,
-				EBF215FC245678CB00DC3651 /* CommentTableViewCell.swift */,
+				EB682A872472303B00CC9EE7 /* DeleteComment */,
 				EB3E79B7245E228B000C1409 /* addComment */,
 			);
 			path = Comment;
@@ -736,14 +792,18 @@
 			files = (
 				EBF215F62456707800DC3651 /* CommentViewController.swift in Sources */,
 				EBE7470124523DC800F0F59E /* User.swift in Sources */,
+				EB13ED2C2474843300F3650E /* BMTableViewCell.swift in Sources */,
 				E35749DD243C982200708AB9 /* DataServer.swift in Sources */,
 				E357499E243B7B9B00708AB9 /* HomeViewController.swift in Sources */,
 				E35749CF243BB7E500708AB9 /* BlogCardTableViewCell.swift in Sources */,
 				EBF2160E2459BE8E00DC3651 /* SettingsViewController.swift in Sources */,
 				EBF147C6246106E700FA68C9 /* FBUser.swift in Sources */,
+				EB13ED2A2474818A00F3650E /* BookMarksCore+CoreDataProperties.swift in Sources */,
 				EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
 				EBF215FF2457C51C00DC3651 /* ProfileViewController.swift in Sources */,
+				EB13ED2624747EF300F3650E /* BookMarkViewController.swift in Sources */,
+				EB682A84247214C900CC9EE7 /* SearchDataServer.swift in Sources */,
 				E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */,
 				E38C1465243FB4750054134E /* LogInViewController.swift in Sources */,
 				EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */,
@@ -758,12 +818,14 @@
 				EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */,
 				EBD9397724675C6600095758 /* UpdatePost.swift in Sources */,
 				EBD9397B24676BFA00095758 /* AddComment.swift in Sources */,
+				EB13ED292474818A00F3650E /* BookMarksCore+CoreDataClass.swift in Sources */,
 				EBDA64AF2469CB8B0029229F /* DateFormatters.swift in Sources */,
 				EBF216042457C55F00DC3651 /* Profile.swift in Sources */,
 				EBF215F424563AD400DC3651 /* Share.swift in Sources */,
 				EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */,
 				E357499A243B7B9B00708AB9 /* AppDelegate.swift in Sources */,
 				EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */,
+				EB682ACE24731BD600CC9EE7 /* PresistentServer.swift in Sources */,
 				EBF3DB732465142B00AFDF40 /* DeletePost.swift in Sources */,
 				EBF215F9245670A800DC3651 /* CommentDataServer.swift in Sources */,
 				E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */,
@@ -774,6 +836,7 @@
 				EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */,
 				E35749D8243BC30F00708AB9 /* CardShadow.swift in Sources */,
 				EBD9397924676BEB00095758 /* AddcomentDataServer.swift in Sources */,
+				EB682A86247214D500CC9EE7 /* Search.swift in Sources */,
 				E35749D1243BB84900708AB9 /* Post.swift in Sources */,
 				EBF3DB712465141B00AFDF40 /* DeletePostDateServer.swift in Sources */,
 				E35749D6243BBEA600708AB9 /* Utilities.swift in Sources */,
@@ -784,6 +847,7 @@
 				E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */,
 				EBD9397E2467A10900095758 /* updateViewDataServer.swift in Sources */,
 				E35749DF243C987E00708AB9 /* Category.swift in Sources */,
+				EB682A8A2472306500CC9EE7 /* DeleteCmntDataServer.swift in Sources */,
 				E35749DA243C0AB000708AB9 /* SlideInTransition.swift in Sources */,
 				E35749D3243BB85F00708AB9 /* PostDataServer.swift in Sources */,
 				EBF147C4246106BB00FA68C9 /* LoginByFacebook.swift in Sources */,

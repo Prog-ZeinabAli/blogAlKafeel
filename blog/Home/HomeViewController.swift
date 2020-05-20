@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController  {
 
     let tv : BlogViewController! = nil
+    @IBOutlet weak var CatBtn: UIButton!
     @IBOutlet weak var UIViewBlog: UIView!
     @IBOutlet weak var CategoryButton: UIButton!
     @IBOutlet weak var latestBlogsButton: UIButton!
@@ -21,6 +22,13 @@ class HomeViewController: UIViewController  {
     let transition = SlideInTransition()
     
     override func viewDidLoad() {
+        
+        if Share.shared.FromCtegoryVC == "yes"
+                   {
+                    CatBtn.isHidden = true
+                    Share.shared.FromCtegoryVC = "no"
+                   }
+        
         super.viewDidLoad()
         CatgTv.delegate = self
         CatgTv.dataSource = self
@@ -152,6 +160,7 @@ extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
             Share.shared.categoryId = x
             Share.shared.changed_happend = 1
             tableView.isHidden = true
+            print (Share.shared.categoryId)
            }
            else if( tableView.tag == 2)
            {

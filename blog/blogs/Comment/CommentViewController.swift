@@ -10,10 +10,14 @@ import UIKit
 
 class CommentViewController: UIViewController {
     var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
+    
+    var commentId : Int!
+  
     @IBOutlet weak var sendCmntBtn: UIButton!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
     @IBOutlet weak var NoCommentsLabel: UILabel!
     @IBOutlet weak var comment: UITextField!
+    
     var comments: [Comment] = []
     var postId = 0
     
@@ -29,6 +33,11 @@ class CommentViewController: UIViewController {
       
              
     }
+    
+    
+    
+    
+     //MARK:- Loading Comment View
     override func didReceiveMemoryWarning() {
                     super.didReceiveMemoryWarning()
                 }
@@ -59,6 +68,27 @@ class CommentViewController: UIViewController {
   
   
     
+    //MARK:- Deleting Comment
+    @IBAction func DeleteCommentIsTapped(_ sender: Any) {
+        print(commentId)
+       let json: [String: Any] = ["id": commentId ?? 0]
+        DeleteCmntDataServer.instance.Delete(json:json ) { [weak self] (response) in
+                           if self == nil {return}
+                          if response.success {
+                           if let user = response.data {
+                              if(user.message == "DONE")
+                            {
+                                print("deleted")
+                            }
+            }
+        }
+        
+    }
+    }
+    
+    
+    
+     //MARK:- Sending Comment
     @IBAction func SendComment(_ sender: Any) {
         sendCmntBtn.isEnabled = false
         self.Loading.isHidden = false
@@ -96,11 +126,16 @@ class CommentViewController: UIViewController {
                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                self!.present(alert, animated: true)
                                self!.sendCmntBtn.isEnabled = true
-                           }
-                       }
+                }
+            }
         }
-        
     }
+    
+    
+    
+    
+    
+     //MARK:- Cancelling Comment View
     
     @IBAction func CancelButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -117,25 +152,36 @@ extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
        public func numberOfSections(in tableView: UITableView) -> Int {
            return 1
        }
+    
 
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
            print(comments.count)
            return comments.count
        }
+    
+    
+    
 
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CommentTableViewCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CommentTableViewCell
         
         
-        if comments.count == 0
-                           {
-                               NoCommentsLabel.isHidden = false
-                           }
+        if comments.count == 0{
+            NoCommentsLabel.isHidden = false }
+        
         
         cell.Username.text = comments[indexPath.row].user?.name
         cell.Date.text = comments[indexPath.row].createdAt
         cell.comment.text = comments[indexPath.row].content
+
      
+        if  comments[indexPath.row].user?.id == User_id as! Int?  {
+            cell.DeleteButtonView.isHidden = false
+             }
+        
+        cell.index = indexPath
+        cell.cellDelegate = self as! DeleteButtonIsClicked
 
            return cell
        }
@@ -151,3 +197,11 @@ extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
     
     
    }
+
+
+extension CommentViewController: DeleteButtonIsClicked{
+    func onClickCell(index: Int) {
+        commentId = comments[index].id
+    }
+    
+}

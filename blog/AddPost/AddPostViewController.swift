@@ -31,6 +31,7 @@ class AddPostViewController: UIViewController {
                         
         
         if Share.shared.updatePost == 1{  //incase the user wants to edit post rathr tan making a new one
+            BlogImage.isHidden = false
             BlogContent.text = Share.shared.content
             BlogTags.text = Share.shared.tag
             BlogTitle.text = Share.shared.title
@@ -203,6 +204,7 @@ class AddPostViewController: UIViewController {
                 alert.addAction(UIAlertAction.init(title: "مكتبة الصور", style: .default, handler: { (_) in
                     self.presentImagePicker(controller: self.imagePickerController!, source: .photoLibrary)
                 }))
+                BlogImage.isHidden = false
             }
             
             if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {

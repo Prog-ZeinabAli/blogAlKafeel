@@ -61,6 +61,12 @@ class MenuViewController: UIViewController {
                                     UserDefaults.standard.set("no", forKey: "LoginFlag")
                                     UserDefaults.standard.set("", forKey: "loggesUserName")
                                     UserDefaults.standard.set("", forKey: "loggesUserID")
+           
+                                                   
+            
+            guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
+             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+            
          }else{
      guard let menuViewController = storyboard?.instantiateViewController(identifier: "LogInView") else {return}
                   present(menuViewController,animated: true)

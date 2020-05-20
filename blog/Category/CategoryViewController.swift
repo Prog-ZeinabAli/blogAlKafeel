@@ -14,10 +14,8 @@ class CategoryViewController: UIViewController {
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self
-        // Do any additional setup after loading the view.
     }
     
-    //both bring the data out on the tableview
     override func didReceiveMemoryWarning() {
          super.didReceiveMemoryWarning()
      }
@@ -31,6 +29,7 @@ class CategoryViewController: UIViewController {
                 let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
+                self.viewDidLoad()
             }
          }
      }
@@ -46,18 +45,16 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print(DataService.instance.categories.count)
-        //return DataService.instance.categories.count
         DataService.instance.categories.count
     }
     
     
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CategoryTableViewCell
-      //  cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
         cell.btn.setTitle( DataService.instance.categories[indexPath.row].categoryName,for: .normal)
         Utilities.styleHollowButton(cell.btn)
-          print(cell)
+          cell.index = indexPath
+        cell.cellDelegate = self as CategoryTypeIsClicked 
         
 
           return cell
@@ -76,3 +73,15 @@ extension CategoryViewController:UITableViewDataSource,UITableViewDelegate{
     
 }
 
+
+
+extension CategoryViewController: CategoryTypeIsClicked{
+    func onClickCell(index: Int) {
+        let catId = DataService.instance.categories[index].id ?? 0
+        Share.shared.categoryId = catId
+        Share.shared.sortby = 1
+        Share.shared.FromCtegoryVC = "yes"
+        print(Share.shared.categoryId)
+    }
+    
+}

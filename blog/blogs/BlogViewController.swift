@@ -6,6 +6,7 @@
 //  Copyright © 2020 test1. All rights reserved.
 
 import UIKit
+import CoreData
 
 class BlogViewController: UIViewController {
     let Refresh = HomeViewController()
@@ -19,6 +20,7 @@ class BlogViewController: UIViewController {
     @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
 
     
+    
         override func viewDidLoad() {
         super.viewDidLoad()
         self.Loading.isHidden = false
@@ -29,6 +31,10 @@ class BlogViewController: UIViewController {
         tv.addSubview(refreshConroler)
         refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
     }
+    
+    
+    
+    
  
     func timeAgoSinceDate(_ date:Date, numericDates:Bool = false) -> String? {
         let calendar = NSCalendar.current
@@ -109,6 +115,7 @@ class BlogViewController: UIViewController {
              }
     override func viewWillAppear(_ animated: Bool) {
           //  super.viewWillAppear(true)
+        print (Share.shared.categoryId ?? 0)
         let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
         PostDataServer.instance.fetchAllPosts (json: json)
             { [weak self] (response) in
@@ -151,6 +158,17 @@ class BlogViewController: UIViewController {
                        }
                    }
     }
+    
+    // MARK: - add bookMarks
+    @IBAction func BookMarkIsTapped(_ sender: Any) {
+        let bookMarks = BookMarksCore(context: PressitentServer.context)
+        bookMarks.titleBM = Share.shared.title
+        bookMarks.contentBM = Share.shared.content
+        bookMarks.nameBM = Share.shared.Blogsusername
+        PressitentServer.saveContext()
+        
+    }
+    
     
 
 }
@@ -224,14 +242,14 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
            return cell
        }
     
-   /* func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+ /*   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row < posts.count - 1
         {
-            self.posts.append(????)
+            self.posts.append(posts)
         }
         self.tv.reloadData()
         
-    }*/
+    } */
 
        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
            return UIView()
@@ -244,18 +262,22 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
    }
 
-//to send data to the comment viewController
+
+
+//MARK:-  to send data to the (comment + view + profile) viewControllers
 extension BlogViewController: CommentIsClicked{
     func onClickCell(index: Int) {
         //sedning index to the comment section
         let x = posts[index].id ?? 0
         Share.shared.PostId = x
+        
        // sending data to the view section
         Share.shared.Blogscontent = posts[index].content
         Share.shared.Blogsusername = posts[index].user?.name
         Share.shared.title = posts[index].title
+        
         //sending data to profile Section
-        Share.shared.userId = posts[index].user?.id //691311583402731//posts[index].id
+        Share.shared.userId = posts[index].user?.id
         
     }
     
