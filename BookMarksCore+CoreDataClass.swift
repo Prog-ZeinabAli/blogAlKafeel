@@ -2,7 +2,7 @@
 //  BookMarksCore+CoreDataClass.swift
 //  
 //
-//  Created by turath alanbiaa on 5/20/20.
+//  Created by turath alanbiaa on 5/21/20.
 //
 //
 

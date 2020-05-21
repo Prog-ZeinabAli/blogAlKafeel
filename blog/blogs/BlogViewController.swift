@@ -9,6 +9,19 @@ import UIKit
 import CoreData
 
 class BlogViewController: UIViewController {
+    //Pagination Operation
+      var privateList = [String]()
+  
+    @IBOutlet weak var reloadChoice: UIActivityIndicatorView!  //when categories are chosen
+    @IBOutlet weak var CatBtn: UIButton!
+      @IBOutlet weak var CategoryButton: UIButton!
+      @IBOutlet weak var latestBlogsButton: UIButton!
+    let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
+    @IBOutlet weak var BlogTv: UITableView!
+    @IBOutlet weak var CatgTv: UITableView!
+    
+    
+    
     let Refresh = HomeViewController()
     @IBOutlet weak var Loading: UIActivityIndicatorView!
     var cm = 0
@@ -21,9 +34,15 @@ class BlogViewController: UIViewController {
     @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
 
     
+    @IBOutlet weak var catbuttonIsPressed: UIButton!
     
         override func viewDidLoad() {
-            
+            //viewing from the categories page
+            if Share.shared.FromCtegoryVC == "yes"
+                     {
+                       CatBtn.isHidden = true
+                       Share.shared.FromCtegoryVC = "no"
+                     }
             //bookmak stuuf
             let fetchRequest : NSFetchRequest<BookMarksCore> = BookMarksCore.fetchRequest()
                  do {
@@ -32,81 +51,18 @@ class BlogViewController: UIViewController {
                  }catch{}
                  
         super.viewDidLoad()
-        self.Loading.isHidden = false
-        self.Loading.startAnimating()
+            reloadChoice.isHidden = true
        // let Color = UIColor(named: "customControlColor")
         tv.delegate = self
         tv.dataSource = self
+        CatgTv.delegate = self
+        CatgTv.dataSource = self
+        BlogTv.delegate =  self
+        BlogTv.dataSource = self
         tv.addSubview(refreshConroler)
-        refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
-    }
-    
-    
-    
-    
- 
-    func timeAgoSinceDate(_ date:Date, numericDates:Bool = false) -> String? {
-        let calendar = NSCalendar.current
-        let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
-        let now = Date()
-        let earliest = now < date ? now : date
-        let latest = (earliest == now) ? date : now
-        let components = calendar.dateComponents(unitFlags, from: earliest,  to: latest)
-
-        if (components.year! >= 2) {
-            return "\(components.year!)yr"
-        } else if (components.year! >= 1){
-            if (numericDates){
-                return "1yr"
-            } else {
-                return "Last year"
-            }
-        } else if (components.month! >= 2) {
-            return "\(components.month!)mo"
-        } else if (components.month! >= 1){
-            if (numericDates){
-                return "1 mo"
-            } else {
-                return "Last mo"
-            }
-        } else if (components.weekOfYear! >= 2) {
-            return "\(components.weekOfYear!) weeks"
-        } else if (components.weekOfYear! >= 1){
-            if (numericDates){
-                return "1 week"
-            } else {
-                return "Last week"
-            }
-        } else if (components.day! >= 2) {
-            return "\(components.day!) d"
-        } else if (components.day! >= 1){
-            if (numericDates){
-                return "1 d"
-            } else {
-                return "1 d"
-            }
-        } else if (components.hour! >= 2) {
-            return "\(components.hour!) hrs"
-        } else if (components.hour! >= 1){
-            if (numericDates){
-                return "1 hr"
-            } else {
-                return "1 hr"
-            }
-        } else if (components.minute! >= 2) {
-            return "\(components.minute!) m"
-        } else if (components.minute! >= 1){
-            if (numericDates){
-                return "1 m"
-            } else {
-                return "2 m"
-            }
-        } else if (components.second! >= 3) {
-            return "\(components.second!)s"
-        } else {
-            return "now"
-        }
-
+            refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
+            CategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            latestBlogsButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     
@@ -123,6 +79,16 @@ class BlogViewController: UIViewController {
                  super.didReceiveMemoryWarning()
              }
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.Loading.isHidden = false
+         self.Loading.startAnimating()
+     
+        
+        DataService.instance.fetchAllCategories { (success) in
+                     if success {
+                         self.CatgTv.reloadData()
+                     }
+                 }
           //  super.viewWillAppear(true)
         print (Share.shared.categoryId ?? 0)
         let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
@@ -132,6 +98,8 @@ class BlogViewController: UIViewController {
                 if response.success {
                     self!.Loading.isHidden = true
                      self!.Loading.stopAnimating()
+                    self!.reloadChoice.isHidden = true
+                    self!.reloadChoice.stopAnimating()
 
                 self!.posts = (response.data!.data)!
                     self?.xx = response.data?.current_page ?? 0
@@ -168,6 +136,26 @@ class BlogViewController: UIViewController {
                    }
     }
     
+    
+    @IBAction func CategoryButtonPressed(_ sender: Any) {
+          if self.CatgTv.isHidden == true {
+                       self.CatgTv.isHidden = false
+                   }
+                   else {
+                          self.CatgTv.isHidden = true
+              }
+      }
+      
+      @IBAction func LatestBlogButtonPressed(_ sender: Any) {
+          if self.BlogTv.isHidden == true {
+                               self.BlogTv.isHidden = false
+                           }
+                           else {
+                                  self.BlogTv.isHidden = true
+                      }
+      }
+      
+    
     // MARK: - add bookMarks
     @IBAction func BookMarkIsTapped(_ sender: Any) {
       /*  let coin = UIImage(systemName: "pencil")
@@ -175,9 +163,12 @@ class BlogViewController: UIViewController {
         let bookMarks = BookMarksCore(context: PressitentServer.context)
         bookMarks.titleBM = Share.shared.title
         bookMarks.contentBM = Share.shared.Blogscontent
-        bookMarks.nameBM = Share.shared.Blogsusername
-     //   bookMarks.postIdBM = (Share.shared.PostId) as! String?
-      //  bookMarks.postIdBM = Share.shared.PostId
+        
+        let postid = Share.shared.PostId ?? 0
+        bookMarks.nameBM = "\(String(describing: postid))"//Share.shared.Blogsusername
+     
+       // bookMarks.postIdBM = Int16(truncating: postid )
+  
         PressitentServer.saveContext()
         
     }
@@ -196,96 +187,126 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
            print(posts.count)
-           return posts.count
+        
+        if (tableView.tag == 1)
+               {
+                  return DataService.instance.categories.count
+               }
+               else if( tableView.tag == 2)
+               {
+                   return x.count
+               }
+            else if( tableView.tag == 0)
+            {
+                return posts.count
+            }
+               else{
+                   return 0
+               }
+           
        }
 
+    
+    
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
         
-        //bookMark Button
-     /*   for i in 0...BookMark.count {
-             if BookMark[i].postIdBM == (posts[indexPath.row].id) as! String?
-                   {
-                        cell.BookMarkSaved.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
-                   }else{
-                       cell.BookMarkSaved.setImage(UIImage(systemName: "bookmark"), for: .normal)
-                   }
-                  
-        } */
-      
-        
-       // cell.BookMarkSaved.set
-        
+        if(tableView.tag == 1)
+               {
+                  let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+                  cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
+                   //cell.textLabel?.text = x1[indexPath.row]
+                  return cell
+               }
+               else if (tableView.tag == 2)
+               {
+                  let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+                   cell.textLabel?.text = x[indexPath.row]
+                  return cell
+        } else if (tableView.tag == 0)
+        {
+            
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
         //Send propperties through share
         let FZ = CGFloat(Share.shared.fontSize ?? 17)
         cell.content.font = UIFont.italicSystemFont(ofSize: FZ)
-       
-        
-        cell.title.text = posts[indexPath.row].title
-        
-        cell.UserName.text = posts[indexPath.row].user?.name
-                
+      
         
       let dateFormatterGet = DateFormatter()  //
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM"// dd,yyyy"
-
-        
-        
         if let date = dateFormatterGet.date(from: String(posts[indexPath.row].createdAt ?? "00-00-0000 00 00"))  {
-            
             cell.Date.text = dateFormatterPrint.string(from: Date() - date.distance(to: Date()))//(from: date)
         }
 
-            
+        cell.title.text = posts[indexPath.row].title
+        cell.UserName.text = posts[indexPath.row].user?.name
         cell.content.text = posts[indexPath.row].content
-        
-       
-        
         cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image! ) ?? UIImage(named:"home")
-        
         cell.PersonalImg.setImage(UIImage(named: "PersonalImg"), for: UIControl.State.normal)
-        Utilities.CircledButton( cell.PersonalImg)
-        
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
         
     
         let commentCount = posts[indexPath.row].cmdCount ?? 0
         cell.CommentCount.text = "\(commentCount)"
-        
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
-        
         cell.index = indexPath
         cell.cellDelegate = self // as! CommentIsClicked
         
         Utilities.styleHollowButton(cell.TagButton)
         Utilities.fadedColor(cell.TitleUiView)
         Utilities.CircledButton(cell.PersonalImg)
-        
-       // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
-           return cell
-       }
-    
- /*   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row < posts.count - 1
-        {
-            self.posts.append(posts)
+              return cell
         }
-        self.tv.reloadData()
-        
-    } */
+       // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
+           return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+       }
+
 
        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
            return UIView()
        }
 
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+        {
+         
+         
+         if (tableView.tag == 1)
+            {
+                let x = DataService.instance.categories[indexPath.row].id ?? 0
+                       Share.shared.categoryId = x
+                tableView.isHidden = true
+                super.viewDidLoad()
+                refreshData()
+                tableView.reloadData()
+                self.reloadChoice.isHidden = false
+                  self.reloadChoice.startAnimating()
+            }
+            else if( tableView.tag == 2)
+            {
+            Share.shared.sortby = indexPath.row
+                tableView.isHidden = true
+                super.viewDidLoad()
+                refreshData()
+                tableView.reloadData()
+                self.reloadChoice.isHidden = false
+                self.reloadChoice.startAnimating()
+               
+             }
+            
+         //reNew()
+        
+        }
     
        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if (tableView.tag == 0)
+        {
            return 500
-       }
+        }else{
+            return 45
+        }
+    }
 
    }
 
@@ -309,22 +330,3 @@ extension BlogViewController: CommentIsClicked{
     }
     
 }
-
-
-
-/*
- struct BlogPost: Decodable {
-     let title: String
-     let date: Date
- }
-
- let decoder = JSONDecoder()
- let dateFormatter = DateFormatter()
- dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
- dateFormatter.locale = Locale(identifier: "en_US")
- dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
- decoder.dateDecodingStrategy = .formatted(dateFormatter)
-
- let blogPost: BlogPost = try! decoder.decode(BlogPost.self, from: jsonData)
- print(blogPost.date) // Prints: 2019-10-21 09:15:00 +0000
- */

@@ -14,7 +14,7 @@ final class Share{
     var userName : String!
     var  FBuserId : String!
     var userId : Int?
-    var PostId : Int!
+    var PostId : Int?
     var email : String!
     var picture : String!
     var loggedIn : String!

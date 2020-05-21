@@ -3,7 +3,7 @@
     <entity name="BookMarksCore" representedClassName="BookMarksCore" syncable="YES">
         <attribute name="contentBM" optional="YES" attributeType="String"/>
         <attribute name="nameBM" optional="YES" attributeType="String"/>
-        <attribute name="postIdBM" optional="YES" attributeType="String"/>
+        <attribute name="postIdBM" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="titleBM" optional="YES" attributeType="String"/>
     </entity>
     <elements>

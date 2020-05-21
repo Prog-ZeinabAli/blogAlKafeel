@@ -49,7 +49,7 @@ class BookMarkViewController: UIViewController {
     
     @IBAction func BookMarksIsTapped(_ sender: Any) {
         PressitentServer.context.delete(BMBlog)
-         tv.reloadData()
+        super.viewDidLoad()
         PressitentServer.saveContext()
        
     }

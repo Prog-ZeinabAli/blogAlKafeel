@@ -38,12 +38,16 @@ class SettingsViewController : UIViewController  {
     }
     
     @IBAction func NightMoodeTapped(_ sender: Any) {
+        
         if NightModeTrigger.isOn == true
-        {
-            SettingViewCard.backgroundColor = UIColor(named: "White Color")
-        }else if NightModeTrigger.isOn == false{
-            SettingViewCard.backgroundColor = UIColor(named: "Dark Gray Color")
-        }
+              {
+                  SettingViewCard.backgroundColor = UIColor(named: "White Color")
+              } else if NightModeTrigger.isOn == false
+              {
+                  SettingViewCard.backgroundColor = UIColor.red
+              }
+        
+        
     }
     
     @IBAction func Save(_ sender: Any) {

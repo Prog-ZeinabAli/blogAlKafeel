@@ -11,32 +11,16 @@ import UIKit
 class HomeViewController: UIViewController  {
 
     let tv : BlogViewController! = nil
-    @IBOutlet weak var CatBtn: UIButton!
+  
     @IBOutlet weak var UIViewBlog: UIView!
-    @IBOutlet weak var CategoryButton: UIButton!
-    @IBOutlet weak var latestBlogsButton: UIButton!
     @IBOutlet weak var NewBlogBtn: UIButton!
-    let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
-    @IBOutlet weak var BlogTv: UITableView!
-    @IBOutlet weak var CatgTv: UITableView!
     let transition = SlideInTransition()
     
     override func viewDidLoad() {
         
-        if Share.shared.FromCtegoryVC == "yes"
-                   {
-                    CatBtn.isHidden = true
-                    Share.shared.FromCtegoryVC = "no"
-                   }
-        
         super.viewDidLoad()
-        CatgTv.delegate = self
-        CatgTv.dataSource = self
-        BlogTv.delegate =  self
-        BlogTv.dataSource = self
         Utilities.CircledButton(NewBlogBtn)
-        CategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        latestBlogsButton.titleLabel?.adjustsFontSizeToFitWidth = true
+       
         
     }
     
@@ -63,41 +47,10 @@ class HomeViewController: UIViewController  {
         }
     
     
-    @IBAction func CategoryButtonPressed(_ sender: Any) {
-        if self.CatgTv.isHidden == true {
-                     self.CatgTv.isHidden = false
-                 }
-                 else {
-                        self.CatgTv.isHidden = true
-            }
     }
     
-    @IBAction func LatestBlogButtonPressed(_ sender: Any) {
-        if self.BlogTv.isHidden == true {
-                             self.BlogTv.isHidden = false
-                         }
-                         else {
-                                self.BlogTv.isHidden = true
-                    }
-    }
-    
-    
-    
-    //both bring the data out on the tableview
-       override func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-        }
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(true)
-            DataService.instance.fetchAllCategories { (success) in
-                if success {
-                    self.CatgTv.reloadData()
-                }
-            }
-        }
        
     
-}
 
 
 
@@ -116,72 +69,4 @@ extension HomeViewController : UIViewControllerTransitioningDelegate {
 }
 
 
-// Extention for catgeories slideDown menu
-extension HomeViewController:UITableViewDataSource,UITableViewDelegate{
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (tableView.tag == 1)
-        {
-           return DataService.instance.categories.count
-        }
-        else if( tableView.tag == 2)
-        {
-            return x.count
-        }
-        else{
-            return 0
-        }
-    }
-    
-    
-      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-          let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        if(tableView.tag == 1)
-        {
-           cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
-            //cell.textLabel?.text = x1[indexPath.row]
-        }
-        else if (tableView.tag == 2)
-        {
-            cell.textLabel?.text = x[indexPath.row]
-        }
-          
-          print(cell)
-          return cell
-      }
-      
-    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-       {
-        
-        
-        if (tableView.tag == 1)
-           {
-            let x = DataService.instance.categories[indexPath.row].id ?? 0
-            Share.shared.categoryId = x
-            Share.shared.changed_happend = 1
-            tableView.isHidden = true
-            print (Share.shared.categoryId)
-           }
-           else if( tableView.tag == 2)
-           {
-           // tv.refreshData()
-            Share.shared.sortby = indexPath.row
-            tableView.isHidden = true
-             Share.shared.changed_happend = 1
-            }
-           
-        //reNew()
-       
-       }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
-    }
-    
-    
-}
 
