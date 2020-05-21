@@ -31,4 +31,8 @@ class BMTableViewCell: UITableViewCell {
           cellDelegate?.onClickCell(index: (index?.row)!)
     }
     
+   @IBAction func BookMarkPressed(_ sender: Any) {
+        cellDelegate?.onClickCell(index: (index?.row)!)
+    }
+    
 }

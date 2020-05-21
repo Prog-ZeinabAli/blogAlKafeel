@@ -14,6 +14,7 @@ class BlogViewController: UIViewController {
     var cm = 0
     var xx : Int = 0
     var posts: [Post] = []
+     var BookMark = [BookMarksCore]()
     
     @IBOutlet var CommentPopUp: UIView!
     @IBOutlet var tv: UITableView!
@@ -22,10 +23,18 @@ class BlogViewController: UIViewController {
     
     
         override func viewDidLoad() {
+            
+            //bookmak stuuf
+            let fetchRequest : NSFetchRequest<BookMarksCore> = BookMarksCore.fetchRequest()
+                 do {
+                     let BookMark = try PressitentServer.context.fetch(fetchRequest)
+                     self.BookMark = BookMark
+                 }catch{}
+                 
         super.viewDidLoad()
         self.Loading.isHidden = false
         self.Loading.startAnimating()
-        let aColor = UIColor(named: "customControlColor")
+       // let Color = UIColor(named: "customControlColor")
         tv.delegate = self
         tv.dataSource = self
         tv.addSubview(refreshConroler)
@@ -161,10 +170,14 @@ class BlogViewController: UIViewController {
     
     // MARK: - add bookMarks
     @IBAction func BookMarkIsTapped(_ sender: Any) {
+      /*  let coin = UIImage(systemName: "pencil")
+        (sender as AnyObject).setImage(coin ,for: UIControl.State.highlighted) */
         let bookMarks = BookMarksCore(context: PressitentServer.context)
         bookMarks.titleBM = Share.shared.title
-        bookMarks.contentBM = Share.shared.content
+        bookMarks.contentBM = Share.shared.Blogscontent
         bookMarks.nameBM = Share.shared.Blogsusername
+     //   bookMarks.postIdBM = (Share.shared.PostId) as! String?
+      //  bookMarks.postIdBM = Share.shared.PostId
         PressitentServer.saveContext()
         
     }
@@ -188,6 +201,20 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
+        
+        //bookMark Button
+     /*   for i in 0...BookMark.count {
+             if BookMark[i].postIdBM == (posts[indexPath.row].id) as! String?
+                   {
+                        cell.BookMarkSaved.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+                   }else{
+                       cell.BookMarkSaved.setImage(UIImage(systemName: "bookmark"), for: .normal)
+                   }
+                  
+        } */
+      
+        
+       // cell.BookMarkSaved.set
         
         //Send propperties through share
         let FZ = CGFloat(Share.shared.fontSize ?? 17)

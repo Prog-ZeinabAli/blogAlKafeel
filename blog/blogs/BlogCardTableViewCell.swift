@@ -15,6 +15,7 @@ protocol CommentIsClicked {
 
 class BlogCardTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var BookMarkSaved: UIButton!
     @IBOutlet weak var PersonalImg: UIButton!
     @IBOutlet weak var Date: UILabel!
     @IBOutlet var content: UITextView!
@@ -48,8 +49,6 @@ class BlogCardTableViewCell: UITableViewCell {
     
     @IBAction func BookMarkPressed(_ sender: Any) {
         cellDelegate?.onClickCell(index: (index?.row)!)
-        
-        print("yup im pressed")
     }
 }
 

@@ -11,6 +11,9 @@ import CoreData
 
 class BookMarkViewController: UIViewController {
 
+
+    var BMBlog : NSManagedObject!
+    
     
     var BM = [BookMarksCore]()
     @IBOutlet weak var tv: UITableView!
@@ -20,27 +23,43 @@ class BookMarkViewController: UIViewController {
         tv.delegate = self
         tv.dataSource = self
         
-        
         let fetchRequest : NSFetchRequest<BookMarksCore> = BookMarksCore.fetchRequest()
-
         do {
             let BM = try PressitentServer.context.fetch(fetchRequest)
             self.BM = BM
             self.tv.reloadData()
-            
         }catch{}
+        
+        
     }
     
-    
+    /*
     override func didReceiveMemoryWarning() {
                       super.didReceiveMemoryWarning()
                   }
 
     override func viewWillAppear(_ animated: Bool) {
                   super.viewWillAppear(true)
+    } */
+    
+    @IBAction func SeeMoreTapped(_ sender: Any) {
+        Share.shared.BookMarked = true
     }
-
+    
+    
+    @IBAction func BookMarksIsTapped(_ sender: Any) {
+        PressitentServer.context.delete(BMBlog)
+         tv.reloadData()
+        PressitentServer.saveContext()
+       
+    }
+    
 }
+
+
+
+
+
 
 
 extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
@@ -57,7 +76,13 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
         cell.UserName.text = BM[indexPath.row].nameBM
         cell.title.text = BM[indexPath.row].titleBM
         cell.content.text = BM[indexPath.row].contentBM
-          return cell
+        
+        cell.index = indexPath
+        cell.cellDelegate = self //as SeeMoreIsClicked?
+        
+        
+        
+        return cell
       }
       
 
@@ -70,9 +95,20 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
         return 300
     }
     
-    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
-       // Share.shared.userId =  Blogger[indexPath.row].id
+    
+    
+}
+
+
+extension BookMarkViewController : SeeMoreIsClicked{
+    func onClickCell(index: Int) {
+        BMBlog = BM[index]
+
+        Share.shared.Blogscontent = BM[index].contentBM
+        Share.shared.Blogsusername = BM[index].nameBM
+        Share.shared.title = BM[index].titleBM
+        
+        
     }
     
     

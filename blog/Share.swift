@@ -47,6 +47,9 @@ final class Share{
     var Blogsusername : String!
     var Blogscontent : String!
     
+    //BookMark for views
+    var BookMarked : Bool! = false
+    
     
 }
 /* variables saved in the user defaults
