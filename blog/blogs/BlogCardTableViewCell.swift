@@ -15,6 +15,7 @@ protocol CommentIsClicked {
 
 class BlogCardTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var cardViewUIView: CardShadow!
     @IBOutlet weak var BookMarkSaved: UIButton!
     @IBOutlet weak var PersonalImg: UIButton!
     @IBOutlet weak var Date: UILabel!

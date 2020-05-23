@@ -22,14 +22,23 @@ class SettingsViewController : UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FontSizeLabel.font = UIFont.italicSystemFont(ofSize: UserDefaults.standard.object(forKey: "FontSizeDefault") as! CGFloat)
-        
-        
+        if ( UserDefaults.standard.object(forKey: "FontSizeDefault") != nil){
+        FontSizeLabel.font = UIFont.italicSystemFont(ofSize: (UserDefaults.standard.object(forKey: "FontSizeDefault") as! CGFloat) ?? 13 )
+        } else{
+        FontSizeLabel.font = UIFont.italicSystemFont(ofSize: 13) //default value
+            }
         FontPicker.delegate = self
         FontPicker.dataSource = self
       
     }
     @IBAction func RturnSettngsTapped(_ sender: Any) {
+          FontSizeLabel.font = UIFont.italicSystemFont(ofSize: 13)
+          NightModeTrigger.isOn = false
+          overrideUserInterfaceStyle = .light
+          FontTypeLabel.font = UIFont(name: selectedFont ?? "Lateef", size: 30)
+           selectedFont = fonts[0]
+        
+        
     }
     
     
@@ -43,10 +52,10 @@ class SettingsViewController : UIViewController  {
     @IBAction func NightMoodeTapped(_ sender: Any) {
         if NightModeTrigger.isOn == true
               {
-                  SettingViewCard.backgroundColor = UIColor(named: "White Color")
+                  overrideUserInterfaceStyle = .dark
               } else if NightModeTrigger.isOn == false
               {
-                  SettingViewCard.backgroundColor = UIColor.red
+                   overrideUserInterfaceStyle = .light
               }
         
         
@@ -77,7 +86,5 @@ extension SettingsViewController :  UIPickerViewDataSource
       selectedFont = fonts[row]
         let FT = UserDefaults.standard.set(selectedFont , forKey: "FontTypeDefault")
         FontTypeLabel.font = UIFont(name: selectedFont ?? "Lateef", size: 30)
-        
-       // UserDefaults.standard.set("yes", forKey: "LoginFlag")
     }
 }

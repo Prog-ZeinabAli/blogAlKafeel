@@ -34,7 +34,8 @@ class BlogViewController: UIViewController {
  
      //MARK:- View Did Load
         override func viewDidLoad() {
-            overrideUserInterfaceStyle = .light
+           overrideUserInterfaceStyle = .dark
+            tv.overrideUserInterfaceStyle = .dark
             //viewing from the categories page
             if Share.shared.FromCtegoryVC == "yes"
                      {
@@ -289,8 +290,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.PersonalImg.setImage(UIImage(named: "PersonalImg"), for: UIControl.State.normal)
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
-        
-    
+          //  cell.cardViewUIView.overrideUserInterfaceStyle = .dark
         let commentCount = posts[indexPath.row].cmdCount ?? 0
         cell.CommentCount.text = "\(commentCount)"
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)

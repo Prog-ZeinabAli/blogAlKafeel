@@ -13,7 +13,7 @@ class BookMarkViewController: UIViewController {
 
 
     var BMBlog : NSManagedObject!
-    
+    var deleteRow = false
     static var indexes : Int!
     var BM = [BookMarksCore]()
     @IBOutlet weak var tv: UITableView!
@@ -50,8 +50,11 @@ class BookMarkViewController: UIViewController {
     @IBAction func BookMarksIsTapped(_ sender: Any) {
         PressitentServer.context.delete(BMBlog)
         super.viewDidLoad()
+         super.viewWillAppear(true)
         PressitentServer.saveContext()
+        deleteRow = true
        
+        
     }
     
 }
@@ -84,10 +87,17 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
         
         return cell
       }
-      
-   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
    
+    /*
+func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if deleteRow
+    {
+          BM.remove(at: indexPath.row)
+          tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        deleteRow = false
     }
+   
+    }*/
 
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
