@@ -13,9 +13,7 @@ class BloggersViewController: UIViewController {
     var privateList = [String]()
     var fetchMore = false
     //let totalItems = 100 // server does not provide totalItems
-    var fromIndex = 0
-    let batchSize = 20
-    static var current_page = 1
+    static var current_page = 2
     @IBOutlet weak var SearchBar: UISearchBar!
     var searchBlogger = [Blog]()
     
@@ -59,7 +57,7 @@ class BloggersViewController: UIViewController {
                 
     }
     
-      func loadItemsNow(){
+      func loadMoreItems(){
         BloggersDataServer.instance.fetchAllBloggers(API_URL3: "https://blog-api.turathalanbiaa.com/api/userpagination"+"?page=" + "\( BloggersViewController.current_page)" ) { [weak self] (response) in
                                                  if self == nil {return}
                                                  if response.success {
@@ -134,31 +132,14 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
                       {
                           fetchMore = true
                       print("this is the last cell")
-                        loadItemsNow()
+                        loadMoreItems()
                         BloggersViewController.current_page = BloggersViewController.current_page + 1
                         
                       }
         }
     }
     
-    
- /* func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastSectionIndex = tableView.numberOfSections
-        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
-            if !fetchMore
-            {
-                fetchMore = true
-            print("this is the last cell")
-            }
-         //   loadItemsNow()
-         //   current_page = current_page + 1
-         //   tv.reloadData()
-           // tableView.scrollToRow(at: [0, 10], at: .middle, animated: false)
-        }
-    }
-    */
-    
+
 }
 
 extension BloggersViewController : UISearchBarDelegate

@@ -9,42 +9,39 @@ import UIKit
 import CoreData
 
 class BlogViewController: UIViewController {
-    //Pagination Operation
-      var privateList = [String]()
-    var BM = [BookMarksCore]()
-  
+ 
+    //MARK:- Outlets and Variables
     @IBOutlet weak var reloadChoice: UIActivityIndicatorView!  //when categories are chosen
-    @IBOutlet weak var CatBtn: UIButton!
-      @IBOutlet weak var CategoryButton: UIButton!
-      @IBOutlet weak var latestBlogsButton: UIButton!
-    let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
+    @IBOutlet weak var CategoryButton: UIButton!
+    @IBOutlet weak var latestBlogsButton: UIButton!
+    @IBOutlet weak var Loading: UIActivityIndicatorView!
     @IBOutlet weak var BlogTv: UITableView!
     @IBOutlet weak var CatgTv: UITableView!
+    @IBOutlet var tv: UITableView!
+    @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
     
-    
-    
+    let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
     let Refresh = HomeViewController()
-    @IBOutlet weak var Loading: UIActivityIndicatorView!
+  
+    static var current_page = 2
     var cm = 0
     var xx : Int = 0
     var posts: [Post] = []
-     var BookMark = [BookMarksCore]()
+    var BookMark = [BookMarksCore]()
+    var BM = [BookMarksCore]()
+    var fetchMore = false
     
-    @IBOutlet var CommentPopUp: UIView!
-    @IBOutlet var tv: UITableView!
-    @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
-
-    
-    @IBOutlet weak var catbuttonIsPressed: UIButton!
-    
+ 
+     //MARK:- View Did Load
         override func viewDidLoad() {
             overrideUserInterfaceStyle = .light
             //viewing from the categories page
             if Share.shared.FromCtegoryVC == "yes"
                      {
-                       CatBtn.isHidden = true
+                       CategoryButton.isHidden = true
                        Share.shared.FromCtegoryVC = "no"
                      }
+            
             //bookmak stuuf
             let fetchRequest : NSFetchRequest<BookMarksCore> = BookMarksCore.fetchRequest()
                  do {
@@ -53,8 +50,7 @@ class BlogViewController: UIViewController {
                  }catch{}
                  
         super.viewDidLoad()
-            reloadChoice.isHidden = true
-       // let Color = UIColor(named: "customControlColor")
+        reloadChoice.isHidden = true
         tv.delegate = self
         tv.dataSource = self
         CatgTv.delegate = self
@@ -62,9 +58,9 @@ class BlogViewController: UIViewController {
         BlogTv.delegate =  self
         BlogTv.dataSource = self
         tv.addSubview(refreshConroler)
-            refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
-            CategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
-            latestBlogsButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
+        CategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        latestBlogsButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     
@@ -73,10 +69,9 @@ class BlogViewController: UIViewController {
         print (Share.shared.sortby ?? 0)
         print (Share.shared.categoryId ?? 0)
         super.viewDidLoad()
-        
     }
-    // MARK: - Loading blogs
     
+    // MARK: - Loading blogs
     override func didReceiveMemoryWarning() {
                  super.didReceiveMemoryWarning()
              }
@@ -85,16 +80,17 @@ class BlogViewController: UIViewController {
         self.Loading.isHidden = false
          self.Loading.startAnimating()
      
-        
+        //cateogory table view
         DataService.instance.fetchAllCategories { (success) in
                      if success {
                          self.CatgTv.reloadData()
                      }
                  }
-          //  super.viewWillAppear(true)
+        
+          //  blog table view
         print (Share.shared.categoryId ?? 0)
         let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
-        PostDataServer.instance.fetchAllPosts (json: json)
+        PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination",json: json)
             { [weak self] (response) in
                 if self == nil {return}
                 if response.success {
@@ -120,6 +116,34 @@ class BlogViewController: UIViewController {
         }
 
     
+     //MARK:- Load more Items for pagination Function
+    func loadMoreItems(){
+                         let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
+            PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination"+"?page=" + "\( BloggersViewController.current_page)", json: json)
+                                                              { [weak self] (response) in
+                                                                  if self == nil {return}
+                                                                  if response.success {
+                                                                      self!.Loading.isHidden = true
+                                                                       self!.Loading.stopAnimating()
+                                                                      self!.reloadChoice.isHidden = true
+                                                                      self!.reloadChoice.stopAnimating()
+
+                                                                    self!.posts.append(contentsOf: (response.data!.data)!)
+                                                                 self!.fetchMore = false
+                                                                      self!.tv.reloadData()
+                                                                      self!.refreshConroler.endRefreshing()
+                                                                  }else {
+                                                                      let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                                      alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                      self!.present(alert, animated: true)
+                                                                       self!.refreshConroler.endRefreshing()
+                                                                      self!.viewDidLoad()
+                                                                  }
+                                                              }
+               }
+    
+
+    
     // MARK: - updating views
     @IBAction func ViewsTapped(_ sender: Any) {
         let json: [String: Any] = ["id": Share.shared.PostId as Any]
@@ -138,7 +162,7 @@ class BlogViewController: UIViewController {
                    }
     }
     
-    
+     //MARK:- Category button
     @IBAction func CategoryButtonPressed(_ sender: Any) {
           if self.CatgTv.isHidden == true {
                        self.CatgTv.isHidden = false
@@ -147,7 +171,7 @@ class BlogViewController: UIViewController {
                           self.CatgTv.isHidden = true
               }
       }
-      
+       //MARK:- Latest Blog Button
       @IBAction func LatestBlogButtonPressed(_ sender: Any) {
           if self.BlogTv.isHidden == true {
                                self.BlogTv.isHidden = false
@@ -158,7 +182,7 @@ class BlogViewController: UIViewController {
       }
       
     
-    // MARK: - add bookMarks
+    // MARK:- Add bookMarks
     @IBAction func BookMarkIsTapped(_ sender: Any) {
        let coin = UIImage(systemName: "pencil")
         (sender as AnyObject).setImage(coin ,for: UIControl.State.highlighted) 
@@ -169,84 +193,63 @@ class BlogViewController: UIViewController {
         let postid = Share.shared.PostId ?? 0
         bookMarks.postIdBM = "\(String(describing: postid))"//Share.shared.Blogsusername
         PressitentServer.saveContext()
-        
     }
     
-    
-
 }
 
-//table view
-extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
+
+ //MARK:- EXTENSIONS
+extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        public func numberOfSections(in tableView: UITableView) -> Int {
     
            return 1
        }
 
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           print(posts.count)
-        
-        if (tableView.tag == 1)
-               {
+        if (tableView.tag == 1){
                   return DataService.instance.categories.count
                }
-               else if( tableView.tag == 2)
-               {
+               else if( tableView.tag == 2){
                    return x.count
                }
-            else if( tableView.tag == 0)
-            {
+            else if( tableView.tag == 0){
                 return posts.count
-            }
-               else{
+            }else{
                    return 0
                }
-           
        }
 
     
     
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-
-           
-                  
-        
-        
-        
-        
-        //MARK:- table view viewing
-        if(tableView.tag == 1)
+//MARK:- tableView.tag == 1 : CATEGORY
+        if(tableView.tag == 1) //CATEGORY TABLE VIEW
                {
                   let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
                   cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
                    //cell.textLabel?.text = x1[indexPath.row]
                   return cell
                }
+//MARK:- tableView.tag == 2 : SORT BY
                else if (tableView.tag == 2)
                {
                   let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
                    cell.textLabel?.text = x[indexPath.row]
                   return cell
-        } else if (tableView.tag == 0)
+                
+//MARK:- tableView.tag == 0 : BLOGS AND BOOKMARKS
+        } else if (tableView.tag == 0) // RING OU THE BOOK MARKS
         {
-            
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
-            
-            
-         
             let fetchRequest : NSFetchRequest<BookMarksCore> = BookMarksCore.fetchRequest()
                        do {
                              let BM = try PressitentServer.context.fetch(fetchRequest)
                                      self.BM = BM
                                  }catch{}
                          
-                 if BM.count != 0
-                 {
-                     for i in 0 ... BM.count - 1
-                     {
+                 if BM.count != 0{
+                     for i in 0 ... BM.count - 1{
                          let postid = Share.shared.PostId ?? 0
                                           if  BM[i].postIdBM ==  "\(postid)"
                                           {
@@ -254,9 +257,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
                                           }else{
                                              cell.BookMarkSaved.setImage(UIImage(systemName: "bookmark"), for: .normal)
                         }
-    
-                     }
-                    
+                    }
                  }
             
             
@@ -266,7 +267,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.content.font = UIFont.italicSystemFont(ofSize: FZ)
       
         
-      let dateFormatterGet = DateFormatter()  //
+       let dateFormatterGet = DateFormatter()  //
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM"// dd,yyyy"
@@ -329,10 +330,24 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
                 self.reloadChoice.startAnimating()
                
              }
-            
-         //reNew()
         
         }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+           let offSetY = scrollView.contentOffset.y
+           let contentHeight = scrollView.contentSize.height
+           
+           if offSetY > contentHeight - scrollView.frame.height{
+                 if !fetchMore
+                         {
+                             fetchMore = true
+                         print("this is the last cell")
+                           loadMoreItems()
+                           BloggersViewController.current_page = BloggersViewController.current_page + 1
+                           
+                         }
+           }
+       }
     
        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (tableView.tag == 0)
