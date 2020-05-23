@@ -33,6 +33,7 @@ class BMTableViewCell: UITableViewCell {
     
    @IBAction func BookMarkPressed(_ sender: Any) {
         cellDelegate?.onClickCell(index: (index?.row)!)
+    
     }
     
 }

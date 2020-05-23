@@ -93,18 +93,21 @@ class CommentViewController: UIViewController {
         sendCmntBtn.isEnabled = false
         self.Loading.isHidden = false
         self.Loading.startAnimating()
-        
-        if comment.text == ""
-        {
-            
+        let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+                                   if flag != "yes"
+                                   {
+                                     let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لاضافة تعليق", preferredStyle: .alert)
+                                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                     self.present(alert, animated: true)
+                                   }else if comment.text == "" {
             let alert = UIAlertController(title: "خطأ", message: "لم يتم كتابة اي تعليق ، يرجى كتابة تعليق قبل الارسال", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             sendCmntBtn.isEnabled = true
             self.Loading.isHidden = true
             self.Loading.stopAnimating()
+                                    
         }else{
-            
         
         let json: [String: Any] = ["user_id": User_id , "post_id": Share.shared.PostId, "content": comment.text]
         AddcomentDataServer.instance.addComment(json:json ) { [weak self] (response) in

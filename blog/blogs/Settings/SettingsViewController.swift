@@ -22,6 +22,9 @@ class SettingsViewController : UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        FontSizeLabel.font = UIFont.italicSystemFont(ofSize: UserDefaults.standard.object(forKey: "FontSizeDefault") as! CGFloat)
+        
+        
         FontPicker.delegate = self
         FontPicker.dataSource = self
       
@@ -32,13 +35,12 @@ class SettingsViewController : UIViewController  {
     
     @IBAction func FontSizeStepper(_ sender: UIStepper) {
         let x = CGFloat(sender.value)
-        Share.shared.fontSize = Int(x)
-       FontSizeLabel.font = UIFont.italicSystemFont(ofSize: x)
+        UserDefaults.standard.set(x, forKey: "FontSizeDefault")
+        FontSizeLabel.font = UIFont.italicSystemFont(ofSize: x)
         Share.shared.FontChnaged = 1
     }
     
     @IBAction func NightMoodeTapped(_ sender: Any) {
-        
         if NightModeTrigger.isOn == true
               {
                   SettingViewCard.backgroundColor = UIColor(named: "White Color")
@@ -73,6 +75,9 @@ extension SettingsViewController :  UIPickerViewDataSource
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
       selectedFont = fonts[row]
+        let FT = UserDefaults.standard.set(selectedFont , forKey: "FontTypeDefault")
         FontTypeLabel.font = UIFont(name: selectedFont ?? "Lateef", size: 30)
+        
+       // UserDefaults.standard.set("yes", forKey: "LoginFlag")
     }
 }

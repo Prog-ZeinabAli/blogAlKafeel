@@ -262,11 +262,18 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
             
             
            
-        //Send propperties through share
-        let FZ = CGFloat(Share.shared.fontSize ?? 17)
-        cell.content.font = UIFont.italicSystemFont(ofSize: FZ)
-      
+        //change according to settings
+        let FZ = UserDefaults.standard.object(forKey: "FontSizeDefault") as? CGFloat //CGFloat(Share.shared.fontSize ?? 17)
+            cell.content.font = UIFont.italicSystemFont(ofSize: FZ ?? 13)
+        let FT =  UserDefaults.standard.object(forKey:"FontTypeDefault") as? String
+            cell.content.font = UIFont(name: FT ?? "Lateef", size: FZ ?? 13)
+            cell.title.font = UIFont(name: FT ?? "Lateef", size: 30)
+            
         
+            
+            
+            
+            
        let dateFormatterGet = DateFormatter()  //
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let dateFormatterPrint = DateFormatter()

@@ -14,7 +14,7 @@ class BookMarkViewController: UIViewController {
 
     var BMBlog : NSManagedObject!
     
-    
+    static var indexes : Int!
     var BM = [BookMarksCore]()
     @IBOutlet weak var tv: UITableView!
     
@@ -85,6 +85,9 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
         return cell
       }
       
+   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+   
+    }
 
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -103,11 +106,9 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
 extension BookMarkViewController : SeeMoreIsClicked{
     func onClickCell(index: Int) {
         BMBlog = BM[index]
-
         Share.shared.Blogscontent = BM[index].contentBM
         Share.shared.Blogsusername = BM[index].nameBM
         Share.shared.title = BM[index].titleBM
-        
         
     }
     
