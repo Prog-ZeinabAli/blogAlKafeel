@@ -12,13 +12,13 @@ import SwiftyJSON
 
 //categry dataSever THIS IS THE LINK WHERE I'LL BE GETTING MY POSTS FROM JSON FILE
 typealias CompletionHandler3<T> = (_ response: ApiResponse3<T>) -> ()
-let API_URL3 = "https://blog-api.turathalanbiaa.com/api/userpagination"
+//let API_URL3 = "https://blog-api.turathalanbiaa.com/api/userpagination"
 
 class BloggersDataServer {
     
     static let instance = BloggersDataServer()
     
-    func fetchAllBloggers(completion: @escaping CompletionHandler3<Blogger>) {
+    func fetchAllBloggers(API_URL3 : String , completion: @escaping CompletionHandler3<Blogger>) {
         Alamofire.request(API_URL3,method: .post).responseString(completionHandler:{ r in
             print(r)
         })

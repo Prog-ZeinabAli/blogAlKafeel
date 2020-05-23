@@ -33,14 +33,14 @@ class BookMarkViewController: UIViewController {
         
     }
     
-    /*
+
     override func didReceiveMemoryWarning() {
                       super.didReceiveMemoryWarning()
                   }
 
     override func viewWillAppear(_ animated: Bool) {
                   super.viewWillAppear(true)
-    } */
+    }
     
     @IBAction func SeeMoreTapped(_ sender: Any) {
         Share.shared.BookMarked = true
@@ -80,7 +80,7 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
         cell.index = indexPath
         cell.cellDelegate = self //as SeeMoreIsClicked?
         
-        
+        //TODO:- delete row at index path
         
         return cell
       }

@@ -24,10 +24,7 @@ struct Blog : Codable {
     
 }
 
-
 struct Blogger: Codable {
     let current_page: Int
     let data: [Blog]?
-   
-    
 }

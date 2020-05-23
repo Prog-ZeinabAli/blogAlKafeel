@@ -2,7 +2,7 @@
 //  BookMarksCore+CoreDataProperties.swift
 //  
 //
-//  Created by turath alanbiaa on 5/21/20.
+//  Created by turath alanbiaa on 5/22/20.
 //
 //
 
@@ -18,7 +18,7 @@ extension BookMarksCore {
 
     @NSManaged public var contentBM: String?
     @NSManaged public var nameBM: String?
-    @NSManaged public var postIdBM: Int16
+    @NSManaged public var postIdBM: String?
     @NSManaged public var titleBM: String?
 
 }

@@ -11,6 +11,7 @@ import UIKit
 class MenuViewController: UIViewController {
       
  
+    @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var SignUpButton: UIButton!
     @IBOutlet weak var SignInButton: UIButton!
     @IBOutlet weak var UserNameLabel: UILabel!
@@ -24,6 +25,7 @@ class MenuViewController: UIViewController {
             UserNameLabel.text = name
          //   PersonalImg.imageView = UIImage(UIImage(named:"PersonalImg"))
             
+            Utilities.fadedColor(profileView)
             
         //MARK:- LOG_IN & LOG_OUT ACTIONS
             let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String

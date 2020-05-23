@@ -49,7 +49,6 @@ struct Post : Codable {
         case category = "cat"
     }
 
-    
 }
 
 
@@ -71,5 +70,4 @@ struct Posts: Codable {
     let prev_page_url: String?
     let to: Int?
     let total: Int?
-    
 }

@@ -11,6 +11,7 @@ import CoreData
 class BlogViewController: UIViewController {
     //Pagination Operation
       var privateList = [String]()
+    var BM = [BookMarksCore]()
   
     @IBOutlet weak var reloadChoice: UIActivityIndicatorView!  //when categories are chosen
     @IBOutlet weak var CatBtn: UIButton!
@@ -37,6 +38,7 @@ class BlogViewController: UIViewController {
     @IBOutlet weak var catbuttonIsPressed: UIButton!
     
         override func viewDidLoad() {
+            overrideUserInterfaceStyle = .light
             //viewing from the categories page
             if Share.shared.FromCtegoryVC == "yes"
                      {
@@ -158,17 +160,14 @@ class BlogViewController: UIViewController {
     
     // MARK: - add bookMarks
     @IBAction func BookMarkIsTapped(_ sender: Any) {
-      /*  let coin = UIImage(systemName: "pencil")
-        (sender as AnyObject).setImage(coin ,for: UIControl.State.highlighted) */
+       let coin = UIImage(systemName: "pencil")
+        (sender as AnyObject).setImage(coin ,for: UIControl.State.highlighted) 
         let bookMarks = BookMarksCore(context: PressitentServer.context)
         bookMarks.titleBM = Share.shared.title
         bookMarks.contentBM = Share.shared.Blogscontent
-        
+        bookMarks.nameBM = Share.shared.userName
         let postid = Share.shared.PostId ?? 0
-        bookMarks.nameBM = "\(String(describing: postid))"//Share.shared.Blogsusername
-     
-       // bookMarks.postIdBM = Int16(truncating: postid )
-  
+        bookMarks.postIdBM = "\(String(describing: postid))"//Share.shared.Blogsusername
         PressitentServer.saveContext()
         
     }
@@ -210,6 +209,15 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
     
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        
+
+           
+                  
+        
+        
+        
+        
+        //MARK:- table view viewing
         if(tableView.tag == 1)
                {
                   let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
@@ -226,6 +234,33 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         {
             
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BlogCardTableViewCell
+            
+            
+         
+            let fetchRequest : NSFetchRequest<BookMarksCore> = BookMarksCore.fetchRequest()
+                       do {
+                             let BM = try PressitentServer.context.fetch(fetchRequest)
+                                     self.BM = BM
+                                 }catch{}
+                         
+                 if BM.count != 0
+                 {
+                     for i in 0 ... BM.count - 1
+                     {
+                         let postid = Share.shared.PostId ?? 0
+                                          if  BM[i].postIdBM ==  "\(postid)"
+                                          {
+                                             cell.BookMarkSaved.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+                                          }else{
+                                             cell.BookMarkSaved.setImage(UIImage(systemName: "bookmark"), for: .normal)
+                        }
+    
+                     }
+                    
+                 }
+            
+            
+           
         //Send propperties through share
         let FZ = CGFloat(Share.shared.fontSize ?? 17)
         cell.content.font = UIFont.italicSystemFont(ofSize: FZ)

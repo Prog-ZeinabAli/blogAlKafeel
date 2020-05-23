@@ -1576,34 +1576,31 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0QQ-pK-ZNp" userLabel="ProfileView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="179"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="l4M-fH-fhB" userLabel="Profile">
-                                        <rect key="frame" x="20" y="50" width="374" height="109"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWT-pe-dy6">
-                                                <rect key="frame" x="135.5" y="1" width="103.5" height="69"/>
-                                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <state key="normal" backgroundImage="person.crop.rectangle" catalog="system"/>
-                                                <connections>
-                                                    <segue destination="7VF-FT-aVl" kind="show" id="Lud-7U-uhL"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1t-1W-Fa3">
-                                                <rect key="frame" x="166" y="81.5" width="42" height="27.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DWT-pe-dy6">
+                                        <rect key="frame" x="182" y="65.5" width="50" height="47.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="4wV-XK-GpZ"/>
+                                            <constraint firstAttribute="width" constant="50" id="DDu-bE-rDk"/>
+                                        </constraints>
+                                        <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <state key="normal" backgroundImage="person.crop.rectangle" catalog="system"/>
+                                        <connections>
+                                            <segue destination="7VF-FT-aVl" kind="show" id="Lud-7U-uhL"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1t-1W-Fa3">
+                                        <rect key="frame" x="186" y="131.5" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="l4M-fH-fhB" secondAttribute="bottom" constant="20" id="4c8-aE-EEk"/>
-                                    <constraint firstItem="l4M-fH-fhB" firstAttribute="leading" secondItem="0QQ-pK-ZNp" secondAttribute="leading" constant="20" id="Fbo-gZ-RiI"/>
-                                    <constraint firstItem="DWT-pe-dy6" firstAttribute="width" secondItem="0QQ-pK-ZNp" secondAttribute="width" multiplier="0.25" id="GrV-Sm-tiU"/>
-                                    <constraint firstAttribute="trailing" secondItem="l4M-fH-fhB" secondAttribute="trailing" constant="20" id="H1P-6f-CqO"/>
-                                    <constraint firstItem="l4M-fH-fhB" firstAttribute="top" secondItem="0QQ-pK-ZNp" secondAttribute="top" constant="50" id="rYd-iA-DgP"/>
-                                    <constraint firstItem="DWT-pe-dy6" firstAttribute="height" secondItem="0QQ-pK-ZNp" secondAttribute="height" multiplier="0.4" id="wjG-xE-GhP"/>
+                                    <constraint firstItem="DWT-pe-dy6" firstAttribute="centerX" secondItem="0QQ-pK-ZNp" secondAttribute="centerX" id="3tK-uc-0V1"/>
+                                    <constraint firstItem="j1t-1W-Fa3" firstAttribute="centerX" secondItem="0QQ-pK-ZNp" secondAttribute="centerX" id="7MG-0R-KTM"/>
+                                    <constraint firstItem="DWT-pe-dy6" firstAttribute="centerY" secondItem="0QQ-pK-ZNp" secondAttribute="centerY" id="VT0-Bt-n1y"/>
+                                    <constraint firstItem="j1t-1W-Fa3" firstAttribute="top" secondItem="DWT-pe-dy6" secondAttribute="bottom" constant="17" id="yJy-Fx-INd"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="a9B-qY-tIm" userLabel="options">
@@ -1702,6 +1699,7 @@
                         <outlet property="SignInButton" destination="stD-mA-gsX" id="oth-Ci-nCG"/>
                         <outlet property="SignUpButton" destination="A8C-Mk-zER" id="G9i-if-Uw1"/>
                         <outlet property="UserNameLabel" destination="j1t-1W-Fa3" id="Bc8-i8-58g"/>
+                        <outlet property="profileView" destination="0QQ-pK-ZNp" id="7J6-vh-vC5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kez-9k-5mG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

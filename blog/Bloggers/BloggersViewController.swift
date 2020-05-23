@@ -9,8 +9,13 @@
 import UIKit
 
 class BloggersViewController: UIViewController {
-     var Blogger: [Blog] = []
-
+     var blogger: [Blog] = []
+    var privateList = [String]()
+    var fetchMore = false
+    //let totalItems = 100 // server does not provide totalItems
+    var fromIndex = 0
+    let batchSize = 20
+    static var current_page = 1
     @IBOutlet weak var SearchBar: UISearchBar!
     var searchBlogger = [Blog]()
     
@@ -25,6 +30,7 @@ class BloggersViewController: UIViewController {
         self.Loading.startAnimating()
         tv.delegate = self
         tv.dataSource = self
+       // loadItemsNow()
     }
     
        override func didReceiveMemoryWarning() {
@@ -33,22 +39,43 @@ class BloggersViewController: UIViewController {
              
              override func viewWillAppear(_ animated: Bool) {
                  super.viewWillAppear(true)
-               
-           
-                BloggersDataServer.instance.fetchAllBloggers { [weak self] (response) in
-                     if self == nil {return}
-                     if response.success {
-                        self!.Blogger = (response.data!.data)!
-                         self!.tv.reloadData()
-                        self!.Loading.isHidden = true
-                        self!.Loading.stopAnimating()
-                     }else {
-                         let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
-                         alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                         self!.present(alert, animated: true)
-                     }
-                 }
-             }
+                
+                BloggersDataServer.instance.fetchAllBloggers(API_URL3: "https://blog-api.turathalanbiaa.com/api/userpagination") { [weak self] (response) in
+                                    if self == nil {return}
+                                    if response.success {
+                                       self!.blogger.append(contentsOf: (response.data!.data)!)
+                                       // self!.blogger =  (response.data!.data)!
+                                        self!.tv.reloadData()
+                                       self!.Loading.isHidden = true
+                                       self!.Loading.stopAnimating()
+                                      // self!.loadItemsNow()
+                                        
+                                    }else {
+                                        let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                        self!.present(alert, animated: true)
+                                    }
+                                }
+                
+    }
+    
+      func loadItemsNow(){
+        BloggersDataServer.instance.fetchAllBloggers(API_URL3: "https://blog-api.turathalanbiaa.com/api/userpagination"+"?page=" + "\( BloggersViewController.current_page)" ) { [weak self] (response) in
+                                                 if self == nil {return}
+                                                 if response.success {
+                                                    self!.blogger.append(contentsOf: (response.data!.data)!)
+                                                    // self!.blogger =  (response.data!.data)!
+                                                    self!.fetchMore = false
+                                                     self!.tv.reloadData()
+                                                    self!.Loading.isHidden = true
+                                                    self!.Loading.stopAnimating()
+                                                 }else {
+                                                     let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                     self!.present(alert, animated: true)
+                                                 }
+                                             }
+            }
 
 
   
@@ -62,14 +89,14 @@ class BloggersViewController: UIViewController {
 extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  Blogger.count
+        return  blogger.count
     }
     
     
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BloggersTableViewCell
-        cell.UserName.text = Blogger[indexPath.row].name
-        let score1 = Blogger[indexPath.row].points ?? 0
+        cell.UserName.text = blogger[indexPath.row].name
+        let score1 = blogger[indexPath.row].points ?? 0
         cell.Score.text = "النقاط:\(score1)"
    //     let Purl = URL(fileURLWithPath: Blogger[indexPath.row].picture!)
           //  cell.PrsImg = UIImage(purl)
@@ -95,9 +122,42 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        Share.shared.userId =  Blogger[indexPath.row].id
+        Share.shared.userId =  blogger[indexPath.row].id
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offSetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offSetY > contentHeight - scrollView.frame.height{
+              if !fetchMore
+                      {
+                          fetchMore = true
+                      print("this is the last cell")
+                        loadItemsNow()
+                        BloggersViewController.current_page = BloggersViewController.current_page + 1
+                        
+                      }
+        }
+    }
+    
+    
+ /* func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastSectionIndex = tableView.numberOfSections
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+        if indexPath.section ==  lastSectionIndex && indexPath.row == lastRowIndex {
+            if !fetchMore
+            {
+                fetchMore = true
+            print("this is the last cell")
+            }
+         //   loadItemsNow()
+         //   current_page = current_page + 1
+         //   tv.reloadData()
+           // tableView.scrollToRow(at: [0, 10], at: .middle, animated: false)
+        }
+    }
+    */
     
 }
 
@@ -109,7 +169,7 @@ extension BloggersViewController : UISearchBarDelegate
         SearchDataServer.instance.Search(json: json) { [weak self] (response) in
                             if self == nil {return}
                             if response.success {
-                               self!.Blogger = (response.data!.data)!
+                               self!.blogger = (response.data!.data)!
                               self!.tv.reloadData()
                                self!.Loading.isHidden = true
                                self!.Loading.stopAnimating()
