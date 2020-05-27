@@ -141,7 +141,7 @@
                                                                 <constraint firstAttribute="width" constant="20" id="xbM-cJ-Bgo"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-zz-Zs1">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eiY-zz-Zs1">
                                                             <rect key="frame" x="20" y="316" width="334" height="125"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="Okx-ks-BbZ">
@@ -182,7 +182,7 @@
                                                                         <constraint firstAttribute="height" constant="22" id="kSF-eD-aLT"/>
                                                                     </constraints>
                                                                     <color key="tintColor" red="0.26150232550000002" green="0.44020611050000003" blue="0.2287876606" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <state key="normal" title="Button" image="bookmark" catalog="system"/>
+                                                                    <state key="normal" image="bookmark" catalog="system"/>
                                                                     <connections>
                                                                         <action selector="BookMarkIsTapped:" destination="57t-Po-YzM" eventType="touchUpInside" id="Nz0-Ui-x5i"/>
                                                                         <action selector="BookMarkPressed:" destination="40V-Kk-BEv" eventType="touchUpInside" id="0Sy-uq-Cuh"/>

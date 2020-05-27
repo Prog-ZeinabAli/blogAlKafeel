@@ -9,6 +9,7 @@
 import Foundation
 final class Share{
     static let shared = Share()
+    var imagePath = "https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/"
     
     //MARK:- LOGIN VARIABLES
     var userName : String!

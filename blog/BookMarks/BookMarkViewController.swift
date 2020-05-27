@@ -11,10 +11,10 @@ import CoreData
 
 class BookMarkViewController: UIViewController {
 
-
+    var blogIndex :Int!
     var BMBlog : NSManagedObject!
     var deleteRow = false
-    static var indexes : Int!
+    static var indexes : IndexPath!
     var BM = [BookMarksCore]()
     @IBOutlet weak var tv: UITableView!
     
@@ -49,10 +49,15 @@ class BookMarkViewController: UIViewController {
     
     @IBAction func BookMarksIsTapped(_ sender: Any) {
         PressitentServer.context.delete(BMBlog)
-        super.viewDidLoad()
-         super.viewWillAppear(true)
+        BM.remove(at: blogIndex)
+        tv.beginUpdates()
+        let indexPath = IndexPath(row: blogIndex, section: 0)
+        tv.deleteRows(at: [indexPath], with: .automatic)
+        tv.endUpdates()
         PressitentServer.saveContext()
         deleteRow = true
+        
+        
        
         
     }
@@ -88,16 +93,11 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
         return cell
       }
    
-    /*
-func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    if deleteRow
-    {
-          BM.remove(at: indexPath.row)
-          tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-        deleteRow = false
+
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
-   
-    }*/
 
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -116,6 +116,7 @@ func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.Ed
 extension BookMarkViewController : SeeMoreIsClicked{
     func onClickCell(index: Int) {
         BMBlog = BM[index]
+        blogIndex = index
         Share.shared.Blogscontent = BM[index].contentBM
         Share.shared.Blogsusername = BM[index].nameBM
         Share.shared.title = BM[index].titleBM

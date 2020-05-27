@@ -22,13 +22,30 @@ class SettingsViewController : UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //MARK:- standard font size
         if ( UserDefaults.standard.object(forKey: "FontSizeDefault") != nil){
         FontSizeLabel.font = UIFont.italicSystemFont(ofSize: (UserDefaults.standard.object(forKey: "FontSizeDefault") as! CGFloat) ?? 13 )
         } else{
         FontSizeLabel.font = UIFont.italicSystemFont(ofSize: 13) //default value
             }
+        
+           //MARK:- standard NightMode
+        if UserDefaults.standard.object(forKey: "NightMode")as? String == "True"
+               {
+                overrideUserInterfaceStyle = .dark
+                      NightModeTrigger.isOn = true
+               }else{
+                    NightModeTrigger.isOn = false
+            overrideUserInterfaceStyle = .light
+               }
+        
+        
         FontPicker.delegate = self
         FontPicker.dataSource = self
+        
+        
+        
+        
       
     }
     @IBAction func RturnSettngsTapped(_ sender: Any) {
@@ -53,15 +70,20 @@ class SettingsViewController : UIViewController  {
         if NightModeTrigger.isOn == true
               {
                   overrideUserInterfaceStyle = .dark
+                  UserDefaults.standard.set("True", forKey: "NightMode")
               } else if NightModeTrigger.isOn == false
               {
                    overrideUserInterfaceStyle = .light
+                UserDefaults.standard.set("False", forKey: "NightMode")
               }
         
         
     }
     
     @IBAction func Save(_ sender: Any) {
+      //  guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
+                                      self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+       // UIApplication.shared.keyWindow?.rootViewController = BlogViewController()
         dismiss(animated: true, completion: nil)
     }
 }

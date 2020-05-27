@@ -34,8 +34,15 @@ class BlogViewController: UIViewController {
  
      //MARK:- View Did Load
         override func viewDidLoad() {
-           overrideUserInterfaceStyle = .dark
-            tv.overrideUserInterfaceStyle = .dark
+            if UserDefaults.standard.object(forKey: "NightMode") as? String  == "True"
+            {
+                 overrideUserInterfaceStyle = .dark
+            }else{
+                overrideUserInterfaceStyle = .light
+            }
+           
+         
+
             //viewing from the categories page
             if Share.shared.FromCtegoryVC == "yes"
                      {
@@ -51,7 +58,7 @@ class BlogViewController: UIViewController {
                  }catch{}
                  
         super.viewDidLoad()
-        reloadChoice.isHidden = true
+        reloadChoice!.isHidden = true
         tv.delegate = self
         tv.dataSource = self
         CatgTv.delegate = self
@@ -119,6 +126,8 @@ class BlogViewController: UIViewController {
     
      //MARK:- Load more Items for pagination Function
     func loadMoreItems(){
+        self.Loading.isHidden = false
+                self.Loading.startAnimating()
                          let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
             PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination"+"?page=" + "\( BloggersViewController.current_page)", json: json)
                                                               { [weak self] (response) in
@@ -286,17 +295,21 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.title.text = posts[indexPath.row].title
         cell.UserName.text = posts[indexPath.row].user?.name
         cell.content.text = posts[indexPath.row].content
-        cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image! ) ?? UIImage(named:"home")
+       // cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image! ) ?? UIImage(named:"home")
+            cell.PostImage.image = Get.Image(from:posts[indexPath.row].image!) ?? UIImage(named:"home") //posts[indexPath.row].image!) "1585684885.jpg"
         cell.PersonalImg.setImage(UIImage(named: "PersonalImg"), for: UIControl.State.normal)
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
-          //  cell.cardViewUIView.overrideUserInterfaceStyle = .dark
+        //cell.cardViewUIView.overrideUserInterfaceStyle = .light
+        cell.cardViewUIView.backgroundColor = UIColor(named: "System Red Color")
+            Utilities.Borders(cell.cardViewUIView)
         let commentCount = posts[indexPath.row].cmdCount ?? 0
         cell.CommentCount.text = "\(commentCount)"
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
         cell.index = indexPath
         cell.cellDelegate = self // as! CommentIsClicked
-        
+        cell.contentView.backgroundColor = UIColor.systemBackground
+        //For named color you have to resolve it.
         Utilities.styleHollowButton(cell.TagButton)
         Utilities.fadedColor(cell.TitleUiView)
         Utilities.CircledButton(cell.PersonalImg)
@@ -387,3 +400,8 @@ extension BlogViewController: CommentIsClicked{
     }
     
 }
+
+
+
+
+

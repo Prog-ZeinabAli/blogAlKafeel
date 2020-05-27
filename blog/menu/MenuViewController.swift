@@ -19,13 +19,27 @@ class MenuViewController: UIViewController {
     let transition = SlideInTransition()
         
         override func viewDidLoad() {
+            if UserDefaults.standard.object(forKey: "NightMode") as? String  == "True"
+                       {
+                            overrideUserInterfaceStyle = .dark
+                       }else{
+                           overrideUserInterfaceStyle = .light
+                       }
+                      
+            
             super.viewDidLoad()
            let name :String = UserDefaults.standard.object(forKey: "loggesUserName") as? String ?? "ضيف"
           // let pic = Share.shared.picture ??  "PersonalImg"
             UserNameLabel.text = name
          //   PersonalImg.imageView = UIImage(UIImage(named:"PersonalImg"))
             
-            Utilities.fadedColor(profileView)
+           Utilities.fadedColor(profileView)
+            
+           // let colorTeal =  UIColor(red: 82/255.0, green: 123/255.0, blue: 79/255.0, alpha: 1.0).cgColor
+       //     let colorWhite = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+        
+       //     profileView.backgroundColor = [colorTeal, colorWhite] as? UIColor
+                     //  gradLayer.colors = [colorTeal, colorWhite]
             
         //MARK:- LOG_IN & LOG_OUT ACTIONS
             let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String

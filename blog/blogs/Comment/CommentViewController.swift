@@ -12,6 +12,7 @@ class CommentViewController: UIViewController {
     var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
     
     var commentId : Int!
+    var Commentindex :Int! // delete comment at index
   
     @IBOutlet weak var sendCmntBtn: UIButton!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
@@ -78,6 +79,10 @@ class CommentViewController: UIViewController {
                            if let user = response.data {
                               if(user.message == "DONE")
                             {
+                                self!.tv.beginUpdates()
+                                let indexPath = IndexPath(row: self!.Commentindex, section: 0)
+                                self!.tv.deleteRows(at: [indexPath], with: .fade)
+                                self!.tv.endUpdates()
                                 print("deleted")
                             }
             }
@@ -116,14 +121,15 @@ class CommentViewController: UIViewController {
                             print("succeded")
                             self!.sendCmntBtn.isEnabled = true
                             self!.comment.text = ""
+                            self!.view.endEditing(true)
                                self!.tv.reloadData()
                             self!.Loading.isHidden = true
                               self!.Loading.stopAnimating()
-                            let alert = UIAlertController(title: "تمت عملية الارسال", message: "تمت عملية ارسال التعليق بنجاح  ", preferredStyle: .alert)
+                          let alert = UIAlertController(title: "تمت عملية الارسال", message: "تمت عملية ارسال التعليق بنجاح  ", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                             self!.present(alert, animated: true)
-                            
-                            self!.dismiss(animated: true, completion: nil)
+                          //  self!.insertNewComment()
+                            //self!.dismiss(animated: true, completion: nil)
                            }else {
                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
@@ -134,7 +140,14 @@ class CommentViewController: UIViewController {
         }
     }
     
-    
+    func insertNewComment(){
+     //comments.append(comment.text!)
+      let indexPath = IndexPath(row: comments.count - 1, section: 0)
+        tv.beginUpdates()
+        tv.insertRows(at: [indexPath], with: .automatic)
+        tv.endUpdates()
+        
+    }
     
     
     
@@ -152,9 +165,9 @@ class CommentViewController: UIViewController {
 
 extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
 
-       public func numberOfSections(in tableView: UITableView) -> Int {
+    /*   public func numberOfSections(in tableView: UITableView) -> Int {
            return 1
-       }
+       }*/
     
 
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -189,7 +202,12 @@ extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
            return cell
        }
 
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
+    
        func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
            return UIView()
        }
@@ -205,6 +223,7 @@ extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
 extension CommentViewController: DeleteButtonIsClicked{
     func onClickCell(index: Int) {
         commentId = comments[index].id
+        Commentindex = index
     }
     
 }

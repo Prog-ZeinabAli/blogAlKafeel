@@ -66,6 +66,7 @@
 		EBE7470124523DC800F0F59E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470024523DC800F0F59E /* User.swift */; };
 		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
 		EBE89F05245FAECE005E292C /* ViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE89F04245FAECE005E292C /* ViewsViewController.swift */; };
+		EBEEA5ED247DD2F2004CBBDC /* getImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEEA5EC247DD2F2004CBBDC /* getImage.swift */; };
 		EBF147C4246106BB00FA68C9 /* LoginByFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF147C3246106BB00FA68C9 /* LoginByFacebook.swift */; };
 		EBF147C6246106E700FA68C9 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF147C5246106E700FA68C9 /* FBUser.swift */; };
 		EBF215F424563AD400DC3651 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F324563AD400DC3651 /* Share.swift */; };
@@ -175,6 +176,7 @@
 		EBE7470024523DC800F0F59E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
 		EBE89F04245FAECE005E292C /* ViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsViewController.swift; sourceTree = "<group>"; };
+		EBEEA5EC247DD2F2004CBBDC /* getImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getImage.swift; sourceTree = "<group>"; };
 		EBF147C3246106BB00FA68C9 /* LoginByFacebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginByFacebook.swift; sourceTree = "<group>"; };
 		EBF147C5246106E700FA68C9 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		EBF215F324563AD400DC3651 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				EBDD110C245AF3EE00090AC4 /* AddPost */,
 				E35749E0243C995D00708AB9 /* menu */,
 				E35749DB243C96B000708AB9 /* Home */,
+				EBEEA5EB247DD2BD004CBBDC /* styles */,
 				E3574999243B7B9B00708AB9 /* AppDelegate.swift */,
 				E357499B243B7B9B00708AB9 /* SceneDelegate.swift */,
 				E357499F243B7B9B00708AB9 /* Main.storyboard */,
@@ -289,8 +292,6 @@
 				E35749AA243B7BA600708AB9 /* Info.plist */,
 				EBDA64AC246891350029229F /* GoogleService-Info.plist */,
 				E35749A2243B7B9B00708AB9 /* blog.xcdatamodeld */,
-				EBF215F324563AD400DC3651 /* Share.swift */,
-				E35749D5243BBEA600708AB9 /* Utilities.swift */,
 			);
 			path = blog;
 			sourceTree = "<group>";
@@ -483,6 +484,16 @@
 				EBD9397C2467A0DE00095758 /* UpdaintingViews */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		EBEEA5EB247DD2BD004CBBDC /* styles */ = {
+			isa = PBXGroup;
+			children = (
+				EBF215F324563AD400DC3651 /* Share.swift */,
+				E35749D5243BBEA600708AB9 /* Utilities.swift */,
+				EBEEA5EC247DD2F2004CBBDC /* getImage.swift */,
+			);
+			path = styles;
 			sourceTree = "<group>";
 		};
 		EBF215F72456708600DC3651 /* Comment */ = {
@@ -853,6 +864,7 @@
 				E35749DA243C0AB000708AB9 /* SlideInTransition.swift in Sources */,
 				E35749D3243BB85F00708AB9 /* PostDataServer.swift in Sources */,
 				EBF147C4246106BB00FA68C9 /* LoginByFacebook.swift in Sources */,
+				EBEEA5ED247DD2F2004CBBDC /* getImage.swift in Sources */,
 				E357499C243B7B9B00708AB9 /* SceneDelegate.swift in Sources */,
 				EBDB5FA22464BAC60027C67E /* DetailBloggersViewController.swift in Sources */,
 				EBF3DB6D246510D300AFDF40 /* UpdatePostDataServer.swift in Sources */,

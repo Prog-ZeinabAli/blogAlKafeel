@@ -76,9 +76,16 @@ class Utilities {
             let gradLayer = CAGradientLayer()
             gradLayer.colors = [colorTeal, colorWhite]
             gradLayer.locations = [0.0, 1.0]
-            gradLayer.frame = hi.bounds
+          gradLayer.frame = hi.bounds
+       // gradLayer.bounds.width * 0.7
             hi.layer.insertSublayer(gradLayer, at:0)
         }
+    
+    
+     static func Borders(_ hi: UIView) {
+    hi.layer.borderWidth = 2
+    hi.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5).cgColor
+    }
     
     static func TitlefadedColor(_ hi: UIView) {
       let colorTeal =  UIColor(red: 82/255.0, green: 123/255.0, blue: 79/255.0, alpha: 1.0).cgColor
