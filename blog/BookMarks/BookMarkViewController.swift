@@ -19,6 +19,7 @@ class BookMarkViewController: UIViewController {
     @IBOutlet weak var tv: UITableView!
     
     override func viewDidLoad() {
+        Get.NightMode(from: self)
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self

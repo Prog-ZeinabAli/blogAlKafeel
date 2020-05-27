@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController {
     var profiles: [Profile] = []
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
+        Get.NightMode(from: self)
         super.viewDidLoad()
         tv.delegate = self
         tv.dataSource = self

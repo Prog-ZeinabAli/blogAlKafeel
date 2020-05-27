@@ -17,7 +17,7 @@ class HomeViewController: UIViewController  {
     let transition = SlideInTransition()
     
     override func viewDidLoad() {
-        
+        Get.NightMode(from: self)
         super.viewDidLoad()
         Utilities.CircledButton(NewBlogBtn)
        

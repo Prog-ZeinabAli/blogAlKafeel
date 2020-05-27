@@ -26,6 +26,7 @@ class CommentViewController: UIViewController {
     override func viewDidLoad() {
         NoCommentsLabel.isHidden = true
         super.viewDidLoad()
+        Get.NightMode(from: self)
         tv.delegate = self
         tv.dataSource = self
         self.Loading.isHidden = false

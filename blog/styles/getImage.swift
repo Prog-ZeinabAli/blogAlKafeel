@@ -28,4 +28,16 @@ static func Image(from string: String) -> UIImage? {
     return image
 }
 
+
+static func NightMode(from string: UIViewController) {
+
+if UserDefaults.standard.object(forKey: "NightMode") as? String  == "True"
+           {
+            string.overrideUserInterfaceStyle = .dark
+           }else{
+           string.overrideUserInterfaceStyle = .light
+           }
+          
+}
+     
 }

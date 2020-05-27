@@ -21,6 +21,7 @@ class EditProfileViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        Get.NightMode(from: self)
         self.Loading.isHidden = true
         self.Loading.stopAnimating()
         

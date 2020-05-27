@@ -27,6 +27,7 @@ class LogInViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        Get.NightMode(from: self)
         super.viewDidLoad()
         Utilities.fadedColor(MainView)
          Utilities.styleHollowButton(LogInBtn)

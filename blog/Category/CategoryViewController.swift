@@ -12,6 +12,7 @@ class CategoryViewController: UIViewController {
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        Get.NightMode(from: self)
         tv.delegate = self
         tv.dataSource = self
     }

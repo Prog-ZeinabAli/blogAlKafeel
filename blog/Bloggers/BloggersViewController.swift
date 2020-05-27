@@ -23,6 +23,7 @@ class BloggersViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        Get.NightMode(from: self)
         super.viewDidLoad()
         self.Loading.isHidden = false
         self.Loading.startAnimating()

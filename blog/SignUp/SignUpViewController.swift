@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet var MainView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        Get.NightMode(from: self)
         Utilities.fadedColor(MainView)
         Utilities.styleHollowButton(SignUpBtn)
 

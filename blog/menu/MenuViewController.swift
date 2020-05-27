@@ -19,12 +19,7 @@ class MenuViewController: UIViewController {
     let transition = SlideInTransition()
         
         override func viewDidLoad() {
-            if UserDefaults.standard.object(forKey: "NightMode") as? String  == "True"
-                       {
-                            overrideUserInterfaceStyle = .dark
-                       }else{
-                           overrideUserInterfaceStyle = .light
-                       }
+            Get.NightMode(from: self)
                       
             
             super.viewDidLoad()

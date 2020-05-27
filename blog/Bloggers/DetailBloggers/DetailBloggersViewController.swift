@@ -18,6 +18,7 @@ class DetailBloggersViewController: UIViewController {
     var profiles: [Profile] = []
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
+        Get.NightMode(from: self)
         super.viewDidLoad()
         self.Loading.isHidden = false
         self.Loading.startAnimating()

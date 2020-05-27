@@ -34,15 +34,7 @@ class BlogViewController: UIViewController {
  
      //MARK:- View Did Load
         override func viewDidLoad() {
-            if UserDefaults.standard.object(forKey: "NightMode") as? String  == "True"
-            {
-                 overrideUserInterfaceStyle = .dark
-            }else{
-                overrideUserInterfaceStyle = .light
-            }
-           
-         
-
+           Get.NightMode(from: self)
             //viewing from the categories page
             if Share.shared.FromCtegoryVC == "yes"
                      {
