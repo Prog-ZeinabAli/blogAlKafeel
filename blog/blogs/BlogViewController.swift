@@ -33,6 +33,7 @@ class BlogViewController: UIViewController {
     
  
      //MARK:- View Did Load
+  
         override func viewDidLoad() {
            Get.NightMode(from: self)
             //viewing from the categories page
@@ -70,6 +71,7 @@ class BlogViewController: UIViewController {
         print (Share.shared.categoryId ?? 0)
         super.viewDidLoad()
     }
+    
     
     // MARK: - Loading blogs
     override func didReceiveMemoryWarning() {
