@@ -41,6 +41,7 @@
 		EB13ED2C2474843300F3650E /* BMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED2B2474843300F3650E /* BMTableViewCell.swift */; };
 		EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */; };
 		EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C4212454AF65008E86D3 /* UserRegister.swift */; };
+		EB18F63A248267FC00F41E29 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB18F639248267FC00F41E29 /* SearchViewController.swift */; };
 		EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */; };
 		EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BA245E22FD000C1409 /* AddPostServer.swift */; };
 		EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BC245E230A000C1409 /* AddPost.swift */; };
@@ -53,7 +54,6 @@
 		EBD9397B24676BFA00095758 /* AddComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397A24676BFA00095758 /* AddComment.swift */; };
 		EBD9397E2467A10900095758 /* updateViewDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397D2467A10900095758 /* updateViewDataServer.swift */; };
 		EBD939802467A11900095758 /* UpdateViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397F2467A11900095758 /* UpdateViews.swift */; };
-		EBDA64AD246891350029229F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBDA64AC246891350029229F /* GoogleService-Info.plist */; };
 		EBDA64AF2469CB8B0029229F /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDA64AE2469CB8B0029229F /* DateFormatters.swift */; };
 		EBDA64B2246E4E6B0029229F /* f1.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBDA64B1246E4E6B0029229F /* f1.ttf */; };
 		EBDA64B4246E4E740029229F /* af_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBDA64B3246E4E740029229F /* af_regular.ttf */; };
@@ -67,6 +67,7 @@
 		EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE7470224523DD900F0F59E /* LogInServer.swift */; };
 		EBE89F05245FAECE005E292C /* ViewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE89F04245FAECE005E292C /* ViewsViewController.swift */; };
 		EBEEA5ED247DD2F2004CBBDC /* getImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEEA5EC247DD2F2004CBBDC /* getImage.swift */; };
+		EBEEA5F32481EF0A004CBBDC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBEEA5F22481EF0A004CBBDC /* GoogleService-Info.plist */; };
 		EBF147C4246106BB00FA68C9 /* LoginByFacebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF147C3246106BB00FA68C9 /* LoginByFacebook.swift */; };
 		EBF147C6246106E700FA68C9 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF147C5246106E700FA68C9 /* FBUser.swift */; };
 		EBF215F424563AD400DC3651 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF215F324563AD400DC3651 /* Share.swift */; };
@@ -150,6 +151,7 @@
 		EB13ED2B2474843300F3650E /* BMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMTableViewCell.swift; sourceTree = "<group>"; };
 		EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServer.swift; sourceTree = "<group>"; };
 		EB14C4212454AF65008E86D3 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
+		EB18F639248267FC00F41E29 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		EB3E79BA245E22FD000C1409 /* AddPostServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostServer.swift; sourceTree = "<group>"; };
 		EB3E79BC245E230A000C1409 /* AddPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPost.swift; sourceTree = "<group>"; };
@@ -162,7 +164,6 @@
 		EBD9397A24676BFA00095758 /* AddComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddComment.swift; sourceTree = "<group>"; };
 		EBD9397D2467A10900095758 /* updateViewDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateViewDataServer.swift; sourceTree = "<group>"; };
 		EBD9397F2467A11900095758 /* UpdateViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViews.swift; sourceTree = "<group>"; };
-		EBDA64AC246891350029229F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBDA64AE2469CB8B0029229F /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		EBDA64B1246E4E6B0029229F /* f1.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = f1.ttf; sourceTree = "<group>"; };
 		EBDA64B3246E4E740029229F /* af_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = af_regular.ttf; sourceTree = "<group>"; };
@@ -177,6 +178,7 @@
 		EBE7470224523DD900F0F59E /* LogInServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInServer.swift; sourceTree = "<group>"; };
 		EBE89F04245FAECE005E292C /* ViewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewsViewController.swift; sourceTree = "<group>"; };
 		EBEEA5EC247DD2F2004CBBDC /* getImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getImage.swift; sourceTree = "<group>"; };
+		EBEEA5F22481EF0A004CBBDC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EBF147C3246106BB00FA68C9 /* LoginByFacebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginByFacebook.swift; sourceTree = "<group>"; };
 		EBF147C5246106E700FA68C9 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		EBF215F324563AD400DC3651 /* Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
@@ -290,7 +292,7 @@
 				E35749A5243B7BA600708AB9 /* Assets.xcassets */,
 				E35749A7243B7BA600708AB9 /* LaunchScreen.storyboard */,
 				E35749AA243B7BA600708AB9 /* Info.plist */,
-				EBDA64AC246891350029229F /* GoogleService-Info.plist */,
+				EBEEA5F22481EF0A004CBBDC /* GoogleService-Info.plist */,
 				E35749A2243B7B9B00708AB9 /* blog.xcdatamodeld */,
 			);
 			path = blog;
@@ -415,6 +417,7 @@
 		EB682A82247214B200CC9EE7 /* Search for Bloggers */ = {
 			isa = PBXGroup;
 			children = (
+				EB18F639248267FC00F41E29 /* SearchViewController.swift */,
 				EB682A83247214C900CC9EE7 /* SearchDataServer.swift */,
 				EB682A85247214D500CC9EE7 /* Search.swift */,
 			);
@@ -672,10 +675,10 @@
 				EBDA64B2246E4E6B0029229F /* f1.ttf in Resources */,
 				EBDA64B6246E4E7D0029229F /* f3.ttf in Resources */,
 				E35749A9243B7BA600708AB9 /* LaunchScreen.storyboard in Resources */,
-				EBDA64AD246891350029229F /* GoogleService-Info.plist in Resources */,
 				E35749A6243B7BA600708AB9 /* Assets.xcassets in Resources */,
 				EBDA64B4246E4E740029229F /* af_regular.ttf in Resources */,
 				E35749A1243B7B9B00708AB9 /* Main.storyboard in Resources */,
+				EBEEA5F32481EF0A004CBBDC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,6 +818,7 @@
 				EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
 				EBF215FF2457C51C00DC3651 /* ProfileViewController.swift in Sources */,
+				EB18F63A248267FC00F41E29 /* SearchViewController.swift in Sources */,
 				EB13ED2624747EF300F3650E /* BookMarkViewController.swift in Sources */,
 				EB682A84247214C900CC9EE7 /* SearchDataServer.swift in Sources */,
 				E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */,

@@ -36,6 +36,13 @@ class BlogViewController: UIViewController {
   
         override func viewDidLoad() {
            Get.NightMode(from: self)
+           if   UserDefaults.standard.object(forKey: "NightMode") as? String == "True"
+           {
+            CategoryButton.backgroundColor = .darkGray
+            Utilities.styleHollowButton(CategoryButton)
+            latestBlogsButton.backgroundColor = .darkGray
+            Utilities.styleHollowButton(latestBlogsButton)
+            }
             //viewing from the categories page
             if Share.shared.FromCtegoryVC == "yes"
                      {
@@ -291,18 +298,29 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.content.text = posts[indexPath.row].content
        // cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image! ) ?? UIImage(named:"home")
             cell.PostImage.image = Get.Image(from:posts[indexPath.row].image!) ?? UIImage(named:"home") //posts[indexPath.row].image!) "1585684885.jpg"
-        cell.PersonalImg.setImage(UIImage(named: "PersonalImg"), for: UIControl.State.normal)
+            
+        cell.PersonalImg.setImage(Get.Image(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
         //cell.cardViewUIView.overrideUserInterfaceStyle = .light
-        cell.cardViewUIView.backgroundColor = UIColor(named: "System Red Color")
-            Utilities.Borders(cell.cardViewUIView)
         let commentCount = posts[indexPath.row].cmdCount ?? 0
         cell.CommentCount.text = "\(commentCount)"
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
         cell.index = indexPath
         cell.cellDelegate = self // as! CommentIsClicked
+            
+            
+            
+            
+             //MARK:- Night mode cahnge cells
+            if   UserDefaults.standard.object(forKey: "NightMode") as? String == "True"
+            {
+        cell.cardViewUIView.backgroundColor = UIColor(named: "System Red Color")
         cell.contentView.backgroundColor = UIColor.systemBackground
+        Utilities.Borders(cell.cardViewUIView)
+            }
+            
+       
         //For named color you have to resolve it.
         Utilities.styleHollowButton(cell.TagButton)
         Utilities.fadedColor(cell.TitleUiView)
@@ -366,7 +384,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (tableView.tag == 0)
         {
-           return 500
+           return 470
         }else{
             return 45
         }
@@ -395,7 +413,15 @@ extension BlogViewController: CommentIsClicked{
     
 }
 
+/*
 
-
-
+extension UIView {
+   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+     cell.TitleUiView.roundCorners(corners: [.topRight , .topLeft ], radius: 25.0)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+    CALayer().mask = mask
+    }
+}*/
 

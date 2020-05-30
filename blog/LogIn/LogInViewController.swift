@@ -42,12 +42,20 @@ class LogInViewController: UIViewController {
     }
     
     func getFacebookUserInfo(){
+        let alert = UIAlertController(title: "انتظر", message:"يرجى الانتظار ليتم اكمال التسجيل ", preferredStyle: .alert)
+                  // alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                   
         let loginManager = LoginManager()
         loginManager.logIn(permissions: [.publicProfile, .email ], viewController: self) { (result) in
             switch result{
             case .cancelled:
                 print("Cancel button click")
             case .success:
+                print("yes")
+                self.present(alert, animated: true)
+                self.dismiss(animated: true, completion: nil)
+                guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
+                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                 let params = ["fields" : "id, name, first_name, last_name, picture.type(large), email "]
                 let graphRequest = GraphRequest.init(graphPath: "/me", parameters: params)
                 let Connection = GraphRequestConnection()
@@ -62,10 +70,8 @@ class LogInViewController: UIViewController {
                     UserDefaults.standard.set(UserId ,  forKey: "loggesUserID")
                       let json: [String: Any] = ["id": UserId, "name": UserName, "picture": "image.png" , "email": email]
                         LoginByFacebook.instance.FaceBookLogin(json: json){ [weak self] (response) in
-                            guard let self = self else { return }
-                                                if response.success {
-                                                    print("yes")
-                        }
+                                                    
+                        
                     }
                 }
                 Connection.start()

@@ -71,6 +71,7 @@ class SettingsViewController : UIViewController  {
               {
                   overrideUserInterfaceStyle = .dark
                   UserDefaults.standard.set("True", forKey: "NightMode")
+             
               } else if NightModeTrigger.isOn == false
               {
                    overrideUserInterfaceStyle = .light

@@ -83,8 +83,8 @@ class Utilities {
     
     
      static func Borders(_ hi: UIView) {
-    hi.layer.borderWidth = 2
-    hi.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5).cgColor
+    hi.layer.borderWidth = 1
+    hi.layer.borderColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0).cgColor
     }
     
     static func TitlefadedColor(_ hi: UIView) {
@@ -94,6 +94,7 @@ class Utilities {
         gradLayer.colors = [colorTeal, colorWhite]
         gradLayer.locations = [0.0, 1.0]
         gradLayer.cornerRadius = 25.0
+      gradLayer.roundCorners(corners: [.topRight , .topLeft ], radius: 25.0)
         gradLayer.frame = hi.bounds
         hi.layer.insertSublayer(gradLayer, at:0)
     }
@@ -116,3 +117,11 @@ class Utilities {
     
 }
 
+extension CAGradientLayer {
+   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+    CALayer().mask = mask
+    }
+}

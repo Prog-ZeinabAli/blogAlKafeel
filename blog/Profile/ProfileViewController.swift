@@ -28,6 +28,8 @@ class ProfileViewController: UIViewController {
         tv.dataSource = self
         self.Loading.isHidden = false
         self.Loading.startAnimating()
+        noOfBlogs.isHidden = true
+        
        Utilities.fadedColor(BackGroudView)
     }
     
@@ -106,7 +108,15 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
               userName.text = profiles[indexPath.row].user?.name
         }
     
-  
+  //change according to settings
+               let FZ = UserDefaults.standard.object(forKey: "FontSizeDefault") as? CGFloat //CGFloat(Share.shared.fontSize ?? 17)
+                   cell.Content.font = UIFont.italicSystemFont(ofSize: FZ ?? 13)
+               let FT =  UserDefaults.standard.object(forKey:"FontTypeDefault") as? String
+                   cell.Content.font = UIFont(name: FT ?? "Lateef", size: FZ ?? 13)
+                   cell.Title.font = UIFont(name: FT ?? "Lateef", size: 30)
+                   
+    
+    
    cell.Title.text = profiles[indexPath.row].title
    cell.Content.text = profiles[indexPath.row].content
     cell.Date.titleLabel?.text = profiles[indexPath.row].createdAt

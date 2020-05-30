@@ -23,6 +23,8 @@ class BloggersViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        
+    
         Get.NightMode(from: self)
         super.viewDidLoad()
         self.Loading.isHidden = false
@@ -31,6 +33,7 @@ class BloggersViewController: UIViewController {
         tv.dataSource = self
        // loadItemsNow()
     }
+    
     
        override func didReceiveMemoryWarning() {
                     super.didReceiveMemoryWarning()
@@ -59,6 +62,8 @@ class BloggersViewController: UIViewController {
     }
     
       func loadMoreItems(){
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
         BloggersDataServer.instance.fetchAllBloggers(API_URL3: "https://blog-api.turathalanbiaa.com/api/userpagination"+"?page=" + "\( BloggersViewController.current_page)" ) { [weak self] (response) in
                                                  if self == nil {return}
                                                  if response.success {
@@ -76,6 +81,26 @@ class BloggersViewController: UIViewController {
                                              }
             }
 
+    
+    func loadSearhResult(searchText : String) {
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
+            let json: [String: Any] = ["data": searchText]
+           SearchDataServer.instance.Search(json: json) { [weak self] (response) in
+                               if self == nil {return}
+                               if response.success {
+                                  self!.blogger = (response.data!.data)!
+                                 self!.tv.reloadData()
+                                  self!.Loading.isHidden = true
+                                  self!.Loading.stopAnimating()
+                                   print("loading")
+                               }else {
+                                   let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                   alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                   self!.present(alert, animated: true)
+                               }
+                           }
+    }
 
   
 
@@ -146,23 +171,8 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
 extension BloggersViewController : UISearchBarDelegate
 {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("chnanged")
-         let json: [String: Any] = ["data": searchText]
-        SearchDataServer.instance.Search(json: json) { [weak self] (response) in
-                            if self == nil {return}
-                            if response.success {
-                               self!.blogger = (response.data!.data)!
-                              self!.tv.reloadData()
-                               self!.Loading.isHidden = true
-                               self!.Loading.stopAnimating()
-                                print("loading heioghdghd")
-                            }else {
-                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                                self!.present(alert, animated: true)
-                            }
-                        }
-        
+       print("chnanged")
+        loadSearhResult(searchText: searchText)
     }
 }
 

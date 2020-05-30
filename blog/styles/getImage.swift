@@ -28,6 +28,24 @@ static func Image(from string: String) -> UIImage? {
     return image
 }
 
+    
+    static func Picture(from string: String) -> UIImage? {
+        //2. Get valid URL
+        guard let url = URL(string: string )
+            else{
+                return nil }
+        var image: UIImage? = nil
+        do {
+            let data = try Data(contentsOf: url, options: [])
+            image = UIImage(data: data)
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+
+        return image
+    }
+    
 
 static func NightMode(from string: UIViewController) {
 
@@ -39,5 +57,16 @@ if UserDefaults.standard.object(forKey: "NightMode") as? String  == "True"
            }
           
 }
+    
+    static func BtnNightMode(from string: UIButton) {
+
+    if UserDefaults.standard.object(forKey: "NightMode") as? String  == "True"
+               {
+                string.overrideUserInterfaceStyle = .dark
+               }else{
+               string.overrideUserInterfaceStyle = .light
+               }
+              
+    }
      
 }

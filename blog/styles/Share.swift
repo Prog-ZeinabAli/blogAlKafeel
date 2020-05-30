@@ -28,8 +28,9 @@ final class Share{
     var image : String!
     var tag : String!
     
-    
-    
+
+        //MARK:- seacrh
+       var SearchRslt : String!
     
     var fontSize : Int!  //setting font size changing
     var CmntUserName : String!

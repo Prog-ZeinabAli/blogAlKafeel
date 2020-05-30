@@ -53,6 +53,20 @@ class MenuViewController: UIViewController {
         }
     
     
+    @IBAction func ProfileIsCicked(_ sender: Any) {
+        let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+                                    if flag != "yes"
+                                    {
+                                      let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لكتابة مدونة", preferredStyle: .alert)
+                                      alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                      self.present(alert, animated: true)
+                                    }else {
+                                       guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "Profile") else {return}
+                                                  self.present(menuViewController,animated: true)
+               }
+    }
+    
+    
     func reNew(){
         //reload application data (renew root view )
         UIApplication.shared.keyWindow?.rootViewController = storyboard!.instantiateViewController(withIdentifier: "MenuViewControlller")

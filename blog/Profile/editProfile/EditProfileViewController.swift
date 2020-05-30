@@ -65,6 +65,7 @@ class EditProfileViewController: UIViewController {
                                               if(user.message == "update DONE")
                                             {
                                                 print("yes")
+                                                UserDefaults.standard.set(self!.userName.text, forKey: "loggesUserName")
                                               
                                             
                                           }

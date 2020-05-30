@@ -85,6 +85,10 @@ class CommentViewController: UIViewController {
                                 self!.tv.deleteRows(at: [indexPath], with: .fade)
                                 self!.tv.endUpdates()
                                 print("deleted")
+                              }else if (user.message == "NOT FOUND") {
+                                let alert = UIAlertController(title: "خطأ", message: "فشل في الحذف, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                self!.present(alert, animated: true)
                             }
             }
         }
@@ -119,7 +123,6 @@ class CommentViewController: UIViewController {
         AddcomentDataServer.instance.addComment(json:json ) { [weak self] (response) in
                            if self == nil {return}
                            if response.success {
-                            print("succeded")
                             self!.sendCmntBtn.isEnabled = true
                             self!.comment.text = ""
                             self!.view.endEditing(true)
@@ -131,13 +134,26 @@ class CommentViewController: UIViewController {
                             self!.present(alert, animated: true)
                           //  self!.insertNewComment()
                             //self!.dismiss(animated: true, completion: nil)
-                           }else {
+                           }else if let user = response.data {
+                            if(user.message == "NOT FOUND"){
+                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                              self!.present(alert, animated: true)
+                            }else if(user.message == "user not found")
+                            {
+                                let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لاضافة تعليق", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                self!.present(alert, animated: true)
+                            }
+                            }
+                           else{
                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                self!.present(alert, animated: true)
-                               self!.sendCmntBtn.isEnabled = true
+                                self!.sendCmntBtn.isEnabled = true
+                                
+                        }
                 }
-            }
         }
     }
     
@@ -193,9 +209,9 @@ extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
         cell.comment.text = comments[indexPath.row].content
 
      
-        if  comments[indexPath.row].user?.id == User_id as! Int?  {
+      /*  if  comments[indexPath.row].user?.id == User_id as! Int?  {
             cell.DeleteButtonView.isHidden = false
-             }
+             } */
         
         cell.index = indexPath
         cell.cellDelegate = self as! DeleteButtonIsClicked

@@ -25,6 +25,7 @@ class AddPostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Get.NightMode(from: self)
         tv.delegate = self
         tv.dataSource = self
         Loading.isHidden = true

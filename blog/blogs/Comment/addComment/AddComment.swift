@@ -13,6 +13,7 @@ struct AddComment : Codable {
     let content: String?
     let createdAt: CreatedAt?
     let id: Int?
+    let message : String!
     
     struct CreatedAt : Codable {
              let date: String?
@@ -36,6 +37,7 @@ struct AddComment : Codable {
         case content = "content"
         case createdAt =  "created_at"
         case id = "id"
+        case message = "message"
     
      
     }

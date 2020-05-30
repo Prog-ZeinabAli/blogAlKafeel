@@ -15,7 +15,16 @@ class ViewsViewController: UIViewController {
     @IBOutlet weak var content: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Get.NightMode(from: self)
+        
+        //change according to settings
+               let FZ = UserDefaults.standard.object(forKey: "FontSizeDefault") as? CGFloat //CGFloat(Share.shared.fontSize ?? 17)
+                   content.font = UIFont.italicSystemFont(ofSize: FZ ?? 13)
+               let FT =  UserDefaults.standard.object(forKey:"FontTypeDefault") as? String
+                   content.font = UIFont(name: FT ?? "Lateef", size: FZ ?? 13)
+                   Posttitle.font = UIFont(name: FT ?? "Lateef", size: 30)
+        
+        
         UserName.text = Share.shared.Blogsusername
         content.text = Share.shared.Blogscontent
         Posttitle.text = Share.shared.title

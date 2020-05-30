@@ -18,10 +18,15 @@ class DetailBloggersViewController: UIViewController {
     var profiles: [Profile] = []
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
+       
         Get.NightMode(from: self)
         super.viewDidLoad()
         self.Loading.isHidden = false
         self.Loading.startAnimating()
+        
+        noOfBlogs.isHidden = true
+        userName.text = "جار تحميل الصفحة"
+        
         Utilities.fadedColor(BackgorundView)
         tv.delegate = self
         tv.dataSource = self
@@ -47,6 +52,7 @@ class DetailBloggersViewController: UIViewController {
                                  let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                  alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                  self!.present(alert, animated: true)
+                                self?.dismiss(animated: true, completion: nil)
                              }
                          }
                      }
@@ -70,12 +76,21 @@ class DetailBloggersViewController: UIViewController {
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DetaledBlogersTableViewCell
         
+        //change according to settings
+              let FZ = UserDefaults.standard.object(forKey: "FontSizeDefault") as? CGFloat //CGFloat(Share.shared.fontSize ?? 17)
+                  cell.Content.font = UIFont.italicSystemFont(ofSize: FZ ?? 13)
+              let FT =  UserDefaults.standard.object(forKey:"FontTypeDefault") as? String
+                  cell.Content.font = UIFont(name: FT ?? "Lateef", size: FZ ?? 13)
+                  cell.title.font = UIFont(name: FT ?? "Lateef", size: 30)
+                  
+        
         
         PersonalImg.image = UIImage(named: "PersonalImg")
               PersonalImg.layer.cornerRadius = PersonalImg.frame.size.width / 2
               PersonalImg.clipsToBounds = true
         
         userName.text = profiles[indexPath.row].user?.name
+        noOfBlogs.isHidden = false
       noOfBlogs.text = "عدد التدوينات: \(String(profiles.count)) "
     cell.title.text = profiles[indexPath.row].title
      cell.Content.text = profiles[indexPath.row].content

@@ -21,13 +21,13 @@ class CommentDataServer {
     func fetchAllComments(json: [String : Any] ,completion: @escaping CompletionHandler6<Comments>) {
 
         Alamofire.request(API_URL6,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ responseString in
-            print(responseString)
+           // print(responseString)
         
         })
         
         Alamofire.request(API_URL6,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
-                print(response.error as Any)
+               // print(response.error as Any)
                 completion(ApiResponse6<Comments>.fail(cause: response.error))
                 return
             }
