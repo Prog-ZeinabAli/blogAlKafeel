@@ -12,6 +12,10 @@ protocol CommentIsClicked {
     func onClickCell(index : Int)
 }
 
+protocol CategoryIsClicked {
+    func onClickCell2(index : Int)
+}
+
 
 class BlogCardTableViewCell: UITableViewCell {
 
@@ -29,6 +33,7 @@ class BlogCardTableViewCell: UITableViewCell {
     @IBOutlet weak var TitleUiView: UIView!
     
     var cellDelegate :CommentIsClicked?
+     var cellDelegate2 :CategoryIsClicked?
     var index : IndexPath?
     
     
@@ -48,6 +53,9 @@ class BlogCardTableViewCell: UITableViewCell {
          cellDelegate?.onClickCell(index: (index?.row)!)
     }
     
+    @IBAction func CategoryTypeIstapped(_ sender: Any) {
+         cellDelegate2?.onClickCell2(index: (index?.row)!)
+    }
     @IBAction func BookMarkPressed(_ sender: Any) {
         cellDelegate?.onClickCell(index: (index?.row)!)
     }

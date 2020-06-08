@@ -15,8 +15,33 @@ class ViewsViewController: UIViewController {
     @IBOutlet weak var content: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        Get.NightMode(from: self)
         
+        
+        let json: [String: Any] = ["id": Share.shared.PostId as Any]
+               updateViewDataServer.instance.Updating(json: json)
+                          { [weak self] (response) in
+                              if self == nil {return}
+                              if response.success {
+                                if let user = response.data {
+                                if(user.message == "update DONE"){
+                                      print("views are updated")
+                                    }
+                                    else if (user.message == "NOT FOUND")
+                                {
+                                    self?.dismiss(animated: true, completion: nil)
+                                    
+                                    }
+                              }else {
+                                  let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                  alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                  self!.present(alert, animated: true)
+                                  self?.dismiss(animated: true, completion: nil)
+                              }
+                          }
+        }
+        
+        
+        Get.NightMode(from: self)
         //change according to settings
                let FZ = UserDefaults.standard.object(forKey: "FontSizeDefault") as? CGFloat //CGFloat(Share.shared.fontSize ?? 17)
                    content.font = UIFont.italicSystemFont(ofSize: FZ ?? 13)

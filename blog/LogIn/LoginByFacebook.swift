@@ -13,7 +13,7 @@ import SwiftyJSON
 
 //categry dataSever THIS IS THE LINK WHERE I'LL BE GETTING MY FBUser FROM JSON FILE
 typealias CompletionHandler9<T> = (_ response: ApiResponse9<T>) -> ()
-let API_URL9 = "https://blog-api.turathalanbiaa.com/api/posttpagination"
+let API_URL9 = "https://blog-api.turathalanbiaa.com/api/registerbyfacebook"
 
 class LoginByFacebook {
     
@@ -24,7 +24,7 @@ class LoginByFacebook {
         Alamofire.request(API_URL9,method: .post, parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
         })
-        Alamofire.request(API_URL9,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseJSON { response in
+        Alamofire.request(API_URL9,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseString { response in
             if response.error != nil {
                 print(response.error as Any)
                 completion(ApiResponse9<FBUser>.fail(cause: response.error))

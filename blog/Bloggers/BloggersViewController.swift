@@ -15,7 +15,7 @@ class BloggersViewController: UIViewController {
     //let totalItems = 100 // server does not provide totalItems
     static var current_page = 2
     @IBOutlet weak var SearchBar: UISearchBar!
-    var searchBlogger = [Blog]()
+    var searchBlogger : [search] = []
     
     @IBOutlet weak var tv: UITableView!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
@@ -23,15 +23,12 @@ class BloggersViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
-    
         Get.NightMode(from: self)
         super.viewDidLoad()
         self.Loading.isHidden = false
         self.Loading.startAnimating()
         tv.delegate = self
         tv.dataSource = self
-       // loadItemsNow()
     }
     
     
@@ -83,13 +80,15 @@ class BloggersViewController: UIViewController {
 
     
     func loadSearhResult(searchText : String) {
+        
         self.Loading.isHidden = false
         self.Loading.startAnimating()
             let json: [String: Any] = ["data": searchText]
-           SearchDataServer.instance.Search(json: json) { [weak self] (response) in
+           SearchDataServer.instance.Searching(json: json) { [weak self] (response) in
                                if self == nil {return}
                                if response.success {
-                                  self!.blogger = (response.data!.data)!
+                               self!.blogger = (response.data!.data)!
+                               //self!.blogger as! [search] = self!.searchBlogger
                                  self!.tv.reloadData()
                                   self!.Loading.isHidden = true
                                   self!.Loading.stopAnimating()
@@ -104,6 +103,10 @@ class BloggersViewController: UIViewController {
 
   
 
+     func viewDidLayoutSubviews(view : UIView) {
+                    Utilities.TitlefadedColor(view)
+               }
+
 }
 
 
@@ -111,6 +114,7 @@ class BloggersViewController: UIViewController {
 
 // Extention for Bloggers tableview
 extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  blogger.count
@@ -122,15 +126,12 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
         cell.UserName.text = blogger[indexPath.row].name
         let score1 = blogger[indexPath.row].points ?? 0
         cell.Score.text = "النقاط:\(score1)"
-   //     let Purl = URL(fileURLWithPath: Blogger[indexPath.row].picture!)
-          //  cell.PrsImg = UIImage(purl)
-        
-        cell.PrsImg.image = UIImage(named: "PersonalImg")
+        cell.PrsImg.image = Get.Picture(from:(blogger[indexPath.row].picture)!) ?? UIImage(named:"PersonalImg")
         cell.PrsImg.layer.cornerRadius = cell.PrsImg.frame.size.width / 2
         cell.PrsImg.clipsToBounds = true
         
-        
-         Utilities.TitlefadedColor(cell.MainView)
+    
+        Utilities.TitlefadedColor(cell.MainView)
           return cell
       }
       
@@ -171,8 +172,12 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
 extension BloggersViewController : UISearchBarDelegate
 {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-       print("chnanged")
-        loadSearhResult(searchText: searchText)
+        if searchText.isEmpty == false
+        {
+              loadSearhResult(searchText: searchText)
+        }
+     //   tv.reloadData()
+       
     }
 }
 

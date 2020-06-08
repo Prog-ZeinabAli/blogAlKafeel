@@ -19,6 +19,4 @@ class BloggersTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-
 }

@@ -67,7 +67,10 @@ class SettingsViewController : UIViewController  {
     }
     
     @IBAction func NightMoodeTapped(_ sender: Any) {
-        if NightModeTrigger.isOn == true
+        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+      /*  if NightModeTrigger.isOn == true
               {
                   overrideUserInterfaceStyle = .dark
                   UserDefaults.standard.set("True", forKey: "NightMode")
@@ -77,15 +80,18 @@ class SettingsViewController : UIViewController  {
                    overrideUserInterfaceStyle = .light
                 UserDefaults.standard.set("False", forKey: "NightMode")
               }
-        
+        */
         
     }
     
     @IBAction func Save(_ sender: Any) {
-      //  guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
-                                      self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+       guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "NavigationController") else {return}
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
        // UIApplication.shared.keyWindow?.rootViewController = BlogViewController()
-        dismiss(animated: true, completion: nil)
+      //  dismiss(animated: true, completion: nil)
+        
+        
+      
     }
 }
 

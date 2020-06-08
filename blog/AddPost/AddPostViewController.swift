@@ -74,7 +74,7 @@ class AddPostViewController: UIViewController {
         else
         {
         if Share.shared.updatePost == 1{
-            Share.shared.updatePost == 0  // so next time when user want to pot it wont look like edit
+            Share.shared.updatePost == 0  // so next time when user want to post it wont look like edit
             let title = BlogTitle.text
                    let content = BlogContent.text
                    let tag = BlogTags.text
@@ -94,12 +94,19 @@ class AddPostViewController: UIViewController {
                                                                                              self!.present(alert, animated: true)
                                                             self!.sendBtn.isEnabled = true
                                                             self!.dismiss(animated: true, completion: nil)
-                                                       }
+                                                           } else if (user.message == "NOT FOUND")
+                                                           {
+                                                            let alert = UIAlertController(title: "خطأ", message: "يرجى اعادة الارسال", preferredStyle: .alert)
+                                                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                self!.Loading.isHidden = true
+                                                               self!.Loading.stopAnimating()
+                                                            }
                                                      }else {
                                                          let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                                          alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                                          self!.Loading.isHidden = true
                                                          self!.Loading.stopAnimating()
+                                                            self?.dismiss(animated: true, completion: nil)
                                                      }
                                                  }
             }
@@ -122,6 +129,19 @@ class AddPostViewController: UIViewController {
                               //  self!.dismiss(animated: true, completion: nil)
                                 self!.sendBtn.isEnabled = true
                                 self!.Loading.isHidden = true
+                                
+                                if let user = response.data {
+                                    if(user.data?.message == "NOT FOUND"){
+                                    let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                  self!.present(alert, animated: true)
+                                }else if(user.data?.message == "user not found")
+                                {
+                                    let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لاضافة تعليق", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                    self!.present(alert, animated: true)
+                                }
+                                }
            }else {
                                let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
@@ -184,8 +204,11 @@ class AddPostViewController: UIViewController {
         }
 
         @IBAction func selectImageButtonAction(_ sender: UIButton) {
+             let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
             /// present image picker
-            
+        /*
             if self.imagePickerController != nil {
                 self.imagePickerController?.delegate = nil
                 self.imagePickerController = nil
@@ -216,7 +239,7 @@ class AddPostViewController: UIViewController {
             alert.addAction(UIAlertAction.init(title: "الغاء", style: .cancel))
             
             self.present(alert, animated: true)
-            
+            */
         }
         
         internal func presentImagePicker(controller: UIImagePickerController , source: UIImagePickerController.SourceType) {

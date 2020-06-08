@@ -76,10 +76,11 @@ class Utilities {
             let gradLayer = CAGradientLayer()
             gradLayer.colors = [colorTeal, colorWhite]
             gradLayer.locations = [0.0, 1.0]
-          gradLayer.frame = hi.bounds
-       // gradLayer.bounds.width * 0.7
+            gradLayer.frame = hi.bounds
             hi.layer.insertSublayer(gradLayer, at:0)
         }
+    
+   
     
     
      static func Borders(_ hi: UIView) {

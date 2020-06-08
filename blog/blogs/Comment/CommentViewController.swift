@@ -85,6 +85,7 @@ class CommentViewController: UIViewController {
                                 self!.tv.deleteRows(at: [indexPath], with: .fade)
                                 self!.tv.endUpdates()
                                 print("deleted")
+                                self!.dismiss(animated: true, completion: nil)
                               }else if (user.message == "NOT FOUND") {
                                 let alert = UIAlertController(title: "خطأ", message: "فشل في الحذف, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                 alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
@@ -132,18 +133,22 @@ class CommentViewController: UIViewController {
                           let alert = UIAlertController(title: "تمت عملية الارسال", message: "تمت عملية ارسال التعليق بنجاح  ", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                             self!.present(alert, animated: true)
-                          //  self!.insertNewComment()
-                            //self!.dismiss(animated: true, completion: nil)
+                            self!.dismiss(animated: true, completion: nil)
                            }else if let user = response.data {
                             if(user.message == "NOT FOUND"){
                                 let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                                               self!.present(alert, animated: true)
+                                self!.Loading.isHidden = true
+                                self!.Loading.stopAnimating()
                             }else if(user.message == "user not found")
                             {
                                 let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لاضافة تعليق", preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                 self!.present(alert, animated: true)
+                                self!.Loading.isHidden = true
+                                self!.Loading.stopAnimating()
+                                self!.dismiss(animated: true, completion: nil)
                             }
                             }
                            else{
@@ -203,15 +208,23 @@ extension CommentViewController: UITableViewDataSource, UITableViewDelegate {
         if comments.count == 0{
             NoCommentsLabel.isHidden = false }
         
+        let dateFormatterGet = DateFormatter()  //
+               dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+               let dateFormatterPrint = DateFormatter()
+               dateFormatterPrint.dateFormat = "MMM"// dd,yyyy"
+               if let date = dateFormatterGet.date(from: String(comments[indexPath.row].createdAt ?? "00-00-0000 00 00"))  {
+               cell.Date.text = dateFormatterPrint.string(from: Date() - date.distance(to: Date()))//(from: date)
+               }
+        
         
         cell.Username.text = comments[indexPath.row].user?.name
-        cell.Date.text = comments[indexPath.row].createdAt
         cell.comment.text = comments[indexPath.row].content
 
-     
-      /*  if  comments[indexPath.row].user?.id == User_id as! Int?  {
-            cell.DeleteButtonView.isHidden = false
-             } */
+        if User_id != nil {
+            if  comments[indexPath.row].user?.id == User_id as! Int?  {
+                       cell.DeleteButtonView.isHidden = false
+        }
+             } 
         
         cell.index = indexPath
         cell.cellDelegate = self as! DeleteButtonIsClicked

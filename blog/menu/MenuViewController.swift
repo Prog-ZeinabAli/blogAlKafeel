@@ -17,7 +17,11 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var PersonalImg: UIButton!
     let transition = SlideInTransition()
-        
+    
+    
+    override func viewDidLayoutSubviews() {
+        Utilities.fadedColor(profileView)
+    }
         override func viewDidLoad() {
             Get.NightMode(from: self)
                       
@@ -27,15 +31,7 @@ class MenuViewController: UIViewController {
           // let pic = Share.shared.picture ??  "PersonalImg"
             UserNameLabel.text = name
          //   PersonalImg.imageView = UIImage(UIImage(named:"PersonalImg"))
-            
-           Utilities.fadedColor(profileView)
-            
-           // let colorTeal =  UIColor(red: 82/255.0, green: 123/255.0, blue: 79/255.0, alpha: 1.0).cgColor
-       //     let colorWhite = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
-        
-       //     profileView.backgroundColor = [colorTeal, colorWhite] as? UIColor
-                     //  gradLayer.colors = [colorTeal, colorWhite]
-            
+    
         //MARK:- LOG_IN & LOG_OUT ACTIONS
             let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
             if flag == "yes"
@@ -98,7 +94,15 @@ class MenuViewController: UIViewController {
     }
     }
     
+    @IBAction func SearchIsTapped(_ sender: Any) {
+        Share.shared.SearchView = true
     }
+    @IBAction func BookMarkTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+               self.present(alert, animated: true)
+    }
+}
 
 
 

@@ -30,9 +30,13 @@ class ProfileViewController: UIViewController {
         self.Loading.startAnimating()
         noOfBlogs.isHidden = true
         
-       Utilities.fadedColor(BackGroudView)
+        
+       
+      
     }
-    
+    override func viewDidLayoutSubviews() {
+                 Utilities.fadedColor(BackGroudView)
+            }
 
  
    override func didReceiveMemoryWarning() {
@@ -76,7 +80,11 @@ class ProfileViewController: UIViewController {
                                                                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                                                           self!.present(alert, animated: true)
                                         self!.tv.reloadData()
-                                    }
+                                        } else if(user.message == "NOT FOUND'"){
+                                            let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                            self!.present(alert, animated: true)
+                                        }
                                   }else {
                                       let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                       alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
@@ -86,6 +94,11 @@ class ProfileViewController: UIViewController {
     }
     }
     
+    @IBAction func BookMarkTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+               self.present(alert, animated: true)
+    }
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
@@ -116,10 +129,26 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                    cell.Title.font = UIFont(name: FT ?? "Lateef", size: 30)
                    
     
+    let dateFormatterGet = DateFormatter()  //
+                         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                         let dateFormatterPrint = DateFormatter()
+                         dateFormatterPrint.dateFormat = "MMM"// dd,yyyy"
+                         if let date = dateFormatterGet.date(from: String(profiles[indexPath.row].createdAt ?? "00-00-0000 00 00"))  {
+                           cell.Date.titleLabel?.text = dateFormatterPrint.string(from: Date() - date.distance(to: Date()))//(from: date)
+                         }
+    
+    if profiles[indexPath.row].status == 0 {
+        cell.vaildSign.setImage(UIImage(systemName: "exclamationmark.octagon.fill"), for: .normal )
+        cell.vaildSign.tintColor = UIColor.red
+    }else{
+        cell.vaildSign.setImage(UIImage(systemName: "checkmark.seal.fill"), for: .normal )
+          cell.vaildSign.tintColor = UIColor(red: 82/255.0, green: 123/255.0, blue: 79/255.0, alpha: 1.0)
+    }
+  
+    
     
    cell.Title.text = profiles[indexPath.row].title
    cell.Content.text = profiles[indexPath.row].content
-    cell.Date.titleLabel?.text = profiles[indexPath.row].createdAt
     cell.catBtn.titleLabel?.text = profiles[indexPath.row].tags
     
     let views = profiles[indexPath.row].views ?? 0

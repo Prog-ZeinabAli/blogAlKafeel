@@ -20,6 +20,7 @@ struct addPost : Codable {
     let status :String?
     let categoryId: String?
     let id : Int?
+    let message : String?
     
     struct CreatedAt : Codable {
           let date: String?
@@ -47,6 +48,7 @@ struct addPost : Codable {
         case status = "status"
         case categoryId = "category_id"
         case id = "id"
+        case message = "message"
     }
 
     

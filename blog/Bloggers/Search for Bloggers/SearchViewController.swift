@@ -17,8 +17,8 @@ class SearchViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func sendSEacrh(_ sender: Any) {
+  /*  @IBAction func sendSEacrh(_ sender: Any) {
         Share.shared.SearchRslt = seacrh.text
-    }
+    }*/
     
 }

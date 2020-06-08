@@ -20,6 +20,7 @@ class DetaledBlogersTableViewCell: UITableViewCell {
     @IBOutlet weak var comment: UIButton!
     @IBOutlet weak var Views: UIButton!
     @IBOutlet weak var Content: UITextView!
+    @IBOutlet weak var category: UIButton!
     
     var cellDelegate :ButtonIsClicked?
     var index : IndexPath?
@@ -33,6 +34,9 @@ class DetaledBlogersTableViewCell: UITableViewCell {
     
     
     
+    @IBAction func catIsClicked(_ sender: Any) {
+         cellDelegate?.onClickCell(index: (index?.row)!)
+    }
     @IBAction func CommentIsClicked(_ sender: Any) {
          cellDelegate?.onClickCell(index: (index?.row)!)
      }

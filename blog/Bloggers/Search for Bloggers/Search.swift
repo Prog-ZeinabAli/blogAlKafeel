@@ -7,8 +7,9 @@
 //
 
 import Foundation
+
     struct search : Codable {
-         let id: Int?
+        let id: Int?
         let name: String?
         let email: String?
         let status: Int?
@@ -19,14 +20,11 @@ import Foundation
         let instagram: String?
         let twitter: String?
         let phone: String?
-        
+        let token: String?
         
     }
 
 
     struct Search: Codable {
-        let current_page: Int
         let data: [search]?
-       
-        
     }

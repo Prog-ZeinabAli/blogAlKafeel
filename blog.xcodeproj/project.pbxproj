@@ -41,7 +41,6 @@
 		EB13ED2C2474843300F3650E /* BMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED2B2474843300F3650E /* BMTableViewCell.swift */; };
 		EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */; };
 		EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C4212454AF65008E86D3 /* UserRegister.swift */; };
-		EB18F63A248267FC00F41E29 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB18F639248267FC00F41E29 /* SearchViewController.swift */; };
 		EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */; };
 		EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BA245E22FD000C1409 /* AddPostServer.swift */; };
 		EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BC245E230A000C1409 /* AddPost.swift */; };
@@ -49,6 +48,7 @@
 		EB682A86247214D500CC9EE7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB682A85247214D500CC9EE7 /* Search.swift */; };
 		EB682A8A2472306500CC9EE7 /* DeleteCmntDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB682A892472306500CC9EE7 /* DeleteCmntDataServer.swift */; };
 		EB682ACE24731BD600CC9EE7 /* PresistentServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB682ACD24731BD600CC9EE7 /* PresistentServer.swift */; };
+		EBD2B23924844CC600A78991 /* SearchPostDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD2B23824844CC600A78991 /* SearchPostDataServer.swift */; };
 		EBD9397724675C6600095758 /* UpdatePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397624675C6600095758 /* UpdatePost.swift */; };
 		EBD9397924676BEB00095758 /* AddcomentDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397824676BEB00095758 /* AddcomentDataServer.swift */; };
 		EBD9397B24676BFA00095758 /* AddComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD9397A24676BFA00095758 /* AddComment.swift */; };
@@ -85,6 +85,7 @@
 		EBF3DB6D246510D300AFDF40 /* UpdatePostDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF3DB6C246510D300AFDF40 /* UpdatePostDataServer.swift */; };
 		EBF3DB712465141B00AFDF40 /* DeletePostDateServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF3DB702465141B00AFDF40 /* DeletePostDateServer.swift */; };
 		EBF3DB732465142B00AFDF40 /* DeletePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF3DB722465142B00AFDF40 /* DeletePost.swift */; };
+		EBF62CD924853D5800632629 /* faded.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF62CD824853D5800632629 /* faded.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,7 +152,6 @@
 		EB13ED2B2474843300F3650E /* BMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMTableViewCell.swift; sourceTree = "<group>"; };
 		EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServer.swift; sourceTree = "<group>"; };
 		EB14C4212454AF65008E86D3 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
-		EB18F639248267FC00F41E29 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		EB3E79BA245E22FD000C1409 /* AddPostServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostServer.swift; sourceTree = "<group>"; };
 		EB3E79BC245E230A000C1409 /* AddPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPost.swift; sourceTree = "<group>"; };
@@ -159,6 +159,7 @@
 		EB682A85247214D500CC9EE7 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		EB682A892472306500CC9EE7 /* DeleteCmntDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCmntDataServer.swift; sourceTree = "<group>"; };
 		EB682ACD24731BD600CC9EE7 /* PresistentServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresistentServer.swift; sourceTree = "<group>"; };
+		EBD2B23824844CC600A78991 /* SearchPostDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostDataServer.swift; sourceTree = "<group>"; };
 		EBD9397624675C6600095758 /* UpdatePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePost.swift; sourceTree = "<group>"; };
 		EBD9397824676BEB00095758 /* AddcomentDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddcomentDataServer.swift; sourceTree = "<group>"; };
 		EBD9397A24676BFA00095758 /* AddComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddComment.swift; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 		EBF3DB6C246510D300AFDF40 /* UpdatePostDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostDataServer.swift; sourceTree = "<group>"; };
 		EBF3DB702465141B00AFDF40 /* DeletePostDateServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePostDateServer.swift; sourceTree = "<group>"; };
 		EBF3DB722465142B00AFDF40 /* DeletePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePost.swift; sourceTree = "<group>"; };
+		EBF62CD824853D5800632629 /* faded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faded.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,8 +325,8 @@
 				E35749CE243BB7E500708AB9 /* BlogCardTableViewCell.swift */,
 				E35749D2243BB85F00708AB9 /* PostDataServer.swift */,
 				E35749D0243BB84900708AB9 /* Post.swift */,
-				E35749D7243BC30F00708AB9 /* CardShadow.swift */,
 				EBDA64AE2469CB8B0029229F /* DateFormatters.swift */,
+				EBD2B23724844CA900A78991 /* Search for Post */,
 				EBE89F03245FAEB3005E292C /* view */,
 				EBF215F72456708600DC3651 /* Comment */,
 				EBF2160C2459BE7900DC3651 /* Settings */,
@@ -417,7 +419,6 @@
 		EB682A82247214B200CC9EE7 /* Search for Bloggers */ = {
 			isa = PBXGroup;
 			children = (
-				EB18F639248267FC00F41E29 /* SearchViewController.swift */,
 				EB682A83247214C900CC9EE7 /* SearchDataServer.swift */,
 				EB682A85247214D500CC9EE7 /* Search.swift */,
 			);
@@ -440,6 +441,14 @@
 				EBDC0D212477971F00636890 /* BookMarksCore+CoreDataProperties.swift */,
 			);
 			path = CoreDataSaving;
+			sourceTree = "<group>";
+		};
+		EBD2B23724844CA900A78991 /* Search for Post */ = {
+			isa = PBXGroup;
+			children = (
+				EBD2B23824844CC600A78991 /* SearchPostDataServer.swift */,
+			);
+			path = "Search for Post";
 			sourceTree = "<group>";
 		};
 		EBD9397C2467A0DE00095758 /* UpdaintingViews */ = {
@@ -495,6 +504,8 @@
 				EBF215F324563AD400DC3651 /* Share.swift */,
 				E35749D5243BBEA600708AB9 /* Utilities.swift */,
 				EBEEA5EC247DD2F2004CBBDC /* getImage.swift */,
+				E35749D7243BC30F00708AB9 /* CardShadow.swift */,
+				EBF62CD824853D5800632629 /* faded.swift */,
 			);
 			path = styles;
 			sourceTree = "<group>";
@@ -817,8 +828,8 @@
 				EBF147C6246106E700FA68C9 /* FBUser.swift in Sources */,
 				EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
+				EBF62CD924853D5800632629 /* faded.swift in Sources */,
 				EBF215FF2457C51C00DC3651 /* ProfileViewController.swift in Sources */,
-				EB18F63A248267FC00F41E29 /* SearchViewController.swift in Sources */,
 				EB13ED2624747EF300F3650E /* BookMarkViewController.swift in Sources */,
 				EB682A84247214C900CC9EE7 /* SearchDataServer.swift in Sources */,
 				E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */,
@@ -853,6 +864,7 @@
 				EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */,
 				E35749D8243BC30F00708AB9 /* CardShadow.swift in Sources */,
 				EBD9397924676BEB00095758 /* AddcomentDataServer.swift in Sources */,
+				EBD2B23924844CC600A78991 /* SearchPostDataServer.swift in Sources */,
 				EB682A86247214D500CC9EE7 /* Search.swift in Sources */,
 				E35749D1243BB84900708AB9 /* Post.swift in Sources */,
 				EBF3DB712465141B00AFDF40 /* DeletePostDateServer.swift in Sources */,
@@ -976,7 +988,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1031,7 +1043,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1049,6 +1061,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = blog/blogDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C53R7SVXWK;
 				INFOPLIST_FILE = blog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1056,6 +1069,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abed.blog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1069,14 +1083,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z67NNPK97K;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = C53R7SVXWK;
 				INFOPLIST_FILE = blog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Devlopment-Z.blog";
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.abed.blog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1113,7 +1129,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z67NNPK97K;
+				DEVELOPMENT_TEAM = C53R7SVXWK;
 				INFOPLIST_FILE = blogTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1156,7 +1172,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z67NNPK97K;
+				DEVELOPMENT_TEAM = C53R7SVXWK;
 				INFOPLIST_FILE = blogUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

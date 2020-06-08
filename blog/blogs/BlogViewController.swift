@@ -19,6 +19,7 @@ class BlogViewController: UIViewController {
     @IBOutlet weak var CatgTv: UITableView!
     @IBOutlet var tv: UITableView!
     @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
+    @IBOutlet weak var SearchBar: UISearchBar!
     
     let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
     let Refresh = HomeViewController()
@@ -27,6 +28,7 @@ class BlogViewController: UIViewController {
     var cm = 0
     var xx : Int = 0
     var posts: [Post] = []
+    var categories : [Category] = []
     var BookMark = [BookMarksCore]()
     var BM = [BookMarksCore]()
     var fetchMore = false
@@ -35,6 +37,15 @@ class BlogViewController: UIViewController {
      //MARK:- View Did Load
   
         override func viewDidLoad() {
+            
+            //searching
+            if Share.shared.SearchView == true{
+                SearchBar.isHidden = false
+                Share.shared.SearchView = false
+            }else{
+                 SearchBar.isHidden = true
+            }
+            
            Get.NightMode(from: self)
            if   UserDefaults.standard.object(forKey: "NightMode") as? String == "True"
            {
@@ -96,34 +107,44 @@ class BlogViewController: UIViewController {
                      }
                  }
         
-          //  blog table view
-        print (Share.shared.categoryId ?? 0)
-        let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
-        PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination",json: json)
-            { [weak self] (response) in
-                if self == nil {return}
-                if response.success {
-                    self!.Loading.isHidden = true
-                     self!.Loading.stopAnimating()
-                    self!.reloadChoice.isHidden = true
-                    self!.reloadChoice.stopAnimating()
-
-                self!.posts = (response.data!.data)!
-                    self?.xx = response.data?.current_page ?? 0
-                //    print(self?.xx)
-                    self!.tv.reloadData()
-                    self!.refreshConroler.endRefreshing()
-                }else {
-                    let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                    self!.present(alert, animated: true)
-                     self!.refreshConroler.endRefreshing()
-                    self!.viewDidLoad()
-                }
-            }
+          //  blog table view   Share.shared.categoryId ??
+        if Share.shared.catChosen == true {
+             let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId]
+            loadBlogs( json:json)
+        }else {
+            let json: [String: Any] = ["sortby": 2 ,"cat": 0 ]
+            loadBlogs( json: json)
+        }
+       
           tv.reloadData()
         }
 
+       //MARK:- Load Blogs
+    func loadBlogs( json: [String: Any]){
+        PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination",json: json)
+                   { [weak self] (response) in
+                       if self == nil {return}
+                       if response.success {
+                           self!.Loading.isHidden = true
+                            self!.Loading.stopAnimating()
+                           self!.reloadChoice.isHidden = true
+                           self!.reloadChoice.stopAnimating()
+
+                       self!.posts = (response.data!.data)!
+                           self?.xx = response.data?.current_page ?? 0
+                       //    print(self?.xx)
+                           self!.tv.reloadData()
+                           self!.refreshConroler.endRefreshing()
+                       }else {
+                           let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                           self!.present(alert, animated: true)
+                        self!.Loading.isHidden = true
+                        self!.Loading.stopAnimating()
+                       }
+                   }
+    }
+    
     
      //MARK:- Load more Items for pagination Function
     func loadMoreItems(){
@@ -153,27 +174,40 @@ class BlogViewController: UIViewController {
                                                               }
                }
     
+    
+    
+       func loadSearhResult(searchText : String) {
+            
+            self.Loading.isHidden = false
+            self.Loading.startAnimating()
+                let json: [String: Any] = ["data": searchText]
+               SearchPostDataServer.instance.Searching(json: json) { [weak self] (response) in
+                                   if self == nil {return}
+                                   if response.success {
+                                   self!.posts = (response.data!.data)!
+                                   //self!.blogger as! [search] = self!.searchBlogger
+                                     self!.tv.reloadData()
+                                      self!.Loading.isHidden = true
+                                      self!.Loading.stopAnimating()
+                                       print("loading")
+                                   }else {
+                                       let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                       alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                       self!.present(alert, animated: true)
+                                   }
+                               }
+        }
+
+      
+
 
     
     // MARK: - updating views
     @IBAction func ViewsTapped(_ sender: Any) {
-        let json: [String: Any] = ["id": Share.shared.PostId as Any]
-        updateViewDataServer.instance.Updating(json: json)
-                   { [weak self] (response) in
-                       if self == nil {return}
-                       if response.success {
-                        print("views are updated")
-        
-                       }else {
-                           let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
-                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                           self!.present(alert, animated: true)
-                           self!.viewDidLoad()
-                       }
-                   }
+       
     }
     
-     //MARK:- Category button
+     //MARK:- Category table button
     @IBAction func CategoryButtonPressed(_ sender: Any) {
           if self.CatgTv.isHidden == true {
                        self.CatgTv.isHidden = false
@@ -192,10 +226,18 @@ class BlogViewController: UIViewController {
                       }
       }
       
+    @IBAction func categoryPostPressed(_ sender: Any) {
+        super.viewDidLoad()
+        viewWillAppear(true)
+        tv.reloadData()
+    }
     
     // MARK:- Add bookMarks
     @IBAction func BookMarkIsTapped(_ sender: Any) {
-       let coin = UIImage(systemName: "pencil")
+        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+               self.present(alert, animated: true)
+     /*  let coin = UIImage(systemName: "pencil")
         (sender as AnyObject).setImage(coin ,for: UIControl.State.highlighted) 
         let bookMarks = BookMarksCore(context: PressitentServer.context)
         bookMarks.titleBM = Share.shared.title
@@ -203,7 +245,7 @@ class BlogViewController: UIViewController {
         bookMarks.nameBM = Share.shared.userName
         let postid = Share.shared.PostId ?? 0
         bookMarks.postIdBM = "\(String(describing: postid))"//Share.shared.Blogsusername
-        PressitentServer.saveContext()
+        PressitentServer.saveContext()*/
     }
     
 }
@@ -218,6 +260,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        }
 
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if (tableView.tag == 1){
                   return DataService.instance.categories.count
                }
@@ -290,25 +333,23 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM"// dd,yyyy"
         if let date = dateFormatterGet.date(from: String(posts[indexPath.row].createdAt ?? "00-00-0000 00 00"))  {
-            cell.Date.text = dateFormatterPrint.string(from: Date() - date.distance(to: Date()))//(from: date)
+        cell.Date.text = dateFormatterPrint.string(from: Date() - date.distance(to: Date()))//(from: date)
         }
 
         cell.title.text = posts[indexPath.row].title
         cell.UserName.text = posts[indexPath.row].user?.name
         cell.content.text = posts[indexPath.row].content
-       // cell.PostImage.image = UIImage(contentsOfFile: posts[indexPath.row].image! ) ?? UIImage(named:"home")
-            cell.PostImage.image = Get.Image(from:posts[indexPath.row].image!) ?? UIImage(named:"home") //posts[indexPath.row].image!) "1585684885.jpg"
-            
-        cell.PersonalImg.setImage(Get.Image(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)
+        cell.PostImage.image = Get.Image(from:posts[indexPath.row].image!) ?? UIImage(named:"home")
+        cell.PersonalImg.setImage(Get.Picture(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
-        //cell.cardViewUIView.overrideUserInterfaceStyle = .light
         let commentCount = posts[indexPath.row].cmdCount ?? 0
         cell.CommentCount.text = "\(commentCount)"
         cell.TagButton.setTitle(posts[indexPath.row].category?.name ,for: .normal)
+        cell.TagButton.titleLabel?.adjustsFontSizeToFitWidth = true
         cell.index = indexPath
         cell.cellDelegate = self // as! CommentIsClicked
-            
+        cell.cellDelegate2 = self // as! CommentIsClicked
             
             
             
@@ -344,6 +385,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
             {
                 let x = DataService.instance.categories[indexPath.row].id ?? 0
                        Share.shared.categoryId = x
+                Share.shared.catChosen = true
                 tableView.isHidden = true
                 super.viewDidLoad()
                 refreshData()
@@ -361,7 +403,10 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
                 self.reloadChoice.isHidden = false
                 self.reloadChoice.startAnimating()
                
-             }
+         }else {
+            guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "ViewBlog") else {return}
+                                                      self.present(menuViewController,animated: true)
+            }
         
         }
     
@@ -384,7 +429,16 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (tableView.tag == 0)
         {
-           return 470
+            if UIScreen.main.bounds.height <  800
+                   {
+                    print(UIScreen.main.bounds.size.height)
+                       return UIScreen.main.bounds.height - 150
+            }else{
+            let heightRatio = UIScreen.main.bounds.height - 350
+                print(UIScreen.main.bounds.size.height)
+           return heightRatio
+            }
+        
         }else{
             return 45
         }
@@ -393,6 +447,20 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
    }
 
 
+
+
+extension BlogViewController : UISearchBarDelegate
+{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty == false
+        {
+              loadSearhResult(searchText: searchText)
+            print("changed")
+        }
+     //   tv.reloadData()
+       
+    }
+}
 
 //MARK:-  to send data to the (comment + view + profile) viewControllers
 extension BlogViewController: CommentIsClicked{
@@ -408,11 +476,24 @@ extension BlogViewController: CommentIsClicked{
         
         //sending data to profile Section
         Share.shared.userId = posts[index].user?.id
-        
+    
     }
     
 }
 
+
+//MARK:-  to filter the tv into catogries
+extension BlogViewController: CategoryIsClicked{
+    func onClickCell2(index: Int) {
+     //category button is clicked
+
+        let catId = DataService.instance.categories[index].id ?? 0
+           Share.shared.categoryId = catId
+           Share.shared.sortby = 1
+           Share.shared.FromCtegoryVC = "yes"
+    }
+    
+}
 /*
 
 extension UIView {

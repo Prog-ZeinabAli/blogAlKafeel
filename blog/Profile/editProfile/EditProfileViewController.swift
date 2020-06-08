@@ -24,7 +24,7 @@ class EditProfileViewController: UIViewController {
         Get.NightMode(from: self)
         self.Loading.isHidden = true
         self.Loading.stopAnimating()
-        
+        userName.text = UserDefaults.standard.object(forKey: "loggesUserName") as! String
         
         Utilities.TitlefadedColor(uiView)
         Utilities.styleHollowButton(CnclBtn)
@@ -57,23 +57,23 @@ class EditProfileViewController: UIViewController {
                                             self!.dismiss(animated: true, completion: nil)
                                             self!.Loading.isHidden = true
                                             self!.Loading.stopAnimating()
-                                            let alert = UIAlertController(title: "خطأ", message: "updated", preferredStyle: .alert)
-                                                                                                                          alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                                                                                                                          self!.present(alert, animated: true)
-                                            
                                            if let user = response.data {
                                               if(user.message == "update DONE")
                                             {
-                                                print("yes")
                                                 UserDefaults.standard.set(self!.userName.text, forKey: "loggesUserName")
-                                              
-                                            
-                                          }
-                                        }else {
-                                            let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                guard (self!.storyboard?.instantiateViewController(identifier: "MenuViewControlller")) != nil else {return}
+                                                self!.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                                              }else if (user.message == "NOT FOUND"){
+                                            let alert = UIAlertController(title: "خطأ", message: "يرجى اعادة عملية الحفظ", preferredStyle: .alert)
                                             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                             self!.present(alert, animated: true)
+                                            }
                                         }
+                                        }
+                                         else {
+                                        let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                        self!.present(alert, animated: true)
                                     }
           }
         }
@@ -127,7 +127,10 @@ class EditProfileViewController: UIViewController {
        }
 
        @IBAction func selectImageButtonAction(_ sender: UIButton) {
-           /// present image picker
+        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                     self.present(alert, animated: true)
+         /*  /// present image picker
            
            if self.imagePickerController != nil {
                self.imagePickerController?.delegate = nil
@@ -158,7 +161,7 @@ class EditProfileViewController: UIViewController {
            alert.addAction(UIAlertAction.init(title: "الغاء", style: .cancel))
            
            self.present(alert, animated: true)
-           
+           */
        }
        
        internal func presentImagePicker(controller: UIImagePickerController , source: UIImagePickerController.SourceType) {

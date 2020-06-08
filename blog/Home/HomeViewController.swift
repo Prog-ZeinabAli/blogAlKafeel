@@ -12,6 +12,7 @@ class HomeViewController: UIViewController  {
 
     let tv : BlogViewController! = nil
   
+    @IBOutlet weak var NavigationBar: UINavigationItem!
     @IBOutlet weak var UIViewBlog: UIView!
     @IBOutlet weak var NewBlogBtn: UIButton!
     let transition = SlideInTransition()
@@ -20,8 +21,7 @@ class HomeViewController: UIViewController  {
         Get.NightMode(from: self)
         super.viewDidLoad()
         Utilities.CircledButton(NewBlogBtn)
-       
-        
+  
     }
     
     

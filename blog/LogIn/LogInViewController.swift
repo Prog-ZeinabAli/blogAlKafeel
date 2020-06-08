@@ -37,68 +37,22 @@ class LogInViewController: UIViewController {
     //MARK:- FACEBOOK LOGIN
     @IBAction func FaceBookLogInBtn(_ sender: Any) {
         getFacebookUserInfo()
-        
-  
     }
-    
-    func getFacebookUserInfo(){
-        let alert = UIAlertController(title: "انتظر", message:"يرجى الانتظار ليتم اكمال التسجيل ", preferredStyle: .alert)
-                  // alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                   
-        let loginManager = LoginManager()
-        loginManager.logIn(permissions: [.publicProfile, .email ], viewController: self) { (result) in
-            switch result{
-            case .cancelled:
-                print("Cancel button click")
-            case .success:
-                print("yes")
-                self.present(alert, animated: true)
-                self.dismiss(animated: true, completion: nil)
-                guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
-                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                let params = ["fields" : "id, name, first_name, last_name, picture.type(large), email "]
-                let graphRequest = GraphRequest.init(graphPath: "/me", parameters: params)
-                let Connection = GraphRequestConnection()
-                Connection.add(graphRequest) { (Connection, result, error) in
-                    let info = result as! [String : AnyObject]
-                    let UserName = (info["name"] as! String)
-                    let email = (info["email"] as! String)
-                  //  let picture = (info["picture.type(large)"] as! String)
-                    let UserId = (info["id"] as! String)
-                    UserDefaults.standard.set("yes", forKey: "LoginFlag")
-                    UserDefaults.standard.set(UserName, forKey: "loggesUserName")
-                    UserDefaults.standard.set(UserId ,  forKey: "loggesUserID")
-                      let json: [String: Any] = ["id": UserId, "name": UserName, "picture": "image.png" , "email": email]
-                        LoginByFacebook.instance.FaceBookLogin(json: json){ [weak self] (response) in
-                                                    
-                        
-                    }
-                }
-                Connection.start()
-            default:
-                print("??")
-            }
-        }
-    }
-    
-    
-    
     //MARK:- CHECK IF USER SIGNED IN AS AN INSTITUTION
     @IBAction func InstitutionTabbed(_ sender: Any) {
 
         if signInWinstution.isOn == true
         {
-            usernameTxt.backgroundColor = UIColor.red
             institutionFlag = 1
-        } else if signInWinstution.isOn == false
-        {
-            usernameTxt.backgroundColor = UIColor.white
-            institutionFlag = 0
         }
     }
-    
-    
     //MARK:- LOGIN
+    @IBAction func LoginWithAppleAccount(_ sender: Any) {
+        //sigining in with apple account
+        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                     self.present(alert, animated: true)
+    }
     @IBAction func LogInBtnPressed(_ sender: Any) {
         
         self.Loading.isHidden = false
@@ -112,48 +66,129 @@ class LogInViewController: UIViewController {
             self.Loading.isHidden = true
             self.Loading.stopAnimating()
         }else{
-            let json: [String: Any] = ["email": passwordTxt.text as Any,"password": usernameTxt.text as Any ]//, "db":institutionFlag]
-            print(institutionFlag)
-            LogInServer.instance.LogInCheck(json:json) { [weak self] (response) in
-                      guard let self = self else { return }
-                      if response.success {
-                          if let user = response.data {
-                              if(user.message == "NOT FOUND")
-                              {
-                                  let alert = UIAlertController(title: "خطأ", message: "خطأ في الرمز السري او المعرف", preferredStyle: .alert)
-                                                 alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                                  self.present(alert, animated: true)
-                                self.Loading.isHidden = true
-                                          self.Loading.stopAnimating()
-                              }else{
-                                print(user.id!)
-                                UserDefaults.standard.set("yes", forKey: "LoginFlag")
-                                UserDefaults.standard.set(user.name!, forKey: "loggesUserName")
-                                UserDefaults.standard.set(user.id, forKey: "loggesUserID")
-                                self.dismiss(animated: true, completion: nil)
-                                guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
-                                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                              }
-                          }
-                        self.Loading.isHidden = true
-                                  self.Loading.stopAnimating()
-                      } else {
-                           let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
-                                         alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                          self.present(alert, animated: true)
-                         self.Loading.isHidden = true
-                                  self.Loading.stopAnimating()
-                      }
-                  }
+            
+            if institutionFlag == 1 {  // incas user is from institution
+            let json: [String: Any] = ["email":usernameTxt.text as Any  ,"password": passwordTxt.text as Any, "db" : institutionFlag]
+                getUserLoginData(json: json)
+            } else {
+                let json : [String: Any] = ["email":usernameTxt.text as Any  ,"password": passwordTxt.text as Any]
+                getUserLoginData(json: json)
+            }
         }
-    
     }
-       
     
     
     
     
+    func getFacebookUserInfo(){
+        let alert = UIAlertController(title: "انتظر", message:"يرجى الانتظار ليتم اكمال التسجيل ", preferredStyle: .alert)
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: [.publicProfile, .email ], viewController: self) { (result) in
+            switch result{
+            case .cancelled:
+                print("Cancel button click")
+            case .success:
+                print("yes")
+                let params = ["fields" : "id, name, first_name, last_name, picture.type(large), email "]
+                let graphRequest = GraphRequest.init(graphPath: "/me", parameters: params)
+                let Connection = GraphRequestConnection()
+                Connection.add(graphRequest) { (Connection, result, error) in
+                    let info = result as! [String : AnyObject]
+                    let UserName = (info["name"] as! String)
+                    let email = (info["email"] as! String)
+                    let picture = (info["picture.type(large)"] as! String)
+                    let UserId = (info["id"] as! String)
+                      let json: [String: Any] = ["id": UserId, "name": UserName, "picture": picture  , "email": email]
+                        LoginByFacebook.instance.FaceBookLogin(json: json){ [weak self] (response) in
+                            if let user = response.data {
+                                                        if(user.message == "already...")
+                                                        {
+                                                            print(user.message as Any)
+                                                            UserDefaults.standard.set("yes", forKey: "LoginFlag")
+                                                            UserDefaults.standard.set(UserName, forKey: "loggesUserName")
+                                                            UserDefaults.standard.set(UserId ,  forKey: "loggesUserID")
+                                                            self!.present(alert, animated: true)
+                                                            self!.dismiss(animated: true, completion: nil)
+                                                            guard (self?.storyboard?.instantiateViewController(identifier: "MenuViewControlller")) != nil else {return}
+                                                            self!.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                                                            let alert = UIAlertController(title: "تمت عملية التسجيل بنجاح", message: "تم تسجيل دخولك في المدونة ، الان يمكنك اضافة تعليق او القيام بكتابة و رفع مدونة", preferredStyle: .alert)
+                                                                            alert.addAction(UIAlertAction(title: "شكرا", style: .cancel, handler: nil))
+                                                            self!.present(alert, animated: true)
+                                                            self!.Loading.isHidden = true
+                                                            self!.Loading.stopAnimating()
+                                                            
+                                                            
+                                                        }else {
+                                                            UserDefaults.standard.set("yes", forKey: "LoginFlag")
+                                                            UserDefaults.standard.set(UserName, forKey: "loggesUserName")
+                                                            UserDefaults.standard.set(UserId ,  forKey: "loggesUserID")
+                                                            self!.present(alert, animated: true)
+                                                            self!.dismiss(animated: true, completion: nil)
+                                                            guard (self?.storyboard?.instantiateViewController(identifier: "MenuViewControlller")) != nil else {return}
+                                                            self!.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                                                            let alert = UIAlertController(title: "تمت عملية التسجيل بنجاح", message: "تم تسجيل دخولك في المدونة ، الان يمكنك اضافة تعليق او القيام بكتابة و رفع مدونة", preferredStyle: .alert)
+                                                                            alert.addAction(UIAlertAction(title: "شكرا", style: .cancel, handler: nil))
+                                                            self!.present(alert, animated: true)
+                                                            self!.Loading.isHidden = true
+                                                            self!.Loading.stopAnimating()
+                                }
+                            } else {
+                                
+                                    let alert = UIAlertController(title: "خطأ", message: " نعتذر لا يمكن التسجيل بحساب الفيسبوك ، يرجى المحاولة مرة اخرى او انشاء حساب جديد على المدونة ", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                        self!.present(alert, animated: true)
+                                        self!.Loading.isHidden = true
+                                        self!.Loading.stopAnimating()
+                            }
+                    }
+                }
+                Connection.start()
+            default:
+                print("??")
+            }
+        }
+    }
     
-  
+    
+    func getUserLoginData(json: [String: Any]){
+                      LogInServer.instance.LogInCheck(json:json) { [weak self] (response) in
+                          guard let self = self else { return }
+                          if response.success {
+                              if let user = response.data {
+                                  if(user.message == "NOT FOUND")
+                                  {
+                                      let alert = UIAlertController(title: "خطأ", message: "خطأ في الرمز السري او المعرف", preferredStyle: .alert)
+                                                     alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                      self.present(alert, animated: true)
+                                    self.Loading.isHidden = true
+                                              self.Loading.stopAnimating()
+                                    print(json)
+                                  }else{
+                                    print(user.id!)
+                                    UserDefaults.standard.set("yes", forKey: "LoginFlag")
+                                    UserDefaults.standard.set(user.name!, forKey: "loggesUserName")
+                                    UserDefaults.standard.set(user.id, forKey: "loggesUserID")
+                                    self.dismiss(animated: true, completion: nil)
+                                    guard (self.storyboard?.instantiateViewController(identifier: "MenuViewControlller")) != nil else {return}
+                                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                                    let alert = UIAlertController(title: "تمت عملية التسجيل بنجاح", message: "تم تسجيل دخولك في المدونة ، الان يمكنك اضافة تعليق او القيام بكتابة و رفع مدونة", preferredStyle: .alert)
+                                                    alert.addAction(UIAlertAction(title: "شكرا", style: .cancel, handler: nil))
+                                     self.present(alert, animated: true)
+                                    self.Loading.isHidden = true
+                                             self.Loading.stopAnimating()
+                                    print(json)
+                                  }
+                              }
+                            self.Loading.isHidden = true
+                                      self.Loading.stopAnimating()
+                          } else {
+                               let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                              self.present(alert, animated: true)
+                             self.Loading.isHidden = true
+                                      self.Loading.stopAnimating()
+                          }
+                      }
+    }
 }
 

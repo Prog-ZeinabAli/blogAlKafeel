@@ -10,23 +10,29 @@ import Foundation
 import UIKit
 
 class Get{
+    
+    
 
-static func Image(from string: String) -> UIImage? {
-    //2. Get valid URL
-    guard let url = URL(string: "https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/" + string )
-        else{
-            return nil }
-    var image: UIImage? = nil
-    do {
-        let data = try Data(contentsOf: url, options: [])
-        image = UIImage(data: data)
-    }
-    catch {
-        print(error.localizedDescription)
+static func Image(from string: String)  -> UIImage? {
+    let urlString = "https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/" + string
+           guard let url = URL(string: urlString)
+               else{
+                   return nil }
+           var image: UIImage? = nil
+           do {
+               let data = try Data(contentsOf: url, options: [])
+               image = UIImage(data: data)
+           }
+           catch {
+               print(error.localizedDescription)
+           }
+
+           return image
     }
 
-    return image
-}
+    
+   
+
 
     
     static func Picture(from string: String) -> UIImage? {
@@ -68,5 +74,9 @@ if UserDefaults.standard.object(forKey: "NightMode") as? String  == "True"
                }
               
     }
+    
+  
+    
+
      
 }

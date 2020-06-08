@@ -41,18 +41,19 @@ class SignUpViewController: UIViewController {
                              guard let self = self else { return }
                              if response.success {
                                  if let user = response.data {
-                                     if(user.message == "NOT FOUND")
-                                     {
-                                         let alert = UIAlertController(title: "خطأ", message: "خطأ في الرمز السري او المعرف", preferredStyle: .alert)
-                                                        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                                         self.present(alert, animated: true)
-                                        
-                                     }else if (user.message == "email exists")
+                                    if (user.message == "email exists")
                                      {
                                         let alert = UIAlertController(title: "خطأ", message:"المعرف موجود مسبقا يرجى اختيار اسم معرف اخر", preferredStyle: .alert)
                                                                                                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                                                                 self.present(alert, animated: true)
-                                    }else{
+                                     }else if(user.message == "ERROR") {
+                                         let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                        self.present(alert, animated: true)
+                                    }
+                                     else{
+                                        guard (self.storyboard?.instantiateViewController(identifier: "MenuViewControlller")) != nil else {return}
+                                        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                                         let alert = UIAlertController(title: " \(user.name)تم التسجيل ", message: "لقد تم تسجيلك في مدونة الكفيل", preferredStyle: .alert)
                                                           alert.addAction(UIAlertAction(title: " شكرآ", style: .cancel, handler: nil))
                                            self.present(alert, animated: true)

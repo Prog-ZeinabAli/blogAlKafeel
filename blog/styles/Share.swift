@@ -30,7 +30,7 @@ final class Share{
     
 
         //MARK:- seacrh
-       var SearchRslt : String!
+       var SearchView : Bool = false
     
     var fontSize : Int!  //setting font size changing
     var CmntUserName : String!
@@ -39,6 +39,7 @@ final class Share{
     // home ttabl views detection
     var categoryId : Int? //category table view selection
     var FromCtegoryVC : String = "No"
+    var catChosen : Bool = false
     var sortby : Int? //category table view selection
     var changed_happend : Int?
     

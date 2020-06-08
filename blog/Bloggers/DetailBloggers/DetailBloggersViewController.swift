@@ -23,15 +23,21 @@ class DetailBloggersViewController: UIViewController {
         super.viewDidLoad()
         self.Loading.isHidden = false
         self.Loading.startAnimating()
-        
+        PersonalImg.layer.cornerRadius = PersonalImg.frame.size.width / 2
+        PersonalImg.clipsToBounds = true
         noOfBlogs.isHidden = true
         userName.text = "جار تحميل الصفحة"
         
-        Utilities.fadedColor(BackgorundView)
+        
+       
+        
         tv.delegate = self
         tv.dataSource = self
     }
     
+    override func viewDidLayoutSubviews() {
+                       Utilities.fadedColor(BackgorundView)
+                  }
 
    override func didReceiveMemoryWarning() {
                   super.didReceiveMemoryWarning()
@@ -48,6 +54,10 @@ class DetailBloggersViewController: UIViewController {
                                  self!.tv.reloadData()
                                 self!.Loading.isHidden = true
                                 self!.Loading.stopAnimating()
+                                if response.data!.total == 0 {
+                                    self!.userName.text = " لا توجد اي تدوينة"
+                                }
+                                
                              }else {
                                  let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                                  alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
@@ -57,8 +67,12 @@ class DetailBloggersViewController: UIViewController {
                          }
                      }
 
-
-      
+    @IBAction func BookMarkTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+               self.present(alert, animated: true)
+    }
+    
   }
 
   extension DetailBloggersViewController: UITableViewDataSource, UITableViewDelegate {
@@ -68,7 +82,7 @@ class DetailBloggersViewController: UIViewController {
      }
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         print(profiles.count)
+      
          return profiles.count
      }
 
@@ -84,10 +98,11 @@ class DetailBloggersViewController: UIViewController {
                   cell.title.font = UIFont(name: FT ?? "Lateef", size: 30)
                   
         
-        
-        PersonalImg.image = UIImage(named: "PersonalImg")
-              PersonalImg.layer.cornerRadius = PersonalImg.frame.size.width / 2
-              PersonalImg.clipsToBounds = true
+      
+             //  cell.PersonalImg.setImage(Get.Picture(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)
+        PersonalImg.image = Get.Picture(from:(profiles[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg")
+       // PersonalImg.layer.cornerRadius = PersonalImg.frame.size.width / 2
+        //PersonalImg.clipsToBounds = true
         
         userName.text = profiles[indexPath.row].user?.name
         noOfBlogs.isHidden = false
@@ -99,7 +114,13 @@ class DetailBloggersViewController: UIViewController {
          //  cell.date.setTitle(profiles[indexPath.row].createdAt, for: .normal)
            cell.tags.setTitle(profiles[indexPath.row].tags, for: .normal)
 
-        
+        let dateFormatterGet = DateFormatter()  //
+                      dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                      let dateFormatterPrint = DateFormatter()
+                      dateFormatterPrint.dateFormat = "MMM"// dd,yyyy"
+                      if let date = dateFormatterGet.date(from: String(profiles[indexPath.row].createdAt ?? "00-00-0000 00 00"))  {
+                        cell.date.setTitle(dateFormatterPrint.string(from: Date() - date.distance(to: Date())), for: .normal)//(from: date)
+                      }
         
           let views = profiles[indexPath.row].views ?? 0
         cell.Views.setTitle("\(views)", for: .normal)
@@ -111,10 +132,11 @@ class DetailBloggersViewController: UIViewController {
        // cell.date.titleLabel?.adjustsFontSizeToFitWidth = true
         cell.Views.titleLabel?.adjustsFontSizeToFitWidth = true
         cell.tags.titleLabel?.adjustsFontSizeToFitWidth = true
-        
-        
+        cell.category.setTitle(profiles[indexPath.row].category?.name ,for: .normal)
+        cell.category.titleLabel?.adjustsFontSizeToFitWidth = true
         cell.index = indexPath
         cell.cellDelegate = self as! ButtonIsClicked // as! CommentIsClicked
+        Utilities.styleHollowButton(cell.category)
         
          return cell
      }
@@ -140,5 +162,11 @@ func onClickCell(index: Int) {
     Share.shared.Blogscontent = profiles[index].content
     Share.shared.Blogsusername = profiles[index].user?.name
     Share.shared.title = profiles[index].title
+    
+    //send to category to filter blog by cat
+    let catId = DataService.instance.categories[index].id ?? 0
+          Share.shared.categoryId = catId
+          Share.shared.sortby = 1
+          Share.shared.FromCtegoryVC = "yes"
 }
 }

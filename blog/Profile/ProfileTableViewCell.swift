@@ -21,6 +21,7 @@ class ProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var View: UIButton!
     @IBOutlet weak var noOfCmnt: UIButton!
     @IBOutlet weak var catBtn: UIButton!
+    @IBOutlet weak var vaildSign: UIButton!
     
     var cellDelegate :EditPost?
     var index : IndexPath?

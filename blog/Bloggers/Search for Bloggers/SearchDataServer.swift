@@ -13,17 +13,17 @@ import SwiftyJSON
 
 //categry dataSever THIS IS THE LINK WHERE I'LL BE GETTING MY POSTS FROM JSON FILE
 typealias CompletionHandler15<T> = (_ response: ApiResponse15<T>) -> ()
-let API_URL15 = "https://blog-api.turathalanbiaa.com/api/GetSearchResults"
+let API_URL15 = "https://blog-api.turathalanbiaa.com/api/getSearchResults"
 
 class SearchDataServer {
     
     static let instance = SearchDataServer()
     
-    func Search(json: [String: Any] , completion: @escaping CompletionHandler15<Blogger>) {
+    func Searching(json: [String: Any] , completion: @escaping CompletionHandler15<Blogger>) {
         Alamofire.request(API_URL15,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
-            print(r)
+          //  print(r)
         })
-        Alamofire.request(API_URL15,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseJSON { response in
+        Alamofire.request(API_URL15,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseString{ response in
             if response.error != nil {
                 print(response.error as Any)
                 completion(ApiResponse15<Blogger>.fail(cause: response.error))

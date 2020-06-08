@@ -20,11 +20,12 @@ struct Blog : Codable {
     let instagram: String?
     let twitter: String?
     let phone: String?
+    let token: String?
     
     
 }
 
 struct Blogger: Codable {
-    let current_page: Int
+  //  let current_page: Int
     let data: [Blog]?
 }
