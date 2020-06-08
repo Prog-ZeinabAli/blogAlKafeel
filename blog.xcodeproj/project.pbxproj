@@ -276,7 +276,6 @@
 		E3574998243B7B9B00708AB9 /* blog */ = {
 			isa = PBXGroup;
 			children = (
-				EBDC0D1F2476F66600636890 /* blogDebug.entitlements */,
 				EB13ED2424747ED700F3650E /* BookMarks */,
 				E35749D4243BB86700708AB9 /* blogs */,
 				E38C141C243D48F40054134E /* Category */,
@@ -400,6 +399,7 @@
 		EB13ED2424747ED700F3650E /* BookMarks */ = {
 			isa = PBXGroup;
 			children = (
+				EBDC0D1F2476F66600636890 /* blogDebug.entitlements */,
 				EB13ED2524747EF300F3650E /* BookMarkViewController.swift */,
 				EB13ED2B2474843300F3650E /* BMTableViewCell.swift */,
 				EB682ACC24731BBB00CC9EE7 /* CoreDataSaving */,
