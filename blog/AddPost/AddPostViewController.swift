@@ -9,7 +9,7 @@
 import UIKit
 
 class AddPostViewController: UIViewController {
-
+   var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var catBtn: UIButton!
     @IBOutlet weak var BlogContent: UITextView!
@@ -19,7 +19,7 @@ class AddPostViewController: UIViewController {
     @IBOutlet weak var tv: UITableView!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
     public var imagePickerController: UIImagePickerController?
-    var catType = 0
+    var catType = 1
     
     
     
@@ -38,6 +38,12 @@ class AddPostViewController: UIViewController {
             BlogTitle.text = Share.shared.title
             sendBtn.setTitle("تعديل" ,for: .normal)
             catBtn.setTitle("الاصناف : \(Share.shared.cat ?? "اخرى" )",for: .normal)
+            
+        }else{
+            BlogContent.text = ""
+            BlogTags.text = ""
+            BlogTitle.text = ""
+            catBtn.setTitle("الاصناف : \("اخرى" )",for: .normal)
             
         }
 
@@ -80,7 +86,7 @@ class AddPostViewController: UIViewController {
                    let tag = BlogTags.text
             
             //update Post
-            let json: [String: Any] = ["id": Share.shared.PostId ,"title": title,"content":content,"category_id": catType ,"image": "image.png","tags": tag, ]
+            let json: [String: Any] = ["id": Share.shared.PostId ,"title": title,"content":content,"category_id": catType ,"image": "image.png","tags": tag ]
             UpdatePostDataServer.instance.updatePost(json:json ) { [weak self] (response) in
                                                      if self == nil {return}
                                                       if response.success {
@@ -113,11 +119,10 @@ class AddPostViewController: UIViewController {
             //Create new post
         } else {
         
-        
         let title = BlogTitle.text ?? " "
         let content = BlogContent.text ?? " "
         let tag = BlogTags.text ?? " "
-        let json: [String: Any] = ["user_id": 691311583402731,"title": title,"content":content,"tags": tag,"category_id": catType ,"input_img": "image.png" ]
+            let json: [String: Any] = ["user_id": User_id,"title": title,"content":content,"tags": tag,"category_id": catType ,"input_img": "image.png" ]
         AddPostDateServer.instance.sendPost(json:json) { [weak self] (response) in
                         guard self != nil else { return }
                                if response.success {
@@ -297,7 +302,7 @@ extension AddPostViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
        {
         catBtn.setTitle("الاصناف : \(DataService.instance.categories[indexPath.row].categoryName ?? "اخرى" )",for: .normal)
-         let x = DataService.instance.categories[indexPath.row].id ?? 0
+         let x = DataService.instance.categories[indexPath.row].id ?? 1
         catType = x
             tableView.isHidden = true
         

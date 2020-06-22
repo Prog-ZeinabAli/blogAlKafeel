@@ -168,7 +168,7 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
     
 
 }
-
+//MARK:-  Search for blogers
 extension BloggersViewController : UISearchBarDelegate
 {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

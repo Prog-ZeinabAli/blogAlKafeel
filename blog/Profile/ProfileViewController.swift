@@ -14,14 +14,19 @@ class ProfileViewController: UIViewController {
  // var loginFlag = UserDefaults.standard.set("yes", forKey: "LoginFlag")
     
     
+    @IBOutlet weak var PersonalImg: UIImageView!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
     @IBOutlet weak var noOfBlogs: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var BackGroudView: UIView!
+    var blogIndex :Int!
+    var fetchMore = false
     var nob = 0
     var profiles: [Profile] = []
+    static var current_page = 2
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
+        
         Get.NightMode(from: self)
         super.viewDidLoad()
         tv.delegate = self
@@ -30,10 +35,16 @@ class ProfileViewController: UIViewController {
         self.Loading.startAnimating()
         noOfBlogs.isHidden = true
         
+        PersonalImg.layer.cornerRadius = PersonalImg.frame.size.width / 2
+        PersonalImg.clipsToBounds = true
         
-       
-      
+    
     }
+    
+    
+    
+ 
+    
     override func viewDidLayoutSubviews() {
                  Utilities.fadedColor(BackGroudView)
             }
@@ -46,10 +57,18 @@ class ProfileViewController: UIViewController {
          override func viewWillAppear(_ animated: Bool) {
              super.viewWillAppear(true)
           
-            let json: [String: Any] = ["user_id":User_id]
-                      ProfiletDataServer.instance.fetchAllProfile(json:json ) { [weak self] (response) in
+            let json: [String: Any] = ["user_id": User_id]
+            ProfiletDataServer.instance.fetchAllProfile(API_URL7 : "https://blog-api.turathalanbiaa.com/api/PosttPaginationByUserId" , json:json ) { [weak self] (response) in
                            if self == nil {return}
                            if response.success {
+                            
+                            if response.data!.total == 0 {
+                                self!.userName.text =  "لا توجد لديك اي مدونات في حسابك"
+                            }
+                            
+                          //  let  nob = response.data!.total ?? 0
+                           // self!.noOfBlogs.text = "عدد التدوينات: \(nob) "
+                            
                             self!.profiles = (response.data!.data)!
                                self!.tv.reloadData()
                             self!.Loading.isHidden = true
@@ -75,10 +94,17 @@ class ProfileViewController: UIViewController {
                                         if(user.message == "DONE")
                                       {
                                         self!.Loading.isHidden = true
-                                                                   self!.Loading.stopAnimating()
-                                        let alert = UIAlertController(title: "خطأ", message: "DELTED", preferredStyle: .alert)
+                                        self!.Loading.stopAnimating()
+                                        let alert = UIAlertController(title: "تم الحذف", message: "تمت عملية حذف المدونة بنجاح", preferredStyle: .alert)
                                                                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                                                           self!.present(alert, animated: true)
+                                        //MARK:- deleting the row
+                                        self!.tv.beginUpdates()
+                                        let indexPath = IndexPath(row: self!.blogIndex, section: 0)
+                                        self!.tv.deleteRows(at: [indexPath], with: .automatic)
+                                        self!.tv.endUpdates()
+                                        
+                                        
                                         self!.tv.reloadData()
                                         } else if(user.message == "NOT FOUND'"){
                                             let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
@@ -94,11 +120,41 @@ class ProfileViewController: UIViewController {
     }
     }
     
+    @IBAction func editPost(_ sender: Any) {
+         Share.shared.updatePost = 1
+    }
     @IBAction func BookMarkTapped(_ sender: Any) {
         let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                self.present(alert, animated: true)
     }
+    
+
+     //MARK:- Load more Items for pagination Function
+    func loadMoreItems(){
+        self.Loading.isHidden = false
+                self.Loading.startAnimating()
+                         let json: [String: Any] = ["user_id": User_id]
+        ProfiletDataServer.instance.fetchAllProfile(API_URL7 : "https://blog-api.turathalanbiaa.com/api/PosttPaginationByUserId" + "?page=" + "\( ProfileViewController.current_page)" , json:json ) { [weak self]
+          (response) in
+                                                                  if self == nil {return}
+                                                                  if response.success {
+                                                                    
+                                                                 
+                                                                      self!.Loading.isHidden = true
+                                                                       self!.Loading.stopAnimating()
+                                                                    self!.profiles.append(contentsOf: (response.data!.data)!)
+                                                                 self!.fetchMore = false
+                                                                      self!.tv.reloadData()
+
+                                                                  }else {
+                                                                      let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                                      alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                      self!.present(alert, animated: true)
+                                                                      self!.viewDidLoad()
+                                                                  }
+                                                              }
+               }
 }
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
@@ -134,7 +190,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
                          let dateFormatterPrint = DateFormatter()
                          dateFormatterPrint.dateFormat = "MMM"// dd,yyyy"
                          if let date = dateFormatterGet.date(from: String(profiles[indexPath.row].createdAt ?? "00-00-0000 00 00"))  {
-                           cell.Date.titleLabel?.text = dateFormatterPrint.string(from: Date() - date.distance(to: Date()))//(from: date)
+                          // cell.Date.titleLabel?.text = dateFormatterPrint.string(from: Date() - date.distance(to: Date()))
+                           cell.Date.setTitle(dateFormatterPrint.string(from: Date() - date.distance(to: Date())),for: .normal)
                          }
     
     if profiles[indexPath.row].status == 0 {
@@ -145,17 +202,21 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
           cell.vaildSign.tintColor = UIColor(red: 82/255.0, green: 123/255.0, blue: 79/255.0, alpha: 1.0)
     }
   
-    
+   PersonalImg.image = Get.Picture(from:(profiles[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg")
     
    cell.Title.text = profiles[indexPath.row].title
    cell.Content.text = profiles[indexPath.row].content
-    cell.catBtn.titleLabel?.text = profiles[indexPath.row].tags
+    
+    
+    cell.catBtn.setTitle(profiles[indexPath.row].category?.name,for: .normal)
     
     let views = profiles[indexPath.row].views ?? 0
-    cell.View.titleLabel?.text = "\(views)"
+    cell.View.setTitle("\(views)" ,for: .normal)
+    
     let  cmd = profiles[indexPath.row].cmdCount ?? 0
-    cell.noOfCmnt.titleLabel?.text = "\(cmd)"
-            
+    cell.noOfCmnt.setTitle("\(cmd)" ,for: .normal)
+    
+    
     cell.Date.titleLabel?.adjustsFontSizeToFitWidth = true
     cell.View.titleLabel?.adjustsFontSizeToFitWidth = true
     cell.catBtn.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -163,7 +224,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     
     cell.index = indexPath
     cell.cellDelegate = self //as! EditPost
-    
+    Utilities.styleHollowButton(cell.catBtn)
        return cell
    }
 
@@ -171,7 +232,39 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
        return UIView()
    }
-
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+           let offSetY = scrollView.contentOffset.y
+           let contentHeight = scrollView.contentSize.height
+           
+           if offSetY > contentHeight - scrollView.frame.height{
+                 if !fetchMore
+                         {
+                             fetchMore = true
+                         print("this is the last cell")
+                           loadMoreItems()
+                           ProfileViewController.current_page = ProfileViewController.current_page + 1
+                           
+                         }
+           }
+       }
+    
+    
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+             {
+               
+               let x = profiles[indexPath.row].id ?? 0
+                  Share.shared.PostId = x
+                 // sending data to the view section
+                  Share.shared.Blogscontent = profiles[indexPath.row].content
+                  Share.shared.Blogsusername = profiles[indexPath.row].user?.name
+                  Share.shared.title = profiles[indexPath.row].title
+               
+               guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "ViewBlog") else {return}
+               self.present(menuViewController,animated: true)
+       }
+    
+    
    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        return 500
    }
@@ -184,6 +277,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 extension ProfileViewController : EditPost{
    func onClickCell(index: Int) {
     //delete post
+    blogIndex = index
     Share.shared.PostId = profiles[index].id
     // edit post
     Share.shared.title = profiles[index].title
@@ -192,7 +286,7 @@ extension ProfileViewController : EditPost{
     Share.shared.cat = profiles[index].category?.name
     Share.shared.image = profiles[index].image
     Share.shared.tag = profiles[index].tags
-    Share.shared.updatePost = 1
+   // Share.shared.updatePost = 1
     //comment section
     let x = profiles[index].id ?? 0
            Share.shared.PostId = x

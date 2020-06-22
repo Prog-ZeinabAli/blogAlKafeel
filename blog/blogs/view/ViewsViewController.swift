@@ -14,7 +14,7 @@ class ViewsViewController: UIViewController {
     @IBOutlet weak var Posttitle: UILabel!
     @IBOutlet weak var content: UITextView!
     override func viewDidLoad() {
-        super.viewDidLoad()
+       // super.viewDidLoad()
         
         
         let json: [String: Any] = ["id": Share.shared.PostId as Any]

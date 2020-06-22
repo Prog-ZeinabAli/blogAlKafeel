@@ -37,6 +37,7 @@
 		E38C146E243FE78E0054134E /* BloggersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */; };
 		E3A830B1244A4CCD00714A5E /* BloggersDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */; };
 		E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A830B2244A4CEF00714A5E /* Blogger.swift */; };
+		EB0D5A3224A15AF200175861 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0D5A3124A15AF200175861 /* ReportViewController.swift */; };
 		EB13ED2624747EF300F3650E /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED2524747EF300F3650E /* BookMarkViewController.swift */; };
 		EB13ED2C2474843300F3650E /* BMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED2B2474843300F3650E /* BMTableViewCell.swift */; };
 		EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */; };
@@ -148,6 +149,7 @@
 		E38C146D243FE78E0054134E /* BloggersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersTableViewCell.swift; sourceTree = "<group>"; };
 		E3A830B0244A4CCD00714A5E /* BloggersDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloggersDataServer.swift; sourceTree = "<group>"; };
 		E3A830B2244A4CEF00714A5E /* Blogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blogger.swift; sourceTree = "<group>"; };
+		EB0D5A3124A15AF200175861 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		EB13ED2524747EF300F3650E /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
 		EB13ED2B2474843300F3650E /* BMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMTableViewCell.swift; sourceTree = "<group>"; };
 		EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServer.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				E3574999243B7B9B00708AB9 /* AppDelegate.swift */,
 				E357499B243B7B9B00708AB9 /* SceneDelegate.swift */,
 				E357499F243B7B9B00708AB9 /* Main.storyboard */,
+				EB0D5A3124A15AF200175861 /* ReportViewController.swift */,
 				E35749A5243B7BA600708AB9 /* Assets.xcassets */,
 				E35749A7243B7BA600708AB9 /* LaunchScreen.storyboard */,
 				E35749AA243B7BA600708AB9 /* Info.plist */,
@@ -399,9 +402,9 @@
 		EB13ED2424747ED700F3650E /* BookMarks */ = {
 			isa = PBXGroup;
 			children = (
-				EBDC0D1F2476F66600636890 /* blogDebug.entitlements */,
 				EB13ED2524747EF300F3650E /* BookMarkViewController.swift */,
 				EB13ED2B2474843300F3650E /* BMTableViewCell.swift */,
+				EBDC0D1F2476F66600636890 /* blogDebug.entitlements */,
 				EB682ACC24731BBB00CC9EE7 /* CoreDataSaving */,
 			);
 			path = BookMarks;
@@ -841,6 +844,7 @@
 				EBF216072458A3B600DC3651 /* EditProfileViewController.swift in Sources */,
 				EBF215FB245670BF00DC3651 /* Comments.swift in Sources */,
 				EBDC0D232477971F00636890 /* BookMarksCore+CoreDataClass.swift in Sources */,
+				EB0D5A3224A15AF200175861 /* ReportViewController.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
 				EBD939802467A11900095758 /* UpdateViews.swift in Sources */,
 				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
@@ -1061,7 +1065,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = blog/blogDebug.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = C53R7SVXWK;
 				INFOPLIST_FILE = blog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1069,7 +1073,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abed.blog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1083,7 +1087,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = C53R7SVXWK;
 				INFOPLIST_FILE = blog/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1091,7 +1095,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abed.blog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -53,11 +53,13 @@ class BlogCardTableViewCell: UITableViewCell {
          cellDelegate?.onClickCell(index: (index?.row)!)
     }
     
+    @IBAction func BookMarkPressed(_ sender: Any) {
+          cellDelegate?.onClickCell(index: (index?.row)!)
+      }
+    
     @IBAction func CategoryTypeIstapped(_ sender: Any) {
          cellDelegate2?.onClickCell2(index: (index?.row)!)
     }
-    @IBAction func BookMarkPressed(_ sender: Any) {
-        cellDelegate?.onClickCell(index: (index?.row)!)
-    }
+  
 }
 

@@ -19,9 +19,9 @@ class UpdatePostDataServer {
     static let instance = UpdatePostDataServer()
     
     func updatePost(json: [String : Any] ,completion: @escaping CompletionHandler10<UpdatePost>) {
-        Alamofire.request(API_URL10,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
+     /*   Alamofire.request(API_URL10,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
-        })
+        })*/
         Alamofire.request(API_URL10,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
                 print(response.error as Any)

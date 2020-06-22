@@ -46,7 +46,21 @@ class MenuViewController: UIViewController {
                 SignUpButton.isHidden = false
 
             }
+            
+            
+            
+        // MARK:- hide when tapping anywhere
+                    let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideEveryThing))
+                    view.addGestureRecognizer(tap)
+            
+            
         }
+    
+    
+    @objc func hideEveryThing(){
+         guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "MenuViewControlller") else {return}
+                     self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+         }
     
     
     @IBAction func ProfileIsCicked(_ sender: Any) {

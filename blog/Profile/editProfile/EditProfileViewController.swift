@@ -43,6 +43,15 @@ class EditProfileViewController: UIViewController {
       }
     
     @IBAction func Save(_ sender: Any) {
+        
+        
+        //MARK:- saving image
+        
+        
+        
+        
+        
+        //MARK:- saving data
         self.Loading.isHidden = false
                     self.Loading.startAnimating()
         if userName.text?.isEmpty == true{

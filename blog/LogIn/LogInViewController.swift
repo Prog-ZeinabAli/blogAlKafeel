@@ -20,6 +20,7 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var passwordTxt: UITextField!
     @IBOutlet weak var usernameTxt: UITextField!
     @IBOutlet weak var LogInWithFb: UIButton!
+    @IBOutlet weak var appleSignIn: UIButton!
     @IBOutlet weak var LogInBtn: UIButton!
     @IBOutlet var MainView: UIView!
     @IBOutlet weak var Loading: UIActivityIndicatorView!
@@ -31,6 +32,7 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         Utilities.fadedColor(MainView)
          Utilities.styleHollowButton(LogInBtn)
+        Utilities.styleHollowButton(appleSignIn)
         Loading.isHidden = true
     }
     
@@ -96,9 +98,9 @@ class LogInViewController: UIViewController {
                     let info = result as! [String : AnyObject]
                     let UserName = (info["name"] as! String)
                     let email = (info["email"] as! String)
-                    let picture = (info["picture.type(large)"] as! String)
+                   // let picture = (info["picture.type(large)"] as! String)
                     let UserId = (info["id"] as! String)
-                      let json: [String: Any] = ["id": UserId, "name": UserName, "picture": picture  , "email": email]
+                      let json: [String: Any] = ["id": UserId, "name": UserName, "picture": "picture"  , "email": email]
                         LoginByFacebook.instance.FaceBookLogin(json: json){ [weak self] (response) in
                             if let user = response.data {
                                                         if(user.message == "already...")

@@ -104,7 +104,7 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
@@ -118,6 +118,7 @@ extension BookMarkViewController : SeeMoreIsClicked{
     func onClickCell(index: Int) {
         BMBlog = BM[index]
         blogIndex = index
+        
         Share.shared.Blogscontent = BM[index].contentBM
         Share.shared.Blogsusername = BM[index].nameBM
         Share.shared.title = BM[index].titleBM

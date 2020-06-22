@@ -20,10 +20,6 @@ class AddcomentDataServer {
     
     func addComment(json: [String : Any] ,completion: @escaping CompletionHandler12<AddComment>) {
 
-        Alamofire.request(API_URL12,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ responseString in
-            print(responseString)
-        
-        })
         
         Alamofire.request(API_URL12,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {

@@ -41,6 +41,8 @@ class BlogViewController: UIViewController {
             //searching
             if Share.shared.SearchView == true{
                 SearchBar.isHidden = false
+                CategoryButton.isHidden = true
+                latestBlogsButton.isHidden = true
                 Share.shared.SearchView = false
             }else{
                  SearchBar.isHidden = true
@@ -80,6 +82,11 @@ class BlogViewController: UIViewController {
         refreshConroler.addTarget(self, action: #selector(BlogViewController.refreshData), for: UIControl.Event.valueChanged)
         CategoryButton.titleLabel?.adjustsFontSizeToFitWidth = true
         latestBlogsButton.titleLabel?.adjustsFontSizeToFitWidth = true
+            
+            
+         /*  // MARK:- hide when tapping anywhere
+            let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideEveryThing))
+            view.addGestureRecognizer(tap)*/
     }
     
     
@@ -90,6 +97,11 @@ class BlogViewController: UIViewController {
         super.viewDidLoad()
     }
     
+    
+    @objc func hideEveryThing(){
+        BlogTv.isHidden = true
+        CatgTv.isHidden = true
+      }
     
     // MARK: - Loading blogs
     override func didReceiveMemoryWarning() {
@@ -108,7 +120,7 @@ class BlogViewController: UIViewController {
                  }
         
           //  blog table view   Share.shared.categoryId ??
-        if Share.shared.catChosen == true {
+        if Share.shared.catChosen == true ||  Share.shared.FromCtegoryVC == "yes" {
              let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId]
             loadBlogs( json:json)
         }else {
@@ -151,7 +163,7 @@ class BlogViewController: UIViewController {
         self.Loading.isHidden = false
                 self.Loading.startAnimating()
                          let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
-            PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination"+"?page=" + "\( BloggersViewController.current_page)", json: json)
+            PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination"+"?page=" + "\( BlogViewController.current_page)", json: json)
                                                               { [weak self] (response) in
                                                                   if self == nil {return}
                                                                   if response.success {
@@ -383,6 +395,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
          
          if (tableView.tag == 1)
             {
+                print("yuuup)")
                 let x = DataService.instance.categories[indexPath.row].id ?? 0
                        Share.shared.categoryId = x
                 Share.shared.catChosen = true
@@ -395,6 +408,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
             }
             else if( tableView.tag == 2)
             {
+                print("yuuup)")
             Share.shared.sortby = indexPath.row
                 tableView.isHidden = true
                 super.viewDidLoad()
@@ -404,6 +418,14 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
                 self.reloadChoice.startAnimating()
                
          }else {
+            let x = posts[indexPath.row].id ?? 0
+                  Share.shared.PostId = x
+                  
+                 // sending data to the view section
+                  Share.shared.Blogscontent = posts[indexPath.row].content
+                  Share.shared.Blogsusername = posts[indexPath.row].user?.name
+                  Share.shared.title = posts[indexPath.row].title
+           
             guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "ViewBlog") else {return}
                                                       self.present(menuViewController,animated: true)
             }
@@ -420,7 +442,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
                              fetchMore = true
                          print("this is the last cell")
                            loadMoreItems()
-                           BloggersViewController.current_page = BloggersViewController.current_page + 1
+                            BlogViewController.current_page = BlogViewController.current_page + 1
                            
                          }
            }
@@ -448,7 +470,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
 
 
 
-
+//MARK:-  Search for blogs
 extension BlogViewController : UISearchBarDelegate
 {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -486,7 +508,6 @@ extension BlogViewController: CommentIsClicked{
 extension BlogViewController: CategoryIsClicked{
     func onClickCell2(index: Int) {
      //category button is clicked
-
         let catId = DataService.instance.categories[index].id ?? 0
            Share.shared.categoryId = catId
            Share.shared.sortby = 1

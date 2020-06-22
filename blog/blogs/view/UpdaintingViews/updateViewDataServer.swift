@@ -19,9 +19,9 @@ class updateViewDataServer {
     static let instance = updateViewDataServer()
     
     func Updating(json: [String : Any] ,completion: @escaping CompletionHandler14<UpdateViews>) {
-        Alamofire.request(API_URL14,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
+       /* Alamofire.request(API_URL14,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
-        })
+        })*/
         Alamofire.request(API_URL14,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
                 print(response.error as Any)

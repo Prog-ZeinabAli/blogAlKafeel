@@ -39,6 +39,8 @@
 	<string>2658655617590285</string>
 	<key>FacebookDisplayName</key>
 	<string>TurathAppleID</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>

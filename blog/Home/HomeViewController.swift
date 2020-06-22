@@ -10,7 +10,6 @@ import UIKit
 
 class HomeViewController: UIViewController  {
 
-    let tv : BlogViewController! = nil
   
     @IBOutlet weak var NavigationBar: UINavigationItem!
     @IBOutlet weak var UIViewBlog: UIView!
@@ -33,6 +32,7 @@ class HomeViewController: UIViewController  {
     }
     
     @IBAction func AddPostTapped(_ sender: Any) {
+      Share.shared.updatePost = 0
         let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
                              if flag != "yes"
                              {
@@ -41,6 +41,7 @@ class HomeViewController: UIViewController  {
                                self.present(alert, animated: true)
                              }else {
                                 guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "AddPost") else {return}
+                                  
                                            self.present(menuViewController,animated: true)
         }
         

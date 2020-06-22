@@ -19,9 +19,9 @@ class AddPostDateServer {
     static let instance = AddPostDateServer()
     
     func sendPost(json: [String : Any] ,completion: @escaping CompletionHandler8<AddPost>) {
-        Alamofire.request(API_URL8,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
+     /*   Alamofire.request(API_URL8,method: .post , parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
-        })
+        })*/
         Alamofire.request(API_URL8,method: .post , parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
                 print(response.error as Any)

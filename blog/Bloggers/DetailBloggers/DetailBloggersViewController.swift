@@ -15,7 +15,10 @@ class DetailBloggersViewController: UIViewController {
     @IBOutlet weak var PersonalImg: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var noOfBlogs: UILabel!
+    static var current_page = 2
     var profiles: [Profile] = []
+    var fetchMore = false
+    var nob = 0
     @IBOutlet weak var tv: UITableView!
     override func viewDidLoad() {
        
@@ -47,16 +50,21 @@ class DetailBloggersViewController: UIViewController {
                super.viewWillAppear(true)
             
               let json: [String: Any] = ["user_id":Share.shared.userId as Any]
-                        ProfiletDataServer.instance.fetchAllProfile(json:json ) { [weak self] (response) in
+            ProfiletDataServer.instance.fetchAllProfile(API_URL7:"https://blog-api.turathalanbiaa.com/api/PosttPaginationByUserId" ,json:json ) { [weak self] (response) in
                              if self == nil {return}
                              if response.success {
                               self!.profiles = (response.data!.data)!
+                                
                                  self!.tv.reloadData()
                                 self!.Loading.isHidden = true
                                 self!.Loading.stopAnimating()
                                 if response.data!.total == 0 {
                                     self!.userName.text = " لا توجد اي تدوينة"
                                 }
+                                
+                                
+                                self!.nob = response.data!.total ?? 0
+                                self!.noOfBlogs.text = "عدد التدوينات: \(self!.nob) "
                                 
                              }else {
                                  let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
@@ -67,6 +75,32 @@ class DetailBloggersViewController: UIViewController {
                          }
                      }
 
+    //MARK:- Load more Items for pagination Function
+       func loadMoreItems(){
+           self.Loading.isHidden = false
+                   self.Loading.startAnimating()
+                            let json: [String: Any] = ["user_id": Share.shared.userId as Any]
+           ProfiletDataServer.instance.fetchAllProfile(API_URL7 : "https://blog-api.turathalanbiaa.com/api/PosttPaginationByUserId" + "?page=" + "\( DetailBloggersViewController.current_page)" , json:json ) { [weak self]
+             (response) in
+                                                                     if self == nil {return}
+                                                                     if response.success {
+                                                                         self!.Loading.isHidden = true
+                                                                          self!.Loading.stopAnimating()
+                                                                       self!.profiles.append(contentsOf: (response.data!.data)!)
+                                                                    self!.fetchMore = false
+                                                                         self!.tv.reloadData()
+
+                                                                     }else {
+                                                                         let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                                         alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                         self!.present(alert, animated: true)
+                                                                         self!.viewDidLoad()
+                                                                        self?.Loading.isHidden = true
+                                                                        self?.Loading.stopAnimating()
+                                                                     }
+                                                                 }
+                  }
+    
     @IBAction func BookMarkTapped(_ sender: Any) {
         let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
@@ -89,24 +123,23 @@ class DetailBloggersViewController: UIViewController {
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DetaledBlogersTableViewCell
-        
         //change according to settings
-              let FZ = UserDefaults.standard.object(forKey: "FontSizeDefault") as? CGFloat //CGFloat(Share.shared.fontSize ?? 17)
-                  cell.Content.font = UIFont.italicSystemFont(ofSize: FZ ?? 13)
-              let FT =  UserDefaults.standard.object(forKey:"FontTypeDefault") as? String
-                  cell.Content.font = UIFont(name: FT ?? "Lateef", size: FZ ?? 13)
-                  cell.title.font = UIFont(name: FT ?? "Lateef", size: 30)
-                  
-        
-      
-             //  cell.PersonalImg.setImage(Get.Picture(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)
-        PersonalImg.image = Get.Picture(from:(profiles[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg")
-       // PersonalImg.layer.cornerRadius = PersonalImg.frame.size.width / 2
-        //PersonalImg.clipsToBounds = true
-        
-        userName.text = profiles[indexPath.row].user?.name
-        noOfBlogs.isHidden = false
-      noOfBlogs.text = "عدد التدوينات: \(String(profiles.count)) "
+                  let FZ = UserDefaults.standard.object(forKey: "FontSizeDefault") as? CGFloat //CGFloat(Share.shared.fontSize ?? 17)
+                      cell.Content.font = UIFont.italicSystemFont(ofSize: FZ ?? 13)
+                  let FT =  UserDefaults.standard.object(forKey:"FontTypeDefault") as? String
+                      cell.Content.font = UIFont(name: FT ?? "Lateef", size: FZ ?? 13)
+                      cell.title.font = UIFont(name: FT ?? "Lateef", size: 30)
+                      
+            
+            
+            
+            PersonalImg.image = Get.Picture(from:(profiles[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg")
+            
+            userName.text = profiles[indexPath.row].user?.name
+            noOfBlogs.isHidden = false
+       //MARK:- show only accpeted (valid) blogs
+       if profiles[indexPath.row].status != 0 {
+       // noOfBlogs.text = (noOfBlogs!.text) as Int? - 1
     cell.title.text = profiles[indexPath.row].title
      cell.Content.text = profiles[indexPath.row].content
         
@@ -137,15 +170,48 @@ class DetailBloggersViewController: UIViewController {
         cell.index = indexPath
         cell.cellDelegate = self as! ButtonIsClicked // as! CommentIsClicked
         Utilities.styleHollowButton(cell.category)
-        
+       }else{
+        cell.isHidden = true
+        }
          return cell
+        
      }
 
 
      func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
          return UIView()
      }
+    
+    func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+          {
+            
+            let x = profiles[indexPath.row].id ?? 0
+               Share.shared.PostId = x
+              // sending data to the view section
+               Share.shared.Blogscontent = profiles[indexPath.row].content
+               Share.shared.Blogsusername = profiles[indexPath.row].user?.name
+               Share.shared.title = profiles[indexPath.row].title
+            
+            guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "ViewBlog") else {return}
+            self.present(menuViewController,animated: true)
+    }
 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+             let offSetY = scrollView.contentOffset.y
+             let contentHeight = scrollView.contentSize.height
+             
+             if offSetY > contentHeight - scrollView.frame.height{
+                   if !fetchMore
+                           {
+                               fetchMore = true
+                           print("this is the last cell")
+                             loadMoreItems()
+                             DetailBloggersViewController.current_page = DetailBloggersViewController.current_page + 1
+                             
+                           }
+             }
+         }
+    
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
          return 300
      }
