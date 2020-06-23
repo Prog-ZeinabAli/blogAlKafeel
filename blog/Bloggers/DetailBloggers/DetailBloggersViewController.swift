@@ -101,6 +101,27 @@ class DetailBloggersViewController: UIViewController {
                                                                  }
                   }
     
+    
+    @IBAction func BlockUser(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "تنبيه !", message: "هل تريد حظر المستخدم ؟", preferredStyle: UIAlertController.Style.alert)
+        
+      alert.addAction(UIAlertAction(title: "نعم", style: .default, handler: { (action: UIAlertAction!) in
+              print("Handle Ok logic here")
+        }))
+
+        alert.addAction(UIAlertAction(title: "الغاء", style: .cancel, handler: { (action: UIAlertAction!) in
+              print("Handle Cancel Logic here")
+        }))
+
+        present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    
+    
     @IBAction func BookMarkTapped(_ sender: Any) {
         let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))

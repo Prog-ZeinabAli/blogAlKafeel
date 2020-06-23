@@ -99,6 +99,19 @@ class Utilities {
         gradLayer.frame = hi.bounds
         hi.layer.insertSublayer(gradLayer, at:0)
     }
+    
+    static func BrightfadedColor(_ hi: UIView) {
+        let colorTeal =  UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1.0).cgColor
+        let colorWhite = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0).cgColor
+          let gradLayer = CAGradientLayer()
+          gradLayer.colors = [colorTeal, colorWhite]
+          gradLayer.locations = [0.0, 1.0]
+          gradLayer.cornerRadius = 25.0
+        gradLayer.roundCorners(corners: [.topRight , .topLeft ], radius: 25.0)
+          gradLayer.frame = hi.bounds
+          hi.layer.insertSublayer(gradLayer, at:0)
+      }
+    
     static func RoundedCorners(_ hi: UIView) {
         let gradLayer = CAGradientLayer()
         gradLayer.cornerRadius = 25.0
