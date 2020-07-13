@@ -11,6 +11,7 @@ import CoreData
 class BlogViewController: UIViewController {
  
     //MARK:- Outlets and Variables
+    var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
     @IBOutlet weak var reloadChoice: UIActivityIndicatorView!  //when categories are chosen
     @IBOutlet weak var CategoryButton: UIButton!
     @IBOutlet weak var latestBlogsButton: UIButton!
@@ -21,7 +22,7 @@ class BlogViewController: UIViewController {
     @objc var  refreshConroler : UIRefreshControl = UIRefreshControl()
     @IBOutlet weak var SearchBar: UISearchBar!
     
-    let x = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
+    let LatestBlogsTable = ["جميع التدوينات","احدث التدوينات","يتصدر الان"]
     let Refresh = HomeViewController()
   
     static var current_page = 2
@@ -37,7 +38,7 @@ class BlogViewController: UIViewController {
      //MARK:- View Did Load
   
         override func viewDidLoad() {
-            
+            SearchBar.delegate = self
             //searching
             if Share.shared.SearchView == true{
                 SearchBar.isHidden = false
@@ -90,6 +91,7 @@ class BlogViewController: UIViewController {
     }
     
     
+    
        @objc func refreshData(){
         self.viewWillAppear(true)
         print (Share.shared.sortby ?? 0)
@@ -121,10 +123,10 @@ class BlogViewController: UIViewController {
         
           //  blog table view   Share.shared.categoryId ??
         if Share.shared.catChosen == true ||  Share.shared.FromCtegoryVC == "yes" {
-             let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId]
+            let json: [String: Any] = ["my_id": User_id , "sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId]
             loadBlogs( json:json)
         }else {
-            let json: [String: Any] = ["sortby": 2 ,"cat": 0 ]
+            let json: [String: Any] = [ "my_id": User_id ,"sortby": 2 ,"cat": 0 ]
             loadBlogs( json: json)
         }
        
@@ -133,7 +135,7 @@ class BlogViewController: UIViewController {
 
        //MARK:- Load Blogs
     func loadBlogs( json: [String: Any]){
-        PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination",json: json)
+        PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination2",json: json)
                    { [weak self] (response) in
                        if self == nil {return}
                        if response.success {
@@ -163,7 +165,7 @@ class BlogViewController: UIViewController {
         self.Loading.isHidden = false
                 self.Loading.startAnimating()
                          let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
-            PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination"+"?page=" + "\( BlogViewController.current_page)", json: json)
+            PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination2"+"?page=" + "\( BlogViewController.current_page)", json: json)
                                                               { [weak self] (response) in
                                                                   if self == nil {return}
                                                                   if response.success {
@@ -246,10 +248,10 @@ class BlogViewController: UIViewController {
     
     // MARK:- Add bookMarks
     @IBAction func BookMarkIsTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+       /* let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-               self.present(alert, animated: true)
-     /*  let coin = UIImage(systemName: "pencil")
+               self.present(alert, animated: true)*/
+       let coin = UIImage(systemName: "pencil")
         (sender as AnyObject).setImage(coin ,for: UIControl.State.highlighted) 
         let bookMarks = BookMarksCore(context: PressitentServer.context)
         bookMarks.titleBM = Share.shared.title
@@ -257,7 +259,7 @@ class BlogViewController: UIViewController {
         bookMarks.nameBM = Share.shared.userName
         let postid = Share.shared.PostId ?? 0
         bookMarks.postIdBM = "\(String(describing: postid))"//Share.shared.Blogsusername
-        PressitentServer.saveContext()*/
+        PressitentServer.saveContext()
     }
     
 }
@@ -277,7 +279,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
                   return DataService.instance.categories.count
                }
                else if( tableView.tag == 2){
-                   return x.count
+                   return LatestBlogsTable.count
                }
             else if( tableView.tag == 0){
                 return posts.count
@@ -287,21 +289,21 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
        }
 
     
-    
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //MARK:- tableView.tag == 1 : CATEGORY
         if(tableView.tag == 1) //CATEGORY TABLE VIEW
                {
                   let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
                   cell.textLabel?.text = DataService.instance.categories[indexPath.row].categoryName
-                   //cell.textLabel?.text = x1[indexPath.row]
+                  cell.textLabel?.adjustsFontSizeToFitWidth = true
                   return cell
                }
 //MARK:- tableView.tag == 2 : SORT BY
                else if (tableView.tag == 2)
                {
                   let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-                   cell.textLabel?.text = x[indexPath.row]
+                   cell.textLabel?.text = LatestBlogsTable[indexPath.row]
+                   cell.textLabel?.adjustsFontSizeToFitWidth = true
                   return cell
                 
 //MARK:- tableView.tag == 0 : BLOGS AND BOOKMARKS
@@ -351,8 +353,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.title.text = posts[indexPath.row].title
         cell.UserName.text = posts[indexPath.row].user?.name
         cell.content.text = posts[indexPath.row].content
-        cell.PostImage.image = Get.Image(from:posts[indexPath.row].image!) ?? UIImage(named:"home")
-        cell.PersonalImg.setImage(Get.Picture(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)
+    
         let views1 = posts[indexPath.row].views ?? 0
         cell.NumView.text = "\(views1)"
         let commentCount = posts[indexPath.row].cmdCount ?? 0
@@ -363,6 +364,10 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.cellDelegate = self // as! CommentIsClicked
         cell.cellDelegate2 = self // as! CommentIsClicked
             
+             /*    cell.PostImage.image = Get.Image(from:posts[indexPath.row].image!) ?? UIImage(named:"home")
+                cell.PersonalImg.setImage(Get.Picture(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)*/
+            
+          
             
             
              //MARK:- Night mode cahnge cells
@@ -477,9 +482,8 @@ extension BlogViewController : UISearchBarDelegate
         if searchText.isEmpty == false
         {
               loadSearhResult(searchText: searchText)
-            print("changed")
+           // print("changed")
         }
-     //   tv.reloadData()
        
     }
 }
@@ -515,15 +519,5 @@ extension BlogViewController: CategoryIsClicked{
     }
     
 }
-/*
 
-extension UIView {
-   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
-     cell.TitleUiView.roundCorners(corners: [.topRight , .topLeft ], radius: 25.0)
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-    CALayer().mask = mask
-    }
-}*/
 

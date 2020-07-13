@@ -46,7 +46,7 @@ class EditProfileViewController: UIViewController {
         
         
         //MARK:- saving image
-        
+     //   var imageData = picture.image!.jpegData(compressionQuality: 90)
         
         
         
@@ -59,7 +59,7 @@ class EditProfileViewController: UIViewController {
              alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
              self.present(alert, animated: true)
         }else {
-        let json: [String: Any] = ["id": 691311583402731 ,"name":userName.text,"picture":"image.png" ]//Share.shared.userId as Any]//
+        let json: [String: Any] = ["id": User_id ,"name":userName.text,"picture": "image.img" ]//Share.shared.userId as Any]//
         UpdtProfileDataServer.instance.Updating(json:json ) { [weak self] (response) in
                                         if self == nil {return}
                                          if response.success {
@@ -139,9 +139,9 @@ class EditProfileViewController: UIViewController {
         let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
                      alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                      self.present(alert, animated: true)
-         /*  /// present image picker
+          /// present image picker
            
-           if self.imagePickerController != nil {
+        /*   if self.imagePickerController != nil {
                self.imagePickerController?.delegate = nil
                self.imagePickerController = nil
            }
@@ -170,7 +170,7 @@ class EditProfileViewController: UIViewController {
            alert.addAction(UIAlertAction.init(title: "الغاء", style: .cancel))
            
            self.present(alert, animated: true)
-           */
+        */
        }
        
        internal func presentImagePicker(controller: UIImagePickerController , source: UIImagePickerController.SourceType) {

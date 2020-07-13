@@ -9,12 +9,13 @@
 import Foundation
 
 struct Blog : Codable {
-     let id: Int?
+    let id: String?
     let name: String?
     let email: String?
     let status: Int?
     let points: Int?
     let picture: String?
+    let password : String?
     let description: String?
     let facebook: String?
     let instagram: String?
@@ -26,6 +27,14 @@ struct Blog : Codable {
 }
 
 struct Blogger: Codable {
-  //  let current_page: Int
+    let current_page: Int
     let data: [Blog]?
+    let from: Int?
+    let last_page: Int?
+    let next_page_url: String?
+    let path: String?
+    let per_page: Int?
+    let prev_page_url: String?
+    let to: Int?
+    let total: Int?
 }

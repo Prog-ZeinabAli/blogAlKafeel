@@ -54,6 +54,14 @@ class ReportViewController: UIViewController {
     
     @IBAction func SendReport(_ sender: Any) {
         print("reporting line \(reportValue)")
+        guard let menuViewController = self.storyboard?.instantiateViewController(identifier: "NavigationController") else {return}
+                           self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        
+        let alert = UIAlertController(title: "تم التبليغ", message: "تمت عملية التبليغ بنجاح تم ", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+        
     }
     
     

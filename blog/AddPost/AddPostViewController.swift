@@ -49,7 +49,6 @@ class AddPostViewController: UIViewController {
 
         
     }
-   
     
     @IBAction func CategoryBtnTapped(_ sender: Any) {
         tv.isHidden = false
@@ -88,7 +87,7 @@ class AddPostViewController: UIViewController {
             //update Post
             let json: [String: Any] = ["id": Share.shared.PostId ,"title": title,"content":content,"category_id": catType ,"image": "image.png","tags": tag ]
             UpdatePostDataServer.instance.updatePost(json:json ) { [weak self] (response) in
-                                                     if self == nil {return}
+                                                if self == nil {return}
                                                       if response.success {
                                                         if let user = response.data {
                                                            if(user.message == "update DONE")
@@ -209,12 +208,12 @@ class AddPostViewController: UIViewController {
         }
 
         @IBAction func selectImageButtonAction(_ sender: UIButton) {
-             let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+            let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             /// present image picker
-        /*
-            if self.imagePickerController != nil {
+        
+         /*   if self.imagePickerController != nil {
                 self.imagePickerController?.delegate = nil
                 self.imagePickerController = nil
             }

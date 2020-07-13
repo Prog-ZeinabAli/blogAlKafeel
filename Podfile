@@ -9,16 +9,13 @@ target 'blog' do
 
 #pods for Facebook log in
     pod 'FBSDKLoginKit'
-    
     pod 'FacebookCore'
-    
     pod 'FacebookLogin'
 
 
 #pods for notifications 
 
       pod 'Firebase/Analytics'
-
       pod 'Firebase/Messaging'
 
 #pods for SmartKeyborad 

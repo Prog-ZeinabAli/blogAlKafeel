@@ -11,9 +11,9 @@ import CoreData
 
 class BookMarkViewController: UIViewController {
 
+  
     var blogIndex :Int!
     var BMBlog : NSManagedObject!
-    var deleteRow = false
     static var indexes : IndexPath!
     var BM = [BookMarksCore]()
     @IBOutlet weak var tv: UITableView!
@@ -48,7 +48,7 @@ class BookMarkViewController: UIViewController {
     }
     
     
-    @IBAction func BookMarksIsTapped(_ sender: Any) {
+ /*   @IBAction func BookMarksIsTapped(_ sender: Any) {
         PressitentServer.context.delete(BMBlog)
         BM.remove(at: blogIndex)
         tv.beginUpdates()
@@ -56,12 +56,12 @@ class BookMarkViewController: UIViewController {
         tv.deleteRows(at: [indexPath], with: .automatic)
         tv.endUpdates()
         PressitentServer.saveContext()
-        deleteRow = true
+       
         
         
        
         
-    }
+    }*/
     
 }
 
@@ -95,7 +95,18 @@ extension BookMarkViewController:UITableViewDataSource,UITableViewDelegate{
       }
    
 
-
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+        print("Deleted")
+        PressitentServer.context.delete(BM[indexPath.row])
+        self.BM.remove(at: indexPath.row)
+        tv.beginUpdates()
+        self.tv.deleteRows(at: [indexPath], with: .automatic)
+        tv.endUpdates()
+        PressitentServer.saveContext()
+      }
+    }
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }

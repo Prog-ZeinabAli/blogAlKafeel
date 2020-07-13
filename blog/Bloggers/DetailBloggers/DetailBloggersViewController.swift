@@ -10,6 +10,7 @@ import UIKit
 
 class DetailBloggersViewController: UIViewController {
 
+    var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
     @IBOutlet weak var Loading: UIActivityIndicatorView!
     @IBOutlet weak var BackgorundView: UIView!
     @IBOutlet weak var PersonalImg: UIImageView!
@@ -107,12 +108,31 @@ class DetailBloggersViewController: UIViewController {
         let alert = UIAlertController(title: "تنبيه !", message: "هل تريد حظر المستخدم ؟", preferredStyle: UIAlertController.Style.alert)
         
       alert.addAction(UIAlertAction(title: "نعم", style: .default, handler: { (action: UIAlertAction!) in
-              print("Handle Ok logic here")
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
+        let json: [String: Any] = ["my_id": self.User_id as Any,"blocked_user_id": Share.shared.userId as Any]  /// you stupid , text karar to fix this probelm 
+        BlockUserDataServer.instance.Blocking(json: json) { [weak self]
+                (response) in
+                                                                        if self == nil {return}
+                                                                        if response.success {
+                                                                            if let user = response.data{                                      if(user.message == "Blocked"){
+                                                                                print("yeeeeeeeeey User was blocked ")
+                                                                            self!.Loading.isHidden = true
+                                                                             self!.Loading.stopAnimating()
+                                                                                }}
+                                                    
+                                                                        }else {
+                                                                            let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                                            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                            self!.present(alert, animated: true)
+                                                                            self!.viewDidLoad()
+                                                                           self?.Loading.isHidden = true
+                                                                           self?.Loading.stopAnimating()
+                                                                        }
+                                                                    }
         }))
 
-        alert.addAction(UIAlertAction(title: "الغاء", style: .cancel, handler: { (action: UIAlertAction!) in
-              print("Handle Cancel Logic here")
-        }))
+       alert.addAction(UIAlertAction(title: "الغاء", style: .cancel, handler: nil))
 
         present(alert, animated: true, completion: nil)
         

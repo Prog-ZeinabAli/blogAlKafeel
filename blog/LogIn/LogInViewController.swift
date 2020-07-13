@@ -170,6 +170,7 @@ class LogInViewController: UIViewController {
                                     UserDefaults.standard.set("yes", forKey: "LoginFlag")
                                     UserDefaults.standard.set(user.name!, forKey: "loggesUserName")
                                     UserDefaults.standard.set(user.id, forKey: "loggesUserID")
+                                    
                                     self.dismiss(animated: true, completion: nil)
                                     guard (self.storyboard?.instantiateViewController(identifier: "MenuViewControlller")) != nil else {return}
                                     self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)

@@ -111,11 +111,11 @@ class MenuViewController: UIViewController {
     @IBAction func SearchIsTapped(_ sender: Any) {
         Share.shared.SearchView = true
     }
-    @IBAction func BookMarkTapped(_ sender: Any) {
+  /*  @IBAction func BookMarkTapped(_ sender: Any) {
         let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                self.present(alert, animated: true)
-    }
+    }*/
 }
 
 

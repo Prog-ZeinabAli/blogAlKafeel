@@ -18,11 +18,11 @@ class BloggersDataServer {
     
     static let instance = BloggersDataServer()
     
-    func fetchAllBloggers(API_URL3 : String , completion: @escaping CompletionHandler3<Blogger>) {
-        Alamofire.request(API_URL3,method: .post).responseString(completionHandler:{ r in
+    func fetchAllBloggers(API_URL3 : String , json: [String : Any], completion: @escaping CompletionHandler3<Blogger>) {
+        Alamofire.request(API_URL3,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseString(completionHandler:{ r in
             print(r)
         })
-        Alamofire.request(API_URL3,method: .post).responseJSON { response in
+        Alamofire.request(API_URL3,method: .post ,  parameters: json, encoding: JSONEncoding.default).responseJSON { response in
             if response.error != nil {
                 print(response.error as Any)
                 completion(ApiResponse3<Blogger>.fail(cause: response.error))

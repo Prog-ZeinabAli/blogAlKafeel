@@ -9,6 +9,7 @@
 import UIKit
 
 class BloggersViewController: UIViewController {
+     var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
      var blogger: [Blog] = []
     var privateList = [String]()
     var fetchMore = false
@@ -38,8 +39,8 @@ class BloggersViewController: UIViewController {
              
              override func viewWillAppear(_ animated: Bool) {
                  super.viewWillAppear(true)
-                
-                BloggersDataServer.instance.fetchAllBloggers(API_URL3: "https://blog-api.turathalanbiaa.com/api/userpagination") { [weak self] (response) in
+                let json: [String: Any] = ["my_id": User_id ,"sortby" : 0]
+                BloggersDataServer.instance.fetchAllBloggers(API_URL3: "https://blog-api.turathalanbiaa.com/api/userpagination2" , json: json) { [weak self] (response) in
                                     if self == nil {return}
                                     if response.success {
                                        self!.blogger.append(contentsOf: (response.data!.data)!)
@@ -61,7 +62,8 @@ class BloggersViewController: UIViewController {
       func loadMoreItems(){
         self.Loading.isHidden = false
         self.Loading.startAnimating()
-        BloggersDataServer.instance.fetchAllBloggers(API_URL3: "https://blog-api.turathalanbiaa.com/api/userpagination"+"?page=" + "\( BloggersViewController.current_page)" ) { [weak self] (response) in
+        let json: [String: Any] = ["my_id": User_id ,"sortby" : 0]
+        BloggersDataServer.instance.fetchAllBloggers(API_URL3: "https://blog-api.turathalanbiaa.com/api/userpagination2"+"?page=" + "\( BloggersViewController.current_page)" , json:json ) { [weak self] (response) in
                                                  if self == nil {return}
                                                  if response.success {
                                                     self!.blogger.append(contentsOf: (response.data!.data)!)
@@ -126,9 +128,9 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
         cell.UserName.text = blogger[indexPath.row].name
         let score1 = blogger[indexPath.row].points ?? 0
         cell.Score.text = "النقاط:\(score1)"
-        cell.PrsImg.image = Get.Picture(from:(blogger[indexPath.row].picture)!) ?? UIImage(named:"PersonalImg")
-        cell.PrsImg.layer.cornerRadius = cell.PrsImg.frame.size.width / 2
-        cell.PrsImg.clipsToBounds = true
+       // cell.PrsImg.image = Get.Picture(from:(blogger[indexPath.row].picture)!) ?? UIImage(named:"PersonalImg")
+     //   cell.PrsImg.layer.cornerRadius = cell.PrsImg.frame.size.width / 2
+      ///  cell.PrsImg.clipsToBounds = true
         
     
         Utilities.TitlefadedColor(cell.MainView)
@@ -147,7 +149,7 @@ extension BloggersViewController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView( _ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        Share.shared.userId =  blogger[indexPath.row].id
+      //  Share.shared.userId =  blogger[indexPath.row].id
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -42,6 +42,17 @@
 		EB13ED2C2474843300F3650E /* BMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB13ED2B2474843300F3650E /* BMTableViewCell.swift */; };
 		EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */; };
 		EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB14C4212454AF65008E86D3 /* UserRegister.swift */; };
+		EB22941824B7B3410026030F /* BlockUserDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22941724B7B3410026030F /* BlockUserDataServer.swift */; };
+		EB22941A24B7B3500026030F /* BlockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22941924B7B3500026030F /* BlockUser.swift */; };
+		EB22941D24B7BD6F0026030F /* UnblockUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22941C24B7BD6F0026030F /* UnblockUserViewController.swift */; };
+		EB22941F24B7BD880026030F /* UnblockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22941E24B7BD880026030F /* UnblockTableViewCell.swift */; };
+		EB22942124B7BDA20026030F /* UnblockDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22942024B7BDA20026030F /* UnblockDataServer.swift */; };
+		EB22942324B7BDB70026030F /* UblockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22942224B7BDB70026030F /* UblockUser.swift */; };
+		EB22942624B7C1A20026030F /* BlockedUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22942524B7C1A20026030F /* BlockedUsers.swift */; };
+		EB22942824B7C1C00026030F /* BlockedUsersDataServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22942724B7C1C00026030F /* BlockedUsersDataServer.swift */; };
+		EB22942C24B7E4E30026030F /* testServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22942B24B7E4E30026030F /* testServer.swift */; };
+		EB22942E24B7E4EF0026030F /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22942D24B7E4EF0026030F /* Test.swift */; };
+		EB22943024BCBC4D0026030F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB22942F24BCBC4D0026030F /* SearchViewController.swift */; };
 		EB3E79B9245E22E8000C1409 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */; };
 		EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BA245E22FD000C1409 /* AddPostServer.swift */; };
 		EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E79BC245E230A000C1409 /* AddPost.swift */; };
@@ -154,6 +165,18 @@
 		EB13ED2B2474843300F3650E /* BMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMTableViewCell.swift; sourceTree = "<group>"; };
 		EB14C41F2454AF4D008E86D3 /* RegisterServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterServer.swift; sourceTree = "<group>"; };
 		EB14C4212454AF65008E86D3 /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
+		EB22941524AA9ABE0026030F /* blog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = blog.entitlements; sourceTree = "<group>"; };
+		EB22941724B7B3410026030F /* BlockUserDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUserDataServer.swift; sourceTree = "<group>"; };
+		EB22941924B7B3500026030F /* BlockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockUser.swift; sourceTree = "<group>"; };
+		EB22941C24B7BD6F0026030F /* UnblockUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnblockUserViewController.swift; sourceTree = "<group>"; };
+		EB22941E24B7BD880026030F /* UnblockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnblockTableViewCell.swift; sourceTree = "<group>"; };
+		EB22942024B7BDA20026030F /* UnblockDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnblockDataServer.swift; sourceTree = "<group>"; };
+		EB22942224B7BDB70026030F /* UblockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UblockUser.swift; sourceTree = "<group>"; };
+		EB22942524B7C1A20026030F /* BlockedUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsers.swift; sourceTree = "<group>"; };
+		EB22942724B7C1C00026030F /* BlockedUsersDataServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedUsersDataServer.swift; sourceTree = "<group>"; };
+		EB22942B24B7E4E30026030F /* testServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testServer.swift; sourceTree = "<group>"; };
+		EB22942D24B7E4EF0026030F /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		EB22942F24BCBC4D0026030F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EB3E79B8245E22E7000C1409 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		EB3E79BA245E22FD000C1409 /* AddPostServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostServer.swift; sourceTree = "<group>"; };
 		EB3E79BC245E230A000C1409 /* AddPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPost.swift; sourceTree = "<group>"; };
@@ -278,6 +301,7 @@
 		E3574998243B7B9B00708AB9 /* blog */ = {
 			isa = PBXGroup;
 			children = (
+				EB22941524AA9ABE0026030F /* blog.entitlements */,
 				EB13ED2424747ED700F3650E /* BookMarks */,
 				E35749D4243BB86700708AB9 /* blogs */,
 				E38C141C243D48F40054134E /* Category */,
@@ -410,6 +434,54 @@
 			path = BookMarks;
 			sourceTree = "<group>";
 		};
+		EB22941624B7B2470026030F /* BlockUser */ = {
+			isa = PBXGroup;
+			children = (
+				EB22941724B7B3410026030F /* BlockUserDataServer.swift */,
+				EB22941924B7B3500026030F /* BlockUser.swift */,
+			);
+			path = BlockUser;
+			sourceTree = "<group>";
+		};
+		EB22941B24B7BD540026030F /* BlockedUsers */ = {
+			isa = PBXGroup;
+			children = (
+				EB22941C24B7BD6F0026030F /* UnblockUserViewController.swift */,
+				EB22941E24B7BD880026030F /* UnblockTableViewCell.swift */,
+				EB22942924B7C1DA0026030F /* UnblockUsers */,
+				EB22942424B7C18E0026030F /* Blocked */,
+			);
+			path = BlockedUsers;
+			sourceTree = "<group>";
+		};
+		EB22942424B7C18E0026030F /* Blocked */ = {
+			isa = PBXGroup;
+			children = (
+				EB22942A24B7E4D20026030F /* test */,
+				EB22942724B7C1C00026030F /* BlockedUsersDataServer.swift */,
+				EB22942524B7C1A20026030F /* BlockedUsers.swift */,
+			);
+			path = Blocked;
+			sourceTree = "<group>";
+		};
+		EB22942924B7C1DA0026030F /* UnblockUsers */ = {
+			isa = PBXGroup;
+			children = (
+				EB22942024B7BDA20026030F /* UnblockDataServer.swift */,
+				EB22942224B7BDB70026030F /* UblockUser.swift */,
+			);
+			path = UnblockUsers;
+			sourceTree = "<group>";
+		};
+		EB22942A24B7E4D20026030F /* test */ = {
+			isa = PBXGroup;
+			children = (
+				EB22942B24B7E4E30026030F /* testServer.swift */,
+				EB22942D24B7E4EF0026030F /* Test.swift */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		EB3E79B7245E228B000C1409 /* addComment */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +521,7 @@
 		EBD2B23724844CA900A78991 /* Search for Post */ = {
 			isa = PBXGroup;
 			children = (
+				EB22942F24BCBC4D0026030F /* SearchViewController.swift */,
 				EBD2B23824844CC600A78991 /* SearchPostDataServer.swift */,
 			);
 			path = "Search for Post";
@@ -478,6 +551,7 @@
 			children = (
 				EBDB5FA12464BAC60027C67E /* DetailBloggersViewController.swift */,
 				EBDB5F9F2464BAAA0027C67E /* DetaledBlogersTableViewCell.swift */,
+				EB22941624B7B2470026030F /* BlockUser */,
 			);
 			path = DetailBloggers;
 			sourceTree = "<group>";
@@ -529,6 +603,7 @@
 		EBF216002457C52500DC3651 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				EB22941B24B7BD540026030F /* BlockedUsers */,
 				EBF215FE2457C51C00DC3651 /* ProfileViewController.swift */,
 				EBF216012457C54E00DC3651 /* ProfileDataServer.swift */,
 				EBF216032457C55F00DC3651 /* Profile.swift */,
@@ -821,6 +896,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBF215F62456707800DC3651 /* CommentViewController.swift in Sources */,
+				EB22943024BCBC4D0026030F /* SearchViewController.swift in Sources */,
 				EBE7470124523DC800F0F59E /* User.swift in Sources */,
 				EB13ED2C2474843300F3650E /* BMTableViewCell.swift in Sources */,
 				E35749DD243C982200708AB9 /* DataServer.swift in Sources */,
@@ -828,13 +904,18 @@
 				E35749CF243BB7E500708AB9 /* BlogCardTableViewCell.swift in Sources */,
 				EBF2160E2459BE8E00DC3651 /* SettingsViewController.swift in Sources */,
 				EBDC0D222477971F00636890 /* BookMarksCore+CoreDataProperties.swift in Sources */,
+				EB22942624B7C1A20026030F /* BlockedUsers.swift in Sources */,
 				EBF147C6246106E700FA68C9 /* FBUser.swift in Sources */,
 				EB3E79BB245E22FD000C1409 /* AddPostServer.swift in Sources */,
 				E35749E4243C99F800708AB9 /* MenuViewController.swift in Sources */,
+				EB22942C24B7E4E30026030F /* testServer.swift in Sources */,
+				EB22941824B7B3410026030F /* BlockUserDataServer.swift in Sources */,
+				EB22942324B7BDB70026030F /* UblockUser.swift in Sources */,
 				EBF62CD924853D5800632629 /* faded.swift in Sources */,
 				EBF215FF2457C51C00DC3651 /* ProfileViewController.swift in Sources */,
 				EB13ED2624747EF300F3650E /* BookMarkViewController.swift in Sources */,
 				EB682A84247214C900CC9EE7 /* SearchDataServer.swift in Sources */,
+				EB22942824B7C1C00026030F /* BlockedUsersDataServer.swift in Sources */,
 				E3A830B3244A4CEF00714A5E /* Blogger.swift in Sources */,
 				E38C1465243FB4750054134E /* LogInViewController.swift in Sources */,
 				EB14C4222454AF65008E86D3 /* UserRegister.swift in Sources */,
@@ -843,11 +924,13 @@
 				E38C1468243FC4310054134E /* SignUpViewController.swift in Sources */,
 				EBF216072458A3B600DC3651 /* EditProfileViewController.swift in Sources */,
 				EBF215FB245670BF00DC3651 /* Comments.swift in Sources */,
+				EB22941A24B7B3500026030F /* BlockUser.swift in Sources */,
 				EBDC0D232477971F00636890 /* BookMarksCore+CoreDataClass.swift in Sources */,
 				EB0D5A3224A15AF200175861 /* ReportViewController.swift in Sources */,
 				E35749A4243B7B9B00708AB9 /* blog.xcdatamodeld in Sources */,
 				EBD939802467A11900095758 /* UpdateViews.swift in Sources */,
 				E38C146B243FE7330054134E /* BloggersViewController.swift in Sources */,
+				EB22942124B7BDA20026030F /* UnblockDataServer.swift in Sources */,
 				EB14C4202454AF4D008E86D3 /* RegisterServer.swift in Sources */,
 				EBD9397724675C6600095758 /* UpdatePost.swift in Sources */,
 				EBD9397B24676BFA00095758 /* AddComment.swift in Sources */,
@@ -856,6 +939,7 @@
 				EBF215F424563AD400DC3651 /* Share.swift in Sources */,
 				EB3E79BD245E230A000C1409 /* AddPost.swift in Sources */,
 				E357499A243B7B9B00708AB9 /* AppDelegate.swift in Sources */,
+				EB22941F24B7BD880026030F /* UnblockTableViewCell.swift in Sources */,
 				EBE7470324523DD900F0F59E /* LogInServer.swift in Sources */,
 				EB682ACE24731BD600CC9EE7 /* PresistentServer.swift in Sources */,
 				EBF3DB732465142B00AFDF40 /* DeletePost.swift in Sources */,
@@ -883,10 +967,12 @@
 				EB682A8A2472306500CC9EE7 /* DeleteCmntDataServer.swift in Sources */,
 				E35749DA243C0AB000708AB9 /* SlideInTransition.swift in Sources */,
 				E35749D3243BB85F00708AB9 /* PostDataServer.swift in Sources */,
+				EB22942E24B7E4EF0026030F /* Test.swift in Sources */,
 				EBF147C4246106BB00FA68C9 /* LoginByFacebook.swift in Sources */,
 				EBEEA5ED247DD2F2004CBBDC /* getImage.swift in Sources */,
 				E357499C243B7B9B00708AB9 /* SceneDelegate.swift in Sources */,
 				EBDB5FA22464BAC60027C67E /* DetailBloggersViewController.swift in Sources */,
+				EB22941D24B7BD6F0026030F /* UnblockUserViewController.swift in Sources */,
 				EBF3DB6D246510D300AFDF40 /* UpdatePostDataServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1063,17 +1149,17 @@
 			baseConfigurationReference = D873003C2EFC1867381F6C2B /* Pods-blog.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = blog/blogDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = blog/blog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C53R7SVXWK;
 				INFOPLIST_FILE = blog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abed.blog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1086,16 +1172,17 @@
 			baseConfigurationReference = B0B7C5C9894EC2769238B06C /* Pods-blog.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = blog/blog.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = C53R7SVXWK;
 				INFOPLIST_FILE = blog/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.9;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.abed.blog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
