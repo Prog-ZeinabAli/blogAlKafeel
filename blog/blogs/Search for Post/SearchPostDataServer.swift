@@ -10,9 +10,9 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-//categry dataSever THIS IS THE LINK WHERE I'LL BE GETTING MY POSTS FROM JSON FILE
+//categry dataSever THIS IS THE LINK WHERE I'LL BE GETTING MY Posts FROM JSON FILE
 typealias CompletionHandler17<T> = (_ response: ApiResponse17<T>) -> ()
-let API_URL17 = "https://blog-api.turathalanbiaa.com/api/searchPost"
+let API_URL17 = "https://blog-api.turathalanbiaa.com/api/searchPost2"
 
 class SearchPostDataServer {
     

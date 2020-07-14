@@ -74,6 +74,8 @@ class CommentViewController: UIViewController {
     
     //MARK:- Deleting Comment
     @IBAction func DeleteCommentIsTapped(_ sender: Any) {
+        self.Loading.isHidden = false
+        self.Loading.startAnimating()
        let json: [String: Any] = ["id": commentId ?? 0]
         DeleteCmntDataServer.instance.Delete(json:json ) { [weak self] (response) in
                            if self == nil {return}
@@ -82,6 +84,9 @@ class CommentViewController: UIViewController {
                               if(user.message == "DONE")
                             {
                                 print("deleted")
+                                self!.tv.reloadData()
+                                self!.Loading.isHidden = true
+                                self!.Loading.stopAnimating()
                                 self!.dismiss(animated: true, completion: nil)
                               }else if (user.message == "NOT FOUND") {
                                 let alert = UIAlertController(title: "خطأ", message: "فشل في الحذف, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
@@ -131,7 +136,7 @@ class CommentViewController: UIViewController {
                           let alert = UIAlertController(title: "تمت عملية الارسال", message: "تمت عملية ارسال التعليق بنجاح  ", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                             self!.present(alert, animated: true)
-                           
+                            self!.dismiss(animated: true, completion: nil)
                            }else if let user = response.data {
                             if(user.message == "NOT FOUND"){
                                 let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)

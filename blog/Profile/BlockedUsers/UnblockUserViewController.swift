@@ -92,7 +92,7 @@ extension UnblockUserViewController:UITableViewDelegate,UITableViewDataSource {
                              if self == nil {return}
                                 if response.success {
                                     if response.data != nil{
-                                        
+                                        self?.dismiss(animated: true, completion: nil)
                                     print("yeeeeeeeeey User was blocked ")
                                         self!.Loading.isHidden = true
                                         self!.Loading.stopAnimating()

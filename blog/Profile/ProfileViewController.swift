@@ -97,13 +97,7 @@ class ProfileViewController: UIViewController {
                                         self!.Loading.stopAnimating()
                                         let alert = UIAlertController(title: "تم الحذف", message: "تمت عملية حذف المدونة بنجاح", preferredStyle: .alert)
                                                                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-                                                                          self!.present(alert, animated: true)
-                                        //MARK:- deleting the row
-                                        self!.tv.beginUpdates()
-                                        let indexPath = IndexPath(row: self!.blogIndex, section: 0)
-                                        self!.tv.deleteRows(at: [indexPath], with: .automatic)
-                                        self!.tv.endUpdates()
-                                        
+                                     self?.dismiss(animated: true, completion: nil)
                                         
                                         self!.tv.reloadData()
                                         } else if(user.message == "NOT FOUND'"){

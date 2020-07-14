@@ -9,7 +9,7 @@
 import Foundation
 
 struct Blog : Codable {
-    let id: String?
+    let id: Int?
     let name: String?
     let email: String?
     let status: Int?

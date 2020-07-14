@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import Haneke
 
 class Get{
     
@@ -21,8 +22,8 @@ static func Image(from string: String)  -> UIImage? {
                    return nil }
            var image: UIImage? = nil
            do {
-           // [imageView hnk_setImageFromURL:url];
-               let data = try Data(contentsOf: url, options: [])
+          //  [imageView hnk_setImageFromURL:url];
+            let data =  try Data(contentsOf: url, options: [])
                image = UIImage(data: data)
            }
            catch {
@@ -36,9 +37,8 @@ static func Image(from string: String)  -> UIImage? {
    
 
 
-    
+
     static func Picture(from string: String) -> UIImage? {
-        //2. Get valid URL
         guard let url = URL(string: string )
             else{
                 return nil }

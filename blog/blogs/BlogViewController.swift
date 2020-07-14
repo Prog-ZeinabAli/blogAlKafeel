@@ -7,10 +7,11 @@
 
 import UIKit
 import CoreData
-
+import Haneke
 class BlogViewController: UIViewController {
  
     //MARK:- Outlets and Variables
+    @IBOutlet weak var ReportButton: UIButton!
     var User_id = UserDefaults.standard.object(forKey: "loggesUserID")
     @IBOutlet weak var reloadChoice: UIActivityIndicatorView!  //when categories are chosen
     @IBOutlet weak var CategoryButton: UIButton!
@@ -33,11 +34,29 @@ class BlogViewController: UIViewController {
     var BookMark = [BookMarksCore]()
     var BM = [BookMarksCore]()
     var fetchMore = false
+    var PostPaginationLink : String?
+    var SearchPaginationLink : String?
     
  
      //MARK:- View Did Load
   
         override func viewDidLoad() {
+            
+            
+            
+            //MARK:- Signed in or not
+                   let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+                   if flag == "yes"
+                   {
+                      PostPaginationLink =  "https://blog-api.turathalanbiaa.com/api/posttpagination2"
+                       
+                   }else{
+                     PostPaginationLink =  "https://blog-api.turathalanbiaa.com/api/posttpagination"
+
+                   }
+            
+            
+            
             SearchBar.delegate = self
             //searching
             if Share.shared.SearchView == true{
@@ -123,11 +142,31 @@ class BlogViewController: UIViewController {
         
           //  blog table view   Share.shared.categoryId ??
         if Share.shared.catChosen == true ||  Share.shared.FromCtegoryVC == "yes" {
-            let json: [String: Any] = ["my_id": User_id , "sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId]
-            loadBlogs( json:json)
+            //if user is logged
+             let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+             if flag == "yes"
+                             {
+                                 let json: [String: Any] = ["my_id": User_id , "sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId]
+                                  loadBlogs( json:json)
+                             }else{
+                                 let json: [String: Any] = [ "sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId]
+                                loadBlogs( json:json)
+                             }
+            
+           
         }else {
-            let json: [String: Any] = [ "my_id": User_id ,"sortby": 2 ,"cat": 0 ]
-            loadBlogs( json: json)
+            //if user is logged
+                        let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+                        if flag == "yes"
+                                        {
+                                            let json: [String: Any] = [ "my_id": User_id ,"sortby": 2 ,"cat": 0 ]
+                                                       loadBlogs( json: json)
+                                        }else{
+                                           let json: [String: Any] = [ "sortby": 2 ,"cat": 0 ]
+                                                       loadBlogs( json: json)
+                                        }
+                       
+           
         }
        
           tv.reloadData()
@@ -135,7 +174,7 @@ class BlogViewController: UIViewController {
 
        //MARK:- Load Blogs
     func loadBlogs( json: [String: Any]){
-        PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination2",json: json)
+        PostDataServer.instance.fetchAllPosts (API_URL2: PostPaginationLink! ,json: json)
                    { [weak self] (response) in
                        if self == nil {return}
                        if response.success {
@@ -165,7 +204,7 @@ class BlogViewController: UIViewController {
         self.Loading.isHidden = false
                 self.Loading.startAnimating()
                          let json: [String: Any] = ["sortby": Share.shared.sortby ?? 0 ,"cat": 1 ,"category_id": Share.shared.categoryId ?? 0]
-            PostDataServer.instance.fetchAllPosts (API_URL2: "https://blog-api.turathalanbiaa.com/api/posttpagination2"+"?page=" + "\( BlogViewController.current_page)", json: json)
+        PostDataServer.instance.fetchAllPosts (API_URL2: PostPaginationLink! + "?page=" + "\( BlogViewController.current_page)", json: json)
                                                               { [weak self] (response) in
                                                                   if self == nil {return}
                                                                   if response.success {
@@ -194,12 +233,11 @@ class BlogViewController: UIViewController {
             
             self.Loading.isHidden = false
             self.Loading.startAnimating()
-                let json: [String: Any] = ["data": searchText]
+        let json: [String: Any] = ["my_id": User_id as Any , "data": searchText]
                SearchPostDataServer.instance.Searching(json: json) { [weak self] (response) in
                                    if self == nil {return}
                                    if response.success {
-                                   self!.posts = (response.data!.data)!
-                                   //self!.blogger as! [search] = self!.searchBlogger
+                                  self!.posts = (response.data!.data)!
                                      self!.tv.reloadData()
                                       self!.Loading.isHidden = true
                                       self!.Loading.stopAnimating()
@@ -212,16 +250,22 @@ class BlogViewController: UIViewController {
                                }
         }
 
-      
-
-
-    
     // MARK: - updating views
     @IBAction func ViewsTapped(_ sender: Any) {
        
     }
     
-     //MARK:- Category table button
+    @IBAction func ReportIsTapped(_ sender: Any) {
+        let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+                                    if flag != "yes"
+                                    {
+                                        let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لكتابة مدونة", preferredStyle: .alert)
+                                                                      alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                        self.present(alert, animated: true)
+                                        
+        }
+    }
+    //MARK:- Category table button
     @IBAction func CategoryButtonPressed(_ sender: Any) {
           if self.CatgTv.isHidden == true {
                        self.CatgTv.isHidden = false
@@ -248,10 +292,10 @@ class BlogViewController: UIViewController {
     
     // MARK:- Add bookMarks
     @IBAction func BookMarkIsTapped(_ sender: Any) {
-       /* let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
+        let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
-               self.present(alert, animated: true)*/
-       let coin = UIImage(systemName: "pencil")
+               self.present(alert, animated: true)
+    /*   let coin = UIImage(systemName: "pencil")
         (sender as AnyObject).setImage(coin ,for: UIControl.State.highlighted) 
         let bookMarks = BookMarksCore(context: PressitentServer.context)
         bookMarks.titleBM = Share.shared.title
@@ -259,7 +303,7 @@ class BlogViewController: UIViewController {
         bookMarks.nameBM = Share.shared.userName
         let postid = Share.shared.PostId ?? 0
         bookMarks.postIdBM = "\(String(describing: postid))"//Share.shared.Blogsusername
-        PressitentServer.saveContext()
+        PressitentServer.saveContext() */
     }
     
 }
@@ -363,9 +407,12 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         cell.index = indexPath
         cell.cellDelegate = self // as! CommentIsClicked
         cell.cellDelegate2 = self // as! CommentIsClicked
-            
-             /*    cell.PostImage.image = Get.Image(from:posts[indexPath.row].image!) ?? UIImage(named:"home")
-                cell.PersonalImg.setImage(Get.Picture(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)*/
+       /* let urlString = "https://alkafeelblog.edu.turathalanbiaa.com/aqlam/image/" + posts[indexPath.row].image!
+       let url = URL(string: urlString)
+            cell.PostImage.hnk_setImage(from: url) 
+            cell.PersonalImg.hnk_setImage(from: url, for: .normal)*/
+        cell.PostImage.image = Get.Image(from:posts[indexPath.row].image!) ?? UIImage(named:"home")
+        cell.PersonalImg.setImage(Get.Picture(from:(posts[indexPath.row].user?.picture)!) ?? UIImage(named:"PersonalImg"), for: .normal)
             
           
             
@@ -385,7 +432,7 @@ extension BlogViewController: UITableViewDataSource, UITableViewDelegate {
         Utilities.CircledButton(cell.PersonalImg)
               return cell
         }
-       // cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
+       //cell.PersonalImg.image = UIImage(contentsOfFile: posts[indexPath.row].picture)
            return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
        }
 

@@ -17,7 +17,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var UserNameLabel: UILabel!
     @IBOutlet weak var PersonalImg: UIButton!
     let transition = SlideInTransition()
-    
+    var search = false
     
     override func viewDidLayoutSubviews() {
         Utilities.fadedColor(profileView)
@@ -38,6 +38,7 @@ class MenuViewController: UIViewController {
             {
                 SignUpButton.isHidden = true
                 SignInButton.setTitle(" تسجيل خروج"  ,for: .normal)
+                search = true
 
              //   viewDidLoad()
                 
@@ -109,13 +110,23 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func SearchIsTapped(_ sender: Any) {
-        Share.shared.SearchView = true
+        
+            if search {
+                Share.shared.SearchView = true
+                self.performSegue(withIdentifier: "ValidationSucceeded", sender: self)
+            } else {
+                 let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لكتابة مدونة", preferredStyle: .alert)
+                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                           self.present(alert, animated: true)
+            }
+        
+      
     }
-  /*  @IBAction func BookMarkTapped(_ sender: Any) {
+   @IBAction func BookMarkTapped(_ sender: Any) {
         let alert = UIAlertController(title: "عذرا", message: "هذة الخاصية غير متوفرة حاليا ..سيتم تفعيل هذه الخاصية في النسخة القادمة", preferredStyle: .alert)
                alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                self.present(alert, animated: true)
-    }*/
+    }
 }
 
 

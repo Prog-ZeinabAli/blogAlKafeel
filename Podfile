@@ -27,7 +27,8 @@ target 'blog' do
     pod 'Alamofire', '~> 4.8.0'
     pod 'SwiftyJSON'
 
-
+#pods for image download
+   pod 'Haneke', '~> 1.0'
 
   target 'blogTests' do
     inherit! :search_paths
