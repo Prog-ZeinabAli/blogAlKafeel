@@ -105,6 +105,9 @@ class DetailBloggersViewController: UIViewController {
     
     @IBAction func BlockUser(_ sender: Any) {
         
+        let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
+                   if flag == "yes"
+                   {
         let alert = UIAlertController(title: "تنبيه !", message: "هل تريد حظر المستخدم ؟", preferredStyle: UIAlertController.Style.alert)
         
       alert.addAction(UIAlertAction(title: "نعم", style: .default, handler: { (action: UIAlertAction!) in
@@ -119,6 +122,14 @@ class DetailBloggersViewController: UIViewController {
                                                                                 print("yeeeeeeeeey User was blocked ")
                                                                             self!.Loading.isHidden = true
                                                                              self!.Loading.stopAnimating()
+                                                                                
+                                                                                
+                                                                                guard let menuViewController = self?.storyboard?.instantiateViewController(identifier: "Bloggers") else {return}
+                                                                                self!.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                                                                                let alert = UIAlertController(title: "تم", message: "تم حظر المستخدم", preferredStyle: .alert)
+                                                                                                                                                           alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                                                                                                           self!.present(alert, animated: true)
+                                                                                
                                                                                 }}
                                                     
                                                                         }else {
@@ -135,7 +146,13 @@ class DetailBloggersViewController: UIViewController {
        alert.addAction(UIAlertAction(title: "الغاء", style: .cancel, handler: nil))
 
         present(alert, animated: true, completion: nil)
-        
+        }
+                   else{
+                    let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا  ", preferredStyle: .alert)
+                                              alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                              self.present(alert, animated: true)
+                    
+        }
         
     }
     

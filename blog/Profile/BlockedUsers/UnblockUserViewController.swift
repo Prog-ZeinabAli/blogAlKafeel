@@ -94,6 +94,9 @@ extension UnblockUserViewController:UITableViewDelegate,UITableViewDataSource {
                                     if response.data != nil{
                                         self?.dismiss(animated: true, completion: nil)
                                     print("yeeeeeeeeey User was blocked ")
+                                        let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
+                                                                              alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
+                                                                                          self!.present(alert, animated: true)
                                         self!.Loading.isHidden = true
                                         self!.Loading.stopAnimating()
                                                 }

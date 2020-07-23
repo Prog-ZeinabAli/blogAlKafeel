@@ -68,7 +68,7 @@ class MenuViewController: UIViewController {
         let flag =  UserDefaults.standard.object(forKey: "LoginFlag") as? String
                                     if flag != "yes"
                                     {
-                                      let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لكتابة مدونة", preferredStyle: .alert)
+                                      let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا ", preferredStyle: .alert)
                                       alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                                       self.present(alert, animated: true)
                                     }else {
@@ -115,7 +115,7 @@ class MenuViewController: UIViewController {
                 Share.shared.SearchView = true
                 self.performSegue(withIdentifier: "ValidationSucceeded", sender: self)
             } else {
-                 let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا لكتابة مدونة", preferredStyle: .alert)
+                 let alert = UIAlertController(title: "خطأ", message: "عذرا ، يجب عليك تسجيل الدخول اولا  ", preferredStyle: .alert)
                            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                            self.present(alert, animated: true)
             }

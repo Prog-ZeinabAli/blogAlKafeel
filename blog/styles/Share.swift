@@ -52,7 +52,7 @@ final class Share{
     
     //BookMark for views
     var BookMarked : Bool! = false
-    
+  
     
 }
 /* variables saved in the user defaults

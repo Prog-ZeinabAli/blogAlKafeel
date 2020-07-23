@@ -15,6 +15,8 @@ class PrivacyPolicyViewController: UIViewController {
     @IBOutlet weak var CheckButtonView: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        Utilities.styleHollowButton(NextBtn)
+        
 
         // Do any additional setup after loading the view.
     }

@@ -192,6 +192,12 @@ class BlogViewController: UIViewController {
                            let alert = UIAlertController(title: "خطأ", message: "فشل في التحميل, تحقق من الاتصال بالانترنت", preferredStyle: .alert)
                            alert.addAction(UIAlertAction(title: "تم", style: .cancel, handler: nil))
                            self!.present(alert, animated: true)
+                        alert.addAction(UIAlertAction(title: "اعادة تحميل الصفحة", style: .default, handler: { (action: UIAlertAction!) in
+                            self!.viewWillAppear(true)
+                        }))
+                            
+
+                           
                         self!.Loading.isHidden = true
                         self!.Loading.stopAnimating()
                        }

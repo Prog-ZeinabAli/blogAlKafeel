@@ -11,7 +11,7 @@
         <!--الصفحة الرئيسية-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,7 +75,7 @@
         <!--Blog View Controller-->
         <scene sceneID="4au-4z-tH0">
             <objects>
-                <viewController id="57t-Po-YzM" customClass="BlogViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="57t-Po-YzM" customClass="BlogViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="58Y-I1-fhI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,14 +89,14 @@
                                     <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 </activityIndicatorView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="490" id="40V-Kk-BEv" customClass="BlogCardTableViewCell" customModule="blog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="490" id="40V-Kk-BEv" customClass="BlogCardTableViewCell" customModule="مدونة_الكفيل" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="490"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="40V-Kk-BEv" id="Exc-9S-lmg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="490"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4A-kQ-spy" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4A-kQ-spy" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="5" width="374" height="466"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6Y-si-Hol">
@@ -429,7 +429,7 @@
         <!--Views View Controller-->
         <scene sceneID="Dq8-Mn-WC3">
             <objects>
-                <viewController storyboardIdentifier="ViewBlog" id="bMd-Lg-hlH" customClass="ViewsViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewBlog" id="bMd-Lg-hlH" customClass="ViewsViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9jB-Kh-GP1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -505,12 +505,12 @@
         <!--Comment View Controller-->
         <scene sceneID="wvg-5H-Jnq">
             <objects>
-                <viewController storyboardIdentifier="CommentViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="nEc-Wi-Sdh" customClass="CommentViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="nEc-Wi-Sdh" customClass="CommentViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DrG-XJ-XLa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBU-1c-MNO" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBU-1c-MNO" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                 <rect key="frame" x="55" y="183" width="304" height="540"/>
                                 <subviews>
                                     <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vvD-bv-XUM">
@@ -547,14 +547,14 @@
                                             <color key="tintColor" red="0.1431645138" green="0.34733899109999999" blue="0.054747188039999999" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                         </activityIndicatorView>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="114" id="UpV-UP-l3h" customClass="CommentTableViewCell" customModule="blog" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="114" id="UpV-UP-l3h" customClass="CommentTableViewCell" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="304" height="114"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UpV-UP-l3h" id="t5o-dr-qon">
                                                     <rect key="frame" x="0.0" y="0.0" width="304" height="114"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sm-R2-rrC" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sm-R2-rrC" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="11" width="272" height="92"/>
                                                             <subviews>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="KR3-ry-iOc">
@@ -687,12 +687,12 @@
         <!--Unblock User View Controller-->
         <scene sceneID="vio-rg-CFn">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="d9H-Ty-5hr" customClass="UnblockUserViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="d9H-Ty-5hr" customClass="UnblockUserViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tRO-rK-Mx1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01z-Pk-sva" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="01z-Pk-sva" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                 <rect key="frame" x="35.5" y="120.5" width="343" height="601"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="المستخدمين المحظورين" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAw-iS-eMg">
@@ -710,10 +710,10 @@
                                             <color key="color" red="0.91117310520000006" green="0.91130417590000001" blue="0.91114443540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </activityIndicatorView>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="62" id="Prj-K2-H7y" customClass="UnblockTableViewCell" customModule="blog" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="62" id="Prj-K2-H7y" customClass="UnblockTableViewCell" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="327" height="62"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Prj-K2-H7y" id="cA9-yV-ACF" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Prj-K2-H7y" id="cA9-yV-ACF" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="327" height="62"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
@@ -797,7 +797,7 @@
         <!--Profile View Controller-->
         <scene sceneID="47K-9a-nPL">
             <objects>
-                <viewController storyboardIdentifier="Profile" id="7VF-FT-aVl" customClass="ProfileViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Profile" id="7VF-FT-aVl" customClass="ProfileViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VVL-NV-AQr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -871,14 +871,14 @@
                                     <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 </activityIndicatorView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="489" id="6zl-0g-c9W" customClass="ProfileTableViewCell" customModule="blog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="489" id="6zl-0g-c9W" customClass="ProfileTableViewCell" customModule="مدونة_الكفيل" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="489"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6zl-0g-c9W" id="z9o-UD-EwF">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="489"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DMk-MC-Uss" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DMk-MC-Uss" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="11" width="374" height="467"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRG-FF-1fR">
@@ -1116,12 +1116,12 @@
         <!--Edit Profile View Controller-->
         <scene sceneID="zEX-Dm-fc9">
             <objects>
-                <viewController id="V8E-w7-Qgk" customClass="EditProfileViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="V8E-w7-Qgk" customClass="EditProfileViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JVC-N1-bLH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyw-Dm-Btn" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyw-Dm-Btn" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                 <rect key="frame" x="20" y="330" width="374" height="280"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VQl-lq-FK3">
@@ -1257,7 +1257,7 @@
         <!--Add Post View Controller-->
         <scene sceneID="bzb-zk-Mop">
             <objects>
-                <viewController storyboardIdentifier="AddPost" modalTransitionStyle="flipHorizontal" id="Ul6-cg-tGC" customClass="AddPostViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPost" modalTransitionStyle="flipHorizontal" id="Ul6-cg-tGC" customClass="AddPostViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="imQ-rU-0uj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1426,12 +1426,12 @@
         <!--Report View Controller-->
         <scene sceneID="4QM-de-Dti">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Vcs-7K-qKv" customClass="ReportViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Vcs-7K-qKv" customClass="ReportViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gNG-iG-RbS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLa-6M-YDT" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLa-6M-YDT" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                 <rect key="frame" x="51.5" y="241" width="311" height="360"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="66" translatesAutoresizingMaskIntoConstraints="NO" id="Iuv-Jy-oBB">
@@ -1550,12 +1550,12 @@
         <!--Settings View Controller-->
         <scene sceneID="K2e-MG-Yi8">
             <objects>
-                <viewController id="6UE-S1-koN" customClass="SettingsViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6UE-S1-koN" customClass="SettingsViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4z8-Aa-qq2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFV-fB-5fP" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                            <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFV-fB-5fP" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                 <rect key="frame" x="20" y="221" width="374" height="400"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="zn0-OR-HWS" userLabel="MainStack">
@@ -1685,7 +1685,7 @@
         <!--Book Mark View Controller-->
         <scene sceneID="nrE-us-U9P">
             <objects>
-                <viewController id="jiu-ar-odF" customClass="BookMarkViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jiu-ar-odF" customClass="BookMarkViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vLB-Ow-sgo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1694,14 +1694,14 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="330" id="7y6-Kh-bEe" customClass="BMTableViewCell" customModule="blog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="330" id="7y6-Kh-bEe" customClass="BMTableViewCell" customModule="مدونة_الكفيل" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="330"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7y6-Kh-bEe" id="i40-7a-oej">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nnw-iX-sbZ" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nnw-iX-sbZ" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="21" width="374" height="288"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdj-fo-zcx">
@@ -1815,7 +1815,7 @@
         <!--Menu View Controller-->
         <scene sceneID="e4y-iT-8MP">
             <objects>
-                <viewController storyboardIdentifier="MenuViewControlller" id="8WD-ds-SjL" customClass="MenuViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewControlller" id="8WD-ds-SjL" customClass="MenuViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qgV-FQ-nZh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1991,7 +1991,7 @@
         <!--Category View Controller-->
         <scene sceneID="a7v-QC-nco">
             <objects>
-                <viewController storyboardIdentifier="CategoriesView" interfaceStyle="light" id="0qi-YK-Z34" customClass="CategoryViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoriesView" interfaceStyle="light" id="0qi-YK-Z34" customClass="CategoryViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RLq-f8-3kA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2000,7 +2000,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="764"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="AZs-CK-hcq" customClass="CategoryTableViewCell" customModule="blog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="AZs-CK-hcq" customClass="CategoryTableViewCell" customModule="مدونة_الكفيل" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AZs-CK-hcq" id="pb9-tR-8BI">
@@ -2051,7 +2051,7 @@
         <!--Log In View Controller-->
         <scene sceneID="LTb-1s-mG3">
             <objects>
-                <viewController storyboardIdentifier="LogInView" id="3gU-hm-ka4" customClass="LogInViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LogInView" id="3gU-hm-ka4" customClass="LogInViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xWW-wT-d8V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2201,7 +2201,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="VK8-5D-aFC">
             <objects>
-                <viewController storyboardIdentifier="SignUp" id="63s-eJ-J7g" customClass="SignUpViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" id="63s-eJ-J7g" customClass="SignUpViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eN6-cb-4P4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2308,7 +2308,7 @@
         <!--Bloggers View Controller-->
         <scene sceneID="8ZG-Vp-bO8">
             <objects>
-                <viewController id="t9B-pZ-uUX" customClass="BloggersViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Bloggers" id="t9B-pZ-uUX" customClass="BloggersViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Ph-oz-cSJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2336,14 +2336,14 @@
                                     <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 </activityIndicatorView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="125" id="0bl-uK-4Gq" customClass="BloggersTableViewCell" customModule="blog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="125" id="0bl-uK-4Gq" customClass="BloggersTableViewCell" customModule="مدونة_الكفيل" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="125"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0bl-uK-4Gq" id="abC-at-Yyu">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTM-Qi-KCm" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wTM-Qi-KCm" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="11" width="374" height="78"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmd-lt-mwH">
@@ -2369,7 +2369,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="Pmd-lt-mwH" secondAttribute="bottom" constant="22" id="zSK-Nn-dPB"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cI6-q4-qfv" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cI6-q4-qfv" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="72" width="131" height="42"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XrJ-3F-Qwl">
@@ -2438,7 +2438,7 @@
         <!--Privacy Policy View Controller-->
         <scene sceneID="3Yd-jB-aE6">
             <objects>
-                <viewController id="CMS-vx-ClS" customClass="PrivacyPolicyViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CMS-vx-ClS" customClass="PrivacyPolicyViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lVP-0Y-dn5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2489,7 +2489,7 @@
                                             <action selector="CheckButton:" destination="CMS-vx-ClS" eventType="touchUpInside" id="YC9-3C-dbH"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="اضغط للموافقة على اتباع الشروط اعلاه" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbd-gR-Mhz">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="اضغط للموافقة على اتباع الشروط اعلاه" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbd-gR-Mhz">
                                         <rect key="frame" x="38" y="0.0" width="276" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -2542,7 +2542,7 @@
         <!--Detail Bloggers View Controller-->
         <scene sceneID="Kyd-7l-lau">
             <objects>
-                <viewController id="yCL-Au-dxt" customClass="DetailBloggersViewController" customModule="blog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yCL-Au-dxt" customClass="DetailBloggersViewController" customModule="مدونة_الكفيل" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0sV-xH-bXg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2606,14 +2606,14 @@
                                     <color key="tintColor" red="0.091577232219999999" green="0.2221803617" blue="0.035019823140000003" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                 </activityIndicatorView>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="301" id="Uep-gz-W00" customClass="DetaledBlogersTableViewCell" customModule="blog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="301" id="Uep-gz-W00" customClass="DetaledBlogersTableViewCell" customModule="مدونة_الكفيل" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="301"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uep-gz-W00" id="qQm-8v-DZz">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="301"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOm-uM-Y44" customClass="CardShadow" customModule="blog" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vOm-uM-Y44" customClass="CardShadow" customModule="مدونة_الكفيل" customModuleProvider="target">
                                                     <rect key="frame" x="20" y="11" width="374" height="279"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guC-UO-sHG">
@@ -2790,7 +2790,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="W45-bI-XnL"/>
+        <segue reference="bDh-qJ-E45"/>
         <segue reference="wcl-av-HRg"/>
         <segue reference="5Y7-k1-PUR"/>
         <segue reference="fJE-i3-H6e"/>
